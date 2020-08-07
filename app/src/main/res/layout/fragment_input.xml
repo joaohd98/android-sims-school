@@ -1,0 +1,20 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="components.InputFragment">
+
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="0dp"
+        android:background="@drawable/fragment_input_border"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="10"
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="15dp"
+        android:inputType="textPersonName"
+        android:hint="@string/fragment_login_button_text"
+    />
+</LinearLayout>

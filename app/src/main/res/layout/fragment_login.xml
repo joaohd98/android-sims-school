@@ -17,27 +17,31 @@
         android:src="@drawable/logo"
         tools:src="@drawable/logo" />
 
-    <EditText
-        android:id="@+id/editTextTextEmailAddress"
+    <fragment
+        android:id="@+id/fragment_login_email"
+        android:name="components.InputFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:autofillHints="Email" />
+        android:layout_height="wrap_content"
+        tools:layout="@layout/fragment_input" />
 
-    <EditText
-        android:id="@+id/editTextTextPassword"
+    <fragment
+        android:id="@+id/fragment_login_password"
+        android:name="components.InputFragment"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="52dp"
-        android:ems="10"
-        android:inputType="textPassword" />
+        tools:layout="@layout/fragment_input" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:width="160dp"
-        android:text="Entrar" />
+        android:background="@drawable/fragment_login_submit_button"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/white"
+        android:text="@string/fragment_login_button_text" />
+
+
 </LinearLayout>

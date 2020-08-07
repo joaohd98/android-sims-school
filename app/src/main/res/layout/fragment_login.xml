@@ -14,8 +14,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="52dp"
         android:contentDescription="@string/fragment_login_logo_description"
-        android:src="@drawable/ic_launcher_foreground"
-        tools:src="@tools:sample/avatars" />
+        android:src="@drawable/logo"
+        tools:src="@drawable/logo" />
 
     <EditText
         android:id="@+id/editTextTextEmailAddress"

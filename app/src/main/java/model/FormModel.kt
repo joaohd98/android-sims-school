@@ -1,17 +1,18 @@
 package model
 
 import android.text.InputType
+import java.io.Serializable
 
 class FormModel(
     val inputs: Array<FormInputModel>
     ) {
 }
 
-class FormInputModel(
+class FormInputModel (
     val name: String,
     val hint: String,
     var value: String
-) {
+): Serializable {
 
 
 //    @Published var name: String

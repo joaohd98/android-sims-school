@@ -4,9 +4,8 @@
     android:layout_height="match_parent"
     tools:context="components.InputFragment">
 
-
     <EditText
-        android:id="@+id/inputFragmentSimpleInput"
+        android:id="@+id/fragment_input"
         android:layout_width="0dp"
         android:background="@drawable/fragment_input_border"
         android:layout_height="wrap_content"

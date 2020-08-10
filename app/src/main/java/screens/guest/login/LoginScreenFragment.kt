@@ -1,14 +1,16 @@
 package screens.guest.login
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.joao.simsschool.R
 import components.InputFragment
+import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_login_screen.*
 import screens.guest.login.model.LoginScreenModel
+
 
 class LoginScreenFragment : Fragment() {
     var props = LoginScreenModel()
@@ -18,19 +20,29 @@ class LoginScreenFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_login_screen, container, false)
+        super.onCreateView(inflater, container, savedInstanceState);
+
+        val view = inflater.inflate(R.layout.fragment_login_screen, container, false)
+        val email = childFragmentManager.findFragmentById(R.id.fragment_login_screen_input_email)!! as InputFragment
+        val password = childFragmentManager.findFragmentById(R.id.fragment_login_screen_input_password)!! as InputFragment
+
+        email.setProps(props.form.inputs[0])
+        password.setProps(props.form.inputs[1])
+
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val email = fragment_login_screen_input_email
-        val password = fragment_login_screen_input_password
         val button = fragment_login_screen_button_submit
-
-//        email.setInputProps(this.props.form[0])
-//        password.setInputProps(this.props.form[1])
-
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        this.clearFindViewByIdCache()
+    }
+
+
 
 }

@@ -42,7 +42,4 @@ class LoginScreenFragment : Fragment() {
         super.onDestroyView()
         this.clearFindViewByIdCache()
     }
-
-
-
 }

@@ -1,6 +1,5 @@
 package model
 
-import android.text.InputType
 import java.io.Serializable
 
 class FormModel(
@@ -8,9 +7,10 @@ class FormModel(
     ) {
 }
 
-class FormInputModel (
+class FormInputModel(
     val name: String,
     val hint: String,
+    val keyboardType: Int,
     var value: String
 ): Serializable {
 

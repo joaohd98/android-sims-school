@@ -31,7 +31,10 @@ class InputFragment : Fragment() {
     }
 
     fun setProps(input: FormInputModel) {
+        fragment_input.setText(input.value)
         fragment_input.hint = input.hint
+        fragment_input.inputType = input.keyboardType
+
     }
 
 }

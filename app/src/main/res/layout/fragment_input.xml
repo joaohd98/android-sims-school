@@ -13,7 +13,5 @@
         android:ems="10"
         android:paddingVertical="10dp"
         android:paddingHorizontal="15dp"
-        android:inputType="textPersonName"
-        android:hint="@string/fragment_login_button_text"
-    />
+        tools:ignore="Autofill,LabelFor,TextFields" />
 </LinearLayout>

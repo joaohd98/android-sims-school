@@ -1,13 +1,31 @@
 package model
 
-import kotlin.properties.Delegates
+import android.text.InputType
 
-class FormModel(inputs: Array<FormInputModel>) {
-    var _inputs: Array<FormInputModel> = inputs
-
+class FormModel(
+    val inputs: Array<FormInputModel>
+    ) {
 }
 
-class FormInputModel {
+class FormInputModel(
+    val name: String,
+    val hint: String,
+    var value: String
+) {
 
+
+//    @Published var name: String
+//    @Published var placeholder: String
+//    @Published var value: String
+//    @Published var isPassword: Bool
+//    @Published var keyboardReturnText: UIReturnKeyType
+//    @Published var onKeyboardReturn: () -> Void
+//    @Published var keyboardType: UIKeyboardType
+//    @Published var rules: [FormRulesModel]
+//    @Published var validationRule: (FormRulesModel)?
+//    @Published var hasFocus: Bool
+//    @Published var hasEverUnfocused: Bool
+//    @Published var howManyAttempts: Int
+//    @Published var becomeFirstResponder: () ->  Bool
 
 }

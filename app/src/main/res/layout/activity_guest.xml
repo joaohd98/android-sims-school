@@ -9,9 +9,9 @@
 
     <fragment
         android:id="@+id/fragment"
-        android:name="fragments.LoginFragment"
+        android:name="screens.guest.login.LoginScreenFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login_screen" />
 </LinearLayout>

@@ -6,10 +6,9 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="24dp"
-    tools:context="fragments.LoginFragment">
+    tools:context="screens.guest.login.LoginScreenFragment">
 
     <ImageView
-        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="52dp"
@@ -18,7 +17,7 @@
         tools:src="@drawable/logo" />
 
     <fragment
-        android:id="@+id/fragment_login_email"
+        android:id="@+id/fragment_login_screen_input_email"
         android:name="components.InputFragment"
         android:layout_width="match_parent"
         android:layout_marginBottom="10dp"
@@ -26,7 +25,7 @@
         tools:layout="@layout/fragment_input" />
 
     <fragment
-        android:id="@+id/fragment_login_password"
+        android:id="@+id/fragment_login_screen_input_password"
         android:name="components.InputFragment"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
@@ -34,7 +33,7 @@
         tools:layout="@layout/fragment_input" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/fragment_login_screen_button_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:width="160dp"

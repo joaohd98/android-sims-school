@@ -2,16 +2,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="components.InputFragment">
 
     <EditText
         android:id="@+id/fragment_input"
-        android:layout_width="0dp"
-        android:background="@drawable/fragment_input_border"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="@drawable/fragment_input_border"
         android:ems="10"
-        android:paddingVertical="10dp"
         android:paddingHorizontal="15dp"
+        android:paddingVertical="10dp"
         tools:ignore="Autofill,LabelFor,TextFields" />
+
+    <TextView
+        android:id="@+id/fragment_input_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="5dp" />
 </LinearLayout>

@@ -9,7 +9,7 @@
 
     <fragment
         android:id="@+id/fragment"
-        android:name="screens.guest.login.LoginScreenFragment"
+        android:name="screens.guest.login.LoginScreen"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"

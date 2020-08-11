@@ -9,7 +9,7 @@
         android:orientation="vertical"
         android:gravity="center"
         android:padding="24dp"
-        tools:context="screens.guest.login.LoginScreenFragment">
+        tools:context="screens.guest.login.LoginScreen">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -21,7 +21,7 @@
 
         <fragment
             android:id="@+id/fragment_login_screen_input_email"
-            android:name="components.input.InputFragment"
+            android:name="components.input.Input"
             android:layout_width="match_parent"
             android:layout_marginBottom="5dp"
             android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
 
         <fragment
             android:id="@+id/fragment_login_screen_input_password"
-            android:name="components.input.InputFragment"
+            android:name="components.input.Input"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

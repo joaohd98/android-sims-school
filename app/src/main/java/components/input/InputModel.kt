@@ -2,7 +2,7 @@ package components.input
 
 import utils.FormRulesModel
 
-data class InputFragmentModel(
+data class InputModel(
   val name: String,
   val hint: String,
   val keyboardType: Int,
@@ -18,7 +18,7 @@ data class InputFragmentModel(
     if (this === other) return true
     if (javaClass != other?.javaClass) return false
 
-    other as InputFragmentModel
+    other as InputModel
 
     if (name != other.name) return false
     if (hint != other.hint) return false

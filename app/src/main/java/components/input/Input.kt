@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.FragmentInputBinding
 
-class InputFragment : Fragment() {
+class Input: Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

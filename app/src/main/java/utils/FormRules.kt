@@ -1,6 +1,6 @@
 package utils
 
-import components.input.InputFragmentModel
+import components.input.InputModel
 
 
 enum class FormRulesNames {
@@ -25,7 +25,7 @@ class FormRules {
     }
 
     companion object {
-        fun checkInputIsValid(input: InputFragmentModel): (FormRulesModel)? {
+        fun checkInputIsValid(input: InputModel): (FormRulesModel)? {
             val validations = FormRules()
 
             input.rules.forEach {

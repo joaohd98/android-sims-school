@@ -1,4 +1,7 @@
-package model
+package utils
+
+import components.input.InputFragmentModel
+
 
 enum class FormRulesNames {
     Email,
@@ -6,8 +9,9 @@ enum class FormRulesNames {
     MaxLength
 }
 
-class FormRules {
+class FormRulesModel(var name: FormRulesNames, var message: String, var optionalParam: (Any)? = null)
 
+class FormRules {
     private fun isEmail(text: String): Boolean {
         return Regex("[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}").matches(text)
     }
@@ -21,7 +25,7 @@ class FormRules {
     }
 
     companion object {
-        fun checkInputIsValid(input: FormInputModel): (FormRulesModel)? {
+        fun checkInputIsValid(input: InputFragmentModel): (FormRulesModel)? {
             val validations = FormRules()
 
             input.rules.forEach {

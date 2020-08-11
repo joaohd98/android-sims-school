@@ -1,46 +1,49 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="24dp"
-    tools:context="screens.guest.login.LoginScreenFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="52dp"
-        android:contentDescription="@string/fragment_login_logo_description"
-        android:src="@drawable/logo"
-        tools:src="@drawable/logo" />
-
-    <fragment
-        android:id="@+id/fragment_login_screen_input_email"
-        android:name="components.InputFragment"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginBottom="10dp"
-        android:layout_height="wrap_content"
-        tools:layout="@layout/fragment_input" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="24dp"
+        tools:context="screens.guest.login.LoginScreenFragment">
 
-    <fragment
-        android:id="@+id/fragment_login_screen_input_password"
-        android:name="components.InputFragment"
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout="@layout/fragment_input" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="52dp"
+            android:contentDescription="@string/fragment_login_logo_description"
+            android:src="@drawable/logo"
+            tools:src="@drawable/logo" />
 
-    <Button
-        android:id="@+id/fragment_login_screen_button_submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:width="160dp"
-        android:background="@drawable/fragment_login_submit_button"
-        android:layout_marginTop="50dp"
-        android:textColor="@color/white"
-        android:text="@string/fragment_login_button_text" />
+        <fragment
+            android:id="@+id/fragment_login_screen_input_email"
+            android:name="components.input.InputFragment"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/fragment_input" />
 
+        <fragment
+            android:id="@+id/fragment_login_screen_input_password"
+            android:name="components.input.InputFragment"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/fragment_input" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/fragment_login_screen_button_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="160dp"
+            android:background="@drawable/fragment_login_submit_button"
+            android:layout_marginTop="50dp"
+            android:textColor="@color/white"
+            android:text="@string/fragment_login_button_text" />
+    </LinearLayout>
+</layout>
+

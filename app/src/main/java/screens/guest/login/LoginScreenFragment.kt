@@ -6,14 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.joao.simsschool.R
-import components.InputFragment
+import components.input.InputFragment
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_login_screen.*
-import screens.guest.login.model.LoginScreenModel
-
 
 class LoginScreenFragment : Fragment() {
-    var props = LoginScreenModel()
+//    var props = LoginScreenModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,8 +24,8 @@ class LoginScreenFragment : Fragment() {
         val email = childFragmentManager.findFragmentById(R.id.fragment_login_screen_input_email)!! as InputFragment
         val password = childFragmentManager.findFragmentById(R.id.fragment_login_screen_input_password)!! as InputFragment
 
-        email.setProps(props.form.inputs[0])
-        password.setProps(props.form.inputs[1])
+//        email.setProps(props.form.inputs[0])
+//        password.setProps(props.form.inputs[1])
 
         return view
     }

@@ -15,7 +15,6 @@ class Input: Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val binding: FragmentInputBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_input, container, false
         )

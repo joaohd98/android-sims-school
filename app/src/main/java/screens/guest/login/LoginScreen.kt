@@ -4,13 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.viewModels
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.joao.simsschool.R
-import components.input.Input
+import com.joao.simsschool.databinding.FragmentLoginScreenBinding
 import kotlinx.android.synthetic.*
-import kotlinx.android.synthetic.main.fragment_login_screen.*
+import screens.guest.login.view_model.LoginScreenViewModel
 
 class LoginScreen : Fragment() {
+
 //    var props = LoginScreenModel()
 
     override fun onCreateView(
@@ -18,22 +22,19 @@ class LoginScreen : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        super.onCreateView(inflater, container, savedInstanceState);
+        super.onCreateView(inflater, container, savedInstanceState)
 
-        val view = inflater.inflate(R.layout.fragment_login_screen, container, false)
-        val email = childFragmentManager.findFragmentById(R.id.fragment_login_screen_input_email)!! as Input
-        val password = childFragmentManager.findFragmentById(R.id.fragment_login_screen_input_password)!! as Input
+        val binding: FragmentLoginScreenBinding = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_login_screen, container, false
+        )
 
-//        email.setProps(props.form.inputs[0])
-//        password.setProps(props.form.inputs[1])
+        binding.viewModel = ViewModelProvider(this).get(LoginScreenViewModel::class.java)
 
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val button = fragment_login_screen_button_submit
     }
 
     override fun onDestroyView() {

@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.*
 import screens.guest.login.view_model.LoginScreenViewModel
 
 class LoginScreen : Fragment() {
-
 //    var props = LoginScreenModel()
 
     override fun onCreateView(

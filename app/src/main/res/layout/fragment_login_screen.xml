@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
-        android:padding="24dp"
+        android:layout_margin="24dp"
         tools:context="screens.guest.login.LoginScreen">
 
         <ImageView
@@ -31,16 +31,20 @@
             android:layout_marginBottom="5dp"
             android:layout_height="wrap_content"
             tools:layout="@layout/view_input"
-            inputModel="@{viewModel.email}"/>
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            inputModel="@{viewModel.email}" />
 
         <components.input.InputView
             android:id="@+id/fragment_login_screen_input_password"
             android:name="components.input.Input"
             android:layout_marginTop="5dp"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             tools:layout="@layout/view_input"
-            inputModel="@{viewModel.password}"/>
+            inputModel="@{viewModel.password}" />
 
         <Button
             android:id="@+id/fragment_login_screen_button_submit"

@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.FragmentLoginScreenBinding
+import kotlinx.android.synthetic.main.fragment_login_screen.*
 import screens.guest.login.view_model.LoginScreenViewModel
 
 class LoginScreen : Fragment() {
@@ -33,6 +35,14 @@ class LoginScreen : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.hasTriedSubmitEmailInvalid.observe(viewLifecycleOwner, Observer {
+            viewModel.changedHasTriedSubmit(it, fragment_login_screen_input_email)
+        })
+
+        viewModel.hasTriedSubmitPasswordInvalid.observe(viewLifecycleOwner, Observer {
+            viewModel.changedHasTriedSubmit(it, fragment_login_screen_input_password)
+        })
     }
+
 
 }

@@ -22,8 +22,7 @@ class InputModel(
   private val _rules: Array<FormRulesModel> = arrayOf(),
   private var _validationRule: (FormRulesModel)? = null,
   private var _hasFocus: Boolean = false,
-  private var _hasEverUnfocused: Boolean = false,
-  private var _howManyAttempts: Int = 0
+  private var _hasEverUnfocused: Boolean = false
 ) : BaseObservable() {
 
   var value: String
@@ -55,6 +54,7 @@ class InputModel(
       notifyPropertyChanged(BR.messageColor)
     }
 
+  fun isValid() = _validationRule == null
   val keyboardType = _keyboardType
   val hint = _hint
   val rules = _rules
@@ -88,7 +88,11 @@ class InputModel(
     }
   }
 
-  private fun checkInput() {
+  fun checkInput(isSubmitting: Boolean = false) {
+    if (isSubmitting) {
+      _hasEverUnfocused = true
+    }
+
     setValidationRule()
     setInputColor()
   }
@@ -102,7 +106,7 @@ class InputModel(
     var message = ""
     var messageColor = 0
 
-    if((_hasEverUnfocused || _howManyAttempts > 0) && _validationRule != null) {
+    if(_hasEverUnfocused && _validationRule != null) {
       message = _validationRule!!.message
 
       if(_hasFocus) {
@@ -114,15 +118,14 @@ class InputModel(
       }
     }
 
-    else if((_value != "" || _howManyAttempts > 0) && _validationRule == null) {
+    else if(_value != "" && _validationRule == null) {
       background = R.drawable.view_input_border_success
     }
     
     this.message = message
-    this.messageColor = ContextCompat.getColor(_context, messageColor)
+    this.messageColor = if(messageColor != 0) ContextCompat.getColor(_context, messageColor) else 0
     this.background = ContextCompat.getDrawable(_context, background)!!
   }
-
 
 
 }

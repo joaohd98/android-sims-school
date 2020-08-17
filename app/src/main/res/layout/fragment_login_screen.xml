@@ -25,21 +25,20 @@
             android:src="@drawable/logo"
             tools:src="@drawable/logo" />
 
-        <fragment
+        <components.input.InputView
             android:id="@+id/fragment_login_screen_input_email"
-            android:name="components.input.Input"
             android:layout_width="match_parent"
             android:layout_marginBottom="5dp"
             android:layout_height="wrap_content"
-            tools:layout="@layout/fragment_input" />
+            inputModel="@{viewModel.email}"/>
 
-        <fragment
+        <components.input.InputView
             android:id="@+id/fragment_login_screen_input_password"
             android:name="components.input.Input"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:layout="@layout/fragment_input" />
+            inputModel="@{viewModel.password}"/>
 
         <Button
             android:id="@+id/fragment_login_screen_button_submit"

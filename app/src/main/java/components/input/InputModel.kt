@@ -16,24 +16,14 @@ import androidx.databinding.library.baseAdapters.BR
 
 class InputModel(
   private val _context: android.app.Application,
-  private val _name: String,
   private val _hint: String,
   private val _keyboardType: Int,
   private var _value: String = "",
-  private var _background: Drawable = ContextCompat.getDrawable(
-    _context,
-    R.drawable.view_input_border_default
-  )!!,
   private val _rules: Array<FormRulesModel> = arrayOf(),
   private var _validationRule: (FormRulesModel)? = null,
   private var _hasFocus: Boolean = false,
   private var _hasEverUnfocused: Boolean = false,
-  private var _howManyAttempts: Int = 0,
-  private var _message: String = "",
-  private var _messageColor: Int = ContextCompat.getColor(
-    _context,
-    R.color.borderDefault
-  )
+  private var _howManyAttempts: Int = 0
 ) : BaseObservable() {
 
   var value: String
@@ -43,25 +33,25 @@ class InputModel(
       notifyPropertyChanged(BR.value)
     }
 
-  var background: Drawable
-    @Bindable get() = _background
+  var background: Drawable = ContextCompat.getDrawable(_context, R.drawable.view_input_border_default)!!
+    @Bindable get
     set(value) {
-      this._background = value
+      field = value
       notifyPropertyChanged(BR.background)
     }
 
-  var message: String
-    @Bindable get() = _message
+  var message: String = ""
+    @Bindable get
     set(value) {
-      _message = value
+      field = value
       notifyPropertyChanged(BR.message)
     }
 
 
-  var messageColor: Int
-    @Bindable get() = _messageColor
+  var messageColor: Int = 0
+    @Bindable get
     set(value) {
-      _messageColor = value
+      field = value
       notifyPropertyChanged(BR.messageColor)
     }
 
@@ -110,7 +100,7 @@ class InputModel(
   private fun setInputColor() {
     var background = R.drawable.view_input_border_default
     var message = ""
-    var messageColor = R.color.borderDefault
+    var messageColor = 0
 
     if((_hasEverUnfocused || _howManyAttempts > 0) && _validationRule != null) {
       message = _validationRule!!.message

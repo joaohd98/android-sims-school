@@ -15,7 +15,6 @@ class LoginScreenViewModel(application: android.app.Application) : AndroidViewMo
         MutableLiveData<InputModel>().apply {
             this.value = InputModel(
                 _context = application,
-                _name = "email",
                 _hint = "Email",
                 _keyboardType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS,
                 _value = "teste@mail.com",
@@ -29,7 +28,6 @@ class LoginScreenViewModel(application: android.app.Application) : AndroidViewMo
         MutableLiveData<InputModel>().apply {
             this.value = InputModel(
                 _context = application,
-                _name = "password",
                 _hint = "Password",
                 _keyboardType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD,
                 _rules = arrayOf(

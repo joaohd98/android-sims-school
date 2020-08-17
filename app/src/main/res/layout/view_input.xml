@@ -37,6 +37,8 @@
             android:layout_marginEnd="5dp"
             android:paddingHorizontal="10dp"
             android:paddingVertical="5dp"
+            android:text="@{inputModel.message}"
+            android:textColor="@{inputModel.messageColor}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view_input"

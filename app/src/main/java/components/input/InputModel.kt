@@ -1,5 +1,6 @@
 package components.input
 
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.text.Editable
 import android.text.TextWatcher
@@ -23,11 +24,16 @@ class InputModel(
     _context,
     R.drawable.view_input_border_default
   )!!,
-  private var _rules: Array<FormRulesModel> = arrayOf(),
+  private val _rules: Array<FormRulesModel> = arrayOf(),
   private var _validationRule: (FormRulesModel)? = null,
   private var _hasFocus: Boolean = false,
   private var _hasEverUnfocused: Boolean = false,
-  private var _howManyAttempts: Int = 0
+  private var _howManyAttempts: Int = 0,
+  private var _message: String = "",
+  private var _messageColor: Int = ContextCompat.getColor(
+    _context,
+    R.color.borderDefault
+  )
 ) : BaseObservable() {
 
   var value: String
@@ -42,6 +48,21 @@ class InputModel(
     set(value) {
       this._background = value
       notifyPropertyChanged(BR.background)
+    }
+
+  var message: String
+    @Bindable get() = _message
+    set(value) {
+      _message = value
+      notifyPropertyChanged(BR.message)
+    }
+
+
+  var messageColor: Int
+    @Bindable get() = _messageColor
+    set(value) {
+      _messageColor = value
+      notifyPropertyChanged(BR.messageColor)
     }
 
   val keyboardType = _keyboardType
@@ -79,29 +100,39 @@ class InputModel(
 
   private fun checkInput() {
     setValidationRule()
-    setBackground()
+    setInputColor()
   }
 
   private fun setValidationRule() {
     _validationRule = FormRules.checkInputIsValid(this)
   }
 
-  private fun setBackground() {
-    var color = R.drawable.view_input_border_default
+  private fun setInputColor() {
+    var background = R.drawable.view_input_border_default
+    var message = ""
+    var messageColor = R.color.borderDefault
 
     if((_hasEverUnfocused || _howManyAttempts > 0) && _validationRule != null) {
-      color = if(_hasFocus) {
-        R.drawable.view_input_border_warning
+      message = _validationRule!!.message
+
+      if(_hasFocus) {
+        background = R.drawable.view_input_border_warning
+        messageColor = R.color.yellow
       } else {
-        R.drawable.view_input_border_error
+        background = R.drawable.view_input_border_error
+        messageColor = R.color.red
       }
     }
 
     else if((_value != "" || _howManyAttempts > 0) && _validationRule == null) {
-      color = R.drawable.view_input_border_success
+      background = R.drawable.view_input_border_success
     }
-
-    background = ContextCompat.getDrawable(_context, color)!!
+    
+    this.message = message
+    this.messageColor = ContextCompat.getColor(_context, messageColor)
+    this.background = ContextCompat.getDrawable(_context, background)!!
   }
+
+
 
 }

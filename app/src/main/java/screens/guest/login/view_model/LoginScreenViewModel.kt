@@ -6,6 +6,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import components.input.InputModel
+import utils.FormRulesModel
+import utils.FormRulesNames
 
 class LoginScreenViewModel(application: android.app.Application) : AndroidViewModel(application) {
     private val context = application
@@ -15,7 +17,10 @@ class LoginScreenViewModel(application: android.app.Application) : AndroidViewMo
                 name = "email",
                 hint = "Email",
                 keyboardType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS,
-                value = "teste@mail.com"
+                value = "teste@mail.com",
+                rules = arrayOf(
+                    FormRulesModel(FormRulesNames.Email, "Type a valid email address")
+                )
             )
         }
     }
@@ -25,7 +30,11 @@ class LoginScreenViewModel(application: android.app.Application) : AndroidViewMo
                 name = "password",
                 hint = "Password",
                 keyboardType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD,
-                value = ""
+                value = "",
+                rules = arrayOf(
+                    FormRulesModel(FormRulesNames.MinLength, "Password can't be empty", 0),
+                    FormRulesModel(FormRulesNames.MaxLength, "Password can't have more than 8 digits", 8)
+                )
             )
         }
     }

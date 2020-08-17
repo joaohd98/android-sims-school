@@ -10,20 +10,14 @@ class InputModel(
   val name: String,
   val hint: String,
   val keyboardType: Int,
-  @Bindable
-  var value: String,
-  @Bindable
+  var value: String = "",
   val rules: Array<FormRulesModel> = arrayOf(),
-  @Bindable
   var validationRule: (FormRulesModel)? = null,
   var hasFocus: Boolean = false,
-  @Bindable
   var hasEverUnfocused: Boolean = false,
-  @Bindable
   var howManyAttempts: Int = 0
 ): BaseObservable() {
 
-  @Bindable
   fun getChangeTextWatcher(): TextWatcher? {
     return object : TextWatcher {
       override fun beforeTextChanged(
@@ -32,7 +26,7 @@ class InputModel(
         count: Int,
         after: Int
       ) {
-        // Do nothing.
+
       }
 
       override fun onTextChanged(

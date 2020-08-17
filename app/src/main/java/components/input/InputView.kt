@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
-import androidx.databinding.BindingAdapter
 import com.joao.simsschool.databinding.ViewInputBinding
 
 class InputView : LinearLayout {

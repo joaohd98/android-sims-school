@@ -16,7 +16,7 @@
             android:id="@+id/view_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/fragment_input_border"
+            android:background="@{inputModel.background}"
             android:ems="10"
             android:paddingHorizontal="15dp"
             android:paddingVertical="10dp"
@@ -26,7 +26,7 @@
             android:hint="@{inputModel.hint}"
             android:text="@={inputModel.value}"
             android:inputType="@{inputModel.keyboardType}"
-            tools:ignore="Autofill,LabelFor,TextFields"
+            tools:ignore="AutoFill,LabelFor,TextFields"
             tools:hint="Email" />
         <TextView
             android:id="@+id/view_input_text"

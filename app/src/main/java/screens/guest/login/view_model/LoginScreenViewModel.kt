@@ -14,11 +14,12 @@ class LoginScreenViewModel(application: android.app.Application) : AndroidViewMo
     val email: LiveData<InputModel> by lazy {
         MutableLiveData<InputModel>().apply {
             this.value = InputModel(
-                name = "email",
-                hint = "Email",
-                keyboardType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS,
-                value = "teste@mail.com",
-                rules = arrayOf(
+                _context = application,
+                _name = "email",
+                _hint = "Email",
+                _keyboardType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS,
+                _value = "teste@mail.com",
+                _rules = arrayOf(
                     FormRulesModel(FormRulesNames.Email, "Type a valid email address")
                 )
             )
@@ -27,11 +28,11 @@ class LoginScreenViewModel(application: android.app.Application) : AndroidViewMo
     val password: LiveData<InputModel> by lazy {
         MutableLiveData<InputModel>().apply {
             this.value = InputModel(
-                name = "password",
-                hint = "Password",
-                keyboardType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD,
-                value = "",
-                rules = arrayOf(
+                _context = application,
+                _name = "password",
+                _hint = "Password",
+                _keyboardType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD,
+                _rules = arrayOf(
                     FormRulesModel(FormRulesNames.MinLength, "Password can't be empty", 0),
                     FormRulesModel(FormRulesNames.MaxLength, "Password can't have more than 8 digits", 8)
                 )

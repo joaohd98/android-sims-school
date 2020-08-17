@@ -1,23 +1,24 @@
 package screens.guest.login.view_model
 
 import android.text.InputType
+import android.widget.Toast
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import components.input.InputModel
 
-class LoginScreenViewModel: ViewModel() {
+class LoginScreenViewModel(application: android.app.Application) : AndroidViewModel(application) {
+    private val context = application
     val email: LiveData<InputModel> by lazy {
         MutableLiveData<InputModel>().apply {
             this.value = InputModel(
                 name = "email",
                 hint = "Email",
                 keyboardType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS,
-                value = ""
+                value = "teste@mail.com"
             )
         }
     }
-
     val password: LiveData<InputModel> by lazy {
         MutableLiveData<InputModel>().apply {
             this.value = InputModel(
@@ -27,6 +28,11 @@ class LoginScreenViewModel: ViewModel() {
                 value = ""
             )
         }
+    }
+
+
+    fun onSubmit() {
+        Toast.makeText(context, "${email.value?.value} ${password.value?.value}", Toast.LENGTH_SHORT).show()
     }
 }
 

@@ -9,7 +9,7 @@
             type="components.input.InputModel" />
     </data>
 
-    <merge
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <EditText
@@ -18,18 +18,20 @@
             android:layout_height="wrap_content"
             android:background="@drawable/fragment_input_border"
             android:ems="10"
-            android:hint="@{inputModel.hint}"
             android:paddingHorizontal="15dp"
             android:paddingVertical="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:hint="@{inputModel.hint}"
+            android:text="@={inputModel.value}"
+            android:inputType="@{inputModel.keyboardType}"
             tools:ignore="Autofill,LabelFor,TextFields"
             tools:hint="Email" />
         <TextView
             android:id="@+id/view_input_text"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginTop="2dp"
             android:layout_marginEnd="5dp"
@@ -39,5 +41,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view_input"
             tools:text="Email incorrect"/>
-    </merge>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

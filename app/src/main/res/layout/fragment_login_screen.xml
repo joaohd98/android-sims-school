@@ -30,6 +30,7 @@
             android:layout_width="match_parent"
             android:layout_marginBottom="5dp"
             android:layout_height="wrap_content"
+            tools:layout="@layout/view_input"
             inputModel="@{viewModel.email}"/>
 
         <components.input.InputView
@@ -38,6 +39,7 @@
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            tools:layout="@layout/view_input"
             inputModel="@{viewModel.password}"/>
 
         <Button
@@ -48,6 +50,7 @@
             android:background="@drawable/fragment_login_submit_button"
             android:layout_marginTop="50dp"
             android:textColor="@color/white"
+            android:onClick="@{() -> viewModel.onSubmit()}"
             android:text="@string/fragment_login_button_text" />
     </LinearLayout>
 </layout>

@@ -88,7 +88,7 @@ class LoginScreenViewModel(application: android.app.Application) : AndroidViewMo
         }
 
         val edit = view.findViewById<EditText>(R.id.view_input)
-        val animShake = AnimationUtils.loadAnimation(context, R.anim.shake_effect);
+        val animShake = AnimationUtils.loadAnimation(context, R.anim.shake_effect)
 
         edit.isFocusableInTouchMode = true
         edit.requestFocus()

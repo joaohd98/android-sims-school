@@ -1,16 +1,17 @@
 package components.input
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.FragmentInputBinding
 
 class Input: Fragment() {
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -21,7 +22,6 @@ class Input: Fragment() {
 
         return binding.root
     }
-
 
 //    private fun getLayoutInput(): (input: FormInputModel) -> Unit {
 //        return { input ->

@@ -14,6 +14,8 @@ class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
+
+        val intent = Intent(this, GuestActivity::class.java)
         startActivity(intent)
         finish()
     }

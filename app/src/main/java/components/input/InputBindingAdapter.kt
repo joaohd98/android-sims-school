@@ -5,7 +5,7 @@ import androidx.databinding.BindingAdapter
 import com.joao.simsschool.R
 
 object InputBindingAdapter {
-    @JvmStatic @BindingAdapter("inputModel")
+    @JvmStatic @BindingAdapter("app:inputModel")
     fun setViewModel(view: InputView, inputModel: InputModel) {
         view.binding.inputModel = inputModel
 

@@ -33,7 +33,7 @@
             android:clipChildren="false"
             android:clipToPadding="false"
             tools:layout="@layout/view_input"
-            inputModel="@{viewModel.email}" />
+            app:inputModel="@{viewModel.email}" />
 
         <components.input.InputView
             android:id="@+id/fragment_login_screen_input_password"
@@ -44,7 +44,7 @@
             android:paddingHorizontal="24dp"
             android:clipChildren="false"
             android:clipToPadding="false"
-            inputModel="@{viewModel.password}" />
+            app:inputModel="@{viewModel.password}" />
 
         <Button
             android:id="@+id/fragment_login_screen_button_submit"

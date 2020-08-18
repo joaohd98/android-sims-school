@@ -1,5 +1,7 @@
 package screens.guest.login
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.graphics.drawable.TransitionDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -56,6 +58,16 @@ class LoginScreen : Fragment() {
                 ServiceStatus.FAILED -> {
                     view.setLoading(true)
                     buttonSubmit.revertAnimation()
+
+                    activity?.let { activity ->
+                        val builder = AlertDialog.Builder(activity)
+                        builder.apply {
+                            setTitle("ABC")
+                            setMessage("DEF")
+                            setPositiveButton(R.string.ok) { _, _ -> }
+                        }
+                        builder.create().show()
+                    }
                 }
                 ServiceStatus.LOADING -> {
                     view.setLoading(false)

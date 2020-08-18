@@ -19,7 +19,7 @@ class LoginScreenViewModel(application: android.app.Application) : AndroidViewMo
     private val context = application
 
     val status: LiveData<ServiceStatus> by lazy {
-        MutableLiveData<ServiceStatus>(ServiceStatus.LOADING)
+        MutableLiveData<ServiceStatus>(ServiceStatus.FAILED)
     }
 
     val email: LiveData<InputModel> by lazy {

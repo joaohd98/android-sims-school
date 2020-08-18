@@ -47,16 +47,25 @@
             app:inputModel="@{viewModel.password}"
             app:inputModelSubmit="@{viewModel.onSubmit}"/>
 
-        <Button
+        <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
             android:id="@+id/fragment_login_screen_button_submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:height="50dp"
             android:width="160dp"
-            android:background="@drawable/fragment_login_submit_button"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:maxHeight="10dp"
+            android:background="@drawable/submit_button"
             android:layout_marginTop="50dp"
             android:textColor="@color/white"
             android:onClick="@{() -> viewModel.onSubmit()}"
-            android:text="@string/fragment_login_button_text" />
+            android:text="@string/fragment_login_button_text"
+            app:spinning_bar_color="@color/borderDefault"
+            app:spinning_bar_width="5dp"
+        />
+
     </LinearLayout>
 </layout>
 

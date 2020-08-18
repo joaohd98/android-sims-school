@@ -1,17 +1,23 @@
 package screens.guest.login
 
+import android.graphics.drawable.TransitionDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import br.com.simplepass.loadingbutton.customViews.CircularProgressButton
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.FragmentLoginScreenBinding
 import kotlinx.android.synthetic.main.fragment_login_screen.*
 import screens.guest.login.view_model.LoginScreenViewModel
+import services.ServiceStatus
+import utils.setLoading
 
 class LoginScreen : Fragment() {
     private val viewModel: LoginScreenViewModel by viewModels()
@@ -41,6 +47,25 @@ class LoginScreen : Fragment() {
 
         viewModel.hasTriedSubmitPasswordInvalid.observe(viewLifecycleOwner, Observer {
             viewModel.changedHasTriedSubmit(it, fragment_login_screen_input_password)
+        })
+
+        val buttonSubmit = fragment_login_screen_button_submit as CircularProgressButton
+
+        viewModel.status.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                ServiceStatus.FAILED -> {
+                    view.setLoading(true)
+                    buttonSubmit.revertAnimation()
+                }
+                ServiceStatus.LOADING -> {
+                    view.setLoading(false)
+                    buttonSubmit.startAnimation()
+                }
+                ServiceStatus.SUCCESS -> {
+
+                }
+                else -> {}
+            }
         })
     }
 

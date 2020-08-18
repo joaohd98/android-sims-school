@@ -11,11 +11,17 @@ import androidx.lifecycle.MutableLiveData
 import com.joao.simsschool.R
 import components.input.InputModel
 import components.input.InputView
+import services.ServiceStatus
 import utils.FormRulesModel
 import utils.FormRulesNames
 
 class LoginScreenViewModel(application: android.app.Application) : AndroidViewModel(application) {
     private val context = application
+
+    val status: LiveData<ServiceStatus> by lazy {
+        MutableLiveData<ServiceStatus>(ServiceStatus.LOADING)
+    }
+
     val email: LiveData<InputModel> by lazy {
         MutableLiveData<InputModel>().apply {
             this.value = InputModel(
@@ -81,8 +87,7 @@ class LoginScreenViewModel(application: android.app.Application) : AndroidViewMo
         Toast.makeText(context, "${email.value} ${password.value}", Toast.LENGTH_SHORT).show()
     }
 
-    fun changedHasTriedSubmit(isValid: Boolean?, view: InputView)
-    {
+    fun changedHasTriedSubmit(isValid: Boolean?, view: InputView) {
         if (isValid == null) {
             return
         }
@@ -94,5 +99,7 @@ class LoginScreenViewModel(application: android.app.Application) : AndroidViewMo
         edit.requestFocus()
         edit.startAnimation(animShake)
     }
+
+
 }
 

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "268085241448",
+    "firebase_url": "https://swiftui-sims-school.firebaseio.com",
+    "project_id": "swiftui-sims-school",
+    "storage_bucket": "swiftui-sims-school.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:268085241448:android:d0c80bf8de4cfa4b753ddd",
+        "android_client_info": {
+          "package_name": "com.joao.simsschool"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "268085241448-16c4r4tba3vreb3fln4i979ndscv9ndj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBGUyuRjPD792adh23gZdu2oO1z426AUE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "268085241448-16c4r4tba3vreb3fln4i979ndscv9ndj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "268085241448-c6q2m6hk489s99c32evvcqplhnln8lt6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "joao.tm.swiftui-sims-school"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

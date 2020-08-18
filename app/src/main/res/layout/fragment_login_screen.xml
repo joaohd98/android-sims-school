@@ -44,7 +44,8 @@
             android:paddingHorizontal="24dp"
             android:clipChildren="false"
             android:clipToPadding="false"
-            app:inputModel="@{viewModel.password}" />
+            app:inputModel="@{viewModel.password}"
+            app:inputModelSubmit="@{viewModel.onSubmit}"/>
 
         <Button
             android:id="@+id/fragment_login_screen_button_submit"

@@ -78,5 +78,12 @@ class LoginScreen : Fragment() {
         })
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+
+        val buttonSubmit = fragment_login_screen_button_submit as CircularProgressButton
+        buttonSubmit.dispose()
+    }
+
 
 }

@@ -7,6 +7,7 @@ import com.joao.simsschool.R
 class LoggedActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.show()
 
         setContentView(R.layout.activity_logged)
     }

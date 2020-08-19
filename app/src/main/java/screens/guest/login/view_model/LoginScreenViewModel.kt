@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.auth.*
 import com.joao.simsschool.R
 import components.input.InputModel
 import components.input.InputView
@@ -25,6 +26,9 @@ class LoginScreenViewModel(application: android.app.Application): AndroidViewMod
 
     val status: MutableLiveData<RepositoryStatus> by lazy {
         MutableLiveData<RepositoryStatus>(RepositoryStatus.NONE)
+    }
+    val statusMessage: MutableLiveData<String> by lazy {
+        MutableLiveData<String>()
     }
 
     val email: LiveData<InputModel> by lazy {
@@ -61,6 +65,8 @@ class LoginScreenViewModel(application: android.app.Application): AndroidViewMod
     val hasTriedSubmitPasswordInvalid: MutableLiveData<Boolean> by lazy {
         MutableLiveData<Boolean>()
     }
+
+
 
     fun onSubmit() {
         val email = email.value!!
@@ -99,12 +105,15 @@ class LoginScreenViewModel(application: android.app.Application): AndroidViewMod
                 override val password = password.value
             },
             onSuccess = {
-                status.postValue(RepositoryStatus.SUCCESS)
-                Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
+                status.value = RepositoryStatus.SUCCESS
             },
             onError = {
-                status.postValue(RepositoryStatus.FAILED)
-                Toast.makeText(context, "Error $it", Toast.LENGTH_SHORT).show()
+                statusMessage.value = when(it) {
+                    is FirebaseAuthInvalidUserException -> "The email you typed doesn't belong to any account."
+                    is FirebaseAuthInvalidCredentialsException -> "The password you typed isn't correct"
+                    else -> "There was an internal error."
+                }.plus("\nPlease try again later.")
+                status.value = RepositoryStatus.FAILED
             }
         )
 

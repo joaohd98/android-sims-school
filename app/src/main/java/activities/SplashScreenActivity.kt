@@ -19,10 +19,12 @@ class SplashScreenActivity : AppCompatActivity() {
         /*
          * Init local database
          */
-        AppDatabase.getAppDataBase(context = this)
+        val instance = AppDatabase.getAppDataBase(context = this)!!
 
-
-        val intent = Intent(this, GuestActivity::class.java)
+        val user = instance.userDao().getFirst()
+        val intent = Intent(this,
+           if(user.value != null) LoggedActivity::class.java else GuestActivity::class.java
+        )
         startActivity(intent)
         finish()
 

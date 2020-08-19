@@ -14,7 +14,7 @@ object UserRepository {
     fun signIn(
         userRequest: UserRequest,
         onSuccess: (UserResponse) -> Unit,
-        onError: (String?) -> Unit
+        onError: (java.lang.Exception?) -> Unit
     ) {
         GlobalScope.launch(IO) {
             try {
@@ -37,10 +37,9 @@ object UserRepository {
                 }
             }
             catch (exception : Exception) {
-                val errorCode = (exception as FirebaseAuthException).errorCode
 
                 GlobalScope.launch(Dispatchers.Main) {
-                    onError(errorCode)
+                    onError(exception)
                 }
             }
         }

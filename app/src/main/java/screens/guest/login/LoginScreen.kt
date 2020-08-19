@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import br.com.simplepass.loadingbutton.customViews.CircularProgressButton
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.FragmentLoginScreenBinding
@@ -58,8 +59,8 @@ class LoginScreen : Fragment() {
                     activity?.let { activity ->
                         val builder = AlertDialog.Builder(activity)
                         builder.apply {
-                            setTitle("ABC")
-                            setMessage("DEF")
+                            setTitle("There is something wrong")
+                            setMessage(viewModel.statusMessage.value)
                             setPositiveButton(R.string.ok) { _, _ -> }
                         }
                         builder.create().show()
@@ -70,8 +71,7 @@ class LoginScreen : Fragment() {
                     buttonSubmit.startAnimation()
                 }
                 RepositoryStatus.SUCCESS -> {
-                    view.setLoading(true)
-                    buttonSubmit.revertAnimation()
+                    this.findNavController().navigate(R.id.action_loginScreen_to_nav_graph_logged)
                 }
                 else -> {}
             }

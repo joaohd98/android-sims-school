@@ -10,4 +10,7 @@ interface UserDao {
     @Delete
     fun delete(user: UserResponse)
 
+    @Query("SELECT * FROM UserResponse limit 1")
+    fun getFirst(): UserResponse
+
 }

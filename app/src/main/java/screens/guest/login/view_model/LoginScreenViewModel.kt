@@ -1,7 +1,6 @@
 package screens.guest.login.view_model
 
 import android.text.InputType
-import android.util.Log
 import android.view.animation.AnimationUtils
 import android.widget.EditText
 import android.widget.Toast
@@ -11,15 +10,18 @@ import androidx.lifecycle.MutableLiveData
 import com.joao.simsschool.R
 import components.input.InputModel
 import components.input.InputView
-import services.ServiceStatus
+import repositories.RepositoryStatus
+import repositories.user.UserRequest
+import repositories.user.UserRepository
 import utils.FormRulesModel
 import utils.FormRulesNames
 
-class LoginScreenViewModel(application: android.app.Application) : AndroidViewModel(application) {
+class LoginScreenViewModel(application: android.app.Application): AndroidViewModel(application) {
     private val context = application
+    private val userRepository = UserRepository
 
-    val status: LiveData<ServiceStatus> by lazy {
-        MutableLiveData<ServiceStatus>(ServiceStatus.FAILED)
+    val status: MutableLiveData<RepositoryStatus> by lazy {
+        MutableLiveData<RepositoryStatus>(RepositoryStatus.NONE)
     }
 
     val email: LiveData<InputModel> by lazy {
@@ -84,7 +86,24 @@ class LoginScreenViewModel(application: android.app.Application) : AndroidViewMo
             return
         }
 
-        Toast.makeText(context, "${email.value} ${password.value}", Toast.LENGTH_SHORT).show()
+        status.value = RepositoryStatus.LOADING
+
+        userRepository.signIn(
+            object: UserRequest {
+                override val email = email.value
+                override val password = password.value
+            },
+            onSuccess = {
+                status.value = RepositoryStatus.SUCCESS
+                Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
+
+            },
+            onError = {
+                status.value = RepositoryStatus.FAILED
+                Toast.makeText(context, "Error $it", Toast.LENGTH_SHORT).show()
+            }
+        )
+
     }
 
     fun changedHasTriedSubmit(isValid: Boolean?, view: InputView) {

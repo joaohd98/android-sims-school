@@ -1,14 +1,10 @@
 package screens.guest.login
 
 import android.app.AlertDialog
-import android.content.DialogInterface
-import android.graphics.drawable.TransitionDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -18,7 +14,7 @@ import com.joao.simsschool.R
 import com.joao.simsschool.databinding.FragmentLoginScreenBinding
 import kotlinx.android.synthetic.main.fragment_login_screen.*
 import screens.guest.login.view_model.LoginScreenViewModel
-import services.ServiceStatus
+import repositories.RepositoryStatus
 import utils.setLoading
 
 class LoginScreen : Fragment() {
@@ -55,7 +51,7 @@ class LoginScreen : Fragment() {
 
         viewModel.status.observe(viewLifecycleOwner, Observer {
             when (it) {
-                ServiceStatus.FAILED -> {
+                RepositoryStatus.FAILED -> {
                     view.setLoading(true)
                     buttonSubmit.revertAnimation()
 
@@ -69,11 +65,11 @@ class LoginScreen : Fragment() {
                         builder.create().show()
                     }
                 }
-                ServiceStatus.LOADING -> {
+                RepositoryStatus.LOADING -> {
                     view.setLoading(false)
                     buttonSubmit.startAnimation()
                 }
-                ServiceStatus.SUCCESS -> {
+                RepositoryStatus.SUCCESS -> {
 
                 }
                 else -> {}

@@ -1,41 +1,51 @@
 package repositories.user
 
 import android.net.Uri
+import android.util.Log
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.firebase.firestore.DocumentSnapshot
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.tasks.await
 import repositories.FirebaseInstances.storage
 
-class UserResponse(
-    var uid: String = "",
+@Entity
+data class UserResponse(
+    @PrimaryKey var uid: String = "",
     var name: String = "",
     var rm: String = "",
     var id_class: String = "",
     var actual_class: String = "",
     var course: String = "",
-    var profile_picture: Uri? = null,
-    var cover_picture: Uri? = null
+    var profile_picture: String? = null,
+    var cover_picture: String? = null
 ) {
 
-    fun initService(result: DocumentSnapshot) {
-        uid = result.getString("uid")!!
-        name = result.getString("name")!!
-        rm = result.getString("rm")!!
-        id_class = result.getString("id_class")!!
-        actual_class = result.getString("actual_class")!!
-        course = result.getString("course")!!
+    suspend fun initService(uid: String, result: DocumentSnapshot) {
+        this.uid = uid
 
-        val profilePicture = result.getString("profile_picture")!!
-        storage.reference.child(profilePicture).downloadUrl.addOnCompleteListener {
-            if(it.isSuccessful) {
-                profile_picture = it.result
-             }
+        coroutineScope {
+            name = result.getString("name")!!
+            rm = result.getString("rm")!!
+            id_class = result.getString("id_class")!!
+            actual_class = result.getString("actual_class")!!
+            course = result.getString("course")!!
+
+            val profilePicture = result.getString("profile_picture")!!
+            val coverPicture = result.getString("cover_picture")!!
+
+            val profilePictureRes = async { storage.reference.child(profilePicture).downloadUrl }
+            val coverPictureRes = async { storage.reference.child(coverPicture).downloadUrl }
+
+            cover_picture = profilePictureRes.await().toString()
+            profile_picture = coverPictureRes.await().toString()
+
+            Log.d("cover_picture", cover_picture)
+            Log.d("profile_picture", profile_picture)
+            Log.d("", "")
         }
-
-        val coverPicture = result.getString("cover_picture")!!
-        storage.reference.child(coverPicture).downloadUrl.addOnCompleteListener {
-            if(it.isSuccessful) {
-                cover_picture = it.result
-            }
-        }
-
     }
 }

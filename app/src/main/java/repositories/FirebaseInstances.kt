@@ -6,6 +6,6 @@ import com.google.firebase.storage.FirebaseStorage
 
 object FirebaseInstances {
     val auth: FirebaseAuth = FirebaseAuth.getInstance()
-    val db = FirebaseFirestore.getInstance()
+    val firestore = FirebaseFirestore.getInstance()
     val storage = FirebaseStorage.getInstance()
 }

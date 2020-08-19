@@ -10,6 +10,9 @@ import androidx.lifecycle.MutableLiveData
 import com.joao.simsschool.R
 import components.input.InputModel
 import components.input.InputView
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import repositories.RepositoryStatus
 import repositories.user.UserRequest
 import repositories.user.UserRepository
@@ -29,6 +32,7 @@ class LoginScreenViewModel(application: android.app.Application): AndroidViewMod
             this.value = InputModel(
                 _context = application,
                 _hint = "Email",
+                _value = "teste@mail.com",
                 _keyboardType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS,
                 _rules = arrayOf(
                     FormRulesModel(FormRulesNames.Email, "Type a valid email address")
@@ -41,6 +45,7 @@ class LoginScreenViewModel(application: android.app.Application): AndroidViewMod
             this.value = InputModel(
                 _context = application,
                 _hint = "Password",
+                _value = "abc123",
                 _keyboardType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD,
                 _rules = arrayOf(
                     FormRulesModel(FormRulesNames.MinLength, "Password can't be empty", 0),
@@ -94,12 +99,11 @@ class LoginScreenViewModel(application: android.app.Application): AndroidViewMod
                 override val password = password.value
             },
             onSuccess = {
-                status.value = RepositoryStatus.SUCCESS
+                status.postValue(RepositoryStatus.SUCCESS)
                 Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
-
             },
             onError = {
-                status.value = RepositoryStatus.FAILED
+                status.postValue(RepositoryStatus.FAILED)
                 Toast.makeText(context, "Error $it", Toast.LENGTH_SHORT).show()
             }
         )

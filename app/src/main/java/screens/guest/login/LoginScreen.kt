@@ -70,7 +70,8 @@ class LoginScreen : Fragment() {
                     buttonSubmit.startAnimation()
                 }
                 RepositoryStatus.SUCCESS -> {
-
+                    view.setLoading(true)
+                    buttonSubmit.revertAnimation()
                 }
                 else -> {}
             }

@@ -1,35 +1,47 @@
 package repositories.user
 
+import android.util.Log
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuthException
+import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.tasks.await
 import repositories.FirebaseInstances.auth
-import repositories.FirebaseInstances.db
+import repositories.FirebaseInstances.firestore
+import repositories.RepositoryStatus
 
 object UserRepository {
-
     fun signIn(
         userRequest: UserRequest,
         onSuccess: (UserResponse) -> Unit,
         onError: (String?) -> Unit
     ) {
-        auth.signInWithEmailAndPassword(userRequest.email, userRequest.password).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                val user = auth.currentUser!!
+        GlobalScope.launch(IO) {
+            try {
+                val authResult = auth
+                    .signInWithEmailAndPassword(userRequest.email, userRequest.password)
+                    .await()
 
-                val docUser = db.collection("user").document(user.uid)
+                val user = authResult!!.user!!
+                val result = firestore
+                    .collection("user")
+                    .document(user.uid)
+                    .get()
+                    .await();
 
-                 docUser.get().addOnSuccessListener { result ->
-                     val userResponse = UserResponse()
-                     userResponse.initService(result)
-                     onSuccess(userResponse)
-                 }
-                 .addOnFailureListener {
-                     onError(null)
-                 }
+                val userResponse = UserResponse()
+                userResponse.initService(user.uid, result)
+
+                GlobalScope.launch(Dispatchers.Main) {
+                    onSuccess(userResponse)
+                }
             }
-            else {
+            catch (exception : Exception) {
+                val errorCode = (exception as FirebaseAuthException).errorCode
 
-                val errorCode = (task.exception as FirebaseAuthException).errorCode
-                onError(errorCode)
+                GlobalScope.launch(Dispatchers.Main) {
+                    onError(errorCode)
+                }
             }
         }
     }

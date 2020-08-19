@@ -56,7 +56,6 @@
             android:textSize="14sp"
             android:textStyle="bold"
             android:gravity="center"
-            android:maxHeight="10dp"
             android:background="@drawable/submit_button"
             android:layout_marginTop="50dp"
             android:textColor="@color/white"

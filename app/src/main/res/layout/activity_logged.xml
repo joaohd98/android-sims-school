@@ -42,6 +42,7 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/activity_logged_tabs"
             app:tabRippleColor="@android:color/transparent"
+            app:tabTextAppearance="@style/CustomTextAppearanceTab"
             app:tabIndicatorHeight="3dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

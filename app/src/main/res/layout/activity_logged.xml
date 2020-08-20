@@ -32,26 +32,25 @@
                 android:layout_height="32dp"
                 android:layout_marginEnd="16dp"
                 android:src="@drawable/ic_toolbar_menu"
-                android:background="@null"
+                android:background="?selectableItemBackgroundBorderless"
                 android:contentDescription="@string/toolbar_menu"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabs"
-            app:tabGravity="fill"
+            android:id="@+id/activity_logged_tabs"
+            app:tabRippleColor="@android:color/transparent"
+            app:tabIndicatorHeight="3dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
- />
+        />
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/view_pager"
+        android:id="@+id/activity_logged_view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />

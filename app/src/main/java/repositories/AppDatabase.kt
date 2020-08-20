@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
 import repositories.user.UserDao
 import repositories.user.UserResponse
 
@@ -12,17 +13,18 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
 
     companion object {
-        var instance: AppDatabase? = null
+        @Volatile private var instance: AppDatabase? = null
 
-        fun getAppDataBase(context: Context): AppDatabase? {
-            if (instance == null){
-                synchronized(AppDatabase::class) {
-                    instance = Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, "AppDatabase").build()
-                }
-            }
-
-            return instance
+        operator fun invoke(context: Context) = instance ?: synchronized(AppDatabase::class.java) {
+            instance ?: buildDatabase(context).also { instance = it}
         }
+
+        fun instance() = instance
+
+        private fun buildDatabase(context: Context) =
+            Room.databaseBuilder(context, AppDatabase::class.java, "app_database")
+                .fallbackToDestructiveMigration()
+                .build()
     }
 
 }

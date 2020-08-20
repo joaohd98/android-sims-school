@@ -22,7 +22,7 @@ import utils.FormRulesNames
 
 class LoginScreenViewModel(application: android.app.Application): AndroidViewModel(application) {
     private val context = application
-    private val userRepository = UserRepository
+    private val userRepository = UserRepository(application)
 
     val status: MutableLiveData<RepositoryStatus> by lazy {
         MutableLiveData<RepositoryStatus>(RepositoryStatus.NONE)

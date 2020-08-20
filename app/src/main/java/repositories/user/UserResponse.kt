@@ -12,7 +12,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
 import repositories.FirebaseInstances.storage
 
-@Entity
+@Entity(tableName = "user")
 data class UserResponse(
     @PrimaryKey var uid: String = "",
     var name: String = "",

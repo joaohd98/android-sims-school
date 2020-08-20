@@ -20,6 +20,8 @@ class UserRepository(application: Application) {
         userDao = database.userDao()
     }
 
+    fun getUser() = userDao.getFirst()
+
     fun signIn(
         userRequest: UserRequest,
         onSuccess: (UserResponse) -> Unit,

@@ -11,7 +11,7 @@ interface UserDao {
     @Delete
     fun delete(user: UserResponse)
 
-    @Query("SELECT * FROM UserResponse limit 1")
+    @Query("SELECT * FROM user limit 1")
     fun getFirst(): LiveData<UserResponse?>
 
 }

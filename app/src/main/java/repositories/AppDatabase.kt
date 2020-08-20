@@ -19,8 +19,6 @@ abstract class AppDatabase : RoomDatabase() {
             instance ?: buildDatabase(context).also { instance = it}
         }
 
-        fun instance() = instance
-
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(context, AppDatabase::class.java, "app_database")
                 .fallbackToDestructiveMigration()

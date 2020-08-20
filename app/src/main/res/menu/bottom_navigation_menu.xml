@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_done_white_48dp"
+        android:title="@string/bottom_navigation_home" />
+
+    <item
+        android:id="@+id/navigation_people"
+        android:icon="@drawable/ic_done_white_48dp"
+        android:title="@string/bottom_navigation_scores" />
+
+    <item
+        android:id="@+id/navigation_organization"
+        android:icon="@drawable/ic_done_white_48dp"
+        android:title="@string/bottom_navigation_classes" />
+
+    <item
+        android:id="@+id/navigation_business"
+        android:icon="@drawable/ic_done_white_48dp"
+        android:title="@string/bottom_navigation_tips" />
+
+    <item
+        android:id="@+id/navigation_tasks"
+        android:icon="@drawable/ic_done_white_48dp"
+        android:title="@string/bottom_navigation_menu" />
+
+</menu>

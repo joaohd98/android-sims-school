@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SimsSchool</string>
+    <string name="app_name">Sims School</string>
 
 
     <string name="fragment_login_logo_description">Logo</string>
@@ -10,5 +10,7 @@
     <string name="bottom_navigation_classes">Classes</string>
     <string name="bottom_navigation_tips">Tips</string>
     <string name="bottom_navigation_menu">Menu</string>
+
+    <string name="toolbar_menu">menu</string>
 
 </resources>

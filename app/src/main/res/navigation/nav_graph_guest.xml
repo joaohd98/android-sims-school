@@ -13,8 +13,10 @@
         <action
             android:id="@+id/action_loginScreen_to_nav_graph_logged"
             app:destination="@id/nav_graph_logged"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
     </fragment>
     <include app:graph="@navigation/nav_graph_logged" />
 </navigation>

@@ -27,33 +27,3 @@ abstract class AppDatabase : RoomDatabase() {
 
 }
 
-//companion object {
-//    @Volatile private var instance: NoteDatabase? = null
-//    private val LOCK = Any()
-//
-//    operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
-//        instance ?: buildDatabase(context).also { instance = it}
-//    }
-//
-//    private fun buildDatabase(context: Context) =
-//        Room.databaseBuilder(context, NoteDatabase::class.java, "note_database")
-//            .fallbackToDestructiveMigration()
-//            .addCallback(object : RoomDatabase.Callback() {
-//                override fun onCreate(db: SupportSQLiteDatabase) {
-//                    super.onCreate(db)
-//                    PopulateDbAsyncTask(instance?.noteDao()!!).execute()
-//                }
-//            })
-//            .build()
-//
-//    class PopulateDbAsyncTask constructor(private val noteDao: NoteDao) : AsyncTask<Void, Void?, Void?>() {
-//        override fun doInBackground(vararg params: Void): Void? {
-//            noteDao.insert(Note("Title 1", "Description 1", 1))
-//            noteDao.insert(Note("Title 2", "Description 2", 2))
-//            noteDao.insert(Note("Title 3", "Description 3", 3))
-//            noteDao.insert(Note("Title 4", "Description 4", 4))
-//
-//            return null
-//        }
-//    }
-//}

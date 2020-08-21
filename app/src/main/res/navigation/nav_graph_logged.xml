@@ -3,30 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_logged"
-    app:startDestination="@id/navigation_home">
-    <fragment
-        android:id="@+id/navigation_home"
-        android:name="screens.logged.home.HomeFragment"
-        android:label="@string/bottom_navigation_home"
-        tools:layout="@layout/fragment_home" />
-    <fragment
-        android:id="@+id/navigation_menu"
-        android:name="screens.logged.menu.MenuFragment"
-        android:label="@string/bottom_navigation_menu"
-        tools:layout="@layout/fragment_menu" />
-    <fragment
-        android:id="@+id/navigation_tips"
-        android:name="screens.logged.tips.TipsFragment"
-        android:label="@string/bottom_navigation_tips"
-        tools:layout="@layout/fragment_tips" />
-    <fragment
-        android:id="@+id/navigation_scores"
-        android:name="screens.logged.scores.ScoresFragment"
-        android:label="@string/bottom_navigation_scores"
-        tools:layout="@layout/fragment_scores" />
-    <fragment
-        android:id="@+id/navigation_classes"
-        android:name="screens.logged.classes.ClassesFragment"
-        android:label="@string/bottom_navigation_classes"
-        tools:layout="@layout/fragment_classes" />
+    app:startDestination="@id/loggedActivity">
+    <activity
+        android:id="@+id/loggedActivity"
+        android:name="activities.logged.LoggedActivity"
+        android:label="activity_logged"
+        tools:layout="@layout/activity_logged" />
 </navigation>

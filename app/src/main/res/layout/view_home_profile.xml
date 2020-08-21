@@ -20,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:scaleType="fitXY"
+            image_uri="@{userResponse.cover_picture}"
             tools:srcCompat="@drawable/tools_cover_picture"
             android:src="@drawable/tools_cover_picture"/>
 
@@ -40,10 +41,9 @@
                     android:layout_width="75dp"
                     android:layout_height="75dp"
                     android:scaleType="fitXY"
+                    image_uri="@{userResponse.profile_picture}"
                     tools:srcCompat="@drawable/tools_profile_picture"
-                    android:src="@drawable/tools_profile_picture"
-                    android:background="@drawable/border_picture_profile"
-                    />
+                    android:background="@drawable/border_picture_profile" />
 
                 <LinearLayout
                     android:orientation="vertical"

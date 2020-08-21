@@ -1,30 +1,40 @@
-<layout
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-        <variable
-            name="inputModel"
-            type="components.input.InputModel" />
-    </data>
 
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/uri_image_shimmer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/skeleton">
 
         <ImageView
             android:id="@+id/uri_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/skeleton"
-            tools:srcCompat="@drawable/skeleton"
             android:scaleType="fitXY"
-        />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/skeleton" />
 
     </com.facebook.shimmer.ShimmerFrameLayout>
 
+    <Button
+        android:id="@+id/uri_image_try_again"
+        android:visibility="invisible"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:background="@drawable/ic_action_loop" />
 
-
-</layout>
+</androidx.constraintlayout.widget.ConstraintLayout>

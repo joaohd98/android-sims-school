@@ -3,9 +3,11 @@ package components.uri_image
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.os.Handler
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -15,13 +17,10 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.joao.simsschool.R
-import com.joao.simsschool.databinding.ViewInputBinding
-import com.joao.simsschool.databinding.ViewUriImageBinding
 import kotlinx.android.synthetic.main.view_uri_image.view.*
 
 class UriImageView : ConstraintLayout {
     var uri: String? = null
-    lateinit var binding: ViewUriImageBinding
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
@@ -32,11 +31,20 @@ class UriImageView : ConstraintLayout {
     )
 
     init {
-        if (isInEditMode) {
-            LayoutInflater.from(context).inflate(R.layout.view_uri_image, this, true)
-        }
-        else {
-            binding = ViewUriImageBinding.inflate(LayoutInflater.from(context), this, true)
+        LayoutInflater.from(context).inflate(R.layout.view_uri_image, this, true)
+    }
+
+    override fun onFinishInflate() {
+        super.onFinishInflate()
+
+        uri_image_try_again.setOnClickListener {
+            uri_image_try_again.visibility = INVISIBLE
+
+            shimmerChange(true)
+
+            Handler().postDelayed({
+                startLoading()
+            }, 2000)
         }
     }
 
@@ -46,6 +54,7 @@ class UriImageView : ConstraintLayout {
         Glide
             .with(uri_image.context)
             .load(Uri.parse(uri))
+            .timeout(5000)
             .transition(DrawableTransitionOptions.withCrossFade())
             .listener(object: RequestListener<Drawable> {
                 override fun onLoadFailed(
@@ -75,6 +84,10 @@ class UriImageView : ConstraintLayout {
 
     private fun finishLoad(isSuccess: Boolean) {
         shimmerChange(false)
+
+        if (!isSuccess) {
+            uri_image_try_again.visibility = VISIBLE
+        }
     }
 
     private fun shimmerChange(isToStart: Boolean) {
@@ -87,15 +100,4 @@ class UriImageView : ConstraintLayout {
         }
     }
 
-    //    private fun init(attrs: AttributeSet?, defStyle: Int) {
-//        val styledAttributes = context.obtainStyledAttributes(
-//            attrs, R.styleable.UriImageView, defStyle, 0
-//        )
-//
-//        uri = styledAttributes.getString(
-//            R.styleable.UriImageView_uri
-//        )
-//
-//        styledAttributes.recycle()
-//    }
 }

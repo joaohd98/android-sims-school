@@ -34,13 +34,11 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-
-<!--                <ImageView-->
-<!--                    android:layout_width="75dp"-->
-<!--                    android:layout_height="75dp"-->
-<!--                    android:scaleType="fitXY"-->
-<!--                    tools:srcCompat="@drawable/tools_profile_picture"-->
-<!--                    android:background="@drawable/border_picture_profile" />-->
+                <components.uri_image.UriImageView
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    uri_image="@{userResponse.profile_picture}"
+                    android:background="@drawable/border_picture_profile" />
 
                 <LinearLayout
                     android:orientation="vertical"

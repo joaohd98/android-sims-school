@@ -5,16 +5,26 @@
     android:orientation="vertical"
     tools:context="screens.logged.home.HomeFragment">
 
-    <screens.logged.home.components.HomeProfileView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <screens.logged.home.components.HomeProfileView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <screens.logged.home.components.HomeClassesView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <screens.logged.home.components.HomeClassesView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <screens.logged.home.components.HomeAdsView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <screens.logged.home.components.HomeAdsView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ScrollView>
+
 
 </LinearLayout>

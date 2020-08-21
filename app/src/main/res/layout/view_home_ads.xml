@@ -5,9 +5,22 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/home_padding">
 
-
+        <ImageView
+            android:id="@+id/view_home_ads_image"
+            android:layout_width="wrap_content"
+            android:layout_height="175dp"
+            android:layout_marginVertical="20dp"
+            android:background="@drawable/border_rounded"
+            android:scaleType="fitXY"
+            android:src="@drawable/tool_ads_cover"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/tool_ads_cover" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -29,5 +29,10 @@ class HomeAdsView : ConstraintLayout {
         }
     }
 
+    override fun onFinishInflate() {
+        super.onFinishInflate()
+        view_home_ads_image.clipToOutline = true
+    }
+
 
 }

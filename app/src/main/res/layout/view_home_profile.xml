@@ -3,6 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="userResponse"
+            type="repositories.user.UserResponse" />
+    </data>
+
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -48,10 +55,11 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="João Henrique Damazio"
+                        android:text="@{userResponse.name}"
                         android:textColor="@color/gray"
                         android:textSize="16sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        tools:text="Student Name"/>
 
                     <LinearLayout
                         android:orientation="horizontal"
@@ -61,7 +69,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="RM: "
+                            android:text="@string/fragment_home_profile_rm"
                             android:textColor="@color/gray"
                             android:textSize="16sp"
                             android:textStyle="bold"/>
@@ -70,10 +78,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
-                            android:text="2216106480"
+                            android:text="@{userResponse.rm}"
                             android:textColor="@color/gray"
-                            android:textSize="16sp"
-                            />
+                            android:textSize="14sp"
+                            tools:text="RM Number"/>
 
                     </LinearLayout>
 
@@ -91,31 +99,30 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Class:"
+                    android:text="@string/fragment_home_profile_class"
                     android:textColor="@color/gray"
                     android:textSize="16sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:text="ABC123"
+                    android:text="@{userResponse.actual_class}"
                     android:textColor="@color/gray"
-                    android:textSize="16sp"
-                    />
+                    android:textSize="14sp"
+                    tools:text="Class name"/>
 
             </LinearLayout>
-
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Software Engineer"
+                android:text="@{userResponse.course}"
                 android:textColor="@color/gray"
                 android:textSize="16sp"
-                android:textStyle="bold"/>
-
+                android:textStyle="bold"
+                tools:text="Course name"/>
 
         </LinearLayout>
 

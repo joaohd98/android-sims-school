@@ -1,22 +1,19 @@
-package screens.guest.login.view_model
+package screens.guest.login
 
 import android.text.InputType
 import android.view.animation.AnimationUtils
 import android.widget.EditText
-import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.google.firebase.auth.*
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.joao.simsschool.R
 import components.input.InputModel
 import components.input.InputView
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import repositories.RepositoryStatus
-import repositories.user.UserRequest
 import repositories.user.UserRepository
+import repositories.user.UserRequest
 import utils.FormRulesModel
 import utils.FormRulesNames
 
@@ -53,7 +50,11 @@ class LoginScreenViewModel(application: android.app.Application): AndroidViewMod
                 _keyboardType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD,
                 _rules = arrayOf(
                     FormRulesModel(FormRulesNames.MinLength, "Password can't be empty", 0),
-                    FormRulesModel(FormRulesNames.MaxLength, "Password can't have more than 8 digits", 8)
+                    FormRulesModel(
+                        FormRulesNames.MaxLength,
+                        "Password can't have more than 8 digits",
+                        8
+                    )
                 )
             )
         }
@@ -134,4 +135,3 @@ class LoginScreenViewModel(application: android.app.Application): AndroidViewMod
 
 
 }
-

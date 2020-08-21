@@ -5,6 +5,9 @@
     <string name="fragment_login_logo_description">Logo</string>
     <string name="fragment_login_button_text">ENTER</string>
 
+    <string name="fragment_home_profile_rm">RM:</string>
+    <string name="fragment_home_profile_class">Class:</string>
+    
     <string name="bottom_navigation_home">Home</string>
     <string name="bottom_navigation_scores">Scores</string>
     <string name="bottom_navigation_classes">Classes</string>

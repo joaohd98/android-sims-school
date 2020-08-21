@@ -14,7 +14,6 @@ import br.com.simplepass.loadingbutton.customViews.CircularProgressButton
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.FragmentLoginScreenBinding
 import kotlinx.android.synthetic.main.fragment_login_screen.*
-import screens.guest.login.view_model.LoginScreenViewModel
 import repositories.RepositoryStatus
 import utils.setLoading
 

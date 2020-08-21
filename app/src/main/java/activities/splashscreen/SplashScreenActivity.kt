@@ -18,7 +18,7 @@ class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel.user.observe(this, Observer {
+        viewModel.user.observe(this, {
             val intent = Intent(this,
                 if(it != null) LoggedActivity::class.java else GuestActivity::class.java
             )

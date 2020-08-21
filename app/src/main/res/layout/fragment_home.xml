@@ -1,30 +1,40 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="screens.logged.home.HomeFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-        <LinearLayout
+    <data>
+        <variable
+            name="viewModel"
+            type="screens.logged.home.HomeViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="screens.logged.home.HomeScreen">
+        <ScrollView
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-            <screens.logged.home.components.HomeProfileView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+            android:layout_height="wrap_content" >
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+                <screens.logged.home.components.profile.HomeProfileView
+                    android:id="@+id/home_screen_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-            <screens.logged.home.components.HomeClassesView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                <screens.logged.home.components.HomeClassesView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-            <screens.logged.home.components.HomeAdsView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-    </ScrollView>
+                <screens.logged.home.components.HomeAdsView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>
 
-
-</LinearLayout>

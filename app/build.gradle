@@ -73,4 +73,5 @@ dependencies {
 
     implementation 'br.com.simplepass:loading-button-android:2.2.0'
 
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
 }

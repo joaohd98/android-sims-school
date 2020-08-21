@@ -4,8 +4,10 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewHomeAdsBinding
+import kotlinx.android.synthetic.main.view_home_ads.view.*
 
 class HomeAdsView : ConstraintLayout {
     lateinit var binding: ViewHomeAdsBinding
@@ -20,10 +22,17 @@ class HomeAdsView : ConstraintLayout {
 
     init {
         if (isInEditMode) {
-            LayoutInflater.from(context).inflate(R.layout.view_home_profile, this, true)
+            LayoutInflater.from(context).inflate(R.layout.view_home_ads, this, true)
         }
         else {
             binding = ViewHomeAdsBinding.inflate(LayoutInflater.from(context), this, true)
         }
+    }
+
+    override fun onFinishInflate() {
+        super.onFinishInflate()
+
+        val container = shimmer_view_container as ShimmerFrameLayout
+        container.startShimmer()
     }
 }

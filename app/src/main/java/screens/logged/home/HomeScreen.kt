@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.FragmentHomeBinding
 import kotlinx.android.synthetic.main.fragment_home.*
-import screens.logged.home.components.profile.HomeProfileView
+import screens.logged.home.components.HomeProfileView
 
 class HomeScreen : Fragment() {
     private val viewModel: HomeViewModel by viewModels()

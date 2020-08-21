@@ -15,14 +15,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/view_home_profile_cover_picture"
+        <components.uri_image.UriImageView
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:scaleType="fitXY"
-            image_uri="@{userResponse.cover_picture}"
-            tools:srcCompat="@drawable/tools_cover_picture"
-            android:src="@drawable/tools_cover_picture"/>
+            uri_image="@{userResponse.cover_picture}"
+        />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,13 +34,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:scaleType="fitXY"
-                    image_uri="@{userResponse.profile_picture}"
-                    tools:srcCompat="@drawable/tools_profile_picture"
-                    android:background="@drawable/border_picture_profile" />
+
+<!--                <ImageView-->
+<!--                    android:layout_width="75dp"-->
+<!--                    android:layout_height="75dp"-->
+<!--                    android:scaleType="fitXY"-->
+<!--                    tools:srcCompat="@drawable/tools_profile_picture"-->
+<!--                    android:background="@drawable/border_picture_profile" />-->
 
                 <LinearLayout
                     android:orientation="vertical"

@@ -1,0 +1,30 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="inputModel"
+            type="components.input.InputModel" />
+    </data>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/uri_image_shimmer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/uri_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/skeleton"
+            tools:srcCompat="@drawable/skeleton"
+            android:scaleType="fitXY"
+        />
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+
+</layout>

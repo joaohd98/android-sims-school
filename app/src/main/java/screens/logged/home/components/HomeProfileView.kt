@@ -1,14 +1,12 @@
-package screens.logged.home.components.profile
+package screens.logged.home.components
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.lifecycle.LifecycleOwner
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewHomeProfileBinding
 import repositories.user.UserResponse
-import screens.logged.home.HomeViewModel
 
 class HomeProfileView : ConstraintLayout {
     lateinit var binding: ViewHomeProfileBinding

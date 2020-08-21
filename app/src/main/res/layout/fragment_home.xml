@@ -21,7 +21,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
-                <screens.logged.home.components.profile.HomeProfileView
+                <screens.logged.home.components.HomeProfileView
                     android:id="@+id/home_screen_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />

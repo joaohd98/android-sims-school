@@ -20,7 +20,7 @@ class HomeClassesView : ConstraintLayout {
 
     init {
         if (isInEditMode) {
-            LayoutInflater.from(context).inflate(R.layout.view_home_profile, this, true)
+            LayoutInflater.from(context).inflate(R.layout.view_home_classes, this, true)
         }
         else {
             binding = ViewHomeClassesBinding.inflate(LayoutInflater.from(context), this, true)

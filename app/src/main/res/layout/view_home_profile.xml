@@ -19,7 +19,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="15dp"
+            android:paddingVertical="14dp"
+            android:paddingHorizontal="@dimen/home_padding"
             android:layout_marginTop="-35dp"
             android:orientation="vertical">
 
@@ -34,7 +35,7 @@
                     android:scaleType="fitXY"
                     tools:srcCompat="@drawable/tools_profile_picture"
                     android:src="@drawable/tools_profile_picture"
-                    android:background="@drawable/border_black"
+                    android:background="@drawable/border_picture_profile"
                     />
 
                 <LinearLayout

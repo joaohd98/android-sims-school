@@ -29,10 +29,5 @@ class HomeAdsView : ConstraintLayout {
         }
     }
 
-    override fun onFinishInflate() {
-        super.onFinishInflate()
 
-        val container = shimmer_view_container as ShimmerFrameLayout
-        container.startShimmer()
-    }
 }

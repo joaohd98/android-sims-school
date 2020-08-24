@@ -30,6 +30,7 @@ class HomeProfileView : ConstraintLayout {
 
     fun setUser(user: UserResponse?) {
         binding.userResponse = user
+
     }
 
 }

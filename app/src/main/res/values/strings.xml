@@ -7,7 +7,11 @@
 
     <string name="fragment_home_profile_rm">RM:</string>
     <string name="fragment_home_profile_class">Class:</string>
-    
+    <string name="fragment_home_change_profile_camera">Camera</string>
+    <string name="fragment_home_change_profile_gallery">Gallery</string>
+    <string name="fragment_home_change_profile_close">Close</string>
+
+
     <string name="bottom_navigation_home">Home</string>
     <string name="bottom_navigation_scores">Scores</string>
     <string name="bottom_navigation_classes">Classes</string>
@@ -15,5 +19,7 @@
     <string name="bottom_navigation_menu">Menu</string>
 
     <string name="toolbar_menu">menu</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

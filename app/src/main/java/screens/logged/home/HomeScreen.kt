@@ -41,6 +41,7 @@ class HomeScreen : Fragment() {
             if(it != null){
                 val bottomSheetFragment = HomeChangePictureFragment()
                 bottomSheetFragment.show(activity?.supportFragmentManager!!, bottomSheetFragment.tag)
+
             }
         })
 

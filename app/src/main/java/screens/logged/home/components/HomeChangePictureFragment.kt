@@ -170,13 +170,13 @@ class HomeChangePictureFragment : BottomSheetDialogFragment() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if(resultCode == RESULT_OK) {
-            if (requestCode == takeCamera  ) {
+            if (requestCode == takeCamera) {
                 dismiss()
 
                 val file = File(currentPhotoPath)
             }
 
-            if (requestCode == takeGallery ) {
+            if (requestCode == takeGallery) {
                 dismiss()
 
                 val file = File(data?.data.toString())

@@ -5,9 +5,7 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Handler
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -43,12 +41,22 @@ class UriImageView : ConstraintLayout {
             shimmerChange(true)
 
             Handler().postDelayed({
-                startLoading()
+                startLoadingImg()
             }, 2000)
         }
     }
 
-    fun startLoading() {
+    fun setLoadScreen() {
+        uri_image.setImageDrawable(null)
+        shimmerChange(true)
+    }
+
+    fun setSuccessScreen(uri: String) {
+        this.uri = uri
+        startLoadingImg()
+    }
+
+    fun startLoadingImg() {
         shimmerChange(true)
 
         Glide

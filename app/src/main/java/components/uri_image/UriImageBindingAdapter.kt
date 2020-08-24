@@ -8,5 +8,5 @@ fun setViewModel(view: UriImageView, uri: String?) {
         return
 
     view.uri = uri
-    view.startLoading()
+    view.startLoadingImg()
 }

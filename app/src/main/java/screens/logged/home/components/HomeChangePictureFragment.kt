@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.os.Handler
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
@@ -67,7 +68,9 @@ class HomeChangePictureFragment : BottomSheetDialogFragment() {
         }
 
         fragment_home_change_picture_close.setOnClickListener {
-            dismiss()
+            Handler().postDelayed({
+                dismiss()
+            }, 200)
         }
     }
 

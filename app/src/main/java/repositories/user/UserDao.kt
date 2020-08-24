@@ -14,4 +14,7 @@ interface UserDao {
     @Query("SELECT * FROM user limit 1")
     fun getFirst(): LiveData<UserResponse?>
 
+    @Query("UPDATE user set profile_picture = :uri")
+    fun updateProfilePicture(uri: String)
+
 }

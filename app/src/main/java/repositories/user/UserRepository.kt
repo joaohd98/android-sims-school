@@ -89,6 +89,7 @@ class UserRepository(application: Application) {
                 docUser.set(fields, options).await()
 
                 userResponse.profile_picture = uri
+                userDao.updateProfilePicture(uri)
 
                 onComplete(null)
             }

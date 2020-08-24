@@ -34,6 +34,7 @@ class HomeClassesContainerView: ConstraintLayout {
 
         viewPager.adapter = HomeClassesViewAdapter(context)
         viewPager.pageMargin = 100
+        viewPager.currentItem = Integer.MAX_VALUE / 2;
     }
 
 }

@@ -17,7 +17,6 @@ class HomeClassesViewAdapter(private val context: Context) : PagerAdapter() {
 
     override fun instantiateItem(collection: ViewGroup, position: Int): Any {
         val position = position % pages.size
-        val modelObject = pages[position].first
         val inflater = LayoutInflater.from(context)
         val layout = inflater.inflate(R.layout.view_home_classes, collection, false) as ViewGroup
         collection.addView(layout)

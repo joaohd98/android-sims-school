@@ -25,16 +25,10 @@
                     android:id="@+id/home_screen_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-
-<!--                <screens.logged.home.components.HomeClassesView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content" />-->
-
-                <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/view_pager"
+                <screens.logged.home.components.HomeClassesContainerView
+                    android:id="@+id/home_screen_classes_container"
                     android:layout_width="match_parent"
-                    android:layout_height="130dp"/>
-
+                    android:layout_height="wrap_content" />
                 <screens.logged.home.components.HomeAdsView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />

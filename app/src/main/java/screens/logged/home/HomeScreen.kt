@@ -70,9 +70,9 @@ class HomeScreen : Fragment() {
     }
 
     private fun setClasses() {
-        val viewPager = view_pager as ViewPager
+        val classesContainer = home_screen_classes_container
 
-        viewPager.adapter = HomeClassesViewAdapter(requireContext())
+        classesContainer.setClasses(requireContext())
 
     }
 }

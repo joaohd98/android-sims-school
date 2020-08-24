@@ -1,18 +1,21 @@
 package repositories.user
 
+import android.R.attr
 import android.app.Application
-import android.net.Uri
+import android.graphics.Bitmap
 import android.util.Log
-import android.widget.Toast
-import com.google.firebase.auth.FirebaseAuthException
-import kotlinx.coroutines.*
+import com.google.firebase.firestore.SetOptions
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import repositories.AppDatabase
 import repositories.FirebaseInstances
 import repositories.FirebaseInstances.auth
 import repositories.FirebaseInstances.firestore
-import repositories.RepositoryStatus
+import java.io.ByteArrayOutputStream
+
 
 class UserRepository(application: Application) {
     private var userDao: UserDao
@@ -50,7 +53,7 @@ class UserRepository(application: Application) {
                     onSuccess(userResponse)
                 }
             }
-            catch (exception : Exception) {
+            catch (exception: Exception) {
 
                 GlobalScope.launch(Dispatchers.Main) {
                     onError(exception)
@@ -60,17 +63,33 @@ class UserRepository(application: Application) {
     }
 
     fun changeProfile(
-        uid: String,
-        refURL: Uri,
+        bitmap: Bitmap,
+        userResponse: UserResponse,
         onComplete: (java.lang.Exception?) -> Unit
     ) {
         GlobalScope.launch(IO) {
+            val refURL = "profile-pictures/${userResponse.uid}.png"
+            val pictureRef = FirebaseInstances.storage.reference.child(refURL)
+
             try {
+                val bytes = ByteArrayOutputStream()
+                bitmap.compress(Bitmap.CompressFormat.PNG, 50, bytes)
+                val data: ByteArray = bytes.toByteArray()
+
+                pictureRef.putBytes(data).await()!!
+                val uri = pictureRef.downloadUrl.await()!!.toString()
+
                 val docUser = firestore
                     .collection("user")
-                    .document(uid)
+                    .document(userResponse.uid)
 
-                docUser.update("profile_picture", refURL.toString()).await()
+                val fields = mapOf("profile_picture" to uri)
+                val options= SetOptions.merge()
+
+                docUser.set(fields, options).await()
+
+                userResponse.profile_picture = uri
+
                 onComplete(null)
             }
             catch (exception : Exception) {
@@ -81,3 +100,4 @@ class UserRepository(application: Application) {
         }
     }
 }
+

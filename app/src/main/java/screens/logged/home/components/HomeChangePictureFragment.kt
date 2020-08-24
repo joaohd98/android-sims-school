@@ -5,6 +5,8 @@ import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -25,6 +27,7 @@ import java.util.*
 
 class HomeChangePictureFragment : BottomSheetDialogFragment() {
     private lateinit var currentPhotoPath: String
+    var onSuccess: ((bitMap: Bitmap) -> Unit)? = null
 
     companion object {
         private val permissionsCamera = arrayOf(
@@ -68,7 +71,11 @@ class HomeChangePictureFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun callPermissions(permissions: Array<String>, permissionCode: Int, onSuccess: () -> Unit) {
+    private fun callPermissions(
+        permissions: Array<String>,
+        permissionCode: Int,
+        onSuccess: () -> Unit
+    ) {
         val activity = requireActivity()
 
         if (permissions.all { ContextCompat.checkSelfPermission(activity, it) == PackageManager.PERMISSION_GRANTED }) {
@@ -129,8 +136,7 @@ class HomeChangePictureFragment : BottomSheetDialogFragment() {
     }
 
     private fun takePictureGallery() {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
         startActivityForResult(intent, takeGallery)
     }
 
@@ -161,12 +167,13 @@ class HomeChangePictureFragment : BottomSheetDialogFragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        var bitmap: Bitmap? = null
 
         if(resultCode == RESULT_OK) {
             if (requestCode == takeCamera) {
                 dismiss()
 
-                val file = File(currentPhotoPath)
+                bitmap = BitmapFactory.decodeFile(currentPhotoPath)
 
             }
 
@@ -174,7 +181,13 @@ class HomeChangePictureFragment : BottomSheetDialogFragment() {
                 dismiss()
 
                 val file = File(data?.data.toString())
+                bitmap = BitmapFactory.decodeFile(file.path)
+
             }
+        }
+
+        if (bitmap != null) {
+            onSuccess?.let { it(bitmap) }
         }
     }
 }

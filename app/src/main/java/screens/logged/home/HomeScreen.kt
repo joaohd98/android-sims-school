@@ -34,7 +34,7 @@ class HomeScreen : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val profile = home_screen_profile as HomeProfileView
 
-        profile.setChangeProfile(activity?.supportFragmentManager!!)
+        profile.setChangeProfile(viewModel, activity?.supportFragmentManager!!)
 
         viewModel.user.observe(viewLifecycleOwner, {
             profile.setUser(it)

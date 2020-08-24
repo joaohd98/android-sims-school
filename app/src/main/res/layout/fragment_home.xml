@@ -26,9 +26,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
-                <screens.logged.home.components.HomeClassesView
+<!--                <screens.logged.home.components.HomeClassesView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content" />-->
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/view_pager"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="130dp"/>
 
                 <screens.logged.home.components.HomeAdsView
                     android:layout_width="match_parent"

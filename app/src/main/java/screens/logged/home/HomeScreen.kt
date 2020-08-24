@@ -1,6 +1,5 @@
 package screens.logged.home
 
-import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,12 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.viewpager.widget.ViewPager
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.FragmentHomeBinding
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.view_home_profile.*
 import repositories.RepositoryStatus
-import screens.logged.home.components.HomeChangePictureFragment
+import screens.logged.home.components.HomeClassesViewAdapter
 import screens.logged.home.components.HomeProfileView
 import utils.alertDialog
 
@@ -36,6 +36,12 @@ class HomeScreen : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setProfile()
+        setClasses()
+    }
+
+    private fun setProfile() {
         val profile = home_screen_profile as HomeProfileView
 
         profile.setChangeProfile(viewModel, activity?.supportFragmentManager!!)
@@ -61,5 +67,12 @@ class HomeScreen : Fragment() {
                 else -> {}
             }
         })
+    }
+
+    private fun setClasses() {
+        val viewPager = view_pager as ViewPager
+
+        viewPager.adapter = HomeClassesViewAdapter(requireContext())
+
     }
 }

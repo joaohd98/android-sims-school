@@ -91,7 +91,9 @@ class UserRepository(application: Application) {
                 userResponse.profile_picture = uri
                 userDao.updateProfilePicture(uri)
 
-                onComplete(null)
+                GlobalScope.launch(Dispatchers.Main) {
+                    onComplete(null)
+                }
             }
             catch (exception : Exception) {
                 GlobalScope.launch(Dispatchers.Main) {

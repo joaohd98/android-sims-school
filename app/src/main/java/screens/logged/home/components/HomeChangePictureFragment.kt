@@ -2,9 +2,9 @@ package screens.logged.home.components
 
 import android.Manifest
 import android.app.Activity.RESULT_OK
-import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -21,6 +21,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.joao.simsschool.BuildConfig
 import com.joao.simsschool.R
 import kotlinx.android.synthetic.main.fragment_home_change_picture.*
+import utils.alertDialog
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -159,36 +160,29 @@ class HomeChangePictureFragment : BottomSheetDialogFragment() {
     }
 
     private fun showNoPermissionAlert() {
-        val builder = AlertDialog.Builder(activity)
-        builder.apply {
-            setTitle("There is something wrong")
-            setMessage("We need your permission to change your profile picture")
-            setPositiveButton(R.string.ok) { _, _ -> }
-        }
-        builder.create().show()
+        activity?.alertDialog("We need your permission to change your profile picture")
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        var bitmap: Bitmap? = null
 
         if(resultCode == RESULT_OK) {
             if (requestCode == takeCamera) {
                 dismiss()
-
-                bitmap = BitmapFactory.decodeFile(currentPhotoPath)
-
+                callSuccess(BitmapFactory.decodeFile(currentPhotoPath))
             }
 
             if (requestCode == takeGallery) {
                 dismiss()
 
-                val file = File(data?.data.toString())
-                bitmap = BitmapFactory.decodeFile(file.path)
-
+                val uri = data!!.data!!
+                val bitmap = MediaStore.Images.Media.getBitmap(activity?.contentResolver, uri)
+                callSuccess(bitmap)
             }
         }
+    }
 
+    private fun callSuccess(bitmap: Bitmap?) {
         if (bitmap != null) {
             onSuccess?.let { it(bitmap) }
         }

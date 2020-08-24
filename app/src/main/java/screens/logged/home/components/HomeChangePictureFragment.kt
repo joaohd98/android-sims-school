@@ -9,7 +9,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,20 +24,22 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class HomeChangePictureFragment : BottomSheetDialogFragment() {
-    lateinit var currentPhotoPath: String
+    private lateinit var currentPhotoPath: String
 
-    private val permissionsCamera = arrayOf(
-        Manifest.permission.CAMERA,
-        Manifest.permission.WRITE_EXTERNAL_STORAGE
-    )
-    private val permissionCamera  = 100
-    private val takeCamera  = 1
+    companion object {
+        private val permissionsCamera = arrayOf(
+            Manifest.permission.CAMERA,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        )
+        private const val permissionCamera  = 100
+        private const val takeCamera  = 1
 
-    private val permissionsGallery = arrayOf(
-        Manifest.permission.READ_EXTERNAL_STORAGE,
-    )
-    private val permissionGallery = 100
-    private val takeGallery = 2
+        private val permissionsGallery = arrayOf(
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+        )
+        private const val permissionGallery = 200
+        private const val takeGallery = 2
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,11 +52,15 @@ class HomeChangePictureFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         fragment_home_change_picture_camera.setOnClickListener {
-            callCamera()
+            callPermissions(permissionsCamera, takeCamera) {
+                takePictureCamera()
+            }
         }
 
         fragment_home_change_picture_gallery.setOnClickListener {
-            callGallery()
+            callPermissions(permissionsGallery, takeGallery)  {
+                takePictureGallery()
+            }
         }
 
         fragment_home_change_picture_close.setOnClickListener {
@@ -63,29 +68,17 @@ class HomeChangePictureFragment : BottomSheetDialogFragment() {
         }
     }
 
-
-    private fun callGallery() {
+    private fun callPermissions(permissions: Array<String>, permissionCode: Int, onSuccess: () -> Unit) {
         val activity = requireActivity()
 
-        if (permissionsGallery.all { ContextCompat.checkSelfPermission(activity, it) == PackageManager.PERMISSION_GRANTED }) {
-            takePictureGallery()
+        if (permissions.all { ContextCompat.checkSelfPermission(activity, it) == PackageManager.PERMISSION_GRANTED }) {
+            onSuccess()
         }
         else {
-            requestPermissions(permissionsGallery, permissionGallery)
+            requestPermissions(permissions, permissionCode)
         }
+
     }
-
-    private fun callCamera() {
-        val activity = requireActivity()
-
-        if (permissionsCamera.all { ContextCompat.checkSelfPermission(activity, it) == PackageManager.PERMISSION_GRANTED }) {
-            takePictureCamera()
-        }
-        else {
-            requestPermissions(permissionsCamera, permissionCamera)
-        }
-    }
-
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -174,6 +167,7 @@ class HomeChangePictureFragment : BottomSheetDialogFragment() {
                 dismiss()
 
                 val file = File(currentPhotoPath)
+
             }
 
             if (requestCode == takeGallery) {

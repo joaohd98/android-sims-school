@@ -1,6 +1,5 @@
 package screens.logged.home
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -35,18 +34,10 @@ class HomeScreen : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val profile = home_screen_profile as HomeProfileView
 
+        profile.setChangeProfile(activity?.supportFragmentManager!!)
+
         viewModel.user.observe(viewLifecycleOwner, {
             profile.setUser(it)
-
-            if(it != null){
-                val bottomSheetFragment = HomeChangePictureFragment()
-                bottomSheetFragment.show(activity?.supportFragmentManager!!, bottomSheetFragment.tag)
-
-            }
         })
-
     }
-
-
-
 }

@@ -7,6 +7,9 @@
         <variable
             name="userResponse"
             type="repositories.user.UserResponse" />
+        <variable
+            name="changePicture"
+            type="utils.OnClickDataBinding" />
     </data>
 
 
@@ -37,7 +40,9 @@
                 <components.uri_image.UriImageView
                     android:layout_width="75dp"
                     android:layout_height="75dp"
+                    android:foreground="?android:attr/selectableItemBackground"
                     uri_image="@{userResponse.profile_picture}"
+                    android:onClick="@{() -> changePicture.onClick()}"
                     android:background="@drawable/border_picture_profile" />
 
                 <LinearLayout

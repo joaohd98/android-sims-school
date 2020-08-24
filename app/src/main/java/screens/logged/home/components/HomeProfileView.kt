@@ -4,9 +4,11 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.FragmentManager
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewHomeProfileBinding
 import repositories.user.UserResponse
+import utils.OnClickDataBinding
 
 class HomeProfileView : ConstraintLayout {
     lateinit var binding: ViewHomeProfileBinding
@@ -28,9 +30,20 @@ class HomeProfileView : ConstraintLayout {
         }
     }
 
+    fun setChangeProfile(supportFragmentManager: FragmentManager) {
+        binding.changePicture = object: OnClickDataBinding {
+            override fun onClick() {
+                val bottomSheetFragment = HomeChangePictureFragment()
+
+                bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
+
+
+            }
+        }
+    }
+
     fun setUser(user: UserResponse?) {
         binding.userResponse = user
-
     }
 
 }

@@ -10,7 +10,9 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
+import repositories.FirebaseInstances
 import repositories.FirebaseInstances.storage
+import java.io.File
 
 @Entity(tableName = "user")
 data class UserResponse(
@@ -42,6 +44,30 @@ data class UserResponse(
 
             cover_picture = coverPictureRes.await().toString()
             profile_picture = profilePictureRes.await().toString()
+        }
+    }
+
+    suspend fun changeProfilePicture(file: File, userRepository: UserRepository, onComplete: (java.lang.Exception?) -> Unit) {
+        coroutineScope {
+            val refURL = "profile-pictures/${uid}.png"
+            val pictureRef = storage.reference.child(refURL)
+
+            try {
+                pictureRef.putFile(Uri.fromFile(file)).await()!!
+                val uri = pictureRef.downloadUrl.await()!!
+
+                userRepository.changeProfile(uid, uri) {
+                    if (it != null) {
+                        onComplete(it)
+                    }
+                    else {
+                        profile_picture = uri.toString()
+                        onComplete(null)
+                    }
+                }
+            } catch (exception : Exception) {
+                onComplete(exception)
+            }
         }
     }
 }

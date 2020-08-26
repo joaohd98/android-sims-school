@@ -16,6 +16,7 @@ import repositories.RepositoryStatus
 import screens.logged.home.components.HomeClassesViewAdapter
 import screens.logged.home.components.HomeProfileView
 import utils.alertDialog
+import utils.observeOnce
 
 class HomeScreen : Fragment() {
     private val viewModel: HomeViewModel by viewModels()
@@ -37,13 +38,21 @@ class HomeScreen : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        callRequests()
         setProfile()
         setClasses()
     }
 
+    private fun callRequests() {
+        viewModel.user.observeOnce(viewLifecycleOwner) {
+            if (it != null) {
+                viewModel.callClasses()
+            }
+        }
+    }
+
     private fun setProfile() {
         val profile = home_screen_profile as HomeProfileView
-
         profile.setChangeProfile(viewModel, activity?.supportFragmentManager!!)
 
         viewModel.user.observe(viewLifecycleOwner, {
@@ -71,8 +80,29 @@ class HomeScreen : Fragment() {
 
     private fun setClasses() {
         val classesContainer = home_screen_classes_container
-
         classesContainer.setClasses(requireContext())
+
+        viewModel.statusClass.observe(viewLifecycleOwner, { status ->
+            when(status) {
+                RepositoryStatus.FAILED -> {
+//                    activity?.alertDialog(
+//                        "RepositoryStatus.FAILED"
+//                    )
+                }
+                RepositoryStatus.LOADING -> {
+                    classesContainer.setLoading()
+//                    activity?.alertDialog(
+//                        "RepositoryStatus.LOADING"
+//                    )
+                }
+                RepositoryStatus.SUCCESS -> {
+//                    activity?.alertDialog(
+//                        "RepositoryStatus.SUCCESS"
+//                    )
+                }
+                else -> {}
+            }
+        })
 
     }
 }

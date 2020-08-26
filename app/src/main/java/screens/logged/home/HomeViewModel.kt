@@ -6,22 +6,42 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import repositories.RepositoryStatus
+import repositories.classes.ClassesRepository
+import repositories.classes.ClassesRequest
+import repositories.classes.ClassesResponse
 import repositories.user.UserRepository
 import repositories.user.UserResponse
 
 
 class HomeViewModel(application: android.app.Application): AndroidViewModel(application) {
     private val userRepository = UserRepository(application)
-    private val userDao = UserRepository(application)
-
     val user: LiveData<UserResponse?>
-
     val statusChangeProfile: MutableLiveData<RepositoryStatus> by lazy {
+        MutableLiveData<RepositoryStatus>(RepositoryStatus.LOADING)
+    }
+
+    private val classesRepository = ClassesRepository()
+    val classes = mutableListOf<ClassesResponse>()
+    val statusClass: MutableLiveData<RepositoryStatus> by lazy {
         MutableLiveData<RepositoryStatus>(RepositoryStatus.LOADING)
     }
 
     init {
         user = userRepository.getUser()
+    }
+
+    fun callClasses() {
+        val user = user.value ?: return
+
+        statusClass.value = RepositoryStatus.LOADING
+        classesRepository.getClasses(object: ClassesRequest {
+            override val id_class: String = user.id_class
+        }, {
+            statusClass.value = RepositoryStatus.SUCCESS
+            classes.addAll(it)
+        }) {
+            statusClass.value = RepositoryStatus.FAILED
+        }
     }
 
     fun changeProfilePicture(bitmap: Bitmap) {

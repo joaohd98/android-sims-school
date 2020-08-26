@@ -8,11 +8,20 @@
         android:layout_marginHorizontal="@dimen/home_padding"
         android:orientation="vertical">
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/view_home_classes_container_view_pager"
+        <ViewSwitcher
             android:layout_width="match_parent"
-            android:layout_height="130dp"
-            tools:layout="@layout/view_home_classes"/>
+            android:layout_height="120dp">
+            <screens.logged.home.components.HomeClassesView
+                android:id="@+id/view_home_classes_container_skeleton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/view_home_classes_container_view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:layout="@layout/view_home_classes"/>
+      </ViewSwitcher>
 
         <LinearLayout
             android:layout_width="match_parent"

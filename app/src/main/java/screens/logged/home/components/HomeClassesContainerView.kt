@@ -37,4 +37,17 @@ class HomeClassesContainerView: ConstraintLayout {
         viewPager.currentItem = Integer.MAX_VALUE / 2;
     }
 
+    fun setLoading() {
+        view_home_classes_container_skeleton.setLoading()
+    }
+
+    fun setFailed() {
+
+    }
+
+
+    fun setSuccess() {
+
+    }
+
 }

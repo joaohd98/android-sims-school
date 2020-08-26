@@ -6,6 +6,10 @@ import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewHomeClassesBinding
+import kotlinx.android.synthetic.main.view_home_classes.view.*
+import utils.addSkeletonAllElementsInner
+import utils.removeSkeletonAllElementsInner
+
 
 class HomeClassesView : ConstraintLayout {
     lateinit var binding: ViewHomeClassesBinding
@@ -25,5 +29,16 @@ class HomeClassesView : ConstraintLayout {
         else {
             binding = ViewHomeClassesBinding.inflate(LayoutInflater.from(context), this, true)
         }
+    }
+
+    override fun onFinishInflate() {
+        super.onFinishInflate()
+
+        linear_layout.addSkeletonAllElementsInner()
+        linear_layout.removeSkeletonAllElementsInner()
+    }
+
+    fun setLoading() {
+
     }
 }

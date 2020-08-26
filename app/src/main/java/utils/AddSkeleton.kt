@@ -1,12 +1,6 @@
 package utils
 
-import android.R.attr
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
-import android.util.Log
-import android.view.View
 import android.view.ViewGroup
-import android.view.ViewGroup.MarginLayoutParams
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.*
@@ -26,9 +20,9 @@ fun ViewGroup.addSkeletonAllElementsInner() {
         shimmer.background = ContextCompat.getDrawable(context, R.drawable.skeleton)
         shimmer.layoutParams = layoutParams
 
-        linear_layout.removeView(view)
+        view_home_classes_linear_layout_text.removeView(view)
         shimmer.addView(view)
-        linear_layout.addView(shimmer, index)
+        view_home_classes_linear_layout_text.addView(shimmer, index)
     }
 }
 
@@ -40,6 +34,6 @@ fun ViewGroup.removeSkeletonAllElementsInner() {
 
         shimmer.removeView(subView)
         removeView(shimmer)
-        linear_layout.addView(subView, index)
+        view_home_classes_linear_layout_text.addView(subView, index)
     }
 }

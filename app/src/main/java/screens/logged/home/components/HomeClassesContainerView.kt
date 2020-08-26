@@ -57,14 +57,11 @@ class HomeClassesContainerView: ConstraintLayout {
 
         val pages = classes.map {
              HomeClassesView(context).apply {
-                binding.actualClass = it
+                 setClass(it)
             }
         }
 
         viewPager.adapter = HomeClassesViewAdapter(context, pages).apply {
-            showSkeleton()
-            hideSkeleton()
-
             viewPager.setScrollingEnabled(true)
         }
     }

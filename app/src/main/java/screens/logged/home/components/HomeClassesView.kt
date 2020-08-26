@@ -7,12 +7,13 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewHomeClassesBinding
 import kotlinx.android.synthetic.main.view_home_classes.view.*
+import repositories.classes.ClassesResponse
 import utils.addSkeletonAllElementsInner
 import utils.removeSkeletonAllElementsInner
 
 
 class HomeClassesView : ConstraintLayout {
-    lateinit var binding: ViewHomeClassesBinding
+    private lateinit var binding: ViewHomeClassesBinding
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
@@ -32,10 +33,18 @@ class HomeClassesView : ConstraintLayout {
     }
 
     fun showSkeleton() {
-        linear_layout.addSkeletonAllElementsInner()
+        view_home_classes_linear_layout_text.addSkeletonAllElementsInner()
     }
 
     fun hideSkeleton() {
-        linear_layout.removeSkeletonAllElementsInner()
+        view_home_classes_linear_layout_text.removeSkeletonAllElementsInner()
+    }
+
+    fun setClass(actualClass: ClassesResponse) {
+        if(!actualClass.hasClass) {
+            view_home_classes_switcher.showNext()
+        }
+
+        binding.actualClass = actualClass
     }
 }

@@ -37,25 +37,6 @@ class HomeViewModel(application: android.app.Application): AndroidViewModel(appl
         user = userRepository.getUser()
     }
 
-    fun callClasses() {
-        val user = user.value ?: return
-
-        if(statusClass.value != RepositoryStatus.LOADING) {
-            statusClass.value = RepositoryStatus.LOADING
-        }
-
-        classesRepository.getClasses(object: ClassesRequest {
-            override val id_class: String = user.id_class
-        }, {
-            classes.addAll(it)
-            statusClass.value = RepositoryStatus.SUCCESS
-            Log.d("aaa b", classes.size.toString())
-
-        }) {
-            statusClass.value = RepositoryStatus.FAILED
-        }
-    }
-
     fun changeProfilePicture(bitmap: Bitmap) {
         val user = user.value ?: return
 
@@ -70,4 +51,24 @@ class HomeViewModel(application: android.app.Application): AndroidViewModel(appl
         }
     }
 
+    fun callClasses() {
+        val user = user.value ?: return
+
+        if(statusClass.value != RepositoryStatus.LOADING) {
+            statusClass.value = RepositoryStatus.LOADING
+        }
+
+        classesRepository.getClasses(object: ClassesRequest {
+            override val id_class: String = user.id_class
+        }, {
+            classes.addAll(it)
+            statusClass.value = RepositoryStatus.SUCCESS
+        }) {
+            statusClass.value = RepositoryStatus.FAILED
+        }
+    }
+
+    fun changeActualSlide(value: Int) {
+        actualClassIndex.value = value % classes.size
+    }
 }

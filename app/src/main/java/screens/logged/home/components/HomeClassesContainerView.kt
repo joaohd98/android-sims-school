@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.viewpager.widget.ViewPager
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewHomeClassesContainerBinding
 import kotlinx.android.synthetic.main.view_home_classes_container.view.*
@@ -50,7 +51,7 @@ class HomeClassesContainerView: ConstraintLayout {
     fun setFailed() {
     }
 
-    fun setSuccess(classes: MutableList<ClassesResponse>, dayWeek: Int) {
+    fun setSuccess(classes: MutableList<ClassesResponse>, dayWeek: Int, onChangeDay: (Int) -> Unit) {
         val viewPager = view_home_classes_container_view_pager
 
         val pages = classes.map {
@@ -64,6 +65,21 @@ class HomeClassesContainerView: ConstraintLayout {
         }
 
         viewPager.setCurrentItem(dayWeek, false)
+
+        viewPager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener {
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {}
+
+            override fun onPageSelected(position: Int) {
+                onChangeDay(position)
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {}
+        })
+
 
     }
 

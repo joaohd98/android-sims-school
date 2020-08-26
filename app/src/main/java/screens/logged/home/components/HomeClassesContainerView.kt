@@ -2,13 +2,13 @@ package screens.logged.home.components
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.size
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewHomeClassesContainerBinding
 import kotlinx.android.synthetic.main.view_home_classes_container.view.*
-import utils.setLoading
+import repositories.classes.ClassesResponse
 
 class HomeClassesContainerView: ConstraintLayout {
     lateinit var binding: ViewHomeClassesContainerBinding
@@ -52,10 +52,21 @@ class HomeClassesContainerView: ConstraintLayout {
     }
 
 
-    fun setSuccess() {
+    fun setSuccess(classes: MutableList<ClassesResponse>) {
         val viewPager = view_home_classes_container_view_pager
-        val adapter = viewPager.adapter as HomeClassesViewAdapter
-        adapter.hideSkeleton()
+
+        val pages = classes.map {
+             HomeClassesView(context).apply {
+                binding.actualClass = it
+            }
+        }
+
+        viewPager.adapter = HomeClassesViewAdapter(context, pages).apply {
+            showSkeleton()
+            hideSkeleton()
+
+            viewPager.setScrollingEnabled(true)
+        }
     }
 
 }

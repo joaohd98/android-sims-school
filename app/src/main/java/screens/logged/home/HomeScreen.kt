@@ -93,7 +93,7 @@ class HomeScreen : Fragment() {
 
                 }
                 RepositoryStatus.SUCCESS -> {
-                    classesContainer.setSuccess()
+                    classesContainer.setSuccess(viewModel.classes)
                 }
                 else -> {}
             }

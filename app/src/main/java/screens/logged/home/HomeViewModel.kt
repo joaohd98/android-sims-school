@@ -2,6 +2,7 @@ package screens.logged.home
 
 import android.graphics.Bitmap
 import android.net.NetworkRequest
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -40,8 +41,10 @@ class HomeViewModel(application: android.app.Application): AndroidViewModel(appl
         classesRepository.getClasses(object: ClassesRequest {
             override val id_class: String = user.id_class
         }, {
-            statusClass.value = RepositoryStatus.SUCCESS
             classes.addAll(it)
+            statusClass.value = RepositoryStatus.SUCCESS
+            Log.d("aaa b", classes.size.toString())
+
         }) {
             statusClass.value = RepositoryStatus.FAILED
         }

@@ -1,6 +1,8 @@
 package utils
 
 import android.R.attr
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
@@ -32,11 +34,12 @@ fun ViewGroup.addSkeletonAllElementsInner() {
 
 fun ViewGroup.removeSkeletonAllElementsInner() {
     this.forEachIndexed { index, view ->
-        val shimmer = view as ViewGroup
+        val shimmer = view as ShimmerFrameLayout
         val subView = shimmer[0]
 
+
         shimmer.removeView(subView)
-        this.removeView(shimmer)
+        removeView(shimmer)
         linear_layout.addView(subView, index)
     }
 }

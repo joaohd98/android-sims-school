@@ -15,6 +15,7 @@ import repositories.FirebaseInstances.storage
 import java.io.File
 
 class ClassesResponse(
+    var data: String = "",
     var course: String = "",
     var weekDay: String = "",
     var hasClass: Boolean = false,

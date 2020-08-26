@@ -11,7 +11,7 @@
         <utils.CustomViewPager
             android:id="@+id/view_home_classes_container_view_pager"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="130dp"
             tools:layout="@layout/view_home_classes"/>
 
         <LinearLayout

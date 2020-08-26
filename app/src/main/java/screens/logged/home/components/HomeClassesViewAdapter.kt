@@ -2,25 +2,34 @@ package screens.logged.home.components
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
 import com.joao.simsschool.R
 
+
 class HomeClassesViewAdapter(private val context: Context) : PagerAdapter() {
 
     private val pages = arrayOf(
-        Pair(HomeClassesView(context), "Scores"),
-        Pair(HomeClassesView(context), "Classes"),
-        Pair(HomeClassesView(context), "Tips")
+        HomeClassesView(context),
+        HomeClassesView(context),
+        HomeClassesView(context),
     )
+
+    fun showSkeleton() {
+        pages[0].showSkeleton()
+    }
+
+    fun hideSkeleton() {
+        pages[0].hideSkeleton()
+    }
+
 
     override fun instantiateItem(collection: ViewGroup, position: Int): Any {
         val position = position % pages.size
-        val inflater = LayoutInflater.from(context)
-        val layout = inflater.inflate(R.layout.view_home_classes, collection, false) as ViewGroup
-        collection.addView(layout)
-        return layout
+        collection.addView(pages[position])
+        return pages[position]
     }
 
     override fun destroyItem(collection: ViewGroup, position: Int, view: Any) {
@@ -35,7 +44,4 @@ class HomeClassesViewAdapter(private val context: Context) : PagerAdapter() {
         return view === `object`
     }
 
-    override fun getPageTitle(position: Int): CharSequence {
-        return pages[position].second
-    }
 }

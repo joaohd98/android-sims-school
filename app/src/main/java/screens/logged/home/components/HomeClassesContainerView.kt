@@ -4,9 +4,11 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.size
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewHomeClassesContainerBinding
 import kotlinx.android.synthetic.main.view_home_classes_container.view.*
+import utils.setLoading
 
 class HomeClassesContainerView: ConstraintLayout {
     lateinit var binding: ViewHomeClassesContainerBinding
@@ -32,13 +34,17 @@ class HomeClassesContainerView: ConstraintLayout {
     fun setClasses(context: Context) {
         val viewPager = view_home_classes_container_view_pager
 
-        viewPager.adapter = HomeClassesViewAdapter(context)
         viewPager.pageMargin = 100
-        viewPager.currentItem = Integer.MAX_VALUE / 2;
+        viewPager.adapter = HomeClassesViewAdapter(context)
+
     }
 
     fun setLoading() {
-        view_home_classes_container_skeleton.setLoading()
+        val viewPager = view_home_classes_container_view_pager
+        val adapter = viewPager.adapter as HomeClassesViewAdapter
+
+        viewPager.setScrollingEnabled(false)
+        adapter.showSkeleton()
     }
 
     fun setFailed() {
@@ -47,7 +53,9 @@ class HomeClassesContainerView: ConstraintLayout {
 
 
     fun setSuccess() {
-
+        val viewPager = view_home_classes_container_view_pager
+        val adapter = viewPager.adapter as HomeClassesViewAdapter
+        adapter.hideSkeleton()
     }
 
 }

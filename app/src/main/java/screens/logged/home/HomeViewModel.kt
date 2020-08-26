@@ -33,7 +33,10 @@ class HomeViewModel(application: android.app.Application): AndroidViewModel(appl
     fun callClasses() {
         val user = user.value ?: return
 
-        statusClass.value = RepositoryStatus.LOADING
+        if(statusClass.value != RepositoryStatus.LOADING) {
+            statusClass.value = RepositoryStatus.LOADING
+        }
+
         classesRepository.getClasses(object: ClassesRequest {
             override val id_class: String = user.id_class
         }, {

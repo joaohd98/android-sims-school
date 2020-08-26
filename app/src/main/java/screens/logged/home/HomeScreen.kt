@@ -85,20 +85,15 @@ class HomeScreen : Fragment() {
         viewModel.statusClass.observe(viewLifecycleOwner, { status ->
             when(status) {
                 RepositoryStatus.FAILED -> {
-//                    activity?.alertDialog(
-//                        "RepositoryStatus.FAILED"
-//                    )
+                    classesContainer.setFailed()
+
                 }
                 RepositoryStatus.LOADING -> {
                     classesContainer.setLoading()
-//                    activity?.alertDialog(
-//                        "RepositoryStatus.LOADING"
-//                    )
+
                 }
                 RepositoryStatus.SUCCESS -> {
-//                    activity?.alertDialog(
-//                        "RepositoryStatus.SUCCESS"
-//                    )
+                    classesContainer.setSuccess()
                 }
                 else -> {}
             }

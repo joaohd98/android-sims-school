@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:background="@color/gray"
             android:paddingVertical="5dp"
-            android:text="27/07/2020 - Tuesday"
+            tools:text="27/07/2020 - Tuesday"
             android:textAlignment="center"
             android:textColor="@color/white" />
 
@@ -25,7 +25,8 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="10dp"
-            android:text="Wish Business"
+            tools:text="Wish Business"
+            android:minWidth="150dp"
             android:textAlignment="viewStart"
             android:textColor="@color/gray" />
 
@@ -34,7 +35,8 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginBottom="10dp"
-            android:text="Nick Furry"
+            tools:text="Nick Furry"
+            android:minWidth="100dp"
             android:textAlignment="viewStart"
             android:textColor="@color/gray" />
 
@@ -42,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="Asgard - Lab 11"
+            tools:text="Asgard - Lab 11"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textStyle="bold" />

@@ -31,14 +31,11 @@ class HomeClassesView : ConstraintLayout {
         }
     }
 
-    override fun onFinishInflate() {
-        super.onFinishInflate()
-
+    fun showSkeleton() {
         linear_layout.addSkeletonAllElementsInner()
-        linear_layout.removeSkeletonAllElementsInner()
     }
 
-    fun setLoading() {
-
+    fun hideSkeleton() {
+        linear_layout.removeSkeletonAllElementsInner()
     }
 }

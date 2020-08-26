@@ -12,6 +12,7 @@ import repositories.classes.ClassesRequest
 import repositories.classes.ClassesResponse
 import repositories.user.UserRepository
 import repositories.user.UserResponse
+import java.util.*
 
 
 class HomeViewModel(application: android.app.Application): AndroidViewModel(application) {
@@ -23,6 +24,11 @@ class HomeViewModel(application: android.app.Application): AndroidViewModel(appl
 
     private val classesRepository = ClassesRepository()
     val classes = mutableListOf<ClassesResponse>()
+    val actualClassIndex: MutableLiveData<Int> by lazy {
+        MutableLiveData<Int>(
+            Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1
+        )
+    }
     val statusClass: MutableLiveData<RepositoryStatus> by lazy {
         MutableLiveData<RepositoryStatus>(RepositoryStatus.LOADING)
     }

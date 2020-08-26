@@ -16,6 +16,10 @@ class HomeClassesViewAdapter(
         pages[0].showSkeleton()
     }
 
+    override fun setPrimaryItem(container: ViewGroup, position: Int, `object`: Any) {
+        super.setPrimaryItem(container, position, `object`)
+    }
+
     override fun instantiateItem(collection: ViewGroup, position: Int): Any {
         val index: Int = position % pages.size
         collection.addView(pages[index])

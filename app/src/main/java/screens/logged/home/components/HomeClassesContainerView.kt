@@ -9,6 +9,7 @@ import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewHomeClassesContainerBinding
 import kotlinx.android.synthetic.main.view_home_classes_container.view.*
 import repositories.classes.ClassesResponse
+import java.util.*
 
 class HomeClassesContainerView: ConstraintLayout {
     lateinit var binding: ViewHomeClassesContainerBinding
@@ -47,11 +48,9 @@ class HomeClassesContainerView: ConstraintLayout {
     }
 
     fun setFailed() {
-
     }
 
-
-    fun setSuccess(classes: MutableList<ClassesResponse>) {
+    fun setSuccess(classes: MutableList<ClassesResponse>, dayWeek: Int) {
         val viewPager = view_home_classes_container_view_pager
 
         val pages = classes.map {
@@ -63,6 +62,9 @@ class HomeClassesContainerView: ConstraintLayout {
         viewPager.adapter = HomeClassesViewAdapter(viewPager, context, pages).apply {
             viewPager.setScrollingEnabled(true)
         }
+
+        viewPager.setCurrentItem(dayWeek, false)
+
     }
 
 }

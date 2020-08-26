@@ -72,7 +72,7 @@ class HomeClassesContainerView: ConstraintLayout {
         viewPager.adapter = HomeClassesViewAdapter(context, pages).apply {
             viewPager.setScrollingEnabled(true)
         }
-        viewPager.setCurrentItem(dayWeek, false)
+        viewPager.setCurrentItem((classes.size * 100000) + dayWeek, false)
         viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(
                 position: Int,

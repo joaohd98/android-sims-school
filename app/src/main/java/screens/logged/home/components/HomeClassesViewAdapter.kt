@@ -26,7 +26,7 @@ class HomeClassesViewAdapter(
     }
 
     override fun getCount(): Int {
-        return pages.size;
+        return Integer.MAX_VALUE
     }
 
     override fun isViewFromObject(view: View, `object`: Any): Boolean {

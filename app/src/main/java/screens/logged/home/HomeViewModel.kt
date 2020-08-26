@@ -67,8 +67,4 @@ class HomeViewModel(application: android.app.Application): AndroidViewModel(appl
             statusClass.value = RepositoryStatus.FAILED
         }
     }
-
-    fun changeActualSlide(value: Int) {
-        actualClassIndex.value = value % classes.size
-    }
 }

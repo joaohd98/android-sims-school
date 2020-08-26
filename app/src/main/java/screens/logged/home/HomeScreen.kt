@@ -92,9 +92,7 @@ class HomeScreen : Fragment() {
                     classesContainer.setLoading()
                 }
                 RepositoryStatus.SUCCESS -> {
-                    classesContainer.setSuccess(viewModel.classes, viewModel.actualClassIndex.value!!) {
-                        viewModel.changeActualSlide(it)
-                    }
+                    classesContainer.setSuccess(viewModel.classes, viewModel.actualClassIndex.value!!)
                 }
                 else -> {}
             }

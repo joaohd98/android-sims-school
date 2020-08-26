@@ -15,6 +15,7 @@
             tools:layout="@layout/view_home_classes"/>
 
         <LinearLayout
+            android:id="@+id/view_home_classes_container_dots"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
@@ -22,27 +23,27 @@
             android:divider="@drawable/empty_divider_width"
             android:layout_marginBottom="20dp"
             android:gravity="center"
-            android:layout_gravity="center">
-            <ImageView
-                android:src="@drawable/ic_action_bullet"
-                android:layout_width="15dp"
-                android:layout_height="15dp" />
-            <ImageView
-                android:src="@drawable/ic_action_bullet"
-                android:layout_width="15dp"
-                android:layout_height="15dp" />
-            <ImageView
-                android:src="@drawable/ic_action_bullet_fill"
-                android:layout_width="15dp"
-                android:layout_height="15dp" />
-            <ImageView
-                android:src="@drawable/ic_action_bullet"
-                android:layout_width="15dp"
-                android:layout_height="15dp" />
-            <ImageView
-                android:src="@drawable/ic_action_bullet"
-                android:layout_width="15dp"
-                android:layout_height="15dp" />
-        </LinearLayout>
+            android:layout_gravity="center"
+            android:orientation="horizontal" />
+<!--            <ImageView-->
+<!--                android:src="@drawable/ic_action_bullet"-->
+<!--                android:layout_width="15dp"-->
+<!--                android:layout_height="15dp" />-->
+<!--            <ImageView-->
+<!--                android:src="@drawable/ic_action_bullet"-->
+<!--                android:layout_width="15dp"-->
+<!--                android:layout_height="15dp" />-->
+<!--            <ImageView-->
+<!--                android:src="@drawable/ic_action_bullet_fill"-->
+<!--                android:layout_width="15dp"-->
+<!--                android:layout_height="15dp" />-->
+<!--            <ImageView-->
+<!--                android:src="@drawable/ic_action_bullet"-->
+<!--                android:layout_width="15dp"-->
+<!--                android:layout_height="15dp" />-->
+<!--            <ImageView-->
+<!--                android:src="@drawable/ic_action_bullet"-->
+<!--                android:layout_width="15dp"-->
+<!--                android:layout_height="15dp" />-->
     </LinearLayout>
 </layout>

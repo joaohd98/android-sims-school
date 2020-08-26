@@ -7,7 +7,6 @@ import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 
 class HomeClassesViewAdapter(
-    viewPager: ViewPager,
     private val context: Context,
     private val pages: List<HomeClassesView> = listOf(HomeClassesView(context))
 ) : PagerAdapter() {
@@ -16,12 +15,8 @@ class HomeClassesViewAdapter(
         pages[0].showSkeleton()
     }
 
-    override fun setPrimaryItem(container: ViewGroup, position: Int, `object`: Any) {
-        super.setPrimaryItem(container, position, `object`)
-    }
-
     override fun instantiateItem(collection: ViewGroup, position: Int): Any {
-        val index: Int = position % pages.size
+        val index = position % pages.size
         collection.addView(pages[index])
         return pages[index]
     }
@@ -31,7 +26,7 @@ class HomeClassesViewAdapter(
     }
 
     override fun getCount(): Int {
-        return Int.MAX_VALUE;
+        return pages.size;
     }
 
     override fun isViewFromObject(view: View, `object`: Any): Boolean {

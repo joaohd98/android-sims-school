@@ -4,9 +4,10 @@ import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
-import repositories.classes.ClassesResponse
+import androidx.viewpager.widget.ViewPager
 
 class HomeClassesViewAdapter(
+    viewPager: ViewPager,
     private val context: Context,
     private val pages: List<HomeClassesView> = listOf(HomeClassesView(context))
 ) : PagerAdapter() {
@@ -15,14 +16,10 @@ class HomeClassesViewAdapter(
         pages[0].showSkeleton()
     }
 
-    fun hideSkeleton() {
-        pages[0].hideSkeleton()
-    }
-
     override fun instantiateItem(collection: ViewGroup, position: Int): Any {
-        val position = position % pages.size
-        collection.addView(pages[position])
-        return pages[position]
+        val index: Int = position % pages.size
+        collection.addView(pages[index])
+        return pages[index]
     }
 
     override fun destroyItem(collection: ViewGroup, position: Int, view: Any) {
@@ -30,11 +27,10 @@ class HomeClassesViewAdapter(
     }
 
     override fun getCount(): Int {
-        return Integer.MAX_VALUE;
+        return Int.MAX_VALUE;
     }
 
     override fun isViewFromObject(view: View, `object`: Any): Boolean {
         return view === `object`
     }
-
 }

@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:background="@color/gray"
             android:paddingVertical="5dp"
-            android:text="@{actual_class.weekDay}"
+            android:text="@{actual_class.formattedData}"
             tools:text="27/07/2020 - Tuesday"
             android:textAlignment="center"
             android:textColor="@color/white" />

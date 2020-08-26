@@ -9,7 +9,6 @@ import com.joao.simsschool.databinding.ViewHomeClassesBinding
 import kotlinx.android.synthetic.main.view_home_classes.view.*
 import repositories.classes.ClassesResponse
 import utils.addSkeletonAllElementsInner
-import utils.removeSkeletonAllElementsInner
 
 
 class HomeClassesView : ConstraintLayout {
@@ -36,10 +35,6 @@ class HomeClassesView : ConstraintLayout {
         view_home_classes_linear_layout_text.addSkeletonAllElementsInner()
     }
 
-    fun hideSkeleton() {
-        view_home_classes_linear_layout_text.removeSkeletonAllElementsInner()
-    }
-
     fun setClass(actualClass: ClassesResponse) {
         if(!actualClass.hasClass) {
             view_home_classes_switcher.showNext()
@@ -47,4 +42,6 @@ class HomeClassesView : ConstraintLayout {
 
         binding.actualClass = actualClass
     }
+
+
 }

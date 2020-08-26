@@ -1,21 +1,10 @@
 package repositories.classes
 
-import android.net.Uri
-import android.util.Log
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import com.google.firebase.firestore.DocumentSnapshot
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.tasks.await
-import repositories.FirebaseInstances
-import repositories.FirebaseInstances.storage
-import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ClassesResponse(
-    var data: String = "",
+    var formattedData: String = "",
     var course: String = "",
     var weekDay: String = "",
     var hasClass: Boolean = false,
@@ -23,10 +12,31 @@ class ClassesResponse(
     var teacher: String = "",
 ) {
     fun initService(result: Map<String, Any?>) {
-            course = (result["course"] as? String ?: "")
-            weekDay = (result["weekDay"] as? String ?: "")
-            hasClass = (result["hasClass"] as? Boolean ?: false)
-            place =  (result["place"] as? String ?: "")
-            teacher = (result["teacher"] as? String ?: "")
+        course = (result["course"] as? String ?: "")
+        weekDay = (result["weekDay"] as? String ?: "")
+        hasClass = (result["hasClass"] as? Boolean ?: false)
+        place =  (result["place"] as? String ?: "")
+        teacher = (result["teacher"] as? String ?: "")
+
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.DAY_OF_WEEK, getDayWeekNumber());
+
+        val format = SimpleDateFormat("dd/MM/yyyy", Locale.US)
+        val timestamp = format.format(calendar.time)
+
+        formattedData = "$timestamp - $weekDay"
     }
+
+    private fun getDayWeekNumber(): Int {
+        return when(weekDay) {
+            "Sunday" -> Calendar.SUNDAY
+            "Monday" -> Calendar.MONDAY
+            "Tuesday" -> Calendar.TUESDAY
+            "Wednesday" -> Calendar.WEDNESDAY
+            "Thursday" -> Calendar.THURSDAY
+            "Saturday" -> Calendar.SATURDAY
+            else -> 0
+        }
+    }
+
 }

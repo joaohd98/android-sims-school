@@ -35,8 +35,7 @@ class HomeClassesContainerView: ConstraintLayout {
         val viewPager = view_home_classes_container_view_pager
 
         viewPager.pageMargin = 100
-        viewPager.adapter = HomeClassesViewAdapter(context)
-
+        viewPager.adapter = HomeClassesViewAdapter(viewPager, context)
     }
 
     fun setLoading() {
@@ -61,7 +60,7 @@ class HomeClassesContainerView: ConstraintLayout {
             }
         }
 
-        viewPager.adapter = HomeClassesViewAdapter(context, pages).apply {
+        viewPager.adapter = HomeClassesViewAdapter(viewPager, context, pages).apply {
             viewPager.setScrollingEnabled(true)
         }
     }

@@ -7,6 +7,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import repositories.RepositoryStatus
+import repositories.ads.AdsRepository
+import repositories.ads.AdsResponse
 import repositories.classes.ClassesRepository
 import repositories.classes.ClassesRequest
 import repositories.classes.ClassesResponse
@@ -30,6 +32,14 @@ class HomeViewModel(application: android.app.Application): AndroidViewModel(appl
         )
     }
     val statusClass: MutableLiveData<RepositoryStatus> by lazy {
+        MutableLiveData<RepositoryStatus>(RepositoryStatus.LOADING)
+    }
+
+    private val adsRepository = AdsRepository()
+    val ad: MutableLiveData<AdsResponse> by lazy {
+        MutableLiveData()
+    }
+    val statusAds: MutableLiveData<RepositoryStatus> by lazy {
         MutableLiveData<RepositoryStatus>(RepositoryStatus.LOADING)
     }
 
@@ -65,6 +75,20 @@ class HomeViewModel(application: android.app.Application): AndroidViewModel(appl
             statusClass.value = RepositoryStatus.SUCCESS
         }) {
             statusClass.value = RepositoryStatus.FAILED
+        }
+    }
+
+
+    fun callAds(isRetry: Boolean = false) {
+        if(!isRetry && statusClass.value != RepositoryStatus.LOADING) {
+            statusAds.value = RepositoryStatus.LOADING
+        }
+
+        adsRepository.getAds({
+            ad.value = it.random()
+            statusAds.value = RepositoryStatus.SUCCESS
+        }) {
+            statusAds.value = RepositoryStatus.FAILED
         }
     }
 }

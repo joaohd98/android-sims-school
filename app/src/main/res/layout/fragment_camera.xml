@@ -5,11 +5,11 @@
 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context="screens.logged.home.components.HomeChangePictureFragment"
+    tools:context="components.camera.CameraFragment"
     app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
 
     <LinearLayout
-        android:id="@+id/fragment_home_change_picture_camera"
+        android:id="@+id/fragment_camera_camera"
         android:orientation="horizontal"
         android:foreground="?android:attr/selectableItemBackground"
         android:paddingVertical="15dp"
@@ -29,7 +29,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/fragment_home_change_picture_gallery"
+        android:id="@+id/fragment_camera_gallery"
         android:orientation="horizontal"
         android:paddingVertical="15dp"
         android:paddingHorizontal="20dp"
@@ -54,7 +54,7 @@
         android:background="@color/gray" />
 
     <LinearLayout
-        android:id="@+id/fragment_home_change_picture_close"
+        android:id="@+id/fragment_camera_close"
         android:orientation="horizontal"
         android:paddingVertical="15dp"
         android:paddingHorizontal="20dp"

@@ -41,12 +41,14 @@ class HomeScreen : Fragment() {
         callRequests()
         setProfile()
         setClasses()
+        setAds()
     }
 
     private fun callRequests() {
         viewModel.user.observeOnce(viewLifecycleOwner) {
             if (it != null) {
                 viewModel.callClasses()
+                viewModel.callAds()
             }
         }
     }
@@ -100,5 +102,22 @@ class HomeScreen : Fragment() {
             }
         })
 
+    }
+
+    private fun setAds() {
+        viewModel.statusAds.observe(viewLifecycleOwner, { status ->
+            when(status) {
+                RepositoryStatus.FAILED -> {
+                   
+                }
+                RepositoryStatus.LOADING -> {
+
+                }
+                RepositoryStatus.SUCCESS -> {
+
+                }
+                else -> {}
+            }
+        })
     }
 }

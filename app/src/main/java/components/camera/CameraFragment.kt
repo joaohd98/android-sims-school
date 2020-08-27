@@ -1,10 +1,9 @@
-package screens.logged.home.components
+package components.camera
 
 import android.Manifest
-import android.app.Activity.RESULT_OK
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -20,14 +19,14 @@ import androidx.core.content.FileProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.joao.simsschool.BuildConfig
 import com.joao.simsschool.R
-import kotlinx.android.synthetic.main.fragment_home_change_picture.*
+import kotlinx.android.synthetic.main.fragment_camera.*
 import utils.alertDialog
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class HomeChangePictureFragment : BottomSheetDialogFragment() {
+class CameraFragment : BottomSheetDialogFragment() {
     private lateinit var currentPhotoPath: String
     var onSuccess: ((bitMap: Bitmap) -> Unit)? = null
 
@@ -50,25 +49,25 @@ class HomeChangePictureFragment : BottomSheetDialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_home_change_picture, container, false)
+        return inflater.inflate(R.layout.fragment_camera, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        fragment_home_change_picture_camera.setOnClickListener {
+        fragment_camera_camera.setOnClickListener {
             callPermissions(permissionsCamera, takeCamera) {
                 takePictureCamera()
             }
         }
 
-        fragment_home_change_picture_gallery.setOnClickListener {
+        fragment_camera_gallery.setOnClickListener {
             callPermissions(permissionsGallery, takeGallery)  {
                 takePictureGallery()
             }
         }
 
-        fragment_home_change_picture_close.setOnClickListener {
+        fragment_camera_close.setOnClickListener {
             Handler().postDelayed({
                 dismiss()
             }, 200)
@@ -82,7 +81,11 @@ class HomeChangePictureFragment : BottomSheetDialogFragment() {
     ) {
         val activity = requireActivity()
 
-        if (permissions.all { ContextCompat.checkSelfPermission(activity, it) == PackageManager.PERMISSION_GRANTED }) {
+        if (permissions.all { ContextCompat.checkSelfPermission(
+                activity,
+                it
+            ) == PackageManager.PERMISSION_GRANTED
+            }) {
             onSuccess()
         }
         else {
@@ -166,7 +169,7 @@ class HomeChangePictureFragment : BottomSheetDialogFragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if(resultCode == RESULT_OK) {
+        if(resultCode == Activity.RESULT_OK) {
             if (requestCode == takeCamera) {
                 dismiss()
                 callSuccess(BitmapFactory.decodeFile(currentPhotoPath))

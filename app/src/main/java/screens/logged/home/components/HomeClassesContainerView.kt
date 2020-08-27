@@ -1,7 +1,6 @@
 package screens.logged.home.components
 
 import android.content.Context
-import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.ImageView
@@ -13,6 +12,7 @@ import androidx.core.view.size
 import androidx.viewpager.widget.ViewPager
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewHomeClassesContainerBinding
+import components.error_view.OnTryAgainClickDataBinding
 import kotlinx.android.synthetic.main.view_home_classes_container.view.*
 import repositories.classes.ClassesResponse
 import utils.getPixels
@@ -39,6 +39,8 @@ class HomeClassesContainerView: ConstraintLayout {
                 this,
                 true
             )
+
+
         }
 
     }
@@ -63,7 +65,7 @@ class HomeClassesContainerView: ConstraintLayout {
     }
 
     fun setSuccess(classes: MutableList<ClassesResponse>, dayWeek: Int) {
-        setDots(classes.size, dayWeek)
+        showDots(classes.size, dayWeek)
 
         val viewPager = view_home_classes_container_view_pager
         val pages = classes.map {
@@ -81,14 +83,14 @@ class HomeClassesContainerView: ConstraintLayout {
                 positionOffsetPixels: Int) {}
 
             override fun onPageSelected(position: Int) {
-                selectDot(position % classes.size)
+                changeSelectedDot(position % classes.size)
             }
 
             override fun onPageScrollStateChanged(state: Int) {}
         })
     }
 
-    private fun setDots(size: Int, actualIndex: Int) {
+    private fun showDots(size: Int, actualIndex: Int) {
         val dots = view_home_classes_container_dots
 
         for (i in 1..size) {
@@ -100,10 +102,10 @@ class HomeClassesContainerView: ConstraintLayout {
             dots.addView(dot, params)
         }
 
-        selectDot(actualIndex)
+        changeSelectedDot(actualIndex)
     }
 
-    private fun selectDot(selectedIndex: Int) {
+    private fun changeSelectedDot(selectedIndex: Int) {
         val dots = view_home_classes_container_dots
 
         for (i in 0 until dots.size) {
@@ -116,6 +118,17 @@ class HomeClassesContainerView: ConstraintLayout {
             val drawable = ContextCompat.getDrawable(context, drawableId)!!
 
             (dots[i] as ImageView).setImageDrawable(drawable)
+        }
+    }
+
+    fun setTryAgain(onTryAgain: () -> Unit) {
+        binding.tryAgain = object: OnTryAgainClickDataBinding {
+            override fun showLoading() {
+                view_home_classes_container_switcher.showNext()
+            }
+            override fun onClick() {
+                onTryAgain()
+            }
         }
     }
 }

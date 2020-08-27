@@ -51,10 +51,10 @@ class HomeViewModel(application: android.app.Application): AndroidViewModel(appl
         }
     }
 
-    fun callClasses() {
+    fun callClasses(isRetry: Boolean = false) {
         val user = user.value ?: return
 
-        if(statusClass.value != RepositoryStatus.LOADING) {
+        if(!isRetry && statusClass.value != RepositoryStatus.LOADING) {
             statusClass.value = RepositoryStatus.LOADING
         }
 

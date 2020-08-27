@@ -81,12 +81,14 @@ class HomeScreen : Fragment() {
     private fun setClasses() {
         val classesContainer = home_screen_classes_container
         classesContainer.setClasses(requireContext())
+        classesContainer.setTryAgain {
+            viewModel.callClasses(true)
+        }
 
         viewModel.statusClass.observe(viewLifecycleOwner, { status ->
             when(status) {
                 RepositoryStatus.FAILED -> {
                     classesContainer.setFailed()
-
                 }
                 RepositoryStatus.LOADING -> {
                     classesContainer.setLoading()

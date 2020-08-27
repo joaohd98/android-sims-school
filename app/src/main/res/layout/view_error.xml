@@ -3,6 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="tryAgain"
+            type="utils.OnClickDataBinding" />
+    </data>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,11 +25,11 @@
             app:srcCompat="@drawable/ic_action_warning" />
 
         <TextView
+            android:id="@+id/view_error_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
             android:textColor="@color/black"
-            android:text="Something wrong happened"
             tools:text="Something wrong happened" />
 
         <TextView
@@ -40,6 +46,7 @@
             android:paddingHorizontal="40dp"
             android:textColor="@color/blue"
             android:background="@drawable/button_error"
+            android:onClick="@{() -> tryAgain.onClick()}"
             android:text="@string/view_error_button_text" />
     </LinearLayout>
 </layout>

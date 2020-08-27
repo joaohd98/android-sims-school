@@ -7,7 +7,10 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewHomeAdsBinding
+import components.error_view.OnTryAgainClickDataBinding
 import kotlinx.android.synthetic.main.view_home_ads.view.*
+import kotlinx.android.synthetic.main.view_home_classes_container.view.*
+import repositories.ads.AdsResponse
 
 class HomeAdsView : ConstraintLayout {
     lateinit var binding: ViewHomeAdsBinding
@@ -34,5 +37,26 @@ class HomeAdsView : ConstraintLayout {
         view_home_ads_image.clipToOutline = true
     }
 
+    fun setSuccess(ad: AdsResponse) {
+        binding.ad = ad
+    }
 
+    fun setLoading() {
+        view_home_ads_image.setLoadScreen()
+    }
+
+    fun setFailed() {
+        view_home_ads_switcher.showNext()
+    }
+
+    fun setTryAgain(onTryAgain: () -> Unit) {
+        binding.tryAgain = object: OnTryAgainClickDataBinding {
+            override fun showLoading() {
+                view_home_ads_switcher.showNext()
+            }
+            override fun onClick() {
+                onTryAgain()
+            }
+        }
+    }
 }

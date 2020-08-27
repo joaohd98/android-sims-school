@@ -39,8 +39,6 @@ class HomeClassesContainerView: ConstraintLayout {
                 this,
                 true
             )
-
-
         }
 
     }

@@ -105,16 +105,21 @@ class HomeScreen : Fragment() {
     }
 
     private fun setAds() {
+        val adsView = home_screen_ads
+        adsView.setTryAgain {
+            viewModel.callAds(true)
+        }
+
         viewModel.statusAds.observe(viewLifecycleOwner, { status ->
             when(status) {
                 RepositoryStatus.FAILED -> {
-                   
+                    adsView.setFailed()
                 }
                 RepositoryStatus.LOADING -> {
-
+                    adsView.setLoading()
                 }
                 RepositoryStatus.SUCCESS -> {
-
+                    adsView.setSuccess(viewModel.ad.value!!)
                 }
                 else -> {}
             }

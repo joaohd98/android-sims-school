@@ -8,6 +8,9 @@
             name="ad"
             type="repositories.ads.AdsResponse" />
         <variable
+            name="webView"
+            type="utils.OnClickDataBinding" />
+        <variable
             name="tryAgain"
             type="components.error_view.OnTryAgainClickDataBinding" />
     </data>
@@ -29,8 +32,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="175dp"
                 android:layout_marginVertical="20dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:background="@drawable/border_rounded"
                 uri_image="@{ad.image}"
-                android:background="@drawable/border_rounded" />
+                android:onClick="@{() -> webView.onClick()}"
+                />
             <components.error_view.ErrorView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

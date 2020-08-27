@@ -7,13 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.viewpager.widget.ViewPager
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.FragmentHomeBinding
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.view_home_profile.*
 import repositories.RepositoryStatus
-import screens.logged.home.components.HomeClassesViewAdapter
 import screens.logged.home.components.HomeProfileView
 import utils.alertDialog
 import utils.observeOnce
@@ -106,6 +104,7 @@ class HomeScreen : Fragment() {
 
     private fun setAds() {
         val adsView = home_screen_ads
+
         adsView.setTryAgain {
             viewModel.callAds(true)
         }

@@ -12,6 +12,9 @@
     <string name="fragment_home_change_profile_close">Close</string>
     <string name="view_home_classes_no_class">There is no class today</string>
 
+    <string name="view_error_message">Check your internet connection and try again!</string>
+    <string name="view_error_button_text">Try Again</string>
+
 
     <string name="bottom_navigation_home">Home</string>
     <string name="bottom_navigation_scores">Scores</string>

@@ -31,7 +31,7 @@ class HomeClassesContainerView: ConstraintLayout {
 
     init {
         if (isInEditMode) {
-            LayoutInflater.from(context).inflate(R.layout.view_home_ads, this, true)
+            LayoutInflater.from(context).inflate(R.layout.view_home_classes_container, this, true)
         }
         else {
             binding = ViewHomeClassesContainerBinding.inflate(
@@ -59,6 +59,7 @@ class HomeClassesContainerView: ConstraintLayout {
     }
 
     fun setFailed() {
+        view_home_classes_container_switcher.showNext()
     }
 
     fun setSuccess(classes: MutableList<ClassesResponse>, dayWeek: Int) {

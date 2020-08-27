@@ -15,7 +15,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/view_home_classes_date"
+            android:id="@+id/view_home_classes_formatted_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/gray"

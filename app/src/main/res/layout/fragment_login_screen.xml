@@ -55,7 +55,7 @@
             android:layout_marginTop="10dp"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:background="@drawable/submit_button"
+            android:background="@drawable/button_submit"
             app:finalCornerAngle="50dp"
             app:initialCornerAngle="50dp"
             app:spinning_bar_color="@color/gray"

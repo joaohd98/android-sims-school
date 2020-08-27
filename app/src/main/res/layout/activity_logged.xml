@@ -44,6 +44,10 @@
             app:tabRippleColor="@android:color/transparent"
             app:tabTextAppearance="@style/CustomTextAppearanceTab"
             app:tabIndicatorHeight="3dp"
+            app:tabTextColor="@color/gray"
+            app:tabBackground="@color/white"
+            app:tabSelectedTextColor="@color/blue"
+            app:tabIndicatorColor="@color/blue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
         />

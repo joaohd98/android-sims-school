@@ -8,6 +8,7 @@ import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewHomeClassesBinding
 import kotlinx.android.synthetic.main.view_home_classes.view.*
 import repositories.classes.ClassesResponse
+import utils.addSkeleton
 import utils.addSkeletonAllElementsInner
 
 
@@ -32,6 +33,7 @@ class HomeClassesView : ConstraintLayout {
     }
 
     fun showSkeleton() {
+        view_home_classes_formatted_data.addSkeleton()
         view_home_classes_linear_layout_text.addSkeletonAllElementsInner()
     }
 

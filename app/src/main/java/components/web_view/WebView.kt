@@ -1,17 +1,19 @@
 package components.web_view
 
-import android.app.Dialog
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebResourceRequest
+import android.webkit.WebView
+import android.webkit.WebViewClient
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.FragmentManager
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.joao.simsschool.R
+import kotlinx.android.synthetic.main.fragment_web_view.*
 import utils.CustomRoundBottomSheet
-
 
 class WebViewFragment(private val url: Uri) : CustomRoundBottomSheet() {
     override fun onCreateView(
@@ -28,6 +30,38 @@ class WebViewFragment(private val url: Uri) : CustomRoundBottomSheet() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setTitle()
+        setBackButton()
+        setWebView()
+    }
+
+    private fun setTitle() {
+        fragment_web_view_title.text = url.host?.replace("www.", "")
+    }
+
+    private fun setBackButton() {
+        fragment_web_view_close.setOnClickListener { dismiss() }
+    }
+
+    private fun setWebView() {
+        val webView = fragment_web_view
+
+        webView.webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+                view?.loadUrl(request?.url.toString())
+                return true
+            }
+
+            override fun onPageFinished(view: WebView?, url: String?) {
+                super.onPageFinished(view, url)
+                webView.visibility = View.VISIBLE
+                fragment_web_view_progress_bar.visibility = View.GONE
+            }
+        }
+
+        webView.settings.javaScriptEnabled = true
+        webView.loadUrl(url.toString())
     }
 
     companion object {
@@ -38,3 +72,4 @@ class WebViewFragment(private val url: Uri) : CustomRoundBottomSheet() {
         }
     }
 }
+

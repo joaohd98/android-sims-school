@@ -2,14 +2,15 @@ package utils
 
 import android.app.Dialog
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
 import android.widget.FrameLayout
-import android.widget.LinearLayout
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.joao.simsschool.R
+
 
 open class CustomRoundBottomSheet: BottomSheetDialogFragment() {
     private lateinit var dialog : BottomSheetDialog
@@ -18,7 +19,8 @@ open class CustomRoundBottomSheet: BottomSheetDialogFragment() {
         dialog = BottomSheetDialog(requireContext(), theme)
 
         dialog.setOnShowListener {
-            dialog.behavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+            dialog.behavior.addBottomSheetCallback(object :
+                BottomSheetBehavior.BottomSheetCallback() {
                 override fun onStateChanged(bottomSheet: View, newState: Int) {
                     if (newState == BottomSheetBehavior.STATE_HIDDEN) {
                         dialog.dismiss()
@@ -26,7 +28,7 @@ open class CustomRoundBottomSheet: BottomSheetDialogFragment() {
                 }
 
                 override fun onSlide(bottomSheet: View, slideOffset: Float) {
-                    if(!slideOffset.isNaN()) dialog.window?.setDimAmount(0.5f - ((slideOffset * -1) / 2))
+                    if (!slideOffset.isNaN()) dialog.window?.setDimAmount(0.5f - ((slideOffset * -1) / 2))
                 }
             })
         }

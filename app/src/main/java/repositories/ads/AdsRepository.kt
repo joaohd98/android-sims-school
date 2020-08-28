@@ -11,8 +11,8 @@ import repositories.FirebaseInstances.firestore
 class AdsRepository {
 
     @Suppress("UNCHECKED_CAST")
-    fun getAds(
-        onSuccess: (List<AdsResponse>) -> Unit,
+    fun getRandomAd(
+        onSuccess: (AdsResponse) -> Unit,
         onError: (java.lang.Exception?) -> Unit
     ) {
         GlobalScope.launch(IO) {
@@ -25,10 +25,8 @@ class AdsRepository {
 
                 val ads = classes.get("ads") as ArrayList<*>
 
-                val result: List<AdsResponse> = ads.map { result ->
-                    AdsResponse().apply {
-                        initService(result as Map<String, Any>)
-                    }
+                val result: AdsResponse = AdsResponse().apply {
+                    initService(ads.random() as Map<String, Any>)
                 }
 
                 GlobalScope.launch(Dispatchers.Main) {

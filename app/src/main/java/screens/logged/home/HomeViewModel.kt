@@ -1,8 +1,6 @@
 package screens.logged.home
 
 import android.graphics.Bitmap
-import android.net.NetworkRequest
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -84,8 +82,8 @@ class HomeViewModel(application: android.app.Application): AndroidViewModel(appl
             statusAds.value = RepositoryStatus.LOADING
         }
 
-        adsRepository.getAds({
-            ad.value = it.random()
+        adsRepository.getRandomAd({
+            ad.value = it
             statusAds.value = RepositoryStatus.SUCCESS
         }) {
             statusAds.value = RepositoryStatus.FAILED

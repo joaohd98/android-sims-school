@@ -15,7 +15,7 @@
         android:layout_gravity="center"
         android:background="@drawable/border_circle"
         android:paddingVertical="8dp"
-        android:paddingHorizontal="13dp"
+        android:paddingHorizontal="11dp"
         android:gravity="center"
         android:orientation="vertical">
 

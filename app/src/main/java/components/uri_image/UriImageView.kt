@@ -15,7 +15,7 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.joao.simsschool.R
-import kotlinx.android.synthetic.main.view_uri_image.view.*
+import kotlinx.android.synthetic.main.components_view_uri_image.view.*
 
 class UriImageView : ConstraintLayout {
     var uri: String? = null
@@ -29,7 +29,7 @@ class UriImageView : ConstraintLayout {
     )
 
     init {
-        LayoutInflater.from(context).inflate(R.layout.view_uri_image, this, true)
+        LayoutInflater.from(context).inflate(R.layout.components_view_uri_image, this, true)
     }
 
     override fun onFinishInflate() {

@@ -32,7 +32,7 @@
             android:paddingHorizontal="24dp"
             android:clipChildren="false"
             android:clipToPadding="false"
-            tools:layout="@layout/view_input"
+            tools:layout="@layout/components_view_input"
             inputModel="@{viewModel.email}" />
 
         <components.input.InputView

@@ -3,16 +3,14 @@ package components.web_view
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.FragmentManager
 import com.joao.simsschool.R
-import kotlinx.android.synthetic.main.fragment_web_view.*
+import kotlinx.android.synthetic.main.components_fragment_web_view.*
 import utils.CustomRoundBottomSheet
 
 class WebViewFragment(private val url: Uri) : CustomRoundBottomSheet() {
@@ -20,7 +18,7 @@ class WebViewFragment(private val url: Uri) : CustomRoundBottomSheet() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_web_view, container, false)
+        return inflater.inflate(R.layout.components_fragment_web_view, container, false)
     }
 
     override fun onStart() {

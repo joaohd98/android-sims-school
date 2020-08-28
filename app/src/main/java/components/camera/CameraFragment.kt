@@ -19,7 +19,7 @@ import androidx.core.content.FileProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.joao.simsschool.BuildConfig
 import com.joao.simsschool.R
-import kotlinx.android.synthetic.main.fragment_camera.*
+import kotlinx.android.synthetic.main.components_fragment_camera.*
 import utils.alertDialog
 import java.io.File
 import java.io.IOException
@@ -49,7 +49,7 @@ class CameraFragment : BottomSheetDialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_camera, container, false)
+        return inflater.inflate(R.layout.components_fragment_camera, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

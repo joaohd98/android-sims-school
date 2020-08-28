@@ -5,12 +5,11 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import com.joao.simsschool.R
-import com.joao.simsschool.databinding.ViewErrorBinding
-import com.joao.simsschool.databinding.ViewInputBinding
-import kotlinx.android.synthetic.main.view_error.view.*
+import com.joao.simsschool.databinding.ComponentsViewErrorBinding
+import kotlinx.android.synthetic.main.components_view_error.view.*
 
 class ErrorView: LinearLayout {
-    lateinit var binding: ViewErrorBinding
+    lateinit var binding: ComponentsViewErrorBinding
 
     constructor(context: Context) : super(context) {
         init(null, 0)
@@ -28,10 +27,10 @@ class ErrorView: LinearLayout {
 
     init {
         if (isInEditMode) {
-            LayoutInflater.from(context).inflate(R.layout.view_error, this, true)
+            LayoutInflater.from(context).inflate(R.layout.components_view_error, this, true)
         }
         else {
-            binding = ViewErrorBinding.inflate(LayoutInflater.from(context), this, true)
+            binding = ComponentsViewErrorBinding.inflate(LayoutInflater.from(context), this, true)
         }
     }
 

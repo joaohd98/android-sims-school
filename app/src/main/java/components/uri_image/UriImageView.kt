@@ -97,6 +97,7 @@ class UriImageView : ConstraintLayout {
             uri_image_try_again.visibility = VISIBLE
         }
         else {
+            isEnabled = true
             isClickable = true
         }
     }
@@ -104,6 +105,7 @@ class UriImageView : ConstraintLayout {
     private fun shimmerChange(isToStart: Boolean) {
         val shimmer = uri_image_shimmer as ShimmerFrameLayout
         if(isToStart) {
+            isEnabled = false
             isClickable = false
             shimmer.showShimmer(true)
         }

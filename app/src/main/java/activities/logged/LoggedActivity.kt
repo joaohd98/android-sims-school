@@ -1,6 +1,7 @@
 package activities.logged
 
 import android.os.Bundle
+import android.view.KeyEvent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
@@ -16,6 +17,5 @@ class LoggedActivity : AppCompatActivity() {
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = findViewById(R.id.activity_logged_tabs)
         tabs.setupWithViewPager(viewPager)
-
     }
 }

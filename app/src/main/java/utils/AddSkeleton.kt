@@ -15,7 +15,6 @@ import kotlinx.android.synthetic.main.view_home_classes.view.*
 fun View.addSkeleton() {
     val shimmer = getShimmer(this, context)
     val parent = parent as ViewGroup
-    val index = parent.indexOfChild(this)
 
     parent.removeView(this)
     shimmer.addView(this)

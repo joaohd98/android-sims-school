@@ -2,14 +2,18 @@ package screens.logged.home.components
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.webkit.WebView
-import android.webkit.WebViewClient
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat.startActivity
+import androidx.fragment.app.FragmentManager
+import com.google.firebase.firestore.core.ActivityScope
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewHomeAdsBinding
 import components.error_view.OnTryAgainClickDataBinding
+import components.web_view.WebViewFragment
 import kotlinx.android.synthetic.main.view_home_ads.view.*
 import repositories.ads.AdsResponse
 import utils.OnClickDataBinding
@@ -17,6 +21,7 @@ import utils.OnClickDataBinding
 
 class HomeAdsView : ConstraintLayout {
     lateinit var binding: ViewHomeAdsBinding
+    lateinit var ad: AdsResponse
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
@@ -32,22 +37,24 @@ class HomeAdsView : ConstraintLayout {
         }
         else {
             binding = ViewHomeAdsBinding.inflate(LayoutInflater.from(context), this, true)
-
-            binding.webView = object: OnClickDataBinding {
-                @SuppressLint("SetJavaScriptEnabled")
-                override fun onClick() {
-                }
-            }
         }
     }
 
     override fun onFinishInflate() {
         super.onFinishInflate()
         view_home_ads_image.clipToOutline = true
+    }
 
+    fun setWebView(supportFragmentManager: FragmentManager) {
+        binding.webView = object: OnClickDataBinding {
+            override fun onClick() {
+                WebViewFragment.invoke(supportFragmentManager, Uri.parse(ad.url))
+            }
+        }
     }
 
     fun setSuccess(ad: AdsResponse) {
+        this.ad = ad
         binding.ad = ad
     }
 

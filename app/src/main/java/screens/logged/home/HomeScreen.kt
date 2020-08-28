@@ -104,7 +104,7 @@ class HomeScreen : Fragment() {
 
     private fun setAds() {
         val adsView = home_screen_ads
-
+        adsView.setWebView(activity?.supportFragmentManager!!)
         adsView.setTryAgain {
             viewModel.callAds(true)
         }

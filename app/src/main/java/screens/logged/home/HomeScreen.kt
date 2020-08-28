@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.joao.simsschool.R
-import com.joao.simsschool.databinding.FragmentHomeBinding
-import kotlinx.android.synthetic.main.fragment_home.*
+import com.joao.simsschool.databinding.ScreenHomeBinding
+import kotlinx.android.synthetic.main.screen_home.*
 import kotlinx.android.synthetic.main.view_home_profile.*
 import repositories.RepositoryStatus
 import screens.logged.home.components.HomeProfileView
@@ -24,8 +24,8 @@ class HomeScreen : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding: FragmentHomeBinding =  DataBindingUtil.inflate(
-            inflater, R.layout.fragment_home, container, false
+        val binding: ScreenHomeBinding =  DataBindingUtil.inflate(
+            inflater, R.layout.screen_home, container, false
         )
 
         binding.viewModel = viewModel

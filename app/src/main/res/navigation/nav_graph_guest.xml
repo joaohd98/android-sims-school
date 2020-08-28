@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/loginScreen"
         android:name="screens.guest.login.LoginScreen"
-        tools:layout="@layout/fragment_login_screen">
+        tools:layout="@layout/screen_login">
         <action
             android:id="@+id/action_loginScreen_to_nav_graph_logged"
             app:destination="@id/nav_graph_logged"

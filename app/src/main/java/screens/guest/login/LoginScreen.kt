@@ -12,8 +12,8 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import br.com.simplepass.loadingbutton.customViews.CircularProgressButton
 import com.joao.simsschool.R
-import com.joao.simsschool.databinding.FragmentLoginScreenBinding
-import kotlinx.android.synthetic.main.fragment_login_screen.*
+import com.joao.simsschool.databinding.ScreenLoginBinding
+import kotlinx.android.synthetic.main.screen_login.*
 import repositories.RepositoryStatus
 import utils.setLoading
 
@@ -27,8 +27,8 @@ class LoginScreen : Fragment() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
-        val binding: FragmentLoginScreenBinding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_login_screen, container, false
+        val binding: ScreenLoginBinding = DataBindingUtil.inflate(
+            inflater, R.layout.screen_login, container, false
         )
 
         binding.viewModel = viewModel

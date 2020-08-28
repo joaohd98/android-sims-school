@@ -41,7 +41,10 @@ class WebViewFragment(private val url: Uri) : CustomRoundBottomSheet() {
     }
 
     private fun setBackButton() {
-        fragment_web_view_close.setOnClickListener { dismiss() }
+        fragment_web_view_close.setOnClickListener {
+            dismiss()
+            fragment_web_view.destroy()
+        }
     }
 
     private fun setWebView() {
@@ -61,6 +64,8 @@ class WebViewFragment(private val url: Uri) : CustomRoundBottomSheet() {
         }
 
         webView.settings.javaScriptEnabled = true
+        webView.settings.allowContentAccess = true
+
         webView.loadUrl(url.toString())
     }
 

@@ -2,10 +2,12 @@ package screens.logged.scores.components
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewScoresClassesCardBinding
 
-class ScoresClassesAdapter (private val size: Int) :
+class ScoresClassesAdapter(private val size: Int) :
     RecyclerView.Adapter<ScoresClassesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -13,8 +15,12 @@ class ScoresClassesAdapter (private val size: Int) :
         viewType: Int
     ): ViewHolder {
 
-        val inflater = LayoutInflater.from(parent.context)
-        val binding = ViewScoresClassesCardBinding.inflate(inflater)
+        val binding =  DataBindingUtil.inflate<ViewScoresClassesCardBinding>(
+            LayoutInflater.from(parent.context),
+            R.layout.view_scores_classes_card,
+            parent,
+            false
+        )
 
         return ViewHolder(binding)
     }
@@ -26,7 +32,7 @@ class ScoresClassesAdapter (private val size: Int) :
     class ViewHolder(val binding: ViewScoresClassesCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(semester: Number) {
-            binding.executePendingBindings()
+
         }
     }
 }

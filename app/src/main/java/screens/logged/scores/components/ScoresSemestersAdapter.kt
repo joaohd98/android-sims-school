@@ -2,7 +2,9 @@ package screens.logged.scores.components
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewScoresSemestersCircleBinding
 
 class ScoresSemestersAdapter(private val actualSemester: Int) :
@@ -13,8 +15,12 @@ class ScoresSemestersAdapter(private val actualSemester: Int) :
         viewType: Int
     ): ViewHolder {
 
-        val inflater = LayoutInflater.from(parent.context)
-        val binding = ViewScoresSemestersCircleBinding.inflate(inflater)
+        val binding =  DataBindingUtil.inflate<ViewScoresSemestersCircleBinding>(
+            LayoutInflater.from(parent.context),
+            R.layout.view_scores_semesters_circle,
+            parent,
+            false
+        )
 
         return ViewHolder(binding)
     }

@@ -55,11 +55,8 @@ class ScoresScreen : Fragment() {
     }
 
     private fun initClasses() {
-        val viewManager = LinearLayoutManager(
-            requireContext(), LinearLayoutManager.VERTICAL, false
-        )
+        val viewManager = LinearLayoutManager(requireContext())
         val viewAdapter = ScoresClassesAdapter(8)
-
         view_scores_classes_recycler_view.apply {
             layoutManager = viewManager
             adapter = viewAdapter

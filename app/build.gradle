@@ -58,6 +58,7 @@ dependencies {
 
     def card_recycle_version = "28.0.0"
     implementation "com.android.support:recyclerview-v7:$card_recycle_version"
+//    implementation "com.android.support:cardview-v7:$card_recycle_version
 
     def nav_version = "2.3.0"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"

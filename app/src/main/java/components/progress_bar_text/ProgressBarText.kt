@@ -3,11 +3,11 @@ package components.progress_bar_text
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import androidx.constraintlayout.widget.ConstraintLayout
+import android.widget.LinearLayout
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ComponentsProgressBarTextBinding
 
-class ProgressBarText: ConstraintLayout {
+class ProgressBarText: LinearLayout {
     lateinit var binding: ComponentsProgressBarTextBinding
 
     constructor(context: Context) : super(context)

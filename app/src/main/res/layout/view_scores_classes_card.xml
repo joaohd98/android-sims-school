@@ -28,9 +28,9 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-<!--                <components.progress_bar_text.ProgressBarText-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content" />-->
+                <components.progress_bar_text.ProgressBarText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
 <!--                <components.progress_bar_text.ProgressBarText-->
 <!--                    android:layout_width="wrap_content"-->

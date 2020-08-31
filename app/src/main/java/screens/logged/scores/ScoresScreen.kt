@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,11 +16,16 @@ import com.joao.simsschool.R
 import kotlinx.android.synthetic.main.screen_scores.view.*
 import kotlinx.android.synthetic.main.view_scores_classes.*
 import kotlinx.android.synthetic.main.view_scores_semesters.*
+import screens.logged.home.HomeViewModel
 import screens.logged.scores.components.ScoresClassesAdapter
 import screens.logged.scores.components.ScoresSemestersAdapter
+import utils.observeOnce
 
 
 class ScoresScreen : Fragment() {
+    private val viewModel: ScoresViewModel by viewModels()
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,8 +36,17 @@ class ScoresScreen : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        callRequests()
         initSemesters()
         initClasses()
+    }
+
+    private fun callRequests() {
+        viewModel.user.observeOnce(viewLifecycleOwner) {
+            if (it != null) {
+                viewModel.callScores()
+            }
+        }
     }
 
     private fun initSemesters() {
@@ -54,37 +69,20 @@ class ScoresScreen : Fragment() {
 
             addItemDecoration(itemDecorator)
         }
+
+        viewModel.statusScore.observe(viewLifecycleOwner, {
+
+        })
     }
 
     private fun initClasses() {
         val viewManager = LinearLayoutManager(requireContext())
         val viewAdapter = ScoresClassesAdapter(8)
-        var checkScrollingUp = true
 
         view_scores_classes_recycler_view.apply {
             layoutManager = viewManager
             adapter = viewAdapter
-
             isNestedScrollingEnabled = false
-//            addOnScrollListener(object : RecyclerView.OnScrollListener() {
-//                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-//                    super.onScrolled(recyclerView, dx, dy)
-//                    val view = view_scores_semesters_recycler_view
-//                    val height = view.layoutManager?.height!!
-//
-//
-//                    Log.d("aaa", dy.toString())
-//                    Log.d("aaa", height.toString())
-//
-//                    if (dy > height) {
-//                        view.visibility = View.GONE
-//                    }
-//                    else {
-//                        view.visibility = View.VISIBLE
-//                    }
-//
-//                }
-//            })
         }
     }
 }

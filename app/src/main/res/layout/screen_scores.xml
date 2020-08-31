@@ -13,9 +13,11 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
             <screens.logged.scores.components.ScoresSemestersView
+                android:id="@+id/view_scores_semesters"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <screens.logged.scores.components.ScoresClassesView
+                android:id="@+id/view_scores_classes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>

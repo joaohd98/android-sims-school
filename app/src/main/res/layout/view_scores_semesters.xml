@@ -7,13 +7,11 @@
         android:layout_height="wrap_content">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/view_scores_semesters_recycler_view"
-            android:translationZ="-1000dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/view_scores_semesters_circle"/>
-
     </LinearLayout>
 </layout>

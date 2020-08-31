@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,23 +19,35 @@
                 android:layout_weight="1"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:text="AV1"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:text="@string/view_scores_card_av1"/>
+
+            <com.facebook.shimmer.ShimmerFrameLayout
                 android:layout_weight="1"
-                android:gravity="end"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:text="10"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/skeleton">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minWidth="50dp"
+                    android:gravity="end"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    tools:text="10"/>
+            </com.facebook.shimmer.ShimmerFrameLayout>
         </LinearLayout>
 
-        <ProgressBar
+        <com.facebook.shimmer.ShimmerFrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:indeterminate="false"
-            style="@style/CustomProgressBarHorizontal"
-            android:max="100"
-            android:progress="65" />
+            android:background="@drawable/skeleton">
+            <ProgressBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:indeterminate="false"
+                style="@style/CustomProgressBarHorizontal"
+                android:max="100"
+                android:progress="65" />
+        </com.facebook.shimmer.ShimmerFrameLayout>
     </LinearLayout>
 </layout>

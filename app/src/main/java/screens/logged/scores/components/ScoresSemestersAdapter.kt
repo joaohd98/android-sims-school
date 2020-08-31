@@ -1,6 +1,7 @@
 package screens.logged.scores.components
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -12,25 +13,27 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewScoresSemestersCircleBinding
+import utils.addSkeleton
 import utils.getPixels
+import utils.getShimmerRecycler
 
 class ScoresSemestersAdapter(private val actualSemester: Int) :
     RecyclerView.Adapter<ScoresSemestersAdapter.ViewHolder>() {
 
     lateinit var context: Context
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): ViewHolder {
+    lateinit var parent: ViewGroup
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        this.parent = parent
         context = parent.context
 
-        val binding =  DataBindingUtil.inflate<ViewScoresSemestersCircleBinding>(
-            LayoutInflater.from(context),
-            R.layout.view_scores_semesters_circle,
-            parent,
-            false
-        )
+        val binding =  DataBindingUtil
+            .inflate<ViewScoresSemestersCircleBinding>(
+                LayoutInflater.from(context),
+                R.layout.view_scores_semesters_circle,
+                parent,
+                false
+            )
 
         return ViewHolder(binding)
     }
@@ -51,12 +54,12 @@ class ScoresSemestersAdapter(private val actualSemester: Int) :
         }
 
         holder.bind(position + 1)
-
     }
     override fun getItemCount() = actualSemester
 
     class ViewHolder(val binding: ViewScoresSemestersCircleBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         fun bind(semester: Number) {
             binding.semester = semester.toString()
             binding.executePendingBindings()

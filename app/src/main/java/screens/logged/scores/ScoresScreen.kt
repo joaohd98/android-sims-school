@@ -16,9 +16,11 @@ import com.joao.simsschool.R
 import kotlinx.android.synthetic.main.screen_scores.view.*
 import kotlinx.android.synthetic.main.view_scores_classes.*
 import kotlinx.android.synthetic.main.view_scores_semesters.*
+import repositories.RepositoryStatus
 import screens.logged.home.HomeViewModel
 import screens.logged.scores.components.ScoresClassesAdapter
 import screens.logged.scores.components.ScoresSemestersAdapter
+import utils.addSkeletonAllElementsInner
 import utils.observeOnce
 
 
@@ -39,6 +41,7 @@ class ScoresScreen : Fragment() {
         callRequests()
         initSemesters()
         initClasses()
+        setObserves()
     }
 
     private fun callRequests() {
@@ -49,10 +52,28 @@ class ScoresScreen : Fragment() {
         }
     }
 
+    private fun setObserves() {
+        viewModel.statusScore.observe(viewLifecycleOwner, {
+            when(it) {
+                RepositoryStatus.FAILED -> {
+
+                }
+                RepositoryStatus.LOADING -> {
+
+                }
+
+                RepositoryStatus.SUCCESS -> {
+
+                }
+            }
+        })
+    }
+
     private fun initSemesters() {
         val viewManager = LinearLayoutManager(
             requireContext(), LinearLayoutManager.HORIZONTAL, false
         )
+
         val viewAdapter = ScoresSemestersAdapter(8)
 
         view_scores_semesters_recycler_view.apply {
@@ -70,9 +91,7 @@ class ScoresScreen : Fragment() {
             addItemDecoration(itemDecorator)
         }
 
-        viewModel.statusScore.observe(viewLifecycleOwner, {
 
-        })
     }
 
     private fun initClasses() {

@@ -9,47 +9,79 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="vertical"
-        android:layout_margin="8dp"
-        android:padding="8dp"
+        android:layout_margin="16dp"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="22dp"
         android:background="@drawable/border_scores_card">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="15dp"
             android:gravity="center"
             android:text="Software Development"
             android:textAlignment="center"
+            android:textStyle="bold"
             android:textColor="@color/gray" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="4">
-                <components.progress_bar_text.ProgressBarText
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:layout_gravity="end"
-                    android:layout_marginEnd="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <components.progress_bar_text.ProgressBarText
-                    android:gravity="start"
-                    android:layout_gravity="start"
-                    android:layout_marginStart="10dp"
+            android:weightSum="2">
+                <LinearLayout
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <components.progress_bar_text.ProgressBarText
-                    android:gravity="center"
+                    android:layout_height="wrap_content">
+                    <components.progress_bar.ProgressBarCircular
+                        android:layout_marginEnd="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <components.progress_bar.ProgressBarCircular
+                        android:layout_marginStart="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
                     android:layout_gravity="center"
-                    android:layout_weight="2"
+                    android:textAlignment="center"
+                    android:text="Situação" />
+
+                <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_scores_status"
+                    android:padding="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                    android:text="Disapproved"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
         </LinearLayout>
+
+        <components.progress_bar.ProgressBarHorizontal
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"/>
+
+        <components.progress_bar.ProgressBarHorizontal
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" />
     </LinearLayout>
 </layout>
 

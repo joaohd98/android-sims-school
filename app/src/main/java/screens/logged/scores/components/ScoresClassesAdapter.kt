@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewScoresClassesCardBinding
 
-class ScoresClassesAdapter(private val size: Int) :
+class ScoresClassesAdapter (private val size: Int) :
     RecyclerView.Adapter<ScoresClassesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -32,6 +32,7 @@ class ScoresClassesAdapter(private val size: Int) :
     class ViewHolder(val binding: ViewScoresClassesCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(semester: Number) {
+
 
         }
     }

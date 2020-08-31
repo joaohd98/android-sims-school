@@ -16,6 +16,8 @@
         android:background="@drawable/border_circle"
         android:paddingVertical="8dp"
         android:paddingHorizontal="11dp"
+        android:layout_marginVertical="10dp"
+        android:layout_marginEnd="5dp"
         android:gravity="center"
         android:orientation="vertical">
 

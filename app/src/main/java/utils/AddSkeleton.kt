@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.*
-import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.joao.simsschool.R
 import kotlinx.android.synthetic.main.view_home_classes.view.*
@@ -46,20 +45,6 @@ fun ViewGroup.removeSkeletonAllElementsInner() {
         addView(subView, index)
     }
 }
-
-fun getShimmerRecycler(view: View, context: Context): ShimmerFrameLayout {
-    val layoutParams =  RecyclerView.LayoutParams(view.layoutParams)
-
-    layoutParams.setMargins(view.marginLeft, view.marginTop, view.marginRight, view.marginBottom)
-
-    val shimmer = ShimmerFrameLayout(context)
-
-    shimmer.background = ContextCompat.getDrawable(context, R.drawable.skeleton)
-    shimmer.layoutParams = layoutParams
-
-    return shimmer
-}
-
 
 private fun getShimmer(view: View, context: Context): ShimmerFrameLayout {
     val layoutParams =  LinearLayout.LayoutParams(view.layoutParams)

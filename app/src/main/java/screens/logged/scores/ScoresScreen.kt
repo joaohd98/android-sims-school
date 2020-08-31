@@ -54,6 +54,7 @@ class ScoresScreen : Fragment() {
                 RepositoryStatus.SUCCESS -> {
                     viewSemesters.setSuccess(viewModel.scores.size)
                 }
+                else -> {}
             }
         })
     }

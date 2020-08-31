@@ -2,17 +2,15 @@ package screens.logged.scores.components
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewScoresSemestersBinding
+import kotlinx.android.synthetic.main.view_scores_classes.view.*
 import kotlinx.android.synthetic.main.view_scores_semesters.view.*
-import repositories.RepositoryStatus
 
 class ScoresSemestersView : ConstraintLayout {
     lateinit var binding: ViewScoresSemestersBinding
@@ -35,15 +33,10 @@ class ScoresSemestersView : ConstraintLayout {
     }
 
     fun initRecycleView(context: Context) {
-        val recyclerView = view_scores_semesters_recycler_view
-        val viewManager = LinearLayoutManager(
-            context, LinearLayoutManager.HORIZONTAL, false
-        )
-
         val viewAdapter = ScoresSemestersAdapter()
 
         view_scores_semesters_recycler_view.apply {
-            layoutManager = viewManager
+            layoutManager = getViewManager(false)
             adapter = viewAdapter
 
             val itemDecorator = DividerItemDecoration(context, DividerItemDecoration.HORIZONTAL)
@@ -59,11 +52,20 @@ class ScoresSemestersView : ConstraintLayout {
     }
 
     fun setSuccess(actualSemester: Int) {
-//        val recyclerView = view_scores_semesters_recycler_view
-//        val adapter = view_scores_semesters_recycler_view.adapter as ScoresSemestersAdapter
+        val recyclerView = view_scores_semesters_recycler_view
 
-//        recyclerView.isNestedScrollingEnabled = true
+        recyclerView.layoutManager = getViewManager(true)
+    }
 
-//        adapter.setSuccess(actualSemester)
+    private fun getViewManager(canScroll: Boolean): LinearLayoutManager {
+        return object : LinearLayoutManager(context, HORIZONTAL, false) {
+            override fun canScrollHorizontally(): Boolean {
+                return canScroll
+            }
+
+            override fun canScrollVertically(): Boolean {
+                return canScroll
+            }
+        }
     }
 }

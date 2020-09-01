@@ -1,5 +1,5 @@
 <resources>
     <declare-styleable name="ProgressBarCircular">
-        <attr name="text" format="string" />
+        <attr name="circularTopText" format="string" />
     </declare-styleable>
 </resources>

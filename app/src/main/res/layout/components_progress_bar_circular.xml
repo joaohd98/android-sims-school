@@ -11,6 +11,9 @@
         <variable
             name="progressTint"
             type="java.lang.Integer" />
+        <variable
+            name="progressValue"
+            type="java.lang.Integer" />
     </data>
 
     <LinearLayout
@@ -50,7 +53,7 @@
                     android:background="@drawable/progress_bar_circular_background"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:max="100"
-                    android:progress="65" />
+                        android:progress="@{progressValue != null ? progressValue : 0}" />
                 <TextView
                     android:layout_centerInParent="true"
                     android:layout_width="wrap_content"

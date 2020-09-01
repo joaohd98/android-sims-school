@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewScoresClassesCardBinding
 import repositories.scores.ScoresCourseResponse
+import utils.getPixels
 
 
 class ScoresClassesAdapter(
@@ -57,7 +58,7 @@ class ScoresClassesAdapter(
 
             val color = ContextCompat.getColor(context, score.getTextSituationColor())
             val background = binding.viewScoresClassesCardsSituation.background as GradientDrawable
-            background.setStroke(3, color)
+            background.setStroke(context.getPixels(3), color)
         }
 
         private fun showScreen(isLoading: Boolean) {

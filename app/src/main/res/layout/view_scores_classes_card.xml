@@ -58,14 +58,14 @@
                         android:layout_marginEnd="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:text="@string/view_scores_card_average"
+                        app:circularTopText="@string/view_scores_card_average"
                         progress_bar_circular_course_value="@{score.averageScore()}"
                         progress_bar_circular_course_colors="@{score.averageScoreColors()}" />
                     <components.progress_bar.ProgressBarCircular
                         android:layout_marginStart="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:text="@string/view_scores_card_skips"
+                        app:circularTopText="@string/view_scores_card_skips"
                         progress_bar_circular_course_value="@{score.skipsPercentage()}"
                         progress_bar_circular_course_colors="@{score.skipsColor()}" />
                 </LinearLayout>
@@ -113,12 +113,18 @@
         <components.progress_bar.ProgressBarHorizontal
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="16dp"
+            progress_bar_horizontal_course_value="@{score.av1}"
+            progress_bar_horizontal_course_colors="@{score.av1Color()}"
+            app:horizontalLeftText="@string/view_scores_card_av1"/>
 
         <components.progress_bar.ProgressBarHorizontal
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            progress_bar_horizontal_course_value="@{score.av2}"
+            progress_bar_horizontal_course_colors="@{score.av2Color()}"
+            app:horizontalLeftText="@string/view_scores_card_av2"/>
     </LinearLayout>
 </layout>
 

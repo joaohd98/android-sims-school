@@ -1,0 +1,5 @@
+<resources>
+    <declare-styleable name="ProgressBarHorizontal">
+        <attr name="horizontalLeftText" format="string" />
+    </declare-styleable>
+</resources>

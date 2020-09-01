@@ -9,14 +9,14 @@ private enum class Situations {
 }
 
 class ScoresCourseResponse(
-    var av1: Number = 0,
-    var av2: Number = 0,
+    var av1: Int = 0,
+    var av2: Int = 0,
     var name: String = "",
     var skips: Number = 0
 ) {
     fun initService(result: Map<String, Any?>) {
-        av1 = (result["av1"] as? Number ?: 0)
-        av2 = (result["av2"] as? Number ?: 0)
+        av1 = (result["av1"] as? Number ?: 0).toInt()
+        av2 = (result["av2"] as? Number ?: 0).toInt()
         name = (result["name"] as? String ?: "")
         skips = (result["skips"] as? Number ?: 0)
     }
@@ -31,8 +31,6 @@ class ScoresCourseResponse(
 
     private fun getSituation(): Situations {
         val situations = arrayListOf<Int>(
-            av1Color().first,
-            av2Color().first,
             skipsColor().first,
             averageScoreColors().first
         )

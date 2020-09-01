@@ -40,7 +40,7 @@ class ProgressBarCircular: LinearLayout {
         )
 
         components_progress_bar_circular_text.text = typedArray.getString(
-            R.styleable.ProgressBarCircular_text
+            R.styleable.ProgressBarCircular_circularTopText
         )
 
         typedArray.recycle()

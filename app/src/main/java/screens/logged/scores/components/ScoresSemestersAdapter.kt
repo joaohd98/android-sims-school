@@ -62,7 +62,7 @@ class ScoresSemestersAdapter(
                 return
 
             binding.viewScoresSemestersCircle.setOnClickListener {
-                
+
             }
 
         }
@@ -106,11 +106,13 @@ class ScoresSemestersAdapter(
     }
 
 
-    fun setSuccess(size: Int, actualSemester: Int) {
+    fun setSuccess(size: Int, actualSemester: Int, recyclerView: RecyclerView) {
         this.size = size
         this.actualSemester = actualSemester
 
         isLoading = false
+
+        recyclerView.smoothScrollToPosition(actualSemester)
 
         notifyDataSetChanged()
     }

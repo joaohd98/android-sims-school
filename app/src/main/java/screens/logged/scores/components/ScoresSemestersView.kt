@@ -58,7 +58,7 @@ class ScoresSemestersView : ConstraintLayout {
 
 
         layoutManager.isAbleScroll = true
-        adapter.setSuccess(size, actualSemester)
+        adapter.setSuccess(size, actualSemester, recyclerView)
     }
 }
 

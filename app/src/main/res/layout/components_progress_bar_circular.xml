@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="value"
+            type="java.lang.String" />
+        <variable
+            name="backgroundTint"
+            type="java.lang.Integer" />
+        <variable
+            name="progressTint"
+            type="java.lang.Integer" />
+    </data>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
         <TextView
             android:id="@+id/components_progress_bar_circular_text"
             android:layout_width="wrap_content"
@@ -30,28 +41,28 @@
                 android:layout_gravity="center"
                 android:gravity="center">
                 <ProgressBar
-                    android:id="@+id/components_progress_bar_circular_progress"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:indeterminate="false"
-                    android:progressTint="@color/skeleton"
+                    android:progressTint="@{progressTint != null ? progressTint : @color/skeleton}"
+                    android:backgroundTint="@{backgroundTint != null ? backgroundTint : @color/skeleton}"
                     android:progressDrawable="@drawable/progress_bar_circular_shape"
                     android:background="@drawable/progress_bar_circular_background"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:max="100"
                     android:progress="65" />
                 <TextView
-                    android:id="@+id/components_progress_bar_circular_value"
                     android:layout_centerInParent="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
+                    android:text="@{value}"
                     tools:text="7.5"/>
             </RelativeLayout>
         </com.facebook.shimmer.ShimmerFrameLayout>
 
-
     </LinearLayout>
 </layout>
+

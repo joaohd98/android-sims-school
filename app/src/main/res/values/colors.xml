@@ -10,9 +10,12 @@
     <color name="grayLight">#f8f8f8</color>
     <color name="graySmooth">#e0e0e0</color>
     <color name="green">#28a745</color>
+    <color name="greenSmooth">#c4e3c9</color>
     <color name="yellow">#ffc107</color>
+    <color name="yellowSmooth">#ffe8ba</color>
     <color name="white">#fff</color>
     <color name="red">#dc3545</color>
+    <color name="redSmooth">#e8c4c9</color>
     <color name="skeleton">#cbd3d3</color>
 
 </resources>

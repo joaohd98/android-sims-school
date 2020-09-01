@@ -19,6 +19,7 @@
     <string name="view_scores_card_skips">Skips</string>
     <string name="view_scores_card_av1">AV1</string>
     <string name="view_scores_card_av2">AV1</string>
+    <string name="view_scores_card_situation">Situation</string>
 
     <string name="view_error_message">Check your internet connection and try again!</string>
     <string name="view_error_button_text">Try Again</string>

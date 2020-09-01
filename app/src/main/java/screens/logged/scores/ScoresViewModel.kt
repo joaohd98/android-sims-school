@@ -20,7 +20,7 @@ class ScoresViewModel(application: android.app.Application): AndroidViewModel(ap
 
     private val scoresRepository = ScoresRepository()
     val actualSemester: MutableLiveData<Int> by lazy {
-        MutableLiveData(0)
+        MutableLiveData(-1)
     }
     val statusScore: MutableLiveData<RepositoryStatus> by lazy {
         MutableLiveData(RepositoryStatus.LOADING)

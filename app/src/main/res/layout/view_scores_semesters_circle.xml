@@ -13,6 +13,12 @@
         <variable
             name="isSelected"
             type="java.lang.Boolean" />
+        <variable
+            name="hasMarginLeft"
+            type="java.lang.Boolean" />
+        <variable
+            name="hasMarginRight"
+            type="java.lang.Boolean" />
     </data>
 
     <com.facebook.shimmer.ShimmerFrameLayout
@@ -20,7 +26,8 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginVertical="10dp"
-        android:layout_marginEnd="5dp"
+        binding_layout_margin_start="@{hasMarginLeft ? @dimen/twenty_dp : @dimen/zero_dp}"
+        binding_layout_margin_end="@{hasMarginRight ? @dimen/twenty_dp : @dimen/five_dp}"
         tools:shimmer_base_alpha="1"
         android:background="@drawable/border_circle">
         <LinearLayout

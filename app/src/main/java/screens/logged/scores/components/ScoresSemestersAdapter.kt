@@ -1,26 +1,25 @@
 package screens.logged.scores.components
 
 import android.content.Context
-import android.content.res.ColorStateList
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
 import androidx.core.view.*
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewScoresSemestersCircleBinding
 import utils.getPixels
 
 class ScoresSemestersAdapter(
+    private var actualSemester: MutableLiveData<Int>,
     private var size: Int = MaxSemesters,
 ): RecyclerView.Adapter<ScoresSemestersAdapter.ViewHolder>() {
 
     private lateinit var context: Context
     private var isLoading = true
-    private var actualSemester = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         context = parent.context
@@ -33,7 +32,7 @@ class ScoresSemestersAdapter(
                 false
             )
 
-        return ViewHolder(binding, context)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
@@ -43,42 +42,26 @@ class ScoresSemestersAdapter(
 
     class ViewHolder(
         private val binding: ViewScoresSemestersCircleBinding,
-        private val context: Context
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(position: Int, isLoading: Boolean, size: Int, actualSemester: Int) {
-            val isSelected =  actualSemester == position
+        fun bind(position: Int, isLoading: Boolean, size: Int, actualSemester: MutableLiveData<Int>) {
+            val isSelected =  actualSemester.value!! == position
 
             binding.semester = (position + 1).toString()
             binding.isSelected = isSelected
+            binding.hasMarginLeft = position == 0
+            binding.hasMarginRight = position == size - 1
 
             showScreen(isLoading)
-            setClickable(isSelected)
-            setMargin(position, size)
-        }
 
-        private fun setClickable(isSelected: Boolean) {
-            if(isSelected)
-                return
-
-            binding.viewScoresSemestersCircle.setOnClickListener {
-
+            if(!isLoading && !isSelected) {
+                setClickable(position, actualSemester)
             }
-
         }
 
-        private fun setMargin(position: Int, size: Int) {
-            if(position == 0 || position == size - 1) {
-                val view = itemView
-                val layoutParams = LinearLayout.LayoutParams(view.layoutParams)
-
-                val value = context.getPixels(20)
-                val marginLeft = if(position == 0) value else view.marginRight
-                val marginRight  = if(position == size - 1) value else view.marginLeft
-
-                layoutParams.setMargins(marginLeft, view.marginTop, marginRight, view.marginBottom)
-
-                itemView.layoutParams = layoutParams
+        private fun setClickable(position: Int, actualSemester: MutableLiveData<Int>) {
+            binding.viewScoresSemestersCircle.setOnClickListener {
+                actualSemester.value = position
             }
         }
 
@@ -106,13 +89,11 @@ class ScoresSemestersAdapter(
     }
 
 
-    fun setSuccess(size: Int, actualSemester: Int, recyclerView: RecyclerView) {
+    fun setSuccess(size: Int, recyclerView: RecyclerView) {
         this.size = size
-        this.actualSemester = actualSemester
 
         isLoading = false
-
-        recyclerView.smoothScrollToPosition(actualSemester)
+        recyclerView.smoothScrollToPosition(actualSemester.value!!)
 
         notifyDataSetChanged()
     }

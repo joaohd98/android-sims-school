@@ -53,16 +53,21 @@ class ScoresScreen : Fragment() {
                 RepositoryStatus.FAILED -> { }
                 RepositoryStatus.LOADING -> { }
                 RepositoryStatus.SUCCESS -> {
-                    viewSemesters.setSuccess(viewModel.scores.size, viewModel.actualSemester.value!!)
+                    viewSemesters.setSuccess(viewModel.scores.size)
                     viewClasses.setSuccess()
                 }
                 else -> {}
             }
         })
+
+        viewModel.actualSemester.observe(viewLifecycleOwner, {
+            val binding = viewSemesters.binding
+            binding.viewScoresSemestersRecyclerView.adapter!!.notifyDataSetChanged()
+        })
     }
 
     private fun initSemesters() {
-        view_scores_semesters.initRecycleView(requireContext())
+        view_scores_semesters.initRecycleView(requireContext(), viewModel.actualSemester)
     }
 
     private fun initClasses() {

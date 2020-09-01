@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.joao.simsschool.R
@@ -32,8 +33,8 @@ class ScoresSemestersView : ConstraintLayout {
         }
     }
 
-    fun initRecycleView(context: Context) {
-        val viewAdapter = ScoresSemestersAdapter()
+    fun initRecycleView(context: Context, actualSemester: MutableLiveData<Int>) {
+        val viewAdapter = ScoresSemestersAdapter(actualSemester)
 
         view_scores_semesters_recycler_view.apply {
             layoutManager = CustomLayoutManager(context)
@@ -51,14 +52,13 @@ class ScoresSemestersView : ConstraintLayout {
         }
     }
 
-    fun setSuccess(size: Int, actualSemester: Int) {
+    fun setSuccess(size: Int) {
         val recyclerView = view_scores_semesters_recycler_view
         val adapter = recyclerView.adapter as ScoresSemestersAdapter
         val layoutManager = recyclerView.layoutManager as CustomLayoutManager
 
-
         layoutManager.isAbleScroll = true
-        adapter.setSuccess(size, actualSemester, recyclerView)
+        adapter.setSuccess(size, recyclerView)
     }
 }
 

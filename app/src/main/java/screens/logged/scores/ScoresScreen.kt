@@ -51,10 +51,13 @@ class ScoresScreen : Fragment() {
         viewModel.statusScore.observe(viewLifecycleOwner, {
             when(it) {
                 RepositoryStatus.FAILED -> { }
-                RepositoryStatus.LOADING -> { }
+                RepositoryStatus.LOADING -> {
+                }
                 RepositoryStatus.SUCCESS -> {
-                    viewSemesters.setSuccess(viewModel.scores.size)
-                    viewClasses.setSuccess()
+                    val scores = viewModel.scores
+
+                    viewSemesters.setSuccess(scores.size)
+                    viewClasses.setSuccess(scores[viewModel.actualSemester.value!!].courses)
                 }
                 else -> {}
             }

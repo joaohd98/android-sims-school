@@ -6,17 +6,24 @@ import android.view.LayoutInflater
 import android.widget.LinearLayout
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ComponentsProgressBarCircularBinding
+import kotlinx.android.synthetic.main.components_progress_bar_circular.view.*
 
 class ProgressBarCircular: LinearLayout {
     lateinit var binding: ComponentsProgressBarCircularBinding
 
-    constructor(context: Context) : super(context)
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
+    constructor(context: Context) : super(context) {
+        init(null, 0)
+    }
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
+        init(attrs, 0)
+    }
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(
         context,
         attrs,
         defStyle
-    )
+    ) {
+        init(attrs, defStyle)
+    }
 
     init {
         if (isInEditMode) {
@@ -25,5 +32,17 @@ class ProgressBarCircular: LinearLayout {
         else {
             binding = ComponentsProgressBarCircularBinding.inflate(LayoutInflater.from(context), this, true)
         }
+    }
+
+    private fun init(attrs: AttributeSet?, defStyle: Int) {
+        val typedArray = context.obtainStyledAttributes(
+            attrs, R.styleable.ProgressBarCircular, defStyle, 0
+        )
+
+        components_progress_bar_circular_text.text = typedArray.getString(
+            R.styleable.ProgressBarCircular_text
+        )
+
+        typedArray.recycle()
     }
 }

@@ -1,5 +1,6 @@
 package repositories.scores
 
+import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.GlobalScope
@@ -23,13 +24,17 @@ class ScoresRepository {
                     .get()
                     .await()
 
-                val days = classes.get("semesters") as ArrayList<*>
+                val semesters = classes.get("semesters") as ArrayList<*>
 
-                val result: List<ScoresResponse> = days.map { result ->
+
+                val result: List<ScoresResponse> = semesters.map { it ->
+                    Log.d("aaa", "a")
+
                     ScoresResponse().apply {
-                        initService(result as Map<String, Any>)
+                        initService(it as Map<String, Any>)
                     }
                 }
+
 
                 GlobalScope.launch(Dispatchers.Main) {
                     onSuccess(result)

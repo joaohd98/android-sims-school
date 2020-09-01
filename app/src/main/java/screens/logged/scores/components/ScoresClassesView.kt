@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewScoresClassesBinding
 import kotlinx.android.synthetic.main.view_scores_classes.view.*
+import repositories.scores.ScoresCourseResponse
 
 class ScoresClassesView: ConstraintLayout {
     lateinit var binding: ViewScoresClassesBinding
@@ -31,17 +32,19 @@ class ScoresClassesView: ConstraintLayout {
 
     fun initRecyclerView(context: Context) {
         val viewManager = LinearLayoutManager(context)
-        val viewAdapter = ScoresClassesAdapter(8)
+        val viewAdapter = ScoresClassesAdapter()
 
         view_scores_classes_recycler_view.apply {
             layoutManager = viewManager
             adapter = viewAdapter
-            isNestedScrollingEnabled = false
         }
     }
 
-    fun setSuccess() {
+    fun setSuccess(scores: ArrayList<ScoresCourseResponse>) {
+        val recyclerView = view_scores_classes_recycler_view
+        val adapter = recyclerView.adapter as ScoresClassesAdapter
 
+        adapter.setSuccess(scores)
     }
 
 }

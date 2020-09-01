@@ -15,7 +15,10 @@
     <string name="view_home_ads_message_error">It was not possible to ads</string>
 
     <string name="view_scores_semesters_circle_name">SEM.</string>
+    <string name="view_scores_card_average">Average</string>
+    <string name="view_scores_card_skips">Skips</string>
     <string name="view_scores_card_av1">AV1</string>
+    <string name="view_scores_card_av2">AV1</string>
 
     <string name="view_error_message">Check your internet connection and try again!</string>
     <string name="view_error_button_text">Try Again</string>

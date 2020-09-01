@@ -1,6 +1,7 @@
 package screens.logged.scores
 
 import android.net.NetworkRequest
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -41,8 +42,8 @@ class ScoresViewModel(application: android.app.Application): AndroidViewModel(ap
         scoresRepository.getScores(object: ScoresRequest {
             override val idUser: String = user.uid
         }, {
-            scores.addAll(it)
             actualSemester.value = it.size - 1
+            scores.addAll(it)
             statusScore.value = RepositoryStatus.SUCCESS
         }) {
             statusScore.value = RepositoryStatus.FAILED

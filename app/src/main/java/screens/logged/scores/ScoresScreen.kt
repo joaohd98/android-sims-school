@@ -53,7 +53,8 @@ class ScoresScreen : Fragment() {
                 RepositoryStatus.FAILED -> { }
                 RepositoryStatus.LOADING -> { }
                 RepositoryStatus.SUCCESS -> {
-                    viewSemesters.setSuccess(viewModel.scores.size)
+                    viewSemesters.setSuccess(viewModel.scores.size, viewModel.actualSemester.value!!)
+                    viewClasses.setSuccess()
                 }
                 else -> {}
             }
@@ -61,20 +62,10 @@ class ScoresScreen : Fragment() {
     }
 
     private fun initSemesters() {
-        val viewSemesters = view_scores_semesters
-        viewSemesters.initRecycleView(requireContext())
+        view_scores_semesters.initRecycleView(requireContext())
     }
 
     private fun initClasses() {
-        val viewClasses = view_scores_classes
-
-        val viewManager = LinearLayoutManager(requireContext())
-        val viewAdapter = ScoresClassesAdapter(8)
-
-        view_scores_classes_recycler_view.apply {
-            layoutManager = viewManager
-            adapter = viewAdapter
-            isNestedScrollingEnabled = false
-        }
+        view_scores_classes.initRecyclerView(requireContext())
     }
 }

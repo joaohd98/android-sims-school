@@ -19,6 +19,9 @@ class ScoresViewModel(application: android.app.Application): AndroidViewModel(ap
     val user: LiveData<UserResponse?>
 
     private val scoresRepository = ScoresRepository()
+    val actualSemester: MutableLiveData<Int> by lazy {
+        MutableLiveData(0)
+    }
     val statusScore: MutableLiveData<RepositoryStatus> by lazy {
         MutableLiveData(RepositoryStatus.LOADING)
     }
@@ -39,6 +42,7 @@ class ScoresViewModel(application: android.app.Application): AndroidViewModel(ap
             override val idUser: String = user.uid
         }, {
             scores.addAll(it)
+            actualSemester.value = it.size - 1
             statusScore.value = RepositoryStatus.SUCCESS
         }) {
             statusScore.value = RepositoryStatus.FAILED

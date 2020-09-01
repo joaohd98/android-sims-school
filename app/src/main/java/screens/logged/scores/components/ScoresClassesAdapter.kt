@@ -33,7 +33,6 @@ class ScoresClassesAdapter (private val size: Int) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(semester: Number) {
 
-
         }
     }
 }

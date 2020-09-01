@@ -10,36 +10,40 @@
         <variable
             name="isLoading"
             type="java.lang.Boolean" />
+        <variable
+            name="isSelected"
+            type="java.lang.Boolean" />
     </data>
 
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/view_scores_semesters_shimmer"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:paddingVertical="8dp"
-        android:paddingHorizontal="11dp"
         android:layout_marginVertical="10dp"
         android:layout_marginEnd="5dp"
         tools:shimmer_base_alpha="1"
         android:background="@drawable/border_circle">
         <LinearLayout
+            android:id="@+id/view_scores_semesters_circle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:gravity="center"
             android:orientation="vertical"
+            android:backgroundTint="@{isSelected ? @color/blue : @color/graySmooth}"
             android:background="@drawable/border_circle">
             <TextView
+                android:id="@+id/view_scores_semesters_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/gray"
+                android:textColor="@{isSelected ? @color/white : @color/gray}"
                 android:textSize="12sp"
                 android:text="@{!isLoading ? semester : ``}"
                 tools:text="1°" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/gray"
+                android:textColor="@{isSelected ? @color/white : @color/gray}"
                 android:textSize="12sp"
                 android:text="@{!isLoading ? @string/view_scores_semesters_circle_name : ``}"
                 tools:text="@string/view_scores_semesters_circle_name"/>

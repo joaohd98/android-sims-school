@@ -51,14 +51,14 @@ class ScoresSemestersView : ConstraintLayout {
         }
     }
 
-    fun setSuccess(actualSemester: Int) {
+    fun setSuccess(size: Int, actualSemester: Int) {
         val recyclerView = view_scores_semesters_recycler_view
         val adapter = recyclerView.adapter as ScoresSemestersAdapter
         val layoutManager = recyclerView.layoutManager as CustomLayoutManager
 
 
         layoutManager.isAbleScroll = true
-        adapter.setSuccess(actualSemester)
+        adapter.setSuccess(size, actualSemester)
     }
 }
 

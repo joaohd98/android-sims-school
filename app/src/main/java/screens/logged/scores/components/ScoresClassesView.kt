@@ -4,8 +4,10 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewScoresClassesBinding
+import kotlinx.android.synthetic.main.view_scores_classes.view.*
 
 class ScoresClassesView: ConstraintLayout {
     lateinit var binding: ViewScoresClassesBinding
@@ -26,4 +28,20 @@ class ScoresClassesView: ConstraintLayout {
             binding = ViewScoresClassesBinding.inflate(LayoutInflater.from(context), this, true)
         }
     }
+
+    fun initRecyclerView(context: Context) {
+        val viewManager = LinearLayoutManager(context)
+        val viewAdapter = ScoresClassesAdapter(8)
+
+        view_scores_classes_recycler_view.apply {
+            layoutManager = viewManager
+            adapter = viewAdapter
+            isNestedScrollingEnabled = false
+        }
+    }
+
+    fun setSuccess() {
+
+    }
+
 }

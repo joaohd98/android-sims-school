@@ -1,13 +1,16 @@
 package screens.logged.scores.components
 
-import android.util.Log
+import android.content.Context
+import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewScoresClassesCardBinding
 import repositories.scores.ScoresCourseResponse
+
 
 class ScoresClassesAdapter(
     private var scores: ArrayList<ScoresCourseResponse> = arrayListOf(ScoresCourseResponse())
@@ -25,7 +28,7 @@ class ScoresClassesAdapter(
             false
         )
 
-        return ViewHolder(binding)
+        return ViewHolder(parent.context, binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -36,12 +39,25 @@ class ScoresClassesAdapter(
 
     override fun getItemCount() = scores.size
 
-    class ViewHolder(val binding: ViewScoresClassesCardBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(
+        val context: Context,
+        val binding: ViewScoresClassesCardBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(score: ScoresCourseResponse, isLoading: Boolean) {
+        fun bind(score: ScoresCourseResponse?, isLoading: Boolean) {
             binding.score = score
+
+            setBackgroundColor(score)
             showScreen(isLoading)
+        }
+
+        private fun setBackgroundColor(score: ScoresCourseResponse?) {
+            if(score == null)
+                return
+
+            val color = ContextCompat.getColor(context, score.getTextSituationColor())
+            val background = binding.viewScoresClassesCardsSituation.background as GradientDrawable
+            background.setStroke(3, color)
         }
 
         private fun showScreen(isLoading: Boolean) {

@@ -8,6 +8,9 @@
         <variable
             name="score"
             type="repositories.scores.ScoresCourseResponse" />
+        <variable
+            name="background"
+            type="android.graphics.drawable.Drawable" />
     </data>
 
     <LinearLayout
@@ -90,6 +93,7 @@
                     tools:shimmer_base_alpha="1">
 
                     <TextView
+                        android:id="@+id/view_scores_classes_cards_situation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"

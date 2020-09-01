@@ -2,6 +2,7 @@ package screens.logged.scores.components
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -9,7 +10,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewScoresSemestersBinding
-import kotlinx.android.synthetic.main.view_scores_classes.view.*
 import kotlinx.android.synthetic.main.view_scores_semesters.view.*
 
 class ScoresSemestersView : ConstraintLayout {
@@ -36,7 +36,7 @@ class ScoresSemestersView : ConstraintLayout {
         val viewAdapter = ScoresSemestersAdapter()
 
         view_scores_semesters_recycler_view.apply {
-            layoutManager = getViewManager(false)
+            layoutManager = CustomLayoutManager(context)
             adapter = viewAdapter
 
             val itemDecorator = DividerItemDecoration(context, DividerItemDecoration.HORIZONTAL)
@@ -53,19 +53,19 @@ class ScoresSemestersView : ConstraintLayout {
 
     fun setSuccess(actualSemester: Int) {
         val recyclerView = view_scores_semesters_recycler_view
+        val adapter = recyclerView.adapter as ScoresSemestersAdapter
+        val layoutManager = recyclerView.layoutManager as CustomLayoutManager
 
-        recyclerView.layoutManager = getViewManager(true)
+
+        layoutManager.isAbleScroll = true
+        adapter.setSuccess(actualSemester)
     }
+}
 
-    private fun getViewManager(canScroll: Boolean): LinearLayoutManager {
-        return object : LinearLayoutManager(context, HORIZONTAL, false) {
-            override fun canScrollHorizontally(): Boolean {
-                return canScroll
-            }
+private class CustomLayoutManager(context: Context): LinearLayoutManager(context, HORIZONTAL, false) {
+    var isAbleScroll = false
 
-            override fun canScrollVertically(): Boolean {
-                return canScroll
-            }
-        }
+    override fun canScrollHorizontally(): Boolean {
+        return isAbleScroll
     }
 }

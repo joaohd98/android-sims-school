@@ -8,6 +8,7 @@ import kotlin.collections.ArrayList
 class ScoresResponse(
     var semester: Int = 0,
     var courses: List<ScoresCourseResponse> = listOf(),
+    var isSelected: Boolean = false
 ) {
     fun initService(result: Map<String, Any?>) {
         semester = (result["semester"] as? Int ?: 0)

@@ -1,16 +1,13 @@
 package screens.logged.scores.components
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import androidx.core.view.marginBottom
-import androidx.core.view.marginLeft
-import androidx.core.view.marginRight
-import androidx.core.view.marginTop
+import androidx.core.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.facebook.shimmer.ShimmerFrameLayout
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewScoresSemestersCircleBinding
 import utils.getPixels
@@ -19,11 +16,8 @@ class ScoresSemestersAdapter(
     private var actualSemester: Int = MaxSemesters,
 ): RecyclerView.Adapter<ScoresSemestersAdapter.ViewHolder>() {
 
-    companion object {
-        const val MaxSemesters = 20
-    }
-
     lateinit var context: Context
+    var isLoading = true
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         context = parent.context
@@ -53,28 +47,33 @@ class ScoresSemestersAdapter(
             holder.itemView.layoutParams = layoutParams
         }
 
-        holder.bind(position + 1)
+        holder.bind(position + 1, isLoading)
     }
 
     override fun getItemCount() = actualSemester
 
     class ViewHolder(
-        private val binding: ViewScoresSemestersCircleBinding
+        private val binding: ViewScoresSemestersCircleBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(semester: Number) {
+        fun bind(semester: Int, isLoading: Boolean) {
             binding.semester = semester.toString()
-            setLoading()
+
+            if(isLoading) {
+                setLoading()
+            }
+
+            else  {
+                setSuccess()
+            }
         }
 
-        fun setLoading() {
+        private fun setLoading() {
             binding.isLoading = true
             binding.executePendingBindings()
         }
 
-        fun setSuccess() {
-            val shimmer =
-                binding.root.findViewById<ShimmerFrameLayout>(R.id.view_scores_semesters_shimmer)
+        private fun setSuccess() {
+            val shimmer = binding.viewScoresSemestersShimmer
             shimmer.hideShimmer()
 
             binding.isLoading = false
@@ -84,18 +83,20 @@ class ScoresSemestersAdapter(
 
     fun setLoading() {
         actualSemester = MaxSemesters
+        isLoading = true
 
-//        views.forEach {
-//            it.setLoading()
-//        }
+        notifyDataSetChanged()
     }
+
 
     fun setSuccess(value: Int) {
         actualSemester = value
-//
-//        views.forEach {
-//            it.setSuccess()
-//        }
+        isLoading = false
+
+        notifyDataSetChanged()
     }
 
+    companion object {
+        const val MaxSemesters = 20
+    }
 }

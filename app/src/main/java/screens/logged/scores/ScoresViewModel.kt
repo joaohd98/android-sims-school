@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import repositories.RepositoryStatus
 import repositories.classes.ClassesRequest
 import repositories.classes.ClassesResponse
+import repositories.scores.ScoresCourseResponse
 import repositories.scores.ScoresRepository
 import repositories.scores.ScoresRequest
 import repositories.scores.ScoresResponse
@@ -48,5 +49,12 @@ class ScoresViewModel(application: android.app.Application): AndroidViewModel(ap
         }) {
             statusScore.value = RepositoryStatus.FAILED
         }
+    }
+
+    fun getActualScores(): ArrayList<ScoresCourseResponse> {
+        return if(scores.size > 0)
+            scores[actualSemester.value!!].courses
+        else
+            arrayListOf()
     }
 }

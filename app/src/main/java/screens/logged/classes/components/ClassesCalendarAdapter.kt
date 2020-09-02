@@ -10,6 +10,8 @@ import com.joao.simsschool.databinding.ViewClassesCalendarMonthBinding
 import com.joao.simsschool.databinding.ViewClassesCalendarWeekBinding
 import repositories.calendar.CalendarResponse
 import repositories.calendar.CalendarWeekResponse
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ClassesCalendarAdapter(
     calendar: ArrayList<CalendarResponse>
@@ -76,8 +78,8 @@ class ClassesCalendarAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder) {
+            is ViewMontHolder -> holder.bind(viewsModel[position].month!!)
             is ViewWeekHolder -> holder.bind(position)
-            is ViewMontHolder -> holder.bind(position)
         }
     }
 
@@ -89,6 +91,17 @@ class ClassesCalendarAdapter(
         }
     }
 
+    class ViewMontHolder(
+        private val binding: ViewClassesCalendarMonthBinding,
+    ) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(month: String) {
+            binding.month = month
+            binding.year = Calendar.getInstance().get(Calendar.YEAR).toString()
+
+            binding.executePendingBindings()
+        }
+    }
+
     class ViewWeekHolder(
         private val binding: ViewClassesCalendarWeekBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
@@ -96,11 +109,6 @@ class ClassesCalendarAdapter(
         }
     }
 
-    class ViewMontHolder(
-        private val binding: ViewClassesCalendarMonthBinding,
-    ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(position: Int) {
-        }
-    }
+
 
 }

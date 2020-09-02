@@ -2,8 +2,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="screens.logged.classes.ClassesScreen">
-    <screens.logged.classes.components.ClassesDaysWeek
+    <ViewSwitcher
+        android:id="@+id/view_classes_view_switcher"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
+        <ViewSwitcher
+            android:id="@+id/view_classes_view_switcher_error_loading"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="center"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="calendar-animation.json"
+                app:lottie_loop="true" />
+            <components.error_view.ErrorView
+                android:id="@+id/view_classes_error_view"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="16dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                app:message="@string/view_calendar_error"/>
+        </ViewSwitcher>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+            <screens.logged.classes.components.ClassesDaysWeek
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ViewSwitcher>
 </LinearLayout>

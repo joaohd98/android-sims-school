@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.joao.simsschool.R
+import components.error_view.OnTryAgainClickDataBinding
 import kotlinx.android.synthetic.main.screen_scores.*
 import kotlinx.android.synthetic.main.view_scores_classes.*
 import repositories.RepositoryStatus
@@ -32,6 +33,7 @@ class ScoresScreen : Fragment() {
         callRequests()
         initSemesters()
         initClasses()
+        initErrorView()
         setObserves()
     }
 
@@ -45,6 +47,7 @@ class ScoresScreen : Fragment() {
 
     private fun setObserves() {
         val scrollView = view_scores_scroll_view
+        val viewSwitcher = view_scores_view_switcher
         val viewSemesters = view_scores_semesters
         val viewClasses = view_scores_classes
 
@@ -64,7 +67,9 @@ class ScoresScreen : Fragment() {
 
         viewModel.statusScore.observe(viewLifecycleOwner, {
             when(it) {
-                RepositoryStatus.FAILED -> { }
+                RepositoryStatus.FAILED -> {
+                    viewSwitcher.showNext()
+                }
                 RepositoryStatus.LOADING -> {
                     scrollView.setScrollingEnabled(false)
                 }
@@ -89,4 +94,15 @@ class ScoresScreen : Fragment() {
         view_scores_classes.initRecyclerView(requireContext())
     }
 
+    private fun initErrorView() {
+        view_scores_error_view.setTryAgain(object: OnTryAgainClickDataBinding {
+            override fun showLoading() {
+                view_scores_view_switcher.showNext()
+            }
+
+            override fun onClick() {
+                viewModel.callScores()
+            }
+        })
+    }
 }

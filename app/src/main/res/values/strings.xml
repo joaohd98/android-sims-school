@@ -14,6 +14,7 @@
     <string name="view_home_classes_container_message_error">It was not possible to get classes</string>
     <string name="view_home_ads_message_error">It was not possible to ads</string>
 
+    <string name="view_scores_error">It was not possible to get the scores</string>
     <string name="view_scores_semesters_circle_name">SEM.</string>
     <string name="view_scores_card_average">Average</string>
     <string name="view_scores_card_skips">Skips</string>

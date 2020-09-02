@@ -5,10 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.joao.simsschool.R
-import com.joao.simsschool.databinding.ScreenHomeBinding
 import kotlinx.android.synthetic.main.screen_home.*
 import kotlinx.android.synthetic.main.view_home_profile.*
 import repositories.RepositoryStatus
@@ -23,14 +21,7 @@ class HomeScreen : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        val binding: ScreenHomeBinding =  DataBindingUtil.inflate(
-            inflater, R.layout.screen_home, container, false
-        )
-
-        binding.viewModel = viewModel
-
-        return binding.root
+        return inflater.inflate(R.layout.screen_home, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

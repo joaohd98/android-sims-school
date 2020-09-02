@@ -2,25 +2,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="screens.logged.scores.ScoresScreen"
     android:orientation="vertical">
-    <utils.CustomNestedScrollView
-        android:id="@+id/view_scores_scroll_view"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:fillViewport="true">
-        <LinearLayout
-            android:layout_width="match_parent"
+
+    <ViewSwitcher
+        android:id="@+id/view_scores_view_switcher"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <utils.CustomNestedScrollView
+            android:id="@+id/view_scores_scroll_view"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
-            <screens.logged.scores.components.ScoresSemestersView
-                android:id="@+id/view_scores_semesters"
+            android:fillViewport="true">
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <screens.logged.scores.components.ScoresClassesView
-                android:id="@+id/view_scores_classes"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-    </utils.CustomNestedScrollView>
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+                <screens.logged.scores.components.ScoresSemestersView
+                    android:id="@+id/view_scores_semesters"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <screens.logged.scores.components.ScoresClassesView
+                    android:id="@+id/view_scores_classes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </utils.CustomNestedScrollView>
+        <components.error_view.ErrorView
+            android:id="@+id/view_scores_error_view"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="16dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            app:message="@string/view_scores_error"/>
+    </ViewSwitcher>
 </LinearLayout>

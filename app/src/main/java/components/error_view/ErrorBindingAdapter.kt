@@ -6,14 +6,5 @@ import utils.OnClickDataBinding
 
 @BindingAdapter(value = ["errorViewOnTryAgain"])
 fun setTryAgain(view: ErrorView, onTryAgain: OnTryAgainClickDataBinding) {
-    view.binding.tryAgain = object: OnClickDataBinding {
-        override fun onClick() {
-
-            onTryAgain.showLoading()
-
-            Handler().postDelayed({
-                onTryAgain.onClick()
-            }, 2500)
-        }
-    }
+    view.setTryAgain(onTryAgain)
 }

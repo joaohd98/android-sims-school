@@ -1,12 +1,14 @@
 package components.error_view
 
 import android.content.Context
+import android.os.Handler
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ComponentsViewErrorBinding
 import kotlinx.android.synthetic.main.components_view_error.view.*
+import utils.OnClickDataBinding
 
 class ErrorView: LinearLayout {
     lateinit var binding: ComponentsViewErrorBinding
@@ -44,5 +46,17 @@ class ErrorView: LinearLayout {
         )
 
         typedArray.recycle()
+    }
+
+    fun setTryAgain(onTryAgain: OnTryAgainClickDataBinding) {
+        binding.tryAgain = object: OnClickDataBinding {
+            override fun onClick() {
+                onTryAgain.showLoading()
+
+                Handler().postDelayed({
+                    onTryAgain.onClick()
+                }, 2500)
+            }
+        }
     }
 }

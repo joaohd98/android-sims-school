@@ -21,8 +21,6 @@ class AdsResponse(
                 FirebaseInstances.storage.reference.child(imageUrl).downloadUrl.await()
             }
 
-            Log.d("aaa",  image)
-
             image = imageRes.await().toString()
 
         }

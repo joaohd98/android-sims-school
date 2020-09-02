@@ -47,6 +47,7 @@ class ClassesScreen : Fragment() {
                 }
                 RepositoryStatus.SUCCESS -> {
                     view_classes_view_switcher.showNext()
+                    view_classes_calendar.initRecyclerView(ArrayList(viewModel.calendarMonths))
                 }
                 else -> {}
             }

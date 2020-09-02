@@ -26,15 +26,11 @@ class ScoresRepository {
 
                 val semesters = classes.get("semesters") as ArrayList<*>
 
-
                 val result: List<ScoresResponse> = semesters.map { it ->
-                    Log.d("aaa", "a")
-
                     ScoresResponse().apply {
                         initService(it as Map<String, Any>)
                     }
                 }
-
 
                 GlobalScope.launch(Dispatchers.Main) {
                     onSuccess(result)

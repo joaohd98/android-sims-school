@@ -1,5 +1,6 @@
 package screens.logged.classes.components
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -7,12 +8,45 @@ import androidx.recyclerview.widget.RecyclerView
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewClassesCalendarMonthBinding
 import com.joao.simsschool.databinding.ViewClassesCalendarWeekBinding
+import repositories.calendar.CalendarResponse
+import repositories.calendar.CalendarWeekResponse
 
-class ClassesCalendarAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ClassesCalendarAdapter(
+    calendar: ArrayList<CalendarResponse>
+): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
     companion object {
-        const val TYPE_MONTH = 1
-        const val TYPE_WEEK = 2
+        const val TYPE_MONTH = 0
+        const val TYPE_WEEK = 1
     }
+
+    private class ViewModel(
+        val typeView: Int,
+        val month: String?,
+        val response: CalendarWeekResponse?
+    )
+
+    private var viewsModel: ArrayList<ViewModel> = arrayListOf()
+
+    init {
+        calendar.forEach { month ->
+            viewsModel.add(ViewModel(
+                TYPE_MONTH,
+                month.name,
+                null
+            ))
+
+            month.weeks.forEach { week ->
+                viewsModel.add(ViewModel(
+                    TYPE_WEEK,
+                    null,
+                    week
+                ))
+            }
+        }
+    }
+
+    override fun getItemCount() = viewsModel.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         if(viewType == TYPE_MONTH) {
@@ -48,14 +82,12 @@ class ClassesCalendarAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (position % 2 == 1) {
+        return if (viewsModel[position].typeView == TYPE_MONTH) {
             TYPE_MONTH
         } else {
             TYPE_WEEK
         }
     }
-
-    override fun getItemCount() = 20
 
     class ViewWeekHolder(
         private val binding: ViewClassesCalendarWeekBinding,

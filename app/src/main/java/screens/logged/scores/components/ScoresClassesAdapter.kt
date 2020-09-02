@@ -93,6 +93,7 @@ class ScoresClassesAdapter(
     fun setScores(scores: ArrayList<ScoresCourseResponse>) {
         this.scores = scores
         notifyDataSetChanged()
+
     }
 
     fun setSuccess(scores: ArrayList<ScoresCourseResponse>) {

@@ -48,6 +48,20 @@ class ScoresScreen : Fragment() {
         val viewSemesters = view_scores_semesters
         val viewClasses = view_scores_classes
 
+        val actualSemesterObserve = fun() {
+            viewModel.actualSemester.observe(viewLifecycleOwner, {
+                viewSemesters.binding.viewScoresSemestersRecyclerView.apply {
+                    adapter!!.notifyDataSetChanged()
+                }
+
+                viewClasses.binding.viewScoresClassesRecyclerView.apply {
+                    val adapter = adapter!! as ScoresClassesAdapter
+                    adapter.setScores(viewModel.getActualScores())
+                    layoutManager?.scrollToPosition(0)
+                }
+            })
+        }
+
         viewModel.statusScore.observe(viewLifecycleOwner, {
             when(it) {
                 RepositoryStatus.FAILED -> { }
@@ -58,21 +72,9 @@ class ScoresScreen : Fragment() {
 
                     viewSemesters.setSuccess(scores.size)
                     viewClasses.setSuccess(viewModel.getActualScores())
+                    actualSemesterObserve()
                 }
                 else -> {}
-            }
-        })
-
-        viewModel.actualSemester.observe(viewLifecycleOwner, {
-            if(viewModel.statusScore.value == RepositoryStatus.SUCCESS) {
-                viewSemesters.binding.viewScoresSemestersRecyclerView.apply {
-                    adapter!!.notifyDataSetChanged()
-                }
-
-                viewClasses.binding.viewScoresClassesRecyclerView.apply {
-                    val adapter = adapter!! as screens.logged.scores.components.ScoresClassesAdapter
-                    adapter.setScores(viewModel.getActualScores())
-                }
             }
         })
     }

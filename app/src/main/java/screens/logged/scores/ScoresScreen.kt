@@ -76,4 +76,5 @@ class ScoresScreen : Fragment() {
     private fun initClasses() {
         view_scores_classes.initRecyclerView(requireContext())
     }
+
 }

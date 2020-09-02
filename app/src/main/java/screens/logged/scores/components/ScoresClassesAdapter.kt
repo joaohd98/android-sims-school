@@ -7,8 +7,11 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewScoresClassesCardBinding
+import components.progress_bar.ProgressBarCircular
+import components.progress_bar.ProgressBarHorizontal
 import repositories.scores.ScoresCourseResponse
 import utils.getPixels
 
@@ -49,7 +52,10 @@ class ScoresClassesAdapter(
             binding.score = score
 
             setBackgroundColor(score)
-            showScreen(isLoading)
+
+            if(!isLoading) {
+                hideLoadingScreen()
+            }
         }
 
         private fun setBackgroundColor(score: ScoresCourseResponse?) {
@@ -61,12 +67,25 @@ class ScoresClassesAdapter(
             background.setStroke(context.getPixels(3), color)
         }
 
-        private fun showScreen(isLoading: Boolean) {
-            if(isLoading) {
+        private fun hideLoadingScreen() {
+            val components = arrayOf(
+                binding.viewScoresClassesCardsShimmerName,
+                binding.viewScoresClassesCardsAverage,
+                binding.viewScoresClassesCardsSkips,
+                binding.viewScoresClassesCardsShimmerSituation,
+                binding.viewScoresClassesCardsAv1,
+                binding.viewScoresClassesCardsAv2,
+            )
 
-            }
-            else {
-
+            components.forEach {
+                when(it) {
+                    is ShimmerFrameLayout -> it.apply {
+                        hideShimmer()
+                        background = null
+                    }
+                    is ProgressBarCircular -> it.removeLoading()
+                    is ProgressBarHorizontal -> it.removeLoading()
+                }
             }
         }
     }

@@ -22,9 +22,8 @@
         android:paddingHorizontal="24dp"
         android:paddingVertical="22dp"
         android:background="@drawable/border_scores_card">
-
         <com.facebook.shimmer.ShimmerFrameLayout
-            android:tag="view_scores_classes_cards_shimmer"
+            android:id="@+id/view_scores_classes_cards_shimmer_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -43,7 +42,6 @@
                 android:text="@{score.name}"
                 tools:text="Software Development" />
         </com.facebook.shimmer.ShimmerFrameLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,6 +53,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <components.progress_bar.ProgressBarCircular
+                        android:id="@+id/view_scores_classes_cards_average"
                         android:layout_marginEnd="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -62,6 +61,7 @@
                         progress_bar_circular_course_value="@{score.averageScore()}"
                         progress_bar_circular_course_colors="@{score.averageScoreColors()}" />
                     <components.progress_bar.ProgressBarCircular
+                        android:id="@+id/view_scores_classes_cards_skips"
                         android:layout_marginStart="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -74,7 +74,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -83,15 +82,14 @@
                     android:layout_gravity="center"
                     android:textAlignment="center"
                     android:text="@string/view_scores_card_situation" />
-
                 <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/view_scores_classes_cards_shimmer_situation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:layout_marginTop="15dp"
                     tools:shimmer_base_alpha="1">
-
                     <TextView
                         android:id="@+id/view_scores_classes_cards_situation"
                         android:layout_width="wrap_content"
@@ -105,20 +103,19 @@
                         android:background="@drawable/border_scores_status"
                         android:text="@{score.situationText}"
                         tools:text="Disapproved" />
-
                 </com.facebook.shimmer.ShimmerFrameLayout>
             </LinearLayout>
         </LinearLayout>
-
         <components.progress_bar.ProgressBarHorizontal
+            android:id="@+id/view_scores_classes_cards_av1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             progress_bar_horizontal_course_value="@{score.av1}"
             progress_bar_horizontal_course_colors="@{score.av1Color()}"
             app:horizontalLeftText="@string/view_scores_card_av1"/>
-
         <components.progress_bar.ProgressBarHorizontal
+            android:id="@+id/view_scores_classes_cards_av2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"

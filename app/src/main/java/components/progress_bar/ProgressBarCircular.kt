@@ -45,4 +45,8 @@ class ProgressBarCircular: LinearLayout {
 
         typedArray.recycle()
     }
+
+    fun removeLoading() {
+        binding.componentsProgressBarCircularShimmer.hideShimmer()
+    }
 }

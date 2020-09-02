@@ -81,14 +81,6 @@ class ScoresSemestersAdapter(
         }
     }
 
-    fun setLoading() {
-        size = MaxSemesters
-        isLoading = true
-
-        notifyDataSetChanged()
-    }
-
-
     fun setSuccess(size: Int, recyclerView: RecyclerView) {
         this.size = size
 

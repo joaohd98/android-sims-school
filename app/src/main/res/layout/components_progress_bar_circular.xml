@@ -33,6 +33,7 @@
             tools:text="Average" />
 
         <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/components_progress_bar_circular_shimmer"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             tools:shimmer_base_alpha="1"

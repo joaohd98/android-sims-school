@@ -50,4 +50,13 @@ class ProgressBarHorizontal: LinearLayout {
 
         typedArray.recycle()
     }
+
+    fun removeLoading() {
+        binding.componentsProgressBarHorizontalTextRightShimmer.apply {
+            hideShimmer()
+            background = null
+        }
+        binding.componentsProgressBarHorizontalShimmer.hideShimmer()
+
+    }
 }

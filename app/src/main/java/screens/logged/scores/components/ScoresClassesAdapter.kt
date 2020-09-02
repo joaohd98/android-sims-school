@@ -17,7 +17,11 @@ import utils.getPixels
 
 
 class ScoresClassesAdapter(
-    private var scores: ArrayList<ScoresCourseResponse> = arrayListOf(ScoresCourseResponse())
+    private var scores: ArrayList<ScoresCourseResponse> = arrayListOf(
+        ScoresCourseResponse(),
+        ScoresCourseResponse(),
+        ScoresCourseResponse(),
+    )
 ) : RecyclerView.Adapter<ScoresClassesAdapter.ViewHolder>() {
     var isLoading = true
 

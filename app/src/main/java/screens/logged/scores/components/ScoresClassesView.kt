@@ -37,6 +37,7 @@ class ScoresClassesView: ConstraintLayout {
         view_scores_classes_recycler_view.apply {
             layoutManager = viewManager
             adapter = viewAdapter
+            isNestedScrollingEnabled = false
         }
     }
 

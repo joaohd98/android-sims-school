@@ -19,7 +19,6 @@ import utils.observeOnce
 class ScoresScreen : Fragment() {
     private val viewModel: ScoresViewModel by viewModels()
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,6 +44,7 @@ class ScoresScreen : Fragment() {
     }
 
     private fun setObserves() {
+        val scrollView = view_scores_scroll_view
         val viewSemesters = view_scores_semesters
         val viewClasses = view_scores_classes
 
@@ -57,7 +57,7 @@ class ScoresScreen : Fragment() {
                 viewClasses.binding.viewScoresClassesRecyclerView.apply {
                     val adapter = adapter!! as ScoresClassesAdapter
                     adapter.setScores(viewModel.getActualScores())
-                    layoutManager?.scrollToPosition(0)
+                    scrollView.scrollTo(0, 0)
                 }
             })
         }
@@ -66,6 +66,7 @@ class ScoresScreen : Fragment() {
             when(it) {
                 RepositoryStatus.FAILED -> { }
                 RepositoryStatus.LOADING -> {
+                    scrollView.setScrollingEnabled(false)
                 }
                 RepositoryStatus.SUCCESS -> {
                     val scores = viewModel.scores
@@ -73,6 +74,7 @@ class ScoresScreen : Fragment() {
                     viewSemesters.setSuccess(scores.size)
                     viewClasses.setSuccess(viewModel.getActualScores())
                     actualSemesterObserve()
+                    scrollView.setScrollingEnabled(true)
                 }
                 else -> {}
             }

@@ -4,11 +4,11 @@
     android:layout_height="match_parent"
     tools:context="screens.logged.scores.ScoresScreen"
     android:orientation="vertical">
-
-    <ScrollView
+    <utils.CustomNestedScrollView
         android:id="@+id/view_scores_scroll_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -22,5 +22,5 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
-    </ScrollView>
+    </utils.CustomNestedScrollView>
 </LinearLayout>

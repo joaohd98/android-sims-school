@@ -3,6 +3,10 @@ package screens.logged.classes.components
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.core.view.forEach
+import androidx.core.view.forEachIndexed
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.joao.simsschool.R
@@ -79,7 +83,7 @@ class ClassesCalendarAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder) {
             is ViewMontHolder -> holder.bind(viewsModel[position].month!!)
-            is ViewWeekHolder -> holder.bind(position)
+            is ViewWeekHolder -> holder.bind(viewsModel[position].response!!)
         }
     }
 
@@ -105,7 +109,12 @@ class ClassesCalendarAdapter(
     class ViewWeekHolder(
         private val binding: ViewClassesCalendarWeekBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(position: Int) {
+        fun bind(weekResponse: CalendarWeekResponse) {
+            binding.viewClassesCalendarWeekLinearLayout.forEachIndexed { index, view ->
+
+            }
+
+            binding.executePendingBindings()
         }
     }
 

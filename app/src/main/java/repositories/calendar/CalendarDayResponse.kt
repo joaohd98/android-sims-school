@@ -1,5 +1,6 @@
 package repositories.calendar
 
+import android.util.Log
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -15,6 +16,6 @@ class CalendarDayResponse(
         day = (result["day"] as? String ?: "")
         homework = (result["homework"] as? String ?: "")
         test = (result["test"] as? String ?: "")
-        weekDay = (result["weekDay"] as? Number ?: 0).toInt()
+        weekDay = (result["weekday"] as? Number ?: 0).toInt()
     }
 }

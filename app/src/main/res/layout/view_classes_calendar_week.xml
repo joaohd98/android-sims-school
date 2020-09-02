@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
-        android:id="@+id/view_classes_days_week_linear_layout"
+        android:id="@+id/view_classes_calendar_week_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="7">
@@ -20,7 +20,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:text="10"/>
+                tools:text="10"/>
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"

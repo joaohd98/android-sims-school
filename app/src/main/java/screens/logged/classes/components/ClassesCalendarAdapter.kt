@@ -18,7 +18,7 @@ import kotlin.collections.ArrayList
 
 class ClassesCalendarAdapter(
     calendar: ArrayList<CalendarResponse>,
-    val fragmentManager: FragmentManager,
+    private val fragmentManager: FragmentManager,
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {

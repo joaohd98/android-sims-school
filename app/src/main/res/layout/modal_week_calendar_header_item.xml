@@ -13,13 +13,19 @@
         <variable
             name="isSelected"
             type="java.lang.Boolean" />
+        <variable
+            name="changeHeader"
+            type="utils.OnClickDataBinding" />
     </data>
 
     <LinearLayout
+        android:id="@+id/modal_week_calendar_header_item_linear_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
+        android:clickable="false"
+        android:onClick="@{() -> changeHeader.onClick() }"
         android:paddingVertical="10dp"
         android:paddingHorizontal="15dp"
         android:background="@{isSelected ? @drawable/background_day_week_selected : null }"

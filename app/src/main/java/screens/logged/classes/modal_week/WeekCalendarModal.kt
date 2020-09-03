@@ -14,7 +14,7 @@ import utils.CustomRoundBottomSheet
 
 class WeekCalendarModal(
     private val weekResponse: CalendarWeekResponse,
-    private val dayResponse: CalendarDayResponse
+    private var dayResponse: CalendarDayResponse
 ) : CustomRoundBottomSheet() {
     lateinit var binding: ModalWeekCalendarBinding
 
@@ -42,11 +42,13 @@ class WeekCalendarModal(
     }
 
     private fun initHeader() {
-        binding.modalWeekCalendarHeader.setHeader(weekResponse, dayResponse)
+        binding.modalWeekCalendarHeader.setHeader(weekResponse, dayResponse) {
+            initTasks(it)
+        }
     }
 
-    private fun initTasks() {
-        binding.modalWeekCalendarTasks.setTask(dayResponse)
+    private fun initTasks(day: CalendarDayResponse = dayResponse) {
+        binding.modalWeekCalendarTasks.setTask(day)
     }
 
     companion object {

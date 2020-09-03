@@ -38,16 +38,27 @@ class WeekCalendarHeader: ConstraintLayout {
         }
     }
 
-    fun setHeader(weekResponse: CalendarWeekResponse, dayResponse: CalendarDayResponse) {
+    fun setHeader(
+        weekResponse: CalendarWeekResponse,
+        dayResponse: CalendarDayResponse,
+        onChangeDay: (day: CalendarDayResponse) -> Unit
+    ) {
         binding.modalWeekCalendarHeaderLinearLayout.forEachIndexed { index, view ->
             (view as WeekCalendarHeaderItem).apply {
                 val dayActual = weekResponse.days.find { index == it.weekDay }
 
+                val onChangeHeader = fun() {
+                    if(dayActual != null) {
+                        setHeader(weekResponse, dayActual, onChangeDay)
+                        onChangeDay(dayActual)
+                    }
+                }
+
                 if(dayActual != null) {
-                    initItem(index, dayActual.getDayFormatted(), dayActual.weekDay == dayResponse.weekDay)
+                    initItem(index, dayActual.getDayFormatted(), dayActual.weekDay == dayResponse.weekDay, onChangeHeader)
                 }
                 else {
-                    initItem(index, "", false)
+                    initItem(index, "", false, onChangeHeader)
                 }
             }
         }

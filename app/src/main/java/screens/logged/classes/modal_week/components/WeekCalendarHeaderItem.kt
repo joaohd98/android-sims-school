@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -14,6 +15,8 @@ import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ModalWeekCalendarBinding
 import com.joao.simsschool.databinding.ModalWeekCalendarHeaderItemBinding
 import com.joao.simsschool.databinding.ViewClassesCalendarBinding
+import repositories.calendar.CalendarDayResponse
+import utils.OnClickDataBinding
 
 class WeekCalendarHeaderItem : LinearLayout {
     lateinit var binding: ModalWeekCalendarHeaderItemBinding
@@ -35,11 +38,33 @@ class WeekCalendarHeaderItem : LinearLayout {
         }
     }
 
-    fun initItem(dayWeek: Int, dayMonth: String?, isSelected: Boolean) {
+    fun initItem(dayWeek: Int, dayMonth: String?, isSelected: Boolean, onClick: () -> Unit) {
         val weekDays = resources.getStringArray(R.array.week)
 
         binding.dayWeek = weekDays[dayWeek]
         binding.dayMonth = dayMonth
         binding.isSelected = isSelected
+        binding.changeHeader = object: OnClickDataBinding {
+            override fun onClick() {
+                onClick()
+            }
+        }
+
+        binding.modalWeekCalendarHeaderItemLinearLayout.apply {
+            setOnTouchListener { v, event ->
+                when (event.action) {
+                    MotionEvent.ACTION_DOWN -> {
+                        v.animate().alpha(0.3f).setDuration(100).start()
+                    }
+                    MotionEvent.ACTION_UP -> {
+                        v.animate().alpha(1f).setDuration(100).start()
+                        performClick()
+                    }
+                    else -> v.alpha = 1f
+                }
+
+                true
+            }
+        }
     }
 }

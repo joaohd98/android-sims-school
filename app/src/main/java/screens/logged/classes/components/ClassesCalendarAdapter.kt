@@ -17,46 +17,13 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class ClassesCalendarAdapter(
-    calendar: ArrayList<CalendarResponse>,
+    private val viewsModel: ArrayList<CalendarResponse.RecyclerViewModel>,
     private val fragmentManager: FragmentManager,
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         const val TYPE_MONTH = 0
         const val TYPE_WEEK = 1
-    }
-
-    class ViewModel(
-        val typeView: Int,
-        val month: String?,
-        val response: CalendarWeekResponse?
-    )
-
-    private var viewsModel: ArrayList<ViewModel> = arrayListOf()
-    var actualMonthIndex = 0
-
-    init {
-        val currentMonth = Calendar.getInstance().get(Calendar.MONTH)
-
-        calendar.forEachIndexed { index, month ->
-            if(index == currentMonth) {
-                actualMonthIndex = viewsModel.size
-            }
-
-            viewsModel.add(ViewModel(
-                TYPE_MONTH,
-                month.name,
-                null
-            ))
-
-            month.weeks.forEach { week ->
-                viewsModel.add(ViewModel(
-                    TYPE_WEEK,
-                    null,
-                    week
-                ))
-            }
-        }
     }
 
     override fun getItemCount() = viewsModel.size
@@ -118,7 +85,7 @@ class ClassesCalendarAdapter(
         private val fragmentManager: FragmentManager
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(
-            viewsModel: ArrayList<ViewModel>,
+            viewsModel: ArrayList<CalendarResponse.RecyclerViewModel>,
             weekResponse: CalendarWeekResponse,
             position: Int
         ) {
@@ -160,7 +127,7 @@ class ClassesCalendarAdapter(
         }
 
         fun getCompleteWeekResponse(
-            viewsModel: ArrayList<ViewModel>,
+            viewsModel: ArrayList<CalendarResponse.RecyclerViewModel>,
             weekResponse: CalendarWeekResponse,
             position: Int)
         : CalendarWeekResponse {

@@ -12,7 +12,7 @@ class CalendarRepository {
     @Suppress("UNCHECKED_CAST")
     fun getCalendar(
         request: CalendarRequest,
-        onSuccess: (List<CalendarResponse>) -> Unit,
+        onSuccess: (CalendarResponse) -> Unit,
         onError: (java.lang.Exception?) -> Unit
     ) {
         GlobalScope.launch(IO) {
@@ -24,11 +24,8 @@ class CalendarRepository {
                     .await()
 
                 val months = classes.get("months") as ArrayList<*>
-
-                val result: List<CalendarResponse> = months.map { result ->
-                    CalendarResponse().apply {
-                        initService(result as Map<String, Any>)
-                    }
+                val result = CalendarResponse().apply {
+                    initService(months)
                 }
 
                 GlobalScope.launch(Dispatchers.Main) {

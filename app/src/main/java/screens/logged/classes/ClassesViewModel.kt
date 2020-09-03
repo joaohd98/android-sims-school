@@ -1,19 +1,13 @@
 package screens.logged.classes
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.joao.simsschool.R
 import repositories.RepositoryStatus
 import repositories.calendar.CalendarRepository
 import repositories.calendar.CalendarRequest
 import repositories.calendar.CalendarResponse
-import repositories.classes.ClassesRequest
+import repositories.calendar.CalendarWeekResponse
 import repositories.user.UserRepository
 import repositories.user.UserResponse
 
@@ -23,7 +17,9 @@ class ClassesViewModel(application: android.app.Application): AndroidViewModel(a
     val user: LiveData<UserResponse?>
 
     private val calendarRepository = CalendarRepository()
-    val calendarMonths = mutableListOf<CalendarResponse>()
+    val calendarResponse: MutableLiveData<CalendarResponse> by lazy {
+        MutableLiveData()
+    }
     val calendarStatus: MutableLiveData<RepositoryStatus> by lazy {
         MutableLiveData<RepositoryStatus>(RepositoryStatus.LOADING)
     }
@@ -41,7 +37,7 @@ class ClassesViewModel(application: android.app.Application): AndroidViewModel(a
         calendarRepository.getCalendar(object: CalendarRequest {
             override val idClass: String = user.id_class
         }, {
-            calendarMonths.addAll(it)
+            calendarResponse.value = it
             calendarStatus.value = RepositoryStatus.SUCCESS
         }) {
             calendarStatus.value = RepositoryStatus.FAILED

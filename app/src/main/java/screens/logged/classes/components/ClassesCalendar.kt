@@ -2,18 +2,14 @@ package screens.logged.classes.components
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewClassesCalendarBinding
-import com.joao.simsschool.databinding.ViewHomeAdsBinding
-import kotlinx.android.synthetic.main.view_classes_calendar.view.*
-import repositories.ads.AdsResponse
 import repositories.calendar.CalendarResponse
-import screens.logged.scores.components.ScoresClassesAdapter
+import repositories.calendar.CalendarWeekResponse
 
 class ClassesCalendar: ConstraintLayout {
     lateinit var binding: ViewClassesCalendarBinding
@@ -35,7 +31,11 @@ class ClassesCalendar: ConstraintLayout {
         }
     }
 
-    fun initRecyclerView(calendar: ArrayList<CalendarResponse>, fragmentManager: FragmentManager) {
+    fun initRecyclerView(
+        calendar: ArrayList<CalendarResponse.RecyclerViewModel>,
+        actualIndex: Int,
+        fragmentManager: FragmentManager
+    ) {
         val viewManager = LinearLayoutManager(context)
         val viewAdapter = ClassesCalendarAdapter(calendar, fragmentManager)
 
@@ -44,7 +44,7 @@ class ClassesCalendar: ConstraintLayout {
             adapter = viewAdapter
             hasFixedSize()
 
-            scrollToPosition(viewAdapter.actualMonthIndex)
+            scrollToPosition(actualIndex)
         }
     }
 }

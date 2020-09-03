@@ -51,7 +51,8 @@ class ClassesScreen : Fragment() {
                     view_classes_view_switcher.showNext()
 
                     view_classes_calendar.initRecyclerView(
-                        ArrayList(viewModel.calendarMonths),
+                        viewModel.calendarResponse.value!!.recyclerViews,
+                        viewModel.calendarResponse.value!!.recyclerViewsIndex,
                         activity?.supportFragmentManager!!
                     )
                 }

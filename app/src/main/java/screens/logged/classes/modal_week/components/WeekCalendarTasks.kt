@@ -32,7 +32,7 @@ class WeekCalendarTasks: ConstraintLayout {
         binding.dayResponse = dayResponse
 
         if(dayResponse.course == "") {
-            binding.modalWeekCalendarTasksViewSwitcher.showNext()
+            binding.modalWeekCalendarTasksViewSwitcher.displayedChild = 1
         }
         else {
             binding.modalWeekCalendarTasksViewSwitcher.displayedChild = 0

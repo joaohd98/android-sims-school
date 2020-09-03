@@ -14,7 +14,7 @@ import utils.CustomRoundBottomSheet
 
 class WeekCalendarModal(
     private val weekResponse: CalendarWeekResponse,
-    private var dayResponse: CalendarDayResponse
+    private val dayResponse: CalendarDayResponse
 ) : CustomRoundBottomSheet() {
     lateinit var binding: ModalWeekCalendarBinding
 

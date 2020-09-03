@@ -165,12 +165,15 @@ class ClassesCalendarAdapter(
             position: Int)
         : CalendarWeekResponse {
             val size = viewsModel.size - 1
+            var isLastOrFirst = false
 
             val replacerWeekResponse: CalendarWeekResponse? = when {
-                position == 0 -> {
+                position <= 1 -> {
+                    isLastOrFirst = true
                     viewsModel[size].response
                 }
                 position >= size -> {
+                    isLastOrFirst = true
                     viewsModel[1].response
                 }
                 viewsModel[position - 1].month != null -> {
@@ -184,7 +187,7 @@ class ClassesCalendarAdapter(
                 }
             }
 
-            return if(replacerWeekResponse != null) {
+            return if(replacerWeekResponse != null && !isLastOrFirst) {
                 replacerWeekResponse.days.forEach { replacer ->
                     val actual = weekResponse.days.find { it.weekDay == replacer.weekDay }
 
@@ -199,7 +202,4 @@ class ClassesCalendarAdapter(
             }
         }
     }
-
-
-
 }

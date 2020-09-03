@@ -20,19 +20,13 @@ import screens.logged.scores.components.ScoresClassesAdapter
 class ClassesCalendarItem: LinearLayout {
     lateinit var binding: ViewClassesCalendarItemBinding
 
-    constructor(context: Context) : super(context) {
-        init()
-    }
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        init()
-    }
+    constructor(context: Context) : super(context)
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(
         context,
         attrs,
         defStyle
-    ) {
-        init()
-    }
+    )
 
     init {
         if (isInEditMode) {
@@ -43,24 +37,5 @@ class ClassesCalendarItem: LinearLayout {
         }
     }
 
-    private fun init() {
-        binding.viewClassesCalendarItemLinearLayout.apply {
-            setOnTouchListener { v, event ->
-                if(binding.linearLayoutClick != null) {
-                    when (event.action) {
-                        MotionEvent.ACTION_DOWN -> {
-                            v.animate().alpha(0.3f).setDuration(100).start()
-                        }
-                        MotionEvent.ACTION_UP -> {
-                            v.animate().alpha(1f).setDuration(100).start()
-                            performClick()
-                        }
-                        else -> v.alpha = 1f
-                    }
-                }
 
-                true
-            }
-        }
-    }
 }

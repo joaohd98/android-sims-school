@@ -30,6 +30,12 @@ class WeekCalendarTasks: ConstraintLayout {
 
     fun setTask(dayResponse: CalendarDayResponse) {
         binding.dayResponse = dayResponse
-    }
 
+        if(dayResponse.course == "") {
+            binding.modalWeekCalendarTasksViewSwitcher.showNext()
+        }
+        else {
+            binding.modalWeekCalendarTasksViewSwitcher.displayedChild = 0
+        }
+    }
 }

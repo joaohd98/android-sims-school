@@ -22,6 +22,8 @@
     <string name="view_scores_card_av2">AV2</string>
     <string name="view_scores_card_situation">Situation</string>
 
+    <string name="modal_week_calendar_tasks_day_off">Enjoy your day off</string>
+
     <string name="view_calendar_error">It was not possible to get the calendar</string>
 
 

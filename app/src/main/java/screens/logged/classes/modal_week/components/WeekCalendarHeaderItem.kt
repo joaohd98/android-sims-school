@@ -35,4 +35,11 @@ class WeekCalendarHeaderItem : LinearLayout {
         }
     }
 
+    fun initItem(dayWeek: Int, dayMonth: String?, isSelected: Boolean) {
+        val weekDays = resources.getStringArray(R.array.week)
+
+        binding.dayWeek = weekDays[dayWeek]
+        binding.dayMonth = dayMonth
+        binding.isSelected = isSelected
+    }
 }

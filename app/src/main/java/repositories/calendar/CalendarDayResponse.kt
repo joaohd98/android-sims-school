@@ -18,4 +18,6 @@ class CalendarDayResponse(
         test = (result["test"] as? String ?: "")
         weekDay = (result["weekday"] as? Number ?: 0).toInt()
     }
+
+    fun getDayFormatted() = day.split("/")[0]
 }

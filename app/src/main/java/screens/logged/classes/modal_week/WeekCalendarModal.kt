@@ -36,6 +36,17 @@ class WeekCalendarModal(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        initHeader()
+        initTasks()
+    }
+
+    private fun initHeader() {
+        binding.modalWeekCalendarHeader.setHeader(weekResponse, dayResponse)
+    }
+
+    private fun initTasks() {
+
     }
 
     companion object {

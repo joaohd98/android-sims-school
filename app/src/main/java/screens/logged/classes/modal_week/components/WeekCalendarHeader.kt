@@ -7,12 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.forEach
+import androidx.core.view.forEachIndexed
 import androidx.databinding.DataBindingUtil
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ModalWeekCalendarBinding
 import com.joao.simsschool.databinding.ModalWeekCalendarHeaderBinding
 import com.joao.simsschool.databinding.ModalWeekCalendarHeaderItemBinding
+import repositories.calendar.CalendarDayResponse
+import repositories.calendar.CalendarWeekResponse
 
 class WeekCalendarHeader: ConstraintLayout {
     lateinit var binding: ModalWeekCalendarHeaderBinding
@@ -31,6 +35,21 @@ class WeekCalendarHeader: ConstraintLayout {
         }
         else {
             binding = ModalWeekCalendarHeaderBinding.inflate(LayoutInflater.from(context), this, true)
+        }
+    }
+
+    fun setHeader(weekResponse: CalendarWeekResponse, dayResponse: CalendarDayResponse) {
+        binding.modalWeekCalendarHeaderLinearLayout.forEachIndexed { index, view ->
+            (view as WeekCalendarHeaderItem).apply {
+                val dayActual = weekResponse.days.find { index == it.weekDay }
+
+                if(dayActual != null) {
+                    initItem(index, dayActual.getDayFormatted(), dayActual.weekDay == dayResponse.weekDay)
+                }
+                else {
+                    initItem(index, "", false)
+                }
+            }
         }
     }
 

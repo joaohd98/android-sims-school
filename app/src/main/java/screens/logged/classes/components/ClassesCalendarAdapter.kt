@@ -123,7 +123,7 @@ class ClassesCalendarAdapter(
                 val dayResponse = weekResponse.days.find { index == it.weekDay }
 
                 if(dayResponse != null) {
-                    calendarItem.binding.text = dayResponse.day.split("/")[0]
+                    calendarItem.binding.text = dayResponse.getDayFormatted()
                     calendarItem.alpha = 1f
 
                     if(dayResponse.course == "") {

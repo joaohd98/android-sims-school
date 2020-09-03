@@ -2,6 +2,7 @@ package screens.logged.classes.components
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -41,6 +42,8 @@ class ClassesCalendar: ConstraintLayout {
             layoutManager = viewManager
             adapter = viewAdapter
             hasFixedSize()
+
+            scrollToPosition(viewAdapter.actualMonthIndex)
         }
     }
 }

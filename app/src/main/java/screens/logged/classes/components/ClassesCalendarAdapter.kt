@@ -34,9 +34,17 @@ class ClassesCalendarAdapter(
     )
 
     private var viewsModel: ArrayList<ViewModel> = arrayListOf()
+    var actualMonthIndex = 0
 
     init {
-        calendar.forEach { month ->
+
+        val currentMonth = Calendar.getInstance().get(Calendar.MONTH)
+
+        calendar.forEachIndexed { index, month ->
+            if(index == currentMonth) {
+                actualMonthIndex = viewsModel.size
+            }
+
             viewsModel.add(ViewModel(
                 TYPE_MONTH,
                 month.name,

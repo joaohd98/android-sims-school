@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.joao.simsschool.R
+import components.camera.CameraFragment
 import components.error_view.OnTryAgainClickDataBinding
 import kotlinx.android.synthetic.main.fragment_classes.*
 import kotlinx.android.synthetic.main.screen_scores.*
 import repositories.RepositoryStatus
+import screens.logged.classes.modal_week.WeekCalendarModal
 import screens.logged.home.HomeViewModel
 import utils.observeOnce
 
@@ -25,6 +27,9 @@ class ClassesScreen : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val bottomSheetFragment = WeekCalendarModal()
+        bottomSheetFragment.show(activity?.supportFragmentManager!!, bottomSheetFragment.tag)
 
         callRequests()
         initErrorView()

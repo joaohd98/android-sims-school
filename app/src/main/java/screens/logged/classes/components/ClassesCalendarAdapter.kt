@@ -26,7 +26,7 @@ class ClassesCalendarAdapter(
         const val TYPE_WEEK = 1
     }
 
-    private class ViewModel(
+    class ViewModel(
         val typeView: Int,
         val month: String?,
         val response: CalendarWeekResponse?
@@ -90,7 +90,7 @@ class ClassesCalendarAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder) {
             is ViewMontHolder -> holder.bind(viewsModel[position].month!!)
-            is ViewWeekHolder -> holder.bind(viewsModel[position].response!!)
+            is ViewWeekHolder -> holder.bind(viewsModel, viewsModel[position].response!!, position)
         }
     }
 
@@ -117,7 +117,11 @@ class ClassesCalendarAdapter(
         private val binding: ViewClassesCalendarWeekBinding,
         private val fragmentManager: FragmentManager
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(weekResponse: CalendarWeekResponse) {
+        fun bind(
+            viewsModel: ArrayList<ViewModel>,
+            weekResponse: CalendarWeekResponse,
+            position: Int
+        ) {
             binding.viewClassesCalendarWeekLinearLayout.forEachIndexed { index, view ->
                 val calendarItem = view as ClassesCalendarItem
                 val dayResponse = weekResponse.days.find { index == it.weekDay }
@@ -135,7 +139,11 @@ class ClassesCalendarAdapter(
                         calendarItem.binding.hasBulletFill = dayResponse.homework != "" || dayResponse.test != ""
                         calendarItem.binding.linearLayoutClick = object: OnClickDataBinding {
                             override fun onClick() {
-                                WeekCalendarModal.invoke(fragmentManager, weekResponse, dayResponse)
+                                WeekCalendarModal.invoke(
+                                    fragmentManager,
+                                    getCompleteWeekResponse(viewsModel, weekResponse, position),
+                                    dayResponse
+                                )
                             }
                         }
                     }
@@ -149,6 +157,46 @@ class ClassesCalendarAdapter(
             }
 
             binding.executePendingBindings()
+        }
+
+        fun getCompleteWeekResponse(
+            viewsModel: ArrayList<ViewModel>,
+            weekResponse: CalendarWeekResponse,
+            position: Int)
+        : CalendarWeekResponse {
+            val size = viewsModel.size - 1
+
+            val replacerWeekResponse: CalendarWeekResponse? = when {
+                position == 0 -> {
+                    viewsModel[size].response
+                }
+                position >= size -> {
+                    viewsModel[1].response
+                }
+                viewsModel[position - 1].month != null -> {
+                    viewsModel[position - 2].response
+                }
+                viewsModel[position + 1].month != null -> {
+                    viewsModel[position + 2].response
+                }
+                else -> {
+                    null
+                }
+            }
+
+            return if(replacerWeekResponse != null) {
+                replacerWeekResponse.days.forEach { replacer ->
+                    val actual = weekResponse.days.find { it.weekDay == replacer.weekDay }
+
+                    if(actual == null) {
+                        weekResponse.days.add(replacer)
+                    }
+                }
+
+                weekResponse
+            } else {
+                weekResponse
+            }
         }
     }
 

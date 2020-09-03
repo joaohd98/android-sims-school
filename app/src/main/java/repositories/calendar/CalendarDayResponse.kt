@@ -8,6 +8,7 @@ class CalendarDayResponse(
     var course: String = "",
     var day: String = "",
     var homework: String = "",
+    var teacher: String = "",
     var test: String = "",
     var weekDay: Int = 0,
 ) {
@@ -15,6 +16,7 @@ class CalendarDayResponse(
         course = (result["course"] as? String ?: "")
         day = (result["day"] as? String ?: "")
         homework = (result["homework"] as? String ?: "")
+        teacher = (result["teacher"] as? String ?: "")
         test = (result["test"] as? String ?: "")
         weekDay = (result["weekday"] as? Number ?: 0).toInt()
     }

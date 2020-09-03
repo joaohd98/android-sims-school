@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ModalWeekCalendarTasksBinding
+import repositories.calendar.CalendarDayResponse
 
 class WeekCalendarTasks: ConstraintLayout {
     lateinit var binding: ModalWeekCalendarTasksBinding
@@ -25,6 +26,10 @@ class WeekCalendarTasks: ConstraintLayout {
         else {
             binding = ModalWeekCalendarTasksBinding.inflate(LayoutInflater.from(context), this, true)
         }
+    }
+
+    fun setTask(dayResponse: CalendarDayResponse) {
+        binding.dayResponse = dayResponse
     }
 
 }

@@ -46,7 +46,7 @@ class WeekCalendarModal(
     }
 
     private fun initTasks() {
-
+        binding.modalWeekCalendarTasks.setTask(dayResponse)
     }
 
     companion object {

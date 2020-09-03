@@ -124,14 +124,13 @@ class ClassesCalendarAdapter(
                     }
                     else {
                         calendarItem.binding.hasBullet = true
-
-                        if(dayResponse.homework != "" || dayResponse.test != "") {
-                            calendarItem.binding.hasBulletFill = true
-                        }
+                        calendarItem.binding.hasBulletFill = dayResponse.homework != "" || dayResponse.test != ""
                     }
                 }
                 else {
                     calendarItem.alpha = 0f
+                    calendarItem.binding.hasBullet = false
+                    calendarItem.binding.hasBulletFill = false
                 }
             }
 

@@ -28,9 +28,6 @@ class ClassesScreen : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val bottomSheetFragment = WeekCalendarModal()
-        bottomSheetFragment.show(activity?.supportFragmentManager!!, bottomSheetFragment.tag)
-
         callRequests()
         initErrorView()
         setObserves()
@@ -52,7 +49,11 @@ class ClassesScreen : Fragment() {
                 }
                 RepositoryStatus.SUCCESS -> {
                     view_classes_view_switcher.showNext()
-                    view_classes_calendar.initRecyclerView(ArrayList(viewModel.calendarMonths))
+
+                    view_classes_calendar.initRecyclerView(
+                        ArrayList(viewModel.calendarMonths),
+                        activity?.supportFragmentManager!!
+                    )
                 }
                 else -> {}
             }

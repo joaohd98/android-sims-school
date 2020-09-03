@@ -8,18 +8,23 @@ import android.widget.TextView
 import androidx.core.view.forEach
 import androidx.core.view.forEachIndexed
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.core.ActivityScope
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewClassesCalendarItemBinding
 import com.joao.simsschool.databinding.ViewClassesCalendarMonthBinding
 import com.joao.simsschool.databinding.ViewClassesCalendarWeekBinding
 import repositories.calendar.CalendarResponse
 import repositories.calendar.CalendarWeekResponse
+import screens.logged.classes.modal_week.WeekCalendarModal
+import utils.OnClickDataBinding
 import java.util.*
 import kotlin.collections.ArrayList
 
 class ClassesCalendarAdapter(
-    calendar: ArrayList<CalendarResponse>
+    calendar: ArrayList<CalendarResponse>,
+    val fragmentManager: FragmentManager,
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
@@ -37,7 +42,6 @@ class ClassesCalendarAdapter(
     var actualMonthIndex = 0
 
     init {
-
         val currentMonth = Calendar.getInstance().get(Calendar.MONTH)
 
         calendar.forEachIndexed { index, month ->
@@ -85,7 +89,7 @@ class ClassesCalendarAdapter(
                     false
                 )
 
-            return ViewWeekHolder(binding)
+            return ViewWeekHolder(binding, fragmentManager)
         }
     }
 
@@ -117,6 +121,7 @@ class ClassesCalendarAdapter(
 
     class ViewWeekHolder(
         private val binding: ViewClassesCalendarWeekBinding,
+        private val fragmentManager: FragmentManager
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(weekResponse: CalendarWeekResponse) {
             binding.viewClassesCalendarWeekLinearLayout.forEachIndexed { index, view ->
@@ -133,6 +138,12 @@ class ClassesCalendarAdapter(
                     else {
                         calendarItem.binding.hasBullet = true
                         calendarItem.binding.hasBulletFill = dayResponse.homework != "" || dayResponse.test != ""
+                        calendarItem.binding.linearLayoutClick = object: OnClickDataBinding {
+                            override fun onClick() {
+                                val bottomSheet = WeekCalendarModal()
+                                bottomSheet.show(fragmentManager, bottomSheet.tag)
+                            }
+                        }
                     }
                 }
                 else {

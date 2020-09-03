@@ -14,12 +14,18 @@
         <variable
             name="hasBulletFill"
             type="java.lang.Boolean" />
+        <variable
+            name="linearLayoutClick"
+            type="utils.OnClickDataBinding" />
     </data>
 
     <LinearLayout
+        android:id="@+id/view_classes_calendar_item_linear_layout"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:gravity="center"
+        android:clickable="false"
+        android:onClick="@{() -> linearLayoutClick.onClick()}"
         android:orientation="vertical">
 
         <TextView

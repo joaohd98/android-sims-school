@@ -20,8 +20,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:padding="5dp"
-        android:background="@{isSelected ? @drawable/background_day_week_selected : `` }"
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="15dp"
+        android:background="@{isSelected ? @drawable/background_day_week_selected : null }"
         android:orientation="vertical">
         <TextView
             android:layout_width="wrap_content"

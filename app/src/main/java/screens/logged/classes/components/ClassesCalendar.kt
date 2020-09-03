@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewClassesCalendarBinding
@@ -34,9 +35,9 @@ class ClassesCalendar: ConstraintLayout {
         }
     }
 
-    fun initRecyclerView(calendar: ArrayList<CalendarResponse>) {
+    fun initRecyclerView(calendar: ArrayList<CalendarResponse>, fragmentManager: FragmentManager) {
         val viewManager = LinearLayoutManager(context)
-        val viewAdapter = ClassesCalendarAdapter(calendar)
+        val viewAdapter = ClassesCalendarAdapter(calendar, fragmentManager)
 
         binding.viewClassesCalendarRecyclerView.apply {
             layoutManager = viewManager

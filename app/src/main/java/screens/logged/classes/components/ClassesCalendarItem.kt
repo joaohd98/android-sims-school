@@ -3,18 +3,20 @@ package screens.logged.classes.components
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.widget.LinearLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewClassesCalendarBinding
+import com.joao.simsschool.databinding.ViewClassesCalendarItemBinding
 import com.joao.simsschool.databinding.ViewHomeAdsBinding
 import kotlinx.android.synthetic.main.view_classes_calendar.view.*
 import repositories.ads.AdsResponse
 import repositories.calendar.CalendarResponse
 import screens.logged.scores.components.ScoresClassesAdapter
 
-class ClassesCalendar: ConstraintLayout {
-    lateinit var binding: ViewClassesCalendarBinding
+class ClassesCalendarItem: LinearLayout {
+    lateinit var binding: ViewClassesCalendarItemBinding
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
@@ -26,21 +28,10 @@ class ClassesCalendar: ConstraintLayout {
 
     init {
         if (isInEditMode) {
-            LayoutInflater.from(context).inflate(R.layout.view_classes_calendar, this, true)
+            LayoutInflater.from(context).inflate(R.layout.view_classes_calendar_item, this, true)
         }
         else {
-            binding = ViewClassesCalendarBinding.inflate(LayoutInflater.from(context), this, true)
-        }
-    }
-
-    fun initRecyclerView(calendar: ArrayList<CalendarResponse>) {
-        val viewManager = LinearLayoutManager(context)
-        val viewAdapter = ClassesCalendarAdapter(calendar)
-
-        binding.viewClassesCalendarRecyclerView.apply {
-            layoutManager = viewManager
-            adapter = viewAdapter
-            hasFixedSize()
+            binding = ViewClassesCalendarItemBinding.inflate(LayoutInflater.from(context), this, true)
         }
     }
 }

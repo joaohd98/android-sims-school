@@ -10,6 +10,7 @@ import androidx.core.view.forEachIndexed
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.joao.simsschool.R
+import com.joao.simsschool.databinding.ViewClassesCalendarItemBinding
 import com.joao.simsschool.databinding.ViewClassesCalendarMonthBinding
 import com.joao.simsschool.databinding.ViewClassesCalendarWeekBinding
 import repositories.calendar.CalendarResponse
@@ -111,7 +112,27 @@ class ClassesCalendarAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(weekResponse: CalendarWeekResponse) {
             binding.viewClassesCalendarWeekLinearLayout.forEachIndexed { index, view ->
+                val calendarItem = view as ClassesCalendarItem
+                val dayResponse = weekResponse.days.find { index == it.weekDay }
 
+                if(dayResponse != null) {
+                    calendarItem.binding.text = dayResponse.day.split("/")[0]
+                    calendarItem.alpha = 1f
+
+                    if(dayResponse.course == "") {
+                        calendarItem.binding.hasBullet = false
+                    }
+                    else {
+                        calendarItem.binding.hasBullet = true
+
+                        if(dayResponse.homework != "" || dayResponse.test != "") {
+                            calendarItem.binding.hasBulletFill = true
+                        }
+                    }
+                }
+                else {
+                    calendarItem.alpha = 0f
+                }
             }
 
             binding.executePendingBindings()

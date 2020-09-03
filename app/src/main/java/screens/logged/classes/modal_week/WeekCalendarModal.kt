@@ -5,11 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import androidx.fragment.app.FragmentManager
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ModalWeekCalendarBinding
+import repositories.calendar.CalendarDayResponse
+import repositories.calendar.CalendarWeekResponse
+import utils.CustomRoundBottomSheet
 
-class WeekCalendarModal : BottomSheetDialogFragment() {
+class WeekCalendarModal(
+    private val weekResponse: CalendarWeekResponse,
+    private val dayResponse: CalendarDayResponse
+) : CustomRoundBottomSheet() {
     lateinit var binding: ModalWeekCalendarBinding
 
     override fun onCreateView(
@@ -23,4 +29,23 @@ class WeekCalendarModal : BottomSheetDialogFragment() {
         return binding.root
     }
 
+    override fun onStart() {
+        super.onStart()
+        setFullScreen()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    companion object {
+        fun invoke(
+            fragmentManager: FragmentManager,
+            weekResponse: CalendarWeekResponse,
+            dayResponse: CalendarDayResponse
+        ) {
+            val bottomSheetFragment = WeekCalendarModal(weekResponse, dayResponse)
+            bottomSheetFragment.show(fragmentManager, bottomSheetFragment.tag)
+        }
+    }
 }

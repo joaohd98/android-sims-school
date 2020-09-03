@@ -46,15 +46,17 @@ class ClassesCalendarItem: LinearLayout {
     private fun init() {
         binding.viewClassesCalendarItemLinearLayout.apply {
             setOnTouchListener { v, event ->
-                when (event.action) {
-                    MotionEvent.ACTION_DOWN -> {
-                        v.animate().alpha(0.3f).setDuration(100).start()
+                if(binding.linearLayoutClick != null) {
+                    when (event.action) {
+                        MotionEvent.ACTION_DOWN -> {
+                            v.animate().alpha(0.3f).setDuration(100).start()
+                        }
+                        MotionEvent.ACTION_UP -> {
+                            v.animate().alpha(1f).setDuration(100).start()
+                            performClick()
+                        }
+                        else -> v.alpha = 1f
                     }
-                    MotionEvent.ACTION_UP -> {
-                        v.animate().alpha(1f).setDuration(100).start()
-                        performClick()
-                    }
-                    else -> v.alpha = 1f
                 }
 
                 true

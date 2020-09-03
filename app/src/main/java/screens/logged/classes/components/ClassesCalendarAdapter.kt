@@ -1,18 +1,12 @@
 package screens.logged.classes.components
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
-import androidx.core.view.forEach
 import androidx.core.view.forEachIndexed
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.firestore.core.ActivityScope
 import com.joao.simsschool.R
-import com.joao.simsschool.databinding.ViewClassesCalendarItemBinding
 import com.joao.simsschool.databinding.ViewClassesCalendarMonthBinding
 import com.joao.simsschool.databinding.ViewClassesCalendarWeekBinding
 import repositories.calendar.CalendarResponse
@@ -134,14 +128,14 @@ class ClassesCalendarAdapter(
 
                     if(dayResponse.course == "") {
                         calendarItem.binding.hasBullet = false
+                        calendarItem.binding.linearLayoutClick = null
                     }
                     else {
                         calendarItem.binding.hasBullet = true
                         calendarItem.binding.hasBulletFill = dayResponse.homework != "" || dayResponse.test != ""
                         calendarItem.binding.linearLayoutClick = object: OnClickDataBinding {
                             override fun onClick() {
-                                val bottomSheet = WeekCalendarModal()
-                                bottomSheet.show(fragmentManager, bottomSheet.tag)
+                                WeekCalendarModal.invoke(fragmentManager, weekResponse, dayResponse)
                             }
                         }
                     }
@@ -150,6 +144,7 @@ class ClassesCalendarAdapter(
                     calendarItem.alpha = 0f
                     calendarItem.binding.hasBullet = false
                     calendarItem.binding.hasBulletFill = false
+                    calendarItem.binding.linearLayoutClick = null
                 }
             }
 

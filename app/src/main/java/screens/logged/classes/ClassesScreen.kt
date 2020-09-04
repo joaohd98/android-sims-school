@@ -7,13 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.joao.simsschool.R
-import components.camera.CameraFragment
 import components.error_view.OnTryAgainClickDataBinding
-import kotlinx.android.synthetic.main.fragment_classes.*
-import kotlinx.android.synthetic.main.screen_scores.*
+import kotlinx.android.synthetic.main.screen_classes.*
 import repositories.RepositoryStatus
-import screens.logged.classes.modal_week.WeekCalendarModal
-import screens.logged.home.HomeViewModel
 import utils.observeOnce
 
 class ClassesScreen : Fragment() {
@@ -23,7 +19,7 @@ class ClassesScreen : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_classes, container, false)
+        return inflater.inflate(R.layout.screen_classes, container, false)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

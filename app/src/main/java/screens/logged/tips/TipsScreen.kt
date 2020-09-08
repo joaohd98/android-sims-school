@@ -38,8 +38,9 @@ class TipsScreen : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         callRequest()
+        initRecyclerView()
         setObserves()
-        binding.screenTipsImage.clipToOutline = true
+//        binding.screenTipsImage.clipToOutline = true
     }
 
     private fun callRequest() {
@@ -50,6 +51,9 @@ class TipsScreen : Fragment() {
         }
     }
 
+    private fun initRecyclerView() {
+        binding.screenTipsList.initRecyclerView(activity?.supportFragmentManager!!)
+    }
 
     private fun setObserves() {
         viewModel.statusTips.observe(viewLifecycleOwner, {

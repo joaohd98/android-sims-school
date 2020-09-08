@@ -17,5 +17,7 @@
     <color name="red">#dc3545</color>
     <color name="redSmooth">#e8c4c9</color>
     <color name="skeleton">#cbd3d3</color>
+    <color name="background">#fafafa</color>
+
 
 </resources>

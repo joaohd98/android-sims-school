@@ -15,8 +15,9 @@
                 android:layout_width="64dp"
                 android:layout_height="64dp">
 
-                <screens.logged.tips.CircleStatus
+                <components.circle_status.CircleStatus
                     android:id="@+id/circleStatus"
+                    android:rotation="90"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"

@@ -14,10 +14,9 @@ class TipsListAdapter(
     private val fragmentManager: FragmentManager,
 ): RecyclerView.Adapter<TipsListAdapter.ViewHolder>() {
 
-    private var isLoading = true
-    private var size = 10
+    private lateinit var tips: ArrayList<TipsResponse>
 
-    override fun getItemCount() = size
+    override fun getItemCount() = if(this::tips.isInitialized) tips.count() else 10
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = DataBindingUtil
@@ -32,16 +31,25 @@ class TipsListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind()
+        if (this::tips.isInitialized) {
+            holder.bind(tips[position])
+        }
     }
+
+
 
     class ViewHolder(
         private val binding: ViewTipsListItemBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind() {
+        fun bind(response: TipsResponse) {
+            binding.response = response
             binding.viewTipsListItemCircleImage.clipToOutline = true
             binding.executePendingBindings()
         }
     }
 
+    fun setSuccess(tips: ArrayList<TipsResponse>) {
+        this.tips = tips
+        notifyDataSetChanged()
+    }
 }

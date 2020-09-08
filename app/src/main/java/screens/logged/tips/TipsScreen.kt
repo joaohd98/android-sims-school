@@ -40,7 +40,6 @@ class TipsScreen : Fragment() {
         callRequest()
         initRecyclerView()
         setObserves()
-//        binding.screenTipsImage.clipToOutline = true
     }
 
     private fun callRequest() {
@@ -56,17 +55,18 @@ class TipsScreen : Fragment() {
     }
 
     private fun setObserves() {
+        val list = binding.screenTipsList
+
         viewModel.statusTips.observe(viewLifecycleOwner, {
             when(it) {
                 RepositoryStatus.FAILED -> {
                     Toast.makeText(context, "FAILED", Toast.LENGTH_SHORT).show()
                 }
                 RepositoryStatus.LOADING -> {
-                    Toast.makeText(context, "LOADING", Toast.LENGTH_SHORT).show()
-
+                    list.setLoading()
                 }
                 RepositoryStatus.SUCCESS -> {
-                    Toast.makeText(context, "SUCCESS", Toast.LENGTH_SHORT).show()
+                    list.setSuccess(ArrayList(viewModel.tips))
                 }
                 else -> {}
             }

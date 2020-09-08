@@ -12,6 +12,7 @@ import com.joao.simsschool.databinding.ViewTipsListBinding
 import repositories.calendar.CalendarResponse
 import repositories.tips.TipsResponse
 import screens.logged.classes.components.ClassesCalendarAdapter
+import utils.CustomLayoutManager
 
 class TipsListView: LinearLayout {
     lateinit var binding: ViewTipsListBinding
@@ -34,7 +35,7 @@ class TipsListView: LinearLayout {
     }
 
     fun initRecyclerView(fragmentManager: FragmentManager) {
-        val viewManager = LinearLayoutManager(context)
+        val viewManager = CustomLayoutManager(context, false)
         val viewAdapter = TipsListAdapter(fragmentManager)
 
         binding.viewTipsListRecyclerView.apply {
@@ -42,4 +43,18 @@ class TipsListView: LinearLayout {
             adapter = viewAdapter
         }
     }
+
+    fun setLoading() {
+        binding.viewTipsListRecyclerView.apply {
+            (layoutManager as CustomLayoutManager).setScrollEnabled(false)
+        }
+    }
+
+    fun setSuccess(tips: ArrayList<TipsResponse>) {
+        binding.viewTipsListRecyclerView.apply {
+            (layoutManager as CustomLayoutManager).setScrollEnabled(true)
+            (adapter as TipsListAdapter).setSuccess(tips)
+        }
+    }
+
 }

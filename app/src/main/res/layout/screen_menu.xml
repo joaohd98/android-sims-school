@@ -5,7 +5,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="@color/background"
         android:orientation="vertical">
 
         <components.header.HeaderView
@@ -16,27 +16,39 @@
             app:hasTabs="false"/>
 
         <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_marginVertical="50dp"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
             android:layout_gravity="center"
             android:src="@drawable/logo"/>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="16dp">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_action_gallery"/>
-
-            <TextView
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="24dp"
+            android:gravity="bottom">
+            <screens.logged.menu.components.MenuItemView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/view_tips_error_message"/>
-
+                app:menu_text="@string/view_menu_item_share"
+                app:menu_icon="@drawable/ic_action_share"
+                app:menu_tint="@color/gray"
+                app:menu_onPress="share" />
+            <screens.logged.menu.components.MenuItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:menu_text="@string/view_menu_item_maps"
+                app:menu_icon="@drawable/ic_action_maps"
+                app:menu_tint="@color/green"
+                app:menu_onPress="maps"/>
+            <screens.logged.menu.components.MenuItemView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:menu_text="@string/view_menu_item_logout"
+                app:menu_icon="@drawable/ic_action_exit"
+                app:menu_tint="@color/red"
+                app:menu_onPress="logout"/>
         </LinearLayout>
     </LinearLayout>
 </layout>

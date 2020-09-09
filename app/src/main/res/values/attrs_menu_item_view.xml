@@ -1,0 +1,12 @@
+<resources>
+    <declare-styleable name="MenuItemView">
+        <attr name="menu_text" format="string" />
+        <attr name="menu_icon" format="reference|color" />
+        <attr name="menu_tint" format="color" />
+        <attr name="menu_onPress" format="enum" >
+            <enum name="share" value="0" />
+            <enum name="maps" value="1" />
+            <enum name="logout" value="2" />
+        </attr>
+    </declare-styleable>
+</resources>

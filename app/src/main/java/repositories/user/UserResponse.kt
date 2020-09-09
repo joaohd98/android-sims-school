@@ -39,11 +39,11 @@ data class UserResponse(
             val profilePicture = result.getString("profile_picture")!!
             val coverPicture = result.getString("cover_picture")!!
 
-//            val profilePictureRes = async { storage.reference.child(profilePicture).downloadUrl.await() }
-//            val coverPictureRes = async { storage.reference.child(coverPicture).downloadUrl.await() }
-//
-//            cover_picture = coverPictureRes.await().toString()
-//            profile_picture = profilePictureRes.await().toString()
+            val profilePictureRes = async { storage.reference.child(profilePicture).downloadUrl.await() }
+            val coverPictureRes = async { storage.reference.child(coverPicture).downloadUrl.await() }
+
+            cover_picture = coverPictureRes.await().toString()
+            profile_picture = profilePictureRes.await().toString()
         }
     }
 }

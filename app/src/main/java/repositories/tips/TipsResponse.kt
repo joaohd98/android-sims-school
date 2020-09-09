@@ -37,10 +37,8 @@ class TipsResponse(
 
             val media = medias.random()
 
-            Log.d("aaa init", name)
             thumbnailImage = getFirebaseURl(media.image)
             thumbnailVideo = getFirebaseURl(media.video)
-            Log.d("aaa finish", name)
         }
     }
 

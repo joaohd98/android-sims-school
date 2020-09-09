@@ -1,5 +1,6 @@
 package repositories.tips
 
+import android.app.Application
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.GlobalScope
@@ -7,7 +8,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import repositories.FirebaseInstances.firestore
 
-class TipsRepository {
+class TipsRepository(private val application: Application) {
 
     @Suppress("UNCHECKED_CAST")
     fun getTips(
@@ -27,7 +28,7 @@ class TipsRepository {
 
                 val result: List<TipsResponse> = tips.map { it ->
                     TipsResponse().apply {
-                        initService(it as Map<String, Any>)
+                        initService(it as Map<String, Any>, application)
                     }
                 }
 

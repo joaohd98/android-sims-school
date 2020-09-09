@@ -1,28 +1,57 @@
 package components.uri_image
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
+import android.media.MediaMetadataRetriever
 import android.net.Uri
 import android.os.Handler
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.widget.ImageView
 import android.widget.ImageView.ScaleType
 import android.widget.LinearLayout
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
+import com.bumptech.glide.signature.ObjectKey
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.google.type.DateTime
 import com.joao.simsschool.R
-import kotlinx.android.synthetic.main.components_progress_bar_circular.view.*
 import kotlinx.android.synthetic.main.components_view_uri_image.view.*
+import java.time.Instant.now
+import java.time.LocalDate.now
+
 
 class UriImageView : LinearLayout {
-    var uri: String? = null
+    private var uriImage: String? = null
+    private var uriVideo: String? = null
+    private val requestListener = object: RequestListener<Drawable> {
+        override fun onLoadFailed(
+            e: GlideException?,
+            model: Any?,
+            target: Target<Drawable>?,
+            isFirstResource: Boolean
+        ): Boolean {
+            finishLoad(false)
+            return false
+        }
+        override fun onResourceReady(
+            resource: Drawable?,
+            model: Any?,
+            target: Target<Drawable>?,
+            dataSource: DataSource?,
+            isFirstResource: Boolean
+        ): Boolean {
+            finishLoad(true)
+            return false
+        }
+
+    }
 
     constructor(context: Context) : super(context) {
         init(null, 0)
@@ -92,52 +121,60 @@ class UriImageView : LinearLayout {
             shimmerChange(true)
 
             Handler().postDelayed({
-                startLoadingImg()
+                if(uriImage != null) {
+                    getImageFromURL()
+                }
+                else {
+                    getVideoThumbnailFromURL()
+                }
+
             }, 2000)
         }
     }
 
-    fun setLoadScreen() {
+    fun showLoadingScreen() {
         uri_image.setImageDrawable(null)
         shimmerChange(true)
     }
 
-    fun setSuccessScreen(uri: String) {
-        this.uri = uri
-        startLoadingImg()
+    fun startLoadingImage(uri: String) {
+        this.uriImage = uri
+        getImageFromURL()
     }
 
-    fun startLoadingImg() {
+    fun startLoadingVideoThumbnail(uri: String) {
+        this.uriVideo = uri
+        getVideoThumbnailFromURL()
+    }
+
+    private fun getImageFromURL() {
         shimmerChange(true)
 
-        Glide
+        GlideApp
             .with(uri_image.context)
-            .load(Uri.parse(uri))
+            .load(Uri.parse(uriImage))
             .timeout(5000)
             .transition(DrawableTransitionOptions.withCrossFade())
-            .listener(object: RequestListener<Drawable> {
-                override fun onLoadFailed(
-                    e: GlideException?,
-                    model: Any?,
-                    target: Target<Drawable>?,
-                    isFirstResource: Boolean
-                ): Boolean {
-                    finishLoad(false)
-                    return false
-                }
-                override fun onResourceReady(
-                    resource: Drawable?,
-                    model: Any?,
-                    target: Target<Drawable>?,
-                    dataSource: DataSource?,
-                    isFirstResource: Boolean
-                ): Boolean {
-                    finishLoad(true)
-                    return false
-                }
-
-            })
+            .listener(requestListener)
             .placeholder(R.drawable.skeleton)
+            .into(uri_image)
+    }
+
+    private fun getVideoThumbnailFromURL() {
+        shimmerChange(true)
+        val options = RequestOptions()
+            .centerCrop()
+            .override(64, 64)
+
+        GlideApp
+            .with(uri_image.context)
+            .load(Uri.parse(uriVideo))
+            .timeout(5000)
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .listener(requestListener)
+            .thumbnail(0.25f)
+            .placeholder(R.drawable.skeleton)
+            .apply(options)
             .into(uri_image)
     }
 
@@ -164,5 +201,4 @@ class UriImageView : LinearLayout {
             shimmer.hideShimmer()
         }
     }
-
 }

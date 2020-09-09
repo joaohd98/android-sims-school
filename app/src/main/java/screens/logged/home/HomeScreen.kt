@@ -59,10 +59,10 @@ class HomeScreen : Fragment() {
                     )
                 }
                 RepositoryStatus.LOADING -> {
-                    uriImageView.setLoadScreen()
+                    uriImageView.showLoadingScreen()
                 }
                 RepositoryStatus.SUCCESS -> {
-                    uriImageView.setSuccessScreen(viewModel.user.value?.profile_picture!!)
+                    uriImageView.startLoadingImage(viewModel.user.value?.profile_picture!!)
                 }
                 else -> {}
             }

@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ScreenTipsBinding
 import components.error_view.OnTryAgainClickDataBinding

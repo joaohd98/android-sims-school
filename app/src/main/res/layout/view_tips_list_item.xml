@@ -36,6 +36,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
+                uri_image="@{response.thumbnailImage}"
+                uri_video="@{response.thumbnailVideo}"
                 app:background_image="@drawable/border_circle"
                 app:scale_type_image="centerCrop"
                 app:layout_constraintBottom_toTopOf="@id/view_tips_list_item_circle_status"

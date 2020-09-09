@@ -1,15 +1,11 @@
 package screens.logged.home.components
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.net.Uri
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.FragmentManager
-import com.google.firebase.firestore.core.ActivityScope
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewHomeAdsBinding
 import components.error_view.OnTryAgainClickDataBinding
@@ -59,7 +55,7 @@ class HomeAdsView : ConstraintLayout {
     }
 
     fun setLoading() {
-        view_home_ads_image.setLoadScreen()
+        view_home_ads_image.showLoadingScreen()
     }
 
     fun setFailed() {

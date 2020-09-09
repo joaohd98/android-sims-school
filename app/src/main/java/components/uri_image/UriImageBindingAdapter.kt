@@ -2,11 +2,15 @@ package components.uri_image
 
 import androidx.databinding.BindingAdapter
 
-@BindingAdapter(value = ["uri_image"], requireAll = false)
-fun setViewModel(view: UriImageView, uri: String?) {
-    if (uri == null)
+@BindingAdapter(value = ["uri_image", "uri_video"], requireAll = false)
+fun setViewModel(view: UriImageView, uriImage: String?, uriVideo: String?) {
+    if (uriImage == null && uriVideo == null)
         return
 
-    view.uri = uri
-    view.startLoadingImg()
+    if(uriImage != "") {
+        view.startLoadingImage(uriImage!!)
+    }
+    else {
+        view.startLoadingVideoThumbnail(uriVideo!!)
+    }
 }

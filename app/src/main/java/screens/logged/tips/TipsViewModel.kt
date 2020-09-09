@@ -17,7 +17,7 @@ class TipsViewModel(application: android.app.Application): AndroidViewModel(appl
     private val userRepository = UserRepository(application)
     val user: LiveData<UserResponse?>
 
-    private val tipsRepository = TipsRepository()
+    private val tipsRepository = TipsRepository(application)
     val statusTips: MutableLiveData<RepositoryStatus> by lazy {
         MutableLiveData(RepositoryStatus.LOADING)
     }

@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.joao.simsschool.R
@@ -21,12 +22,13 @@ class CircleStatus: View {
         init()
     }
 
+    private var isLoading: Boolean = true
+    private var points: Int = 1
     private lateinit var circlePaint: Paint
     private lateinit var separatorPaint: Paint
 
     private fun init() {
         circlePaint = Paint()
-        circlePaint.color = ContextCompat.getColor(context, R.color.blue)
         circlePaint.isAntiAlias = true
         circlePaint.style = Paint.Style.STROKE
 
@@ -41,7 +43,6 @@ class CircleStatus: View {
         val h = height.toFloat()
         val radiusPart = w / 2
 
-        val points = 11
         val width = when {
             points <= 20 -> 10f
             points <= 40 -> 5f
@@ -51,7 +52,12 @@ class CircleStatus: View {
         circlePaint.strokeWidth = width
         separatorPaint.strokeWidth = width
 
+        circlePaint.color = ContextCompat.getColor(context, if(isLoading) R.color.skeleton else R.color.blue)
         canvas?.drawCircle(w / 2, h / 2, radiusPart - width, circlePaint)
+
+        if (points <= 1) {
+            return
+        }
 
         val pointAngle = 360 / points
         var angle = 0
@@ -59,10 +65,17 @@ class CircleStatus: View {
         for(index in 0 until points) {
             val x = (cos(Math.toRadians(angle.toDouble())) * radiusPart).toFloat()
             val y = (sin(Math.toRadians(angle.toDouble())) * radiusPart).toFloat()
+
             canvas?.drawLine(radiusPart, radiusPart, x + radiusPart, y + radiusPart, separatorPaint)
 
             angle += pointAngle
         }
+    }
 
+    fun drawnStatus(points: Int) {
+        this.points = points
+        this.isLoading = false
+
+        invalidate()
     }
 }

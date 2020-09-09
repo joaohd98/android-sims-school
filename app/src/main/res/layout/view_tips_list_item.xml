@@ -22,11 +22,11 @@
 
             <components.circle_status.CircleStatus
                 android:id="@+id/view_tips_list_item_circle_status"
-                android:visibility="@{response != null ? View.VISIBLE : View.INVISIBLE}"
                 android:rotation="90"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
+                circle_status_quantity="@{response.medias.size()}"
                 app:layout_constraintBottom_toTopOf="parent"
                 app:layout_constraintEnd_toStartOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

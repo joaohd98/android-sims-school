@@ -5,7 +5,6 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Handler
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.ImageView
 import android.widget.ImageView.ScaleType
@@ -58,17 +57,30 @@ class UriImageView : LinearLayout {
             uri_image.clipToOutline = true
         }
 
-        val scaleType = typedArray.getString(
-            R.styleable.UriImageView_scale_type_image
+        val scaleType = typedArray.getInt(
+            R.styleable.UriImageView_scale_type_image,
+            -1
         )
 
-        if(scaleType != null) {
-            ScaleType.values().forEach {
-                
-            }
+        if(scaleType > -1) {
+            uri_image.scaleType = getScaleType(scaleType)
         }
 
         typedArray.recycle()
+    }
+
+    private fun getScaleType(value: Int): ScaleType {
+        return when(value) {
+            0 -> ScaleType.MATRIX
+            1 -> ScaleType.FIT_XY
+            2 -> ScaleType.FIT_START
+            3 -> ScaleType.FIT_CENTER
+            4 -> ScaleType.FIT_END
+            5 -> ScaleType.CENTER
+            6 -> ScaleType.CENTER_CROP
+            7 -> ScaleType.CENTER_INSIDE
+            else -> { ScaleType.FIT_XY }
+        }
     }
 
     override fun onFinishInflate() {

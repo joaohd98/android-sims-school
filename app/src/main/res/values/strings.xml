@@ -26,12 +26,11 @@
 
     <string name="view_calendar_error">It was not possible to get the calendar</string>
 
+    <string name="view_tips_error_message">It was not possible to get the tips</string>
+
 
     <string name="view_error_message">Check your internet connection and try again!</string>
     <string name="view_error_button_text">Try Again</string>
-
-
-
 
     <string name="bottom_navigation_home">Home</string>
     <string name="bottom_navigation_scores">Scores</string>

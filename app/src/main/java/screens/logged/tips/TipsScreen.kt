@@ -14,6 +14,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ScreenTipsBinding
+import components.error_view.OnTryAgainClickDataBinding
+import kotlinx.android.synthetic.main.screen_scores.*
 import repositories.RepositoryStatus
 import screens.logged.scores.ScoresViewModel
 import utils.observeOnce
@@ -39,6 +41,7 @@ class TipsScreen : Fragment() {
 
         callRequest()
         initRecyclerView()
+        initErrorView()
         setObserves()
     }
 
@@ -60,7 +63,7 @@ class TipsScreen : Fragment() {
         viewModel.statusTips.observe(viewLifecycleOwner, {
             when(it) {
                 RepositoryStatus.FAILED -> {
-                    Toast.makeText(context, "FAILED", Toast.LENGTH_SHORT).show()
+                    binding.screenTipsViewSwitcher.showNext()
                 }
                 RepositoryStatus.LOADING -> {
                     list.setLoading()
@@ -69,6 +72,18 @@ class TipsScreen : Fragment() {
                     list.setSuccess(ArrayList(viewModel.tips))
                 }
                 else -> {}
+            }
+        })
+    }
+
+    private fun initErrorView() {
+        binding.screenTipsErrorView.setTryAgain(object: OnTryAgainClickDataBinding {
+            override fun showLoading() {
+                binding.screenTipsViewSwitcher.showNext()
+            }
+
+            override fun onClick() {
+                viewModel.callTips(true)
             }
         })
     }

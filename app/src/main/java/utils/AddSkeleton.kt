@@ -46,6 +46,8 @@ fun ViewGroup.removeSkeletonAllElementsInner() {
     }
 }
 
+
+
 private fun getShimmer(view: View, context: Context): ShimmerFrameLayout {
     val layoutParams =  LinearLayout.LayoutParams(view.layoutParams)
 

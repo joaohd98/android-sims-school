@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View"/>
         <variable
             name="response"
             type="repositories.tips.TipsResponse" />
@@ -21,6 +22,7 @@
 
             <components.circle_status.CircleStatus
                 android:id="@+id/view_tips_list_item_circle_status"
+                android:visibility="@{response != null ? View.VISIBLE : View.INVISIBLE}"
                 android:rotation="90"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -30,39 +32,40 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/view_tips_list_item_circle_image"
+            <components.uri_image.UriImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="8dp"
                 android:background="@drawable/border_circle"
                 android:scaleType="centerCrop"
                 android:src="@drawable/spider_man"
-                android:layout_margin="8dp"
                 app:layout_constraintBottom_toTopOf="@id/view_tips_list_item_circle_status"
                 app:layout_constraintEnd_toStartOf="@id/view_tips_list_item_circle_status"
                 app:layout_constraintStart_toStartOf="@id/view_tips_list_item_circle_status"
-                app:layout_constraintTop_toTopOf="@id/view_tips_list_item_circle_status" />
+                app:layout_constraintTop_toTopOf="@id/view_tips_list_item_circle_status"
+            />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
         <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="16dp"
-        android:orientation="vertical">
-        <TextView
+            android:id="@+id/view_tips_list_item_inner_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textSize="14sp"
-            android:text="@{response.name}"
-            tools:text="Software Development" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="18sp"
-            android:background="@color/graySmooth" />
-    </LinearLayout>
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="16dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:text="@{response.name}"
+                tools:text="Software Development" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="18sp"
+                android:background="@color/graySmooth" />
+        </LinearLayout>
     </LinearLayout>
 </layout>

@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewTipsListItemBinding
 import repositories.tips.TipsResponse
+import utils.addSkeleton
+import utils.addSkeletonAllElementsInner
+import utils.removeSkeletonAllElementsInner
 import kotlin.collections.ArrayList
 
 class TipsListAdapter(
@@ -36,14 +39,19 @@ class TipsListAdapter(
         }
     }
 
-
-
     class ViewHolder(
         private val binding: ViewTipsListItemBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.viewTipsListItemInnerLinearLayout.addSkeletonAllElementsInner()
+        }
+
         fun bind(response: TipsResponse) {
             binding.response = response
-            binding.viewTipsListItemCircleImage.clipToOutline = true
+            binding.viewTipsListItemInnerLinearLayout.removeSkeletonAllElementsInner()
+
+//            binding.viewTipsListItemCircleImage.clipToOutline = true
             binding.executePendingBindings()
         }
     }

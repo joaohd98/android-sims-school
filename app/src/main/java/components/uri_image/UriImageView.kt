@@ -5,7 +5,11 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Handler
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
+import android.widget.ImageView
+import android.widget.ImageView.ScaleType
+import android.widget.LinearLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -15,21 +19,56 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.joao.simsschool.R
+import kotlinx.android.synthetic.main.components_progress_bar_circular.view.*
 import kotlinx.android.synthetic.main.components_view_uri_image.view.*
 
-class UriImageView : ConstraintLayout {
+class UriImageView : LinearLayout {
     var uri: String? = null
 
-    constructor(context: Context) : super(context)
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
+    constructor(context: Context) : super(context) {
+        init(null, 0)
+    }
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
+        init(attrs, 0)
+    }
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(
         context,
         attrs,
         defStyle
-    )
+    ) {
+        init(attrs, defStyle)
+    }
 
     init {
         LayoutInflater.from(context).inflate(R.layout.components_view_uri_image, this, true)
+    }
+
+    private fun init(attrs: AttributeSet?, defStyle: Int) {
+        val typedArray = context.obtainStyledAttributes(
+            attrs, R.styleable.UriImageView, defStyle, 0
+        )
+
+        val background = typedArray.getDrawable(
+            R.styleable.UriImageView_background_image
+        )
+
+        if(background != null) {
+            uri_image_shimmer.background = background
+            uri_image.background = background
+            uri_image.clipToOutline = true
+        }
+
+        val scaleType = typedArray.getString(
+            R.styleable.UriImageView_scale_type_image
+        )
+
+        if(scaleType != null) {
+            ScaleType.values().forEach {
+                
+            }
+        }
+
+        typedArray.recycle()
     }
 
     override fun onFinishInflate() {

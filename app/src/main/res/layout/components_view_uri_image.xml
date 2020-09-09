@@ -9,6 +9,7 @@
         android:id="@+id/uri_image_shimmer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        tools:shimmer_base_alpha="1"
         android:background="@drawable/skeleton">
 
         <ImageView

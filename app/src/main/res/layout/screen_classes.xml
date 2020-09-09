@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="screens.logged.classes.ClassesScreen">
+    tools:context="screens.logged.tabs.classes.ClassesScreen">
     <ViewSwitcher
         android:id="@+id/view_classes_view_switcher"
         android:layout_width="match_parent"
@@ -32,11 +32,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <screens.logged.classes.components.ClassesDaysWeek
+            <screens.logged.tabs.classes.components.ClassesDaysWeek
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="20dp"/>
-            <screens.logged.classes.components.ClassesCalendar
+            <screens.logged.tabs.classes.components.ClassesCalendar
                 android:id="@+id/view_classes_calendar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

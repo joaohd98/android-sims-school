@@ -9,43 +9,43 @@
         android:layout_height="wrap_content"
         android:weightSum="7">
 
-        <screens.logged.classes.modal_week.components.WeekCalendarHeaderItem
+        <screens.logged.tabs.classes.modal_week.components.WeekCalendarHeaderItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"/>
 
-        <screens.logged.classes.modal_week.components.WeekCalendarHeaderItem
+        <screens.logged.tabs.classes.modal_week.components.WeekCalendarHeaderItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"/>
 
-        <screens.logged.classes.modal_week.components.WeekCalendarHeaderItem
+        <screens.logged.tabs.classes.modal_week.components.WeekCalendarHeaderItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"/>
 
-        <screens.logged.classes.modal_week.components.WeekCalendarHeaderItem
+        <screens.logged.tabs.classes.modal_week.components.WeekCalendarHeaderItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"/>
 
-        <screens.logged.classes.modal_week.components.WeekCalendarHeaderItem
+        <screens.logged.tabs.classes.modal_week.components.WeekCalendarHeaderItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"/>
 
-        <screens.logged.classes.modal_week.components.WeekCalendarHeaderItem
+        <screens.logged.tabs.classes.modal_week.components.WeekCalendarHeaderItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"/>
 
-        <screens.logged.classes.modal_week.components.WeekCalendarHeaderItem
+        <screens.logged.tabs.classes.modal_week.components.WeekCalendarHeaderItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

@@ -3,10 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_logged"
-    app:startDestination="@id/loggedActivity">
-    <activity
-        android:id="@+id/loggedActivity"
-        android:name="activities.logged.LoggedActivity"
-        android:label="activity_logged"
-        tools:layout="@layout/activity_logged" />
+    app:startDestination="@id/tabsFragment">
+
+    <fragment
+        android:id="@+id/tabsFragment"
+        android:name="screens.logged.tabs.TabsFragment"
+        android:label="TabsFragment" >
+        <action
+            android:id="@+id/action_tabsFragment_to_menuScreen"
+            app:destination="@id/menuScreen"
+            app:enterAnim="@anim/slide_left"
+            app:exitAnim="@anim/wait_anim"
+            app:popEnterAnim="@anim/wait_anim"
+            app:popExitAnim="@anim/slide_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/menuScreen"
+        android:name="screens.logged.menu.MenuScreen"
+        android:label="screen_menu"
+        tools:layout="@layout/screen_menu" />
 </navigation>

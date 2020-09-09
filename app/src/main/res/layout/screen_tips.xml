@@ -6,11 +6,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <screens.logged.tips.components.TipsListView
+        <screens.logged.tabs.tips.components.TipsListView
             android:id="@+id/screen_tips_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context="screens.logged.tips.TipsScreen" />
+            tools:context="screens.logged.tabs.tips.TipsScreen" />
 
         <components.error_view.ErrorView
             android:id="@+id/screen_tips_error_view"

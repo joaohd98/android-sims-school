@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import repositories.FirebaseInstances
 import repositories.user.UserRepository
 import repositories.user.UserResponse
 
@@ -19,8 +20,10 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         viewModel.user.observe(this, {
+            val firebaseUser = FirebaseInstances.auth.currentUser
+
             val intent = Intent(this,
-                if(it != null) LoggedActivity::class.java else GuestActivity::class.java
+                if(it != null && firebaseUser != null) LoggedActivity::class.java else GuestActivity::class.java
             )
 
             startActivity(intent)

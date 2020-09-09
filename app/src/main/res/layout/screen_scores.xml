@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="screens.logged.scores.ScoresScreen"
+    tools:context="screens.logged.tabs.scores.ScoresScreen"
     android:orientation="vertical">
 
     <ViewSwitcher
@@ -19,11 +19,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
-                <screens.logged.scores.components.ScoresSemestersView
+                <screens.logged.tabs.scores.components.ScoresSemestersView
                     android:id="@+id/view_scores_semesters"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-                <screens.logged.scores.components.ScoresClassesView
+                <screens.logged.tabs.scores.components.ScoresClassesView
                     android:id="@+id/view_scores_classes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />

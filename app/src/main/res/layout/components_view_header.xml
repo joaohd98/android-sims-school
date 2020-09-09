@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="onBackClick"
+            type="utils.OnClickDataBinding" />
+        <variable
+            name="onMenuClick"
+            type="utils.OnClickDataBinding" />
+    </data>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:background="@color/blue"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/components_view_header_left_arrow"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_action_left_arrow"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:onClick="@{() -> onBackClick.onClick()}"
+                app:tint="@color/white"
+                tools:tint="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:minHeight="?actionBarSize"
+                android:padding="16dp"
+                android:text="@string/app_name"
+                android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/components_view_header_left_arrow"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <ImageButton
+                android:id="@+id/components_view_header_button"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="16dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:contentDescription="@string/toolbar_menu"
+                android:src="@drawable/ic_toolbar_menu"
+                android:onClick="@{() -> onMenuClick.onClick()}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/components_view_header_tabs"
+            app:tabRippleColor="@android:color/transparent"
+            app:tabTextAppearance="@style/CustomTextAppearanceTab"
+            app:tabIndicatorHeight="3dp"
+            app:tabTextColor="@color/gray"
+            app:tabBackground="@color/white"
+            app:tabSelectedTextColor="@color/blue"
+            app:tabIndicatorColor="@color/blue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+        />
+    </com.google.android.material.appbar.AppBarLayout>
+
+</layout>

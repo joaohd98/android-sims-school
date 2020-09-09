@@ -1,0 +1,7 @@
+<resources>
+    <declare-styleable name="HeaderView">
+        <attr name="hasTabs" format="boolean" />
+        <attr name="hasBackButton" format="boolean" />
+        <attr name="hasButton" format="boolean" />
+    </declare-styleable>
+</resources>

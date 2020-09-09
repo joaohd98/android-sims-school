@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="screens.logged.home.HomeScreen">
+    tools:context="screens.logged.tabs.home.HomeScreen">
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
@@ -13,15 +13,15 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
-            <screens.logged.home.components.HomeProfileView
+            <screens.logged.tabs.home.components.HomeProfileView
                 android:id="@+id/home_screen_profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-            <screens.logged.home.components.HomeClassesContainerView
+            <screens.logged.tabs.home.components.HomeClassesContainerView
                 android:id="@+id/home_screen_classes_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-            <screens.logged.home.components.HomeAdsView
+            <screens.logged.tabs.home.components.HomeAdsView
                 android:id="@+id/home_screen_ads"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

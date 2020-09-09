@@ -10,49 +10,49 @@
         android:layout_height="wrap_content"
         android:weightSum="7">
 
-        <screens.logged.classes.components.ClassesCalendarItem
+        <screens.logged.tabs.classes.components.ClassesCalendarItem
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
             android:gravity="center"
             android:layout_weight="1" />
 
-        <screens.logged.classes.components.ClassesCalendarItem
+        <screens.logged.tabs.classes.components.ClassesCalendarItem
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
             android:gravity="center"
             android:layout_weight="1" />
 
-        <screens.logged.classes.components.ClassesCalendarItem
+        <screens.logged.tabs.classes.components.ClassesCalendarItem
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
             android:gravity="center"
             android:layout_weight="1" />
 
-        <screens.logged.classes.components.ClassesCalendarItem
+        <screens.logged.tabs.classes.components.ClassesCalendarItem
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
             android:gravity="center"
             android:layout_weight="1" />
 
-        <screens.logged.classes.components.ClassesCalendarItem
+        <screens.logged.tabs.classes.components.ClassesCalendarItem
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
             android:gravity="center"
             android:layout_weight="1" />
 
-        <screens.logged.classes.components.ClassesCalendarItem
+        <screens.logged.tabs.classes.components.ClassesCalendarItem
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
             android:gravity="center"
             android:layout_weight="1" />
 
-        <screens.logged.classes.components.ClassesCalendarItem
+        <screens.logged.tabs.classes.components.ClassesCalendarItem
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_gravity="center"

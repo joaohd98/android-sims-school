@@ -164,7 +164,7 @@ class UriImageView : LinearLayout {
         shimmerChange(true)
         val options = RequestOptions()
             .centerCrop()
-            .override(64, 64)
+            .override(32, 32)
 
         GlideApp
             .with(uri_image.context)
@@ -172,7 +172,7 @@ class UriImageView : LinearLayout {
             .timeout(5000)
             .transition(DrawableTransitionOptions.withCrossFade())
             .listener(requestListener)
-            .thumbnail(0.25f)
+            .thumbnail(0.1f)
             .placeholder(R.drawable.skeleton)
             .apply(options)
             .into(uri_image)

@@ -1,8 +1,6 @@
 package screens.logged.tabs.tips.components
 
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
@@ -10,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewTipsListItemBinding
 import repositories.tips.TipsResponse
-import screens.logged.tabs.tips.modal_all_tips.AllTipsModal
+import screens.logged.tabs.tips.modal_medias.MediasModal
 import utils.OnClickDataBinding
 import utils.addSkeletonAllElementsInner
 import utils.removeSkeletonAllElementsInner
@@ -39,7 +37,7 @@ class TipsListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if (this::tips.isInitialized) {
             holder.bind(tips[position]) {
-                AllTipsModal.invoke(fragmentManager, tips, position)
+                MediasModal.invoke(fragmentManager, tips, position)
             }
         }
     }

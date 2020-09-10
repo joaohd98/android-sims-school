@@ -1,16 +1,12 @@
-package screens.logged.tabs.tips.modal_all_tips
+package screens.logged.tabs.tips.modal_medias
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import repositories.tips.TipsResponse
-import screens.logged.tabs.classes.ClassesScreen
-import screens.logged.tabs.home.HomeScreen
-import screens.logged.tabs.scores.ScoresScreen
-import screens.logged.tabs.tips.TipsScreen
-import screens.logged.tabs.tips.modal_all_tips.components.AllTipsItem
+import screens.logged.tabs.tips.modal_medias.components.MediasItemFragment
 
-class AllTipsAdapter(
+class MediasAdapter(
     private val tips: ArrayList<TipsResponse>,
     fa: FragmentActivity
 ) : FragmentStateAdapter(fa) {
@@ -19,6 +15,6 @@ class AllTipsAdapter(
     }
 
     override fun createFragment(position: Int): Fragment {
-       return AllTipsItem.newInstance(tips[position])
+       return MediasItemFragment.newInstance(tips[position])
     }
 }

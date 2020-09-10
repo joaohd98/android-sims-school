@@ -10,7 +10,7 @@
         android:background="@color/black">
 
         <TextView
-            android:id="@+id/modal_all_tips_item_text"
+            android:id="@+id/modal_medias_item_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textColor="@color/white"

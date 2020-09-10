@@ -26,4 +26,17 @@ class MediasProgressView: ConstraintLayout {
             binding = ModalMediasItemProgressViewBinding.inflate(LayoutInflater.from(context), this, true)
         }
     }
+
+    override fun onFinishInflate() {
+        super.onFinishInflate()
+//        val value = 4f
+//
+//        binding.modalMediasItemProgressLinearLayout.weightSum = value
+//        for (i in 0 until 4) {
+//            binding.modalMediasItemProgressLinearLayout.addView(
+//                binding.modalMediasItemProgressBar.rootView
+//            )
+//        }
+    }
+
 }

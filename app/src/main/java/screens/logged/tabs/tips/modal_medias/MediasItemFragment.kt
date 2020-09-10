@@ -1,4 +1,4 @@
-package screens.logged.tabs.tips.modal_medias.components
+package screens.logged.tabs.tips.modal_medias
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -26,8 +26,6 @@ class MediasItemFragment(private val tip: TipsResponse): Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.modalMediasItemText.text = tip.name
     }
 
     companion object {

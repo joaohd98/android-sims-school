@@ -8,13 +8,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/black">
-        <TextView
-            android:id="@+id/modal_medias_item_text"
+        <screens.logged.tabs.tips.modal_medias.components.MediasProgressView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="@color/white"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="@string/view_menu_item_logout"/>
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"/>
     </LinearLayout>
 </layout>

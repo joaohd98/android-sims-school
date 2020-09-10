@@ -49,16 +49,15 @@ class TipsListAdapter(
             binding.viewTipsListItemInnerLinearLayout.addSkeletonAllElementsInner()
         }
 
-        fun bind(response: TipsResponse, onClick: () -> Unit) {
+        fun bind(response: TipsResponse, onPress: () -> Unit) {
             binding.response = response
-            binding.viewTipsListItemInnerLinearLayout.removeSkeletonAllElementsInner()
-
             binding.onSelect = object: OnClickDataBinding() {
                 override fun onClick() {
-                    onClick()
+                    onPress()
                 }
             }
 
+            binding.viewTipsListItemInnerLinearLayout.removeSkeletonAllElementsInner()
             binding.executePendingBindings()
         }
     }

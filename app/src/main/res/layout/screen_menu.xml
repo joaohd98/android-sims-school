@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="screens.logged.menu.MenuScreen">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,7 +17,7 @@
             app:hasTabs="false"/>
 
         <ImageView
-            android:layout_marginVertical="50dp"
+            android:layout_marginTop="80dp"
             android:layout_width="180dp"
             android:layout_height="180dp"
             android:layout_gravity="center"
@@ -29,26 +30,26 @@
             android:layout_margin="24dp"
             android:gravity="bottom">
             <screens.logged.menu.components.MenuItemView
+                android:id="@+id/screen_menu_option_share"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:menu_text="@string/view_menu_item_share"
                 app:menu_icon="@drawable/ic_action_share"
-                app:menu_tint="@color/gray"
-                app:menu_onPress="share" />
+                app:menu_tint="@color/gray" />
             <screens.logged.menu.components.MenuItemView
+                android:id="@+id/screen_menu_option_maps"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:menu_text="@string/view_menu_item_maps"
                 app:menu_icon="@drawable/ic_action_maps"
-                app:menu_tint="@color/green"
-                app:menu_onPress="maps"/>
+                app:menu_tint="@color/green" />
             <screens.logged.menu.components.MenuItemView
+                android:id="@+id/screen_menu_logout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:menu_text="@string/view_menu_item_logout"
                 app:menu_icon="@drawable/ic_action_exit"
-                app:menu_tint="@color/red"
-                app:menu_onPress="logout"/>
+                app:menu_tint="@color/red" />
         </LinearLayout>
     </LinearLayout>
 </layout>

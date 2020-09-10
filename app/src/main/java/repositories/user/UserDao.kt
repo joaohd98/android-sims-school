@@ -17,4 +17,7 @@ interface UserDao {
     @Query("UPDATE user set profile_picture = :uri")
     fun updateProfilePicture(uri: String)
 
+    @Query("DELETE FROM user")
+    fun removeUser()
+
 }

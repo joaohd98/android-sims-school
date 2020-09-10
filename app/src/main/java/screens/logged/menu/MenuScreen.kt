@@ -1,17 +1,28 @@
 package screens.logged.menu
 
 import activities.logged.LoggedActivity
+import android.app.Activity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.view.menu.MenuView
+import androidx.core.app.ShareCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ScreenMenuBinding
 import com.joao.simsschool.databinding.ScreenTipsBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import screens.guest.login.LoginScreenViewModel
+import utils.OnClickDataBinding
 
 class MenuScreen : Fragment() {
+    private val viewModel: MenuViewModel by viewModels()
     lateinit var binding: ScreenMenuBinding
 
     override fun onCreateView(
@@ -27,6 +38,42 @@ class MenuScreen : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setClickShare()
+        setClickMaps()
+        setClickLogout()
+    }
+
+    private fun setClickShare() {
+        binding.screenMenuOptionShare.setOnCLick(object: OnClickDataBinding {
+            override fun onClick() {
+                viewModel.share(context as Activity)
+            }
+        })
+    }
+
+    private fun setClickMaps() {
+        binding.screenMenuOptionMaps.setOnCLick(object: OnClickDataBinding {
+            override fun onClick() {
+
+            }
+        })
+    }
+
+    private fun setClickLogout() {
+        binding.screenMenuLogout.setOnCLick(object: OnClickDataBinding {
+            override fun onClick() {
+                val navController = findNavController()
+
+                GlobalScope.launch(Dispatchers.IO) {
+                    viewModel.logout()
+
+                    GlobalScope.launch(Dispatchers.Main) {
+                        navController.navigate(R.id.action_menuScreen_to_nav_graph_guest)
+                    }
+                }
+            }
+        })
     }
 
 }

@@ -27,6 +27,8 @@ class UserRepository(application: Application) {
 
     fun getUser() = userDao.getFirst()
 
+    fun logout() = userDao.removeUser()
+
     fun signIn(
         userRequest: UserRequest,
         onSuccess: (UserResponse) -> Unit,

@@ -35,7 +35,7 @@ class WeekCalendarHeaderItem : LinearLayout {
         binding.dayWeek = weekDays[dayWeek]
         binding.dayMonth = dayMonth
         binding.isSelected = isSelected
-        binding.changeHeader = object: OnClickDataBinding {
+        binding.changeHeader = object: OnClickDataBinding() {
             override fun onClick() {
                 onClick()
             }

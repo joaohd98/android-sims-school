@@ -33,7 +33,7 @@ class HomeProfileView : ConstraintLayout {
     }
 
     fun setChangeProfile(viewModel: HomeViewModel, supportFragmentManager: FragmentManager) {
-        binding.changePicture = object: OnClickDataBinding {
+        binding.changePicture = object: OnClickDataBinding() {
             override fun onClick() {
                 val bottomSheetFragment = CameraFragment()
 

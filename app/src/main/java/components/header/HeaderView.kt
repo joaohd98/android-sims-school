@@ -66,13 +66,13 @@ class HeaderView: ConstraintLayout {
         super.onFinishInflate()
         val activity = (context as Activity)
 
-        binding.onBackClick = object: OnClickDataBinding {
+        binding.onBackClick = object: OnClickDataBinding() {
             override fun onClick() {
                 activity.onBackPressed()
             }
         }
 
-        binding.onMenuClick = object: OnClickDataBinding {
+        binding.onMenuClick = object: OnClickDataBinding() {
             override fun onClick() {
                 activity
                     .findNavController(R.id.nav_host_fragment_logged)

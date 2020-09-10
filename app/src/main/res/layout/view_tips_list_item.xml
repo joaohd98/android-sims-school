@@ -9,12 +9,19 @@
         <variable
             name="response"
             type="repositories.tips.TipsResponse" />
+        <variable
+            name="onSelect"
+            type="utils.OnClickDataBinding" />
     </data>
 
     <LinearLayout
+        android:id="@+id/view_tips_list_item_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{onSelect::onClickAnimated}"
         android:orientation="horizontal">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="64dp"

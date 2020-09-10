@@ -1,6 +1,8 @@
 package screens.logged.tabs.tips.components
 
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
@@ -8,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewTipsListItemBinding
 import repositories.tips.TipsResponse
+import utils.OnClickDataBinding
 import utils.addSkeletonAllElementsInner
 import utils.removeSkeletonAllElementsInner
 import kotlin.collections.ArrayList
@@ -50,7 +53,12 @@ class TipsListAdapter(
             binding.response = response
             binding.viewTipsListItemInnerLinearLayout.removeSkeletonAllElementsInner()
 
-//            binding.viewTipsListItemCircleImage.clipToOutline = true
+            binding.onSelect = object: OnClickDataBinding() {
+                override fun onClick() {
+                    Log.d("aaaa", "aaa")
+                }
+            }
+
             binding.executePendingBindings()
         }
     }

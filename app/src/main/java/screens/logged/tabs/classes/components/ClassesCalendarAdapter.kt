@@ -104,7 +104,7 @@ class ClassesCalendarAdapter(
                     else {
                         calendarItem.binding.hasBullet = true
                         calendarItem.binding.hasBulletFill = dayResponse.homework != "" || dayResponse.test != ""
-                        calendarItem.binding.linearLayoutClick = object: OnClickDataBinding {
+                        calendarItem.binding.linearLayoutClick = object: OnClickDataBinding() {
                             override fun onClick() {
                                 WeekCalendarModal.invoke(
                                     fragmentManager,

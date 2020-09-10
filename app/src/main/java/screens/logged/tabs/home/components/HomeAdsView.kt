@@ -42,7 +42,7 @@ class HomeAdsView : ConstraintLayout {
     }
 
     fun setWebView(supportFragmentManager: FragmentManager) {
-        binding.webView = object: OnClickDataBinding {
+        binding.webView = object: OnClickDataBinding() {
             override fun onClick() {
                 WebViewFragment.invoke(supportFragmentManager, Uri.parse(ad.url))
             }

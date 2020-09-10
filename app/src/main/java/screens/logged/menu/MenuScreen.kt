@@ -45,7 +45,7 @@ class MenuScreen : Fragment() {
     }
 
     private fun setClickShare() {
-        binding.screenMenuOptionShare.setOnCLick(object: OnClickDataBinding {
+        binding.screenMenuOptionShare.setOnCLick(object: OnClickDataBinding() {
             override fun onClick() {
                 viewModel.share(context as Activity)
             }
@@ -53,7 +53,7 @@ class MenuScreen : Fragment() {
     }
 
     private fun setClickMaps() {
-        binding.screenMenuOptionMaps.setOnCLick(object: OnClickDataBinding {
+        binding.screenMenuOptionMaps.setOnCLick(object: OnClickDataBinding() {
             override fun onClick() {
 
             }
@@ -61,7 +61,7 @@ class MenuScreen : Fragment() {
     }
 
     private fun setClickLogout() {
-        binding.screenMenuLogout.setOnCLick(object: OnClickDataBinding {
+        binding.screenMenuLogout.setOnCLick(object: OnClickDataBinding() {
             override fun onClick() {
                 val navController = findNavController()
 

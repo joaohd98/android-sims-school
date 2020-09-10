@@ -37,8 +37,8 @@ class TipsResponse(
 
             val media = medias.random()
 
-            thumbnailImage = getFirebaseURl(media.image)
-            thumbnailVideo = getFirebaseURl(media.video)
+//            thumbnailImage = getFirebaseURl(media.image)
+//            thumbnailVideo = getFirebaseURl(media.video)
         }
     }
 

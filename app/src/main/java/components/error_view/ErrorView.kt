@@ -49,7 +49,7 @@ class ErrorView: LinearLayout {
     }
 
     fun setTryAgain(onTryAgain: OnTryAgainClickDataBinding) {
-        binding.tryAgain = object: OnClickDataBinding {
+        binding.tryAgain = object: OnClickDataBinding() {
             override fun onClick() {
                 onTryAgain.showLoading()
 

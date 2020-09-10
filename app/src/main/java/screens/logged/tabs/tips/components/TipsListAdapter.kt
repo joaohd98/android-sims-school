@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewTipsListItemBinding
 import repositories.tips.TipsResponse
+import screens.logged.tabs.tips.modal_all_tips.AllTipsModal
 import utils.OnClickDataBinding
 import utils.addSkeletonAllElementsInner
 import utils.removeSkeletonAllElementsInner
@@ -37,25 +38,26 @@ class TipsListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if (this::tips.isInitialized) {
-            holder.bind(tips[position])
+            holder.bind(tips[position]) {
+                AllTipsModal.invoke(fragmentManager, tips, position)
+            }
         }
     }
 
     class ViewHolder(
         private val binding: ViewTipsListItemBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
-
         init {
             binding.viewTipsListItemInnerLinearLayout.addSkeletonAllElementsInner()
         }
 
-        fun bind(response: TipsResponse) {
+        fun bind(response: TipsResponse, onClick: () -> Unit) {
             binding.response = response
             binding.viewTipsListItemInnerLinearLayout.removeSkeletonAllElementsInner()
 
             binding.onSelect = object: OnClickDataBinding() {
                 override fun onClick() {
-                    Log.d("aaaa", "aaa")
+                    onClick()
                 }
             }
 

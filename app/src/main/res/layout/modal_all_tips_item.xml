@@ -9,10 +9,13 @@
         app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
         android:background="@color/black">
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/modal_all_tips_view_pager"
+        <TextView
+            android:id="@+id/modal_all_tips_item_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/view_menu_item_logout"/>
     </LinearLayout>
 </layout>

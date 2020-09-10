@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ModalAllTipsBinding
@@ -12,6 +13,7 @@ import com.joao.simsschool.databinding.ModalWeekCalendarBinding
 import repositories.calendar.CalendarDayResponse
 import repositories.calendar.CalendarWeekResponse
 import repositories.tips.TipsResponse
+import screens.logged.tabs.TabsPageAdapter
 import screens.logged.tabs.classes.modal_week.WeekCalendarModal
 import utils.CustomRoundBottomSheet
 
@@ -35,6 +37,17 @@ class AllTipsModal(
     override fun onStart() {
         super.onStart()
         setFullScreen()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val adapter = AllTipsAdapter(tips, context as FragmentActivity)
+
+        binding.modalAllTipsViewPager.apply {
+            this.adapter = adapter
+            setCurrentItem(index, false)
+        }
     }
 
     companion object {

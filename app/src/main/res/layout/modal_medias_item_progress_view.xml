@@ -13,7 +13,7 @@
         <ProgressBar
             android:id="@+id/modal_medias_item_progress_bar"
             android:layout_width="0dp"
-            android:layout_height="12dp"
+            android:layout_height="16dp"
             android:indeterminate="false"
             style="?android:attr/progressBarStyleHorizontal"
             android:progressTint="@color/blue"

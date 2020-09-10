@@ -6,11 +6,16 @@
         android:id="@+id/modal_medias_item_linear_layout"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:padding="10dp"
         android:background="@color/black">
         <screens.logged.tabs.tips.modal_medias.components.MediasProgressView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"/>
+            android:layout_margin="5dp"/>
+        <screens.logged.tabs.tips.modal_medias.components.MediaTitleView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"/>
     </LinearLayout>
 </layout>

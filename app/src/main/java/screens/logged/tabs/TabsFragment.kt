@@ -13,6 +13,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.FragmentTabsBinding
+import utils.CubeTransformer
 
 class TabsFragment: Fragment() {
     lateinit var binding: FragmentTabsBinding
@@ -41,6 +42,9 @@ class TabsFragment: Fragment() {
             this.adapter = adapter
             isUserInputEnabled = false
         }
+
+        viewPager.setPageTransformer(CubeTransformer())
+
 
         val tabLayout = binding.fragmentTabsHeader.getTabLayout()
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->

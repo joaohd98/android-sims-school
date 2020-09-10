@@ -7,10 +7,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
-        android:background="@color/black">
-
+        android:background="@color/blackSmooth">
         <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/modal_all_tips_view_pager"
+            android:id="@+id/modal_medias_view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />

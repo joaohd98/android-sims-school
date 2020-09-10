@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ModalMediasTipsBinding
 import repositories.tips.TipsResponse
+import utils.CubeTransformer
 import utils.CustomRoundBottomSheet
 
 class MediasModal(
@@ -39,9 +40,10 @@ class MediasModal(
 
         val adapter = MediasAdapter(tips, context as FragmentActivity)
 
-        binding.modalAllTipsViewPager.apply {
+        binding.modalMediasViewPager.apply {
             this.adapter = adapter
             setCurrentItem(index, false)
+            setPageTransformer(CubeTransformer())
         }
     }
 

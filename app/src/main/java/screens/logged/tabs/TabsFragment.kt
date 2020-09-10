@@ -1,13 +1,16 @@
 package screens.logged.tabs
 
 import activities.logged.LoggedActivity
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.FragmentTabsBinding
 
@@ -32,15 +35,18 @@ class TabsFragment: Fragment() {
     }
 
     private fun setupTabs() {
-        val sectionsPagerAdapter = TabsPageAdapter(requireContext(), parentFragmentManager)
+        val adapter = TabsPageAdapter(requireContext() as FragmentActivity)
 
         val viewPager = binding.fragmentTabsViewPager.apply {
-            adapter = sectionsPagerAdapter
+            this.adapter = adapter
+            isUserInputEnabled = false
         }
 
-        val tabs = binding.fragmentTabsHeader.getTabLayout()
-        tabs.setupWithViewPager(viewPager)
+        val tabLayout = binding.fragmentTabsHeader.getTabLayout()
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            tab.text = adapter.getTitle(position)
+            viewPager.setCurrentItem(tab.position, false)
+        }.attach()
     }
-
 
 }

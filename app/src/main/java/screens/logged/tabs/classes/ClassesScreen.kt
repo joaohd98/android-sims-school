@@ -69,4 +69,7 @@ class ClassesScreen : Fragment() {
         })
     }
 
+    companion object {
+        fun newInstance() = ClassesScreen()
+    }
 }

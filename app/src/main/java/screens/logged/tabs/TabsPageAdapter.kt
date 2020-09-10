@@ -1,33 +1,37 @@
 package screens.logged.tabs
 
-import android.content.Context
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import screens.logged.tabs.classes.ClassesScreen
 import screens.logged.tabs.home.HomeScreen
 import screens.logged.tabs.scores.ScoresScreen
 import screens.logged.tabs.tips.TipsScreen
 
-class TabsPageAdapter(private val context: Context, fm: FragmentManager)
-    : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class TabsPageAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
 
     private val pages = arrayOf(
-        Pair(TipsScreen(), "Tips"),
-        Pair(ClassesScreen(), "Classes"),
-        Pair(ScoresScreen(), "Scores"),
-        Pair(HomeScreen(), "Home"),
+        "Tips",
+        "Classes",
+        "Scores",
+        "Home"
     )
 
-    override fun getItem(position: Int): Fragment {
-        return pages[position].first
+    fun getTitle(position: Int): String {
+        return pages[position]
     }
 
-    override fun getPageTitle(position: Int): CharSequence? {
-        return pages[position].second
+    override fun getItemCount(): Int {
+        return 4
     }
 
-    override fun getCount(): Int {
-        return pages.size
+    override fun createFragment(position: Int): Fragment {
+        return when(position) {
+            0 -> TipsScreen.newInstance()
+            1 -> HomeScreen.newInstance()
+            2 -> ScoresScreen.newInstance()
+            3 -> ClassesScreen.newInstance()
+            else -> { HomeScreen.newInstance() }
+        }
     }
 }

@@ -11,6 +11,7 @@ import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ScreenTipsBinding
 import components.error_view.OnTryAgainClickDataBinding
 import repositories.RepositoryStatus
+import screens.logged.tabs.scores.ScoresScreen
 import utils.observeOnce
 
 
@@ -79,5 +80,9 @@ class TipsScreen : Fragment() {
                 viewModel.callTips(true)
             }
         })
+    }
+
+    companion object {
+        fun newInstance() = TipsScreen()
     }
 }

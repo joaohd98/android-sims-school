@@ -10,6 +10,7 @@ import com.joao.simsschool.R
 import components.error_view.OnTryAgainClickDataBinding
 import kotlinx.android.synthetic.main.screen_scores.*
 import repositories.RepositoryStatus
+import screens.logged.tabs.home.HomeScreen
 import screens.logged.tabs.scores.components.ScoresClassesAdapter
 import utils.observeOnce
 
@@ -101,5 +102,9 @@ class ScoresScreen : Fragment() {
                 viewModel.callScores()
             }
         })
+    }
+
+    companion object {
+        fun newInstance() = ScoresScreen()
     }
 }

@@ -10,6 +10,7 @@ import com.joao.simsschool.R
 import kotlinx.android.synthetic.main.screen_home.*
 import kotlinx.android.synthetic.main.view_home_profile.*
 import repositories.RepositoryStatus
+import screens.logged.tabs.classes.ClassesScreen
 import screens.logged.tabs.home.components.HomeProfileView
 import utils.alertDialog
 import utils.observeOnce
@@ -114,5 +115,9 @@ class HomeScreen : Fragment() {
                 else -> {}
             }
         })
+    }
+
+    companion object {
+        fun newInstance() = HomeScreen()
     }
 }

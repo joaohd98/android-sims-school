@@ -45,16 +45,4 @@ class MediaContentView: ConstraintLayout {
             start()
         }
     }
-
-    fun setDistanceUntilTop(distance: Int) {
-        binding.modalMediaItemVideoVertical.apply {
-            setMargins(rootView, distance * -1)
-        }
-    }
-
-    private fun setMargins(v: View, bottom: Int) {
-        if (v.layoutParams is MarginLayoutParams) {
-            v.requestLayout()
-        }
-    }
 }

@@ -19,6 +19,11 @@
         <item name="colorAccent">@color/black</item>
     </style>
 
+    <style name="FullScreenModal" parent="AppTheme">
+        <item name="android:windowFullscreen">false</item>
+    </style>
+
+
     <style name="CustomStatusProgressBar" parent="CustomProgressBarHorizontal">
         <item name="android:minHeight">6dp</item>
         <item name="android:maxHeight">6dp</item>

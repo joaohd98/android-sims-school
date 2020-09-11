@@ -36,9 +36,17 @@ open class CustomRoundBottomSheet: BottomSheetDialogFragment() {
         return dialog
     }
 
-    fun setFullScreen() {
+    fun set90Screen() {
         val height = (resources.displayMetrics.heightPixels * 0.9).toInt()
+        setScreenSize(height)
+    }
 
+    fun setFullScreen() {
+        val height = resources.displayMetrics.heightPixels
+        setScreenSize(height)
+    }
+
+    private fun setScreenSize(height: Int) {
         dialog.behavior.state = STATE_EXPANDED
         dialog.behavior.peekHeight = height
 
@@ -46,4 +54,6 @@ open class CustomRoundBottomSheet: BottomSheetDialogFragment() {
         layoutParams.height = height
         view?.layoutParams = layoutParams
     }
+
+
 }

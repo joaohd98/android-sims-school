@@ -1,13 +1,15 @@
 package screens.logged.tabs.tips.modal_medias.components
 
 import android.content.Context
+import android.net.Uri
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.marginTop
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ModalMediasItemContentBinding
-import com.joao.simsschool.databinding.ModalMediasItemProgressViewBinding
-import com.joao.simsschool.databinding.ModalMediasItemTitleViewBinding
+
 
 class MediaContentView: ConstraintLayout {
     lateinit var binding: ModalMediasItemContentBinding
@@ -25,12 +27,34 @@ class MediaContentView: ConstraintLayout {
             LayoutInflater.from(context).inflate(R.layout.modal_medias_item_content, this, true)
         }
         else {
-            binding = ModalMediasItemContentBinding.inflate(LayoutInflater.from(context), this, true)
+            binding = ModalMediasItemContentBinding.inflate(
+                LayoutInflater.from(context),
+                this,
+                true
+            )
         }
     }
 
     override fun onFinishInflate() {
         super.onFinishInflate()
+
+        binding.modalMediaItemVideoVertical.apply {
+            val path = "android.resource://" + context.packageName.toString() + "/" + R.raw.terminator
+
+            setVideoURI(Uri.parse(path))
+            start()
+        }
     }
 
+    fun setDistanceUntilTop(distance: Int) {
+        binding.modalMediaItemVideoVertical.apply {
+            setMargins(rootView, distance * -1)
+        }
+    }
+
+    private fun setMargins(v: View, bottom: Int) {
+        if (v.layoutParams is MarginLayoutParams) {
+            v.requestLayout()
+        }
+    }
 }

@@ -2,17 +2,42 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="marginUntilTop"
+            type="java.lang.Integer" />
+    </data>
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
         android:background="@color/black">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            android:src="@drawable/spider_man"/>
+<!--        <ImageView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:scaleType="fitXY"-->
+<!--            android:src="@drawable/spider_man"/>-->
+<!--        <ImageView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="300dp"-->
+<!--            android:scaleType="fitCenter"-->
+<!--            android:src="@drawable/unreal_engine" />-->
+
+
+            <utils.CustomVerticalVideoView
+                android:id="@+id/modal_media_item_video_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </utils.CustomVerticalVideoView>
+
+
+<!--        <VideoView-->
+<!--            android:id="@+id/video_view"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="300dp" />-->
+
 
     </LinearLayout>
 </layout>

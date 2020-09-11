@@ -1,46 +1,46 @@
 package screens.logged.tabs.tips.modal_medias
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import com.joao.simsschool.R
-import com.joao.simsschool.databinding.ModalMediasTipsBinding
+import com.joao.simsschool.databinding.ModalMediasBinding
 import repositories.tips.TipsResponse
+import screens.logged.tabs.tips.modal_medias.adapter.MediasAdapter
 import utils.CubeTransformer
-import utils.CustomRoundBottomSheet
+
 
 class MediasModal(
     private val tips: ArrayList<TipsResponse>,
     private val index: Int
-): CustomRoundBottomSheet() {
-    lateinit var binding: ModalMediasTipsBinding
+): DialogFragment() {
+    lateinit var binding: ModalMediasBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(STYLE_NORMAL, R.style.FullScreenModal);
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(
-            inflater, R.layout.modal_medias_tips, container, false
+            inflater, R.layout.modal_medias, container, false
         )
 
         return binding.root
     }
 
-    override fun onStart() {
-        super.onStart()
-        setFullScreen()
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = MediasAdapter(tips, context as FragmentActivity)
+        val adapter = MediasAdapter(context as FragmentActivity, tips)
 
         binding.modalMediasViewPager.apply {
             this.adapter = adapter
@@ -55,8 +55,8 @@ class MediasModal(
             tips: ArrayList<TipsResponse>,
             index: Int
         ) {
-            val bottomSheetFragment = MediasModal(tips, index)
-            bottomSheetFragment.show(fragmentManager, bottomSheetFragment.tag)
+            val mediaModal = MediasModal(tips, index)
+            mediaModal.show(fragmentManager, mediaModal.tag)
         }
     }
 }

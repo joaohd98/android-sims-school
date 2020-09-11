@@ -41,10 +41,8 @@ class TabsFragment: Fragment() {
         val viewPager = binding.fragmentTabsViewPager.apply {
             this.adapter = adapter
             isUserInputEnabled = false
+            setPageTransformer(null)
         }
-
-        viewPager.setPageTransformer(CubeTransformer())
-
 
         val tabLayout = binding.fragmentTabsHeader.getTabLayout()
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->

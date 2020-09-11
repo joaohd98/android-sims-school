@@ -23,7 +23,7 @@ class WebViewFragment(private val url: Uri) : CustomRoundBottomSheet() {
 
     override fun onStart() {
         super.onStart()
-        setFullScreen()
+        set90Screen()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

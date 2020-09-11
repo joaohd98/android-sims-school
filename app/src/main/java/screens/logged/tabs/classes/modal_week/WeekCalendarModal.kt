@@ -31,7 +31,7 @@ class WeekCalendarModal(
 
     override fun onStart() {
         super.onStart()
-        setFullScreen()
+        set90Screen()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

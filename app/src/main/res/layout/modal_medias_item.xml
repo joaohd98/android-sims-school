@@ -8,6 +8,7 @@
         android:layout_height="match_parent"
         android:background="@color/black">
         <screens.logged.tabs.tips.modal_medias.components.MediaContentView
+            android:id="@+id/modal_medias_item_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,9 +40,7 @@
             <screens.logged.tabs.tips.modal_medias.components.MediaFooterView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
                 android:layout_margin="5dp" />
         </LinearLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

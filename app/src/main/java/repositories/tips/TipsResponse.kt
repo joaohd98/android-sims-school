@@ -57,7 +57,7 @@ class TipsResponse(
     }
 
     fun goLeftMedia(onFirst: () -> Unit) {
-        if(currentIndex == 0) {
+        if(currentIndex <= 0) {
             onFirst()
         }
         else {
@@ -67,7 +67,7 @@ class TipsResponse(
 
 
     fun goRightMedia(onLast: () -> Unit) {
-        if(currentIndex == medias.size - 1) {
+        if(currentIndex >= medias.size - 1) {
             onLast()
         }
         else {

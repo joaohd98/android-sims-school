@@ -8,6 +8,9 @@
         <variable
             name="isHolding"
             type="java.lang.Boolean" />
+        <variable
+            name="media"
+            type="repositories.tips.TipsMediasResponse" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

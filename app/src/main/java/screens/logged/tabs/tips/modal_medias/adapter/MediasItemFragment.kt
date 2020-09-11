@@ -4,18 +4,20 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.*
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ModalMediasItemBinding
 import repositories.tips.TipsResponse
 import screens.logged.tabs.tips.modal_medias.MediasViewModel
+import screens.logged.tabs.tips.modal_medias.MediasViewModelFactory
 
 class MediasItemFragment(
-    private val tip: TipsResponse,
-    private val slideLeft: () -> Unit,
-    private val slideRight: () -> Unit
+    tips: ArrayList<TipsResponse>,
+    private val position: Int,
 ): Fragment() {
     lateinit var binding: ModalMediasItemBinding
     private val viewModel: MediasViewModel by activityViewModels()
@@ -40,6 +42,14 @@ class MediasItemFragment(
     private fun setObserves() {
         viewModel.isHolding.observe(viewLifecycleOwner, {
             binding.isHolding = it
+        })
+
+        viewModel.changeList.observe(viewLifecycleOwner, {
+            val changePosition = it.second
+
+            if(changePosition == position) {
+                Log.d("aaa position", viewModel.tips[position].getMedia().url)
+            }
         })
     }
 

@@ -1,5 +1,6 @@
 package screens.logged.tabs.tips.modal_medias
 
+import android.content.res.Resources
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -15,13 +16,13 @@ import com.joao.simsschool.databinding.ModalMediasBinding
 import repositories.tips.TipsResponse
 import screens.logged.tabs.tips.modal_medias.adapter.MediasAdapter
 import utils.CubeTransformer
+import utils.shortLongPress
 
 
-class MediasModal(
-    private val index: Int,
-    private val tips: ArrayList<TipsResponse>
-) : DialogFragment() {
-    private val viewModel: MediasViewModel by activityViewModels()
+class MediasModal(initialIndex: Int, tips: ArrayList<TipsResponse>) : DialogFragment() {
+    private val viewModel: MediasViewModel by activityViewModels {
+        MediasViewModelFactory(tips, initialIndex)
+    }
     lateinit var binding: ModalMediasBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,14 +50,12 @@ class MediasModal(
 
     private fun initViewPager(){
         val fragmentActivity = context as FragmentActivity
-        val adapter =  MediasAdapter(fragmentActivity, tips) { value ->
-            binding.modalMediasViewPager.setCurrentItem(value, true)
-        }
+        val adapter =  MediasAdapter(fragmentActivity, ArrayList(viewModel.tips))
 
         binding.modalMediasViewPager.apply {
             this.adapter = adapter
 
-            setCurrentItem(index, false)
+            setCurrentItem(viewModel.getInitialIndex(), false)
             setPageTransformer(CubeTransformer())
         }
     }
@@ -72,37 +71,22 @@ class MediasModal(
                         else -> { }
                     }
                 }
+
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+                    viewModel.initialIndex.value = position
+                }
             })
 
-            var isLongPress = false
-            val handler = Handler()
-
-            val longPressed = Runnable {
-                isLongPress = true
+            getChildAt(0).shortLongPress( {}, {
+                viewModel.changeHolding(false)
+            }, {
                 viewModel.changeHolding(true)
-                Log.d("aaa", "long click")
-            }
-
-            getChildAt(0).setOnTouchListener { v, event ->
-                when (event.action) {
-                    MotionEvent.ACTION_DOWN -> {
-                        isLongPress = false
-                        handler.postDelayed(longPressed, ViewConfiguration.getLongPressTimeout().toLong())
-                        v.performClick()
-                    }
-                    MotionEvent.ACTION_UP -> {
-                        handler.removeCallbacks(longPressed)
-                        viewModel.changeHolding(false)
-                        v.performClick()
-
-                        if(!isLongPress) {
-                            Log.d("aaa", "short click")
-                        }
-                    }
-                    else -> {}
-                }
-                false
-            }
+            }, { event ->
+                val x = event.x.toInt()
+                val middle = Resources.getSystem().displayMetrics.widthPixels / 2
+                viewModel.positionChanged(viewModel.getInitialIndex(),x > middle)
+            })
         }
     }
 

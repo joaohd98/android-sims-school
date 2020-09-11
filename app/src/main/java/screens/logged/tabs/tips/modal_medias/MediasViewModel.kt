@@ -1,6 +1,5 @@
 package screens.logged.tabs.tips.modal_medias
 
-import android.drm.DrmRights
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import repositories.tips.TipsResponse
@@ -10,7 +9,7 @@ class MediasViewModel(response: ArrayList<TipsResponse>, index: Int): ViewModel(
         addAll(response)
     }
 
-    val initialIndex: MutableLiveData<Int> by lazy {
+    val actualIndex: MutableLiveData<Int> by lazy {
         MutableLiveData(index)
     }
 
@@ -26,7 +25,7 @@ class MediasViewModel(response: ArrayList<TipsResponse>, index: Int): ViewModel(
         MutableLiveData(Pair(false, -1))
     }
 
-    fun getInitialIndex() = initialIndex.value!!
+    fun getActualIndex() = actualIndex.value!!
 
     fun changeHolding(isHolding: Boolean) {
         this.isHolding.value = isHolding

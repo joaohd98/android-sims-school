@@ -16,7 +16,6 @@ import screens.logged.tabs.tips.modal_medias.MediasViewModel
 import screens.logged.tabs.tips.modal_medias.MediasViewModelFactory
 
 class MediasItemFragment(
-    tips: ArrayList<TipsResponse>,
     private val position: Int,
 ): Fragment() {
     lateinit var binding: ModalMediasItemBinding

@@ -2,8 +2,6 @@ package screens.logged.tabs.tips.modal_medias
 
 import android.content.res.Resources
 import android.os.Bundle
-import android.os.Handler
-import android.util.Log
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
@@ -55,7 +53,7 @@ class MediasModal(initialIndex: Int, tips: ArrayList<TipsResponse>) : DialogFrag
         binding.modalMediasViewPager.apply {
             this.adapter = adapter
 
-            setCurrentItem(viewModel.getInitialIndex(), false)
+            setCurrentItem(viewModel.getActualIndex(), false)
             setPageTransformer(CubeTransformer())
         }
     }
@@ -74,7 +72,7 @@ class MediasModal(initialIndex: Int, tips: ArrayList<TipsResponse>) : DialogFrag
 
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
-                    viewModel.initialIndex.value = position
+                    viewModel.actualIndex.value = position
                 }
             })
 
@@ -85,7 +83,7 @@ class MediasModal(initialIndex: Int, tips: ArrayList<TipsResponse>) : DialogFrag
             }, { event ->
                 val x = event.x.toInt()
                 val middle = Resources.getSystem().displayMetrics.widthPixels / 2
-                viewModel.positionChanged(viewModel.getInitialIndex(),x > middle)
+                viewModel.positionChanged(viewModel.getActualIndex(),x > middle)
             })
         }
     }

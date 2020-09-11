@@ -10,5 +10,5 @@ class MediasAdapter(fa: FragmentActivity, private val tips: ArrayList<TipsRespon
     override fun getItemCount() =  tips.size
 
     override fun createFragment(position: Int) =
-        MediasItemFragment(tips, position)
+        MediasItemFragment(position)
 }

@@ -11,6 +11,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/modal_medias_item_constraint_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/black">
@@ -23,7 +24,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
         <LinearLayout
-            android:id="@+id/modal_medias_item_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"

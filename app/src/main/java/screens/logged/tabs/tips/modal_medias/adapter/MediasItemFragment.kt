@@ -6,11 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ModalMediasItemBinding
 import repositories.tips.TipsResponse
+import screens.logged.tabs.tips.TipsViewModel
 
-class MediasItemFragment(private val tip: TipsResponse): Fragment() {
+class MediasItemFragment(
+    private val tip: TipsResponse,
+    private val slideLeft: () -> Unit,
+    private val slideRight: () -> Unit
+): Fragment() {
+
+    private val viewModel: MediasItemViewModel by viewModels {
+        MediasItemViewModelFactory(tip.medias)
+    }
     lateinit var binding: ModalMediasItemBinding
 
     override fun onCreateView(
@@ -25,6 +35,7 @@ class MediasItemFragment(private val tip: TipsResponse): Fragment() {
     }
 
     companion object {
-        fun newInstance(tip: TipsResponse) = MediasItemFragment(tip)
+        fun newInstance(tip: TipsResponse, slideLeft: () -> Unit, slideRight: () -> Unit)
+                = MediasItemFragment(tip, slideLeft, slideRight)
     }
 }

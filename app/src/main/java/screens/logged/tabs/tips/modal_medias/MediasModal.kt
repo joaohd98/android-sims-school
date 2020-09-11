@@ -7,10 +7,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.*
 import androidx.viewpager2.widget.ViewPager2
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ModalMediasBinding
@@ -18,12 +15,11 @@ import repositories.tips.TipsResponse
 import screens.logged.tabs.tips.modal_medias.adapter.MediasAdapter
 import utils.CubeTransformer
 
-
 class MediasModal(
-    private val tips: ArrayList<TipsResponse>,
-    private val index: Int
-): DialogFragment() {
-    private val viewModel: MediasViewModel by viewModels()
+    private val index: Int,
+    private val tips: ArrayList<TipsResponse>
+) : DialogFragment() {
+    private val viewModel: MediasViewModel by activityViewModels()
     lateinit var binding: ModalMediasBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +46,10 @@ class MediasModal(
     }
 
     private fun initViewPager(){
-        val adapter =  MediasAdapter(context as FragmentActivity, tips) { value -> }
+        val fragmentActivity = context as FragmentActivity
+        val adapter =  MediasAdapter(fragmentActivity, tips) { value ->
+            binding.modalMediasViewPager.setCurrentItem(value, true)
+        }
 
         binding.modalMediasViewPager.apply {
             this.adapter = adapter
@@ -97,7 +96,7 @@ class MediasModal(
             tips: ArrayList<TipsResponse>,
             index: Int
         ) {
-            val mediaModal = MediasModal(tips, index)
+            val mediaModal = MediasModal(index, tips)
             mediaModal.show(fragmentManager, mediaModal.tag)
         }
     }

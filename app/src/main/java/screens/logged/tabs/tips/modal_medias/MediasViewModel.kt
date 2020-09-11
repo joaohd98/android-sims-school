@@ -1,10 +1,10 @@
 package screens.logged.tabs.tips.modal_medias
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class MediasViewModel: ViewModel() {
+
     val isHolding: MutableLiveData<Boolean> by lazy {
         MutableLiveData(false)
     }

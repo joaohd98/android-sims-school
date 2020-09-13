@@ -28,6 +28,7 @@ fun View.shortLongPress(
             }
             MotionEvent.ACTION_UP -> {
                 handler.removeCallbacks(longPressed)
+                onFinish()
                 v.performClick()
 
                 if(!isLongPress) {

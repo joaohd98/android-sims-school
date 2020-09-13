@@ -8,6 +8,7 @@ import screens.logged.tabs.tips.modal_medias.MediasViewModel
 
 class MediasAdapter(
     fa: FragmentActivity,
+    private var actualTipIndex: Int,
     private val tips: ArrayList<TipsResponse>,
 ) : FragmentStateAdapter(fa) {
     private val fragments: ArrayList<MediasItemFragment> = arrayListOf()
@@ -23,9 +24,13 @@ class MediasAdapter(
     }
 
 
+    fun changeActualTipPosition(position: Int) {
+        actualTipIndex = position
+    }
+
     fun changeHolding(isHolding: Boolean) {
-        fragments.forEach {
-            it.changeHolding(isHolding)
+        fragments[actualTipIndex].apply {
+            changeHolding(isHolding)
         }
     }
 

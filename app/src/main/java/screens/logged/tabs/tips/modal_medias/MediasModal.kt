@@ -2,6 +2,8 @@ package screens.logged.tabs.tips.modal_medias
 
 import android.content.res.Resources
 import android.os.Bundle
+import android.os.Handler
+import android.util.Log
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
@@ -44,18 +46,23 @@ class MediasModal(initialIndex: Int, tips: ArrayList<TipsResponse>) : DialogFrag
 
         initViewPager()
         initTouchListener()
-        setObserves()
     }
 
     private fun initViewPager(){
+        val actualTipPosition = viewModel.getActualTipPosition()
+
         val fragmentActivity = context as FragmentActivity
-        val adapter =  MediasAdapter(fragmentActivity, ArrayList(viewModel.tips))
+        val adapter =  MediasAdapter(fragmentActivity, actualTipPosition, ArrayList(viewModel.tips))
 
         binding.modalMediasViewPager.apply {
             this.adapter = adapter
 
-            setCurrentItem(viewModel.getActualIndex(), false)
+            setCurrentItem(actualTipPosition, false)
             setPageTransformer(CubeTransformer())
+
+            Handler().postDelayed({
+                setObserves()
+            }, 50)
         }
     }
 
@@ -73,7 +80,7 @@ class MediasModal(initialIndex: Int, tips: ArrayList<TipsResponse>) : DialogFrag
 
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
-                    viewModel.actualIndex.value = position
+                    viewModel.actualTipPosition.value = position
                 }
             })
 
@@ -84,7 +91,7 @@ class MediasModal(initialIndex: Int, tips: ArrayList<TipsResponse>) : DialogFrag
             }, { event ->
                 val x = event.x.toInt()
                 val middle = Resources.getSystem().displayMetrics.widthPixels / 2
-                viewModel.positionChanged(viewModel.getActualIndex(),x > middle)
+                viewModel.positionChanged(viewModel.getActualTipPosition(),x > middle)
             })
         }
     }
@@ -96,11 +103,12 @@ class MediasModal(initialIndex: Int, tips: ArrayList<TipsResponse>) : DialogFrag
             adapter.changeHolding(it)
         })
 
-        viewModel.changeList .observe(viewLifecycleOwner, {
+        viewModel.changeList.observe(viewLifecycleOwner, {
             val changePosition = it.second
         })
 
-        viewModel.actualIndex.observe(viewLifecycleOwner, {
+        viewModel.actualTipPosition.observe(viewLifecycleOwner, {
+            adapter.changeActualTipPosition(it)
         })
     }
 

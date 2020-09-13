@@ -1,6 +1,7 @@
 package screens.logged.tabs.tips.modal_medias.adapter
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -33,7 +34,7 @@ class MediasItemFragment(
     }
 
     fun changeHolding(isHolding: Boolean) {
-//        binding.isHolding = isHolding
+        binding.isHolding = isHolding
     }
 
     private fun setProgressView() {

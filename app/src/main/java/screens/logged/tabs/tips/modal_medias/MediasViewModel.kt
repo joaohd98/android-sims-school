@@ -9,7 +9,7 @@ class MediasViewModel(response: ArrayList<TipsResponse>, index: Int): ViewModel(
         addAll(response)
     }
 
-    val actualIndex: MutableLiveData<Int> by lazy {
+    val actualTipPosition: MutableLiveData<Int> by lazy {
         MutableLiveData(index)
     }
 
@@ -25,7 +25,7 @@ class MediasViewModel(response: ArrayList<TipsResponse>, index: Int): ViewModel(
         MutableLiveData(Pair(false, -1))
     }
 
-    fun getActualIndex() = actualIndex.value!!
+    fun getActualTipPosition() = actualTipPosition.value!!
 
     fun getActualTip(position: Int) = tips[position]
 

@@ -44,6 +44,7 @@ class MediasModal(initialIndex: Int, tips: ArrayList<TipsResponse>) : DialogFrag
 
         initViewPager()
         initTouchListener()
+        setObserves()
     }
 
     private fun initViewPager(){
@@ -86,6 +87,21 @@ class MediasModal(initialIndex: Int, tips: ArrayList<TipsResponse>) : DialogFrag
                 viewModel.positionChanged(viewModel.getActualIndex(),x > middle)
             })
         }
+    }
+
+    private fun setObserves() {
+        val adapter = binding.modalMediasViewPager.adapter as MediasAdapter
+
+        viewModel.isHolding.observe(viewLifecycleOwner, {
+            adapter.changeHolding(it)
+        })
+
+        viewModel.changeList .observe(viewLifecycleOwner, {
+            val changePosition = it.second
+        })
+
+        viewModel.actualIndex.observe(viewLifecycleOwner, {
+        })
     }
 
     companion object {

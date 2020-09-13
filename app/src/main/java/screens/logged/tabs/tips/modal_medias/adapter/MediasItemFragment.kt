@@ -12,7 +12,7 @@ import screens.logged.tabs.tips.modal_medias.MediasViewModel
 class MediasItemFragment(
     private val position: Int,
 ): Fragment() {
-    lateinit var binding: ModalMediasItemBinding
+    private lateinit var binding: ModalMediasItemBinding
     private val viewModel: MediasViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -30,27 +30,19 @@ class MediasItemFragment(
         super.onViewCreated(view, savedInstanceState)
 
         setProgressView()
-        setObserves()
+    }
+
+    fun changeHolding(isHolding: Boolean) {
+//        binding.isHolding = isHolding
     }
 
     private fun setProgressView() {
         val tip = viewModel.getActualTip(position)
 
         binding.modalMediasItemProgressView.apply {
-            initProgressView(tip.getMediaSize(), tip.currentMedia)
+            initProgressView(tip.getMediaSize())
         }
     }
 
-    private fun setObserves() {
-        viewModel.isHolding.observe(viewLifecycleOwner, {
-            binding.isHolding = it
-        })
 
-        viewModel.changeList.observe(viewLifecycleOwner, {
-            val changePosition = it.second
-        })
-
-        viewModel.actualIndex.observe(viewLifecycleOwner, {
-        })
-    }
 }

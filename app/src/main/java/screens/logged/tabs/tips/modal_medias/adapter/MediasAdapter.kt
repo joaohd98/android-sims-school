@@ -1,5 +1,6 @@
 package screens.logged.tabs.tips.modal_medias.adapter
 
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import repositories.tips.TipsResponse
@@ -9,9 +10,23 @@ class MediasAdapter(
     fa: FragmentActivity,
     private val tips: ArrayList<TipsResponse>,
 ) : FragmentStateAdapter(fa) {
+    private val fragments: ArrayList<MediasItemFragment> = arrayListOf()
 
     override fun getItemCount() =  tips.size
 
-    override fun createFragment(position: Int) =
-        MediasItemFragment(position)
+    override fun createFragment(position: Int): Fragment {
+        val fragment = MediasItemFragment(position)
+
+        fragments.add(fragment)
+
+        return fragment
+    }
+
+
+    fun changeHolding(isHolding: Boolean) {
+        fragments.forEach {
+            it.changeHolding(isHolding)
+        }
+    }
+
 }

@@ -43,19 +43,18 @@ class MediasProgressView: ConstraintLayout {
             )
         }
     }
-    fun initProgressView(size: Int, actualMedia: Int) {
+    fun initProgressView(size: Int) {
         binding.modalMediasItemProgressLinearLayout.apply {
             weightSum = size.toFloat()
 
             for (i in 0 until size) {
-                val view = getProgressBar(i, actualMedia)
-
+                val view = getProgressBar()
                 addView(view)
             }
         }
     }
 
-    private fun getProgressBar(index: Int, actualMedia: Int): View {
+    private fun getProgressBar(): View {
         val view = LayoutInflater
             .from(context)
             .inflate(R.layout.modal_medias_item_progress_bar, null)

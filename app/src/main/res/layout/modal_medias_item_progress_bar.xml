@@ -11,5 +11,5 @@
         android:progressTint="@color/blue"
         android:progressBackgroundTint="@color/blackLight"
         android:max="100"
-        android:progress="50" />
+        android:progress="0" />
 </layout>

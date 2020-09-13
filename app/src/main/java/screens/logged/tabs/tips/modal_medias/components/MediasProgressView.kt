@@ -66,17 +66,8 @@ class MediasProgressView: ConstraintLayout {
 
             params.setMargins(dimen, marginTop, dimen, marginBottom)
             layoutParams = params
-
-            findViewById<ProgressBar>(R.id.modal_medias_item_progress_bar).apply {
-                progress = if(actualMedia > index) {
-                    100
-                } else {
-                    0
-                }
-            }
         }
 
         return view
     }
-
 }

@@ -1,13 +1,7 @@
 package repositories.tips
 
 import android.app.Application
-import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
-import android.util.Log
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
@@ -20,7 +14,7 @@ class TipsResponse(
     var medias: ArrayList<TipsMediasResponse> = arrayListOf(),
     var thumbnailImage: String = "",
     var thumbnailVideo: String = "",
-    var currentIndex: Int = 0
+    var currentMedia: Int = 0
     ) {
     suspend fun initService(result: Map<String, Any?>, application: Application) {
         coroutineScope {
@@ -53,7 +47,7 @@ class TipsResponse(
     }
 
     fun getMedia(): TipsMediasResponse {
-        return medias[currentIndex]
+        return medias[currentMedia]
     }
 
     fun getMediaSize(): Int {
@@ -61,21 +55,21 @@ class TipsResponse(
     }
 
     fun goLeftMedia(onFirst: () -> Unit) {
-        if(currentIndex <= 0) {
+        if(currentMedia <= 0) {
             onFirst()
         }
         else {
-            currentIndex--
+            currentMedia--
         }
     }
 
 
     fun goRightMedia(onLast: () -> Unit) {
-        if(currentIndex >= medias.size - 1) {
+        if(currentMedia >= medias.size - 1) {
             onLast()
         }
         else {
-            currentIndex++
+            currentMedia++
         }
     }
 }

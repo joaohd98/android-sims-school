@@ -10,13 +10,14 @@ class MediasAdapter(
     fa: FragmentActivity,
     private var actualTipIndex: Int,
     private val tips: ArrayList<TipsResponse>,
+    private val onDismiss: () -> Unit
 ) : FragmentStateAdapter(fa) {
     private val fragments: ArrayList<MediasItemFragment> = arrayListOf()
 
     override fun getItemCount() =  tips.size
 
     override fun createFragment(position: Int): Fragment {
-        val fragment = MediasItemFragment(position)
+        val fragment = MediasItemFragment(position, onDismiss)
 
         fragments.add(fragment)
 

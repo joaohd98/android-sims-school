@@ -5,8 +5,8 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.joao.simsschool.R
-import com.joao.simsschool.databinding.ModalMediasItemProgressViewBinding
 import com.joao.simsschool.databinding.ModalMediasItemTitleViewBinding
+import utils.OnClickDataBinding
 
 class MediaTitleView: ConstraintLayout {
     lateinit var binding: ModalMediasItemTitleViewBinding
@@ -28,8 +28,13 @@ class MediaTitleView: ConstraintLayout {
         }
     }
 
-    override fun onFinishInflate() {
-        super.onFinishInflate()
+    fun initTitleView(name: String, onDismiss: () -> Unit) {
+        binding.modalMediasItemTitleViewText.text = name
+        binding.backButton = object: OnClickDataBinding() {
+            override fun onClick() {
+                onDismiss()
+            }
+        }
     }
 
 }

@@ -1,7 +1,6 @@
 package screens.logged.tabs.tips.modal_medias.adapter
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -12,6 +11,7 @@ import screens.logged.tabs.tips.modal_medias.MediasViewModel
 
 class MediasItemFragment(
     private val position: Int,
+    private val onDismiss: () -> Unit
 ): Fragment() {
     private lateinit var binding: ModalMediasItemBinding
     private val viewModel: MediasViewModel by activityViewModels()
@@ -31,6 +31,7 @@ class MediasItemFragment(
         super.onViewCreated(view, savedInstanceState)
 
         setProgressView()
+        setTitleView()
     }
 
     fun changeHolding(isHolding: Boolean) {
@@ -45,5 +46,12 @@ class MediasItemFragment(
         }
     }
 
+    private fun setTitleView() {
+        val tip = viewModel.getActualTip(position)
+
+        binding.modalMediasItemTitleView.apply {
+            initTitleView(tip.name, onDismiss)
+        }
+    }
 
 }

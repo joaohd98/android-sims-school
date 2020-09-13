@@ -42,6 +42,7 @@
                 android:visibility="@{isHolding ? View.INVISIBLE : View.VISIBLE}"
                 android:layout_margin="5dp" />
             <screens.logged.tabs.tips.modal_medias.components.MediaTitleView
+                android:id="@+id/modal_medias_item_title_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="@{isHolding ? View.INVISIBLE : View.VISIBLE}"

@@ -52,15 +52,17 @@ class MediasModal(initialIndex: Int, tips: ArrayList<TipsResponse>) : DialogFrag
         val actualTipPosition = viewModel.getActualTipPosition()
 
         val fragmentActivity = context as FragmentActivity
-        val adapter =  MediasAdapter(fragmentActivity, actualTipPosition, ArrayList(viewModel.tips))
+        val adapter =  MediasAdapter(fragmentActivity, actualTipPosition, ArrayList(viewModel.tips)) {
+            dismiss()
+        }
 
         binding.modalMediasViewPager.apply {
             this.adapter = adapter
 
-            setCurrentItem(actualTipPosition, false)
             setPageTransformer(CubeTransformer())
 
             Handler().postDelayed({
+                setCurrentItem(actualTipPosition, false)
                 setObserves()
             }, 50)
         }

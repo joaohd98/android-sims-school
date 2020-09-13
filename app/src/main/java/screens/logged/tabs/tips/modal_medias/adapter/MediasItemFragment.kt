@@ -35,7 +35,16 @@ class MediasItemFragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setProgressView()
         setObserves()
+    }
+
+    private fun setProgressView() {
+        val tip = viewModel.getActualTip(position)
+
+        binding.modalMediasItemProgressView.apply {
+            initProgressView(tip.getMediaSize(), tip.currentIndex)
+        }
     }
 
     private fun setObserves() {
@@ -45,11 +54,9 @@ class MediasItemFragment(
 
         viewModel.changeList.observe(viewLifecycleOwner, {
             val changePosition = it.second
+        })
 
-            if(changePosition == position) {
-                Log.d("aaa position", viewModel.tips[position].getMedia().url)
-            }
+        viewModel.actualIndex.observe(viewLifecycleOwner, {
         })
     }
-
 }

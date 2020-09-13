@@ -17,3 +17,12 @@ fun setLayoutMarginEnd(view: View, dimen: Float) {
     layoutParams.marginEnd = dimen.toInt()
     view.layoutParams = layoutParams
 }
+
+
+@BindingAdapter("binding_layout_margin_end")
+fun setLayoutMarginStartEndEnd(view: View, dimen: Float) {
+    val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams
+    layoutParams.marginEnd = dimen.toInt()
+    layoutParams.marginStart = dimen.toInt()
+    view.layoutParams = layoutParams
+}

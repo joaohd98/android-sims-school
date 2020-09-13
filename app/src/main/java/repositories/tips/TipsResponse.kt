@@ -56,6 +56,10 @@ class TipsResponse(
         return medias[currentIndex]
     }
 
+    fun getMediaSize(): Int {
+        return medias.size
+    }
+
     fun goLeftMedia(onFirst: () -> Unit) {
         if(currentIndex <= 0) {
             onFirst()

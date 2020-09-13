@@ -27,6 +27,8 @@ class MediasViewModel(response: ArrayList<TipsResponse>, index: Int): ViewModel(
 
     fun getActualIndex() = actualIndex.value!!
 
+    fun getActualTip(position: Int) = tips[position]
+
     fun changeHolding(isHolding: Boolean) {
         this.isHolding.value = isHolding
     }

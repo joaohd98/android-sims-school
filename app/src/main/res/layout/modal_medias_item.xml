@@ -36,6 +36,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
             <screens.logged.tabs.tips.modal_medias.components.MediasProgressView
+                android:id="@+id/modal_medias_item_progress_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="@{isHolding ? View.INVISIBLE : View.VISIBLE}"

@@ -18,6 +18,11 @@ class MediasItemFragment(
 ): Fragment() {
     private lateinit var binding: ModalMediasItemBinding
     private val viewModel: MediasViewModel by activityViewModels()
+    private var limitTimer = 0
+    private var timerCount = 0
+    private var delay = 10
+    private var started = false
+    private val handler = Handler()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,13 +58,8 @@ class MediasItemFragment(
 
         binding.modalMediasItemProgressView.newCurrentPosition(tip.currentMediaPosition)
         binding.modalMediasItemFooterView.changeFooterLink(tip.getMedia().url)
+        startImageTimer()
     }
-
-    private var limitTimer = 0
-    private var timerCount = 0
-    private var delay = 10
-    private var started = false
-    private val handler = Handler()
 
     private val runnableTimer = Runnable {
         if(!(viewModel.isHolding.value!! || viewModel.isSliding.value!!)) {
@@ -74,15 +74,10 @@ class MediasItemFragment(
 
                 binding.modalMediasItemProgressView.changeProgress(100.0)
                 viewModel.positionChanged(true)
-
-                startImageTimer()
             }
         }
 
-        if(timerCount == 0) {
-            stopTimer()
-        }
-        else if (started) {
+        if (started) {
             startTimer()
         }
     }
@@ -98,8 +93,11 @@ class MediasItemFragment(
     }
 
     private fun startImageTimer() {
-        limitTimer = 6000
-        timerCount = 6000
+        stopTimer()
+
+        val time = 6000
+        limitTimer = time
+        timerCount = time
 
         startTimer()
     }

@@ -75,9 +75,11 @@ class MediaProgressView: ConstraintLayout {
         this.position = position
 
         binding.modalMediasItemProgressLinearLayout.forEachIndexed { index, view ->
-            if(index < position) {
-                view.findViewById<ProgressBar>(R.id.modal_medias_item_progress_bar).apply {
-                    progress = 100
+            view.findViewById<ProgressBar>(R.id.modal_medias_item_progress_bar).apply {
+                progress = if (index < position) {
+                    100
+                } else {
+                    0
                 }
             }
         }

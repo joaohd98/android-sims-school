@@ -15,7 +15,8 @@
         android:clickable="true"
         android:focusable="true"
         android:onClick="@{() -> onButtonPress.onClick()}"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:background="@color/black">
 
         <View
             android:layout_width="match_parent"

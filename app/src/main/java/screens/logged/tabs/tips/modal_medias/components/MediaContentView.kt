@@ -38,11 +38,11 @@ class MediaContentView: ConstraintLayout {
     override fun onFinishInflate() {
         super.onFinishInflate()
 
-        binding.modalMediaItemVideoVertical.apply {
-            val path = "android.resource://" + context.packageName.toString() + "/" + R.raw.terminator
-
-            setVideoURI(Uri.parse(path))
-            start()
-        }
+//        binding.modalMediaItemVideoVertical.apply {
+//            val path = "android.resource://" + context.packageName.toString() + "/" + R.raw.terminator
+//
+//            setVideoURI(Uri.parse(path))
+//            start()
+//        }
     }
 }

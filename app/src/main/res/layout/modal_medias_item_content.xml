@@ -21,10 +21,10 @@
 <!--            android:scaleType="fitCenter"-->
 <!--            android:alpha="0.9"-->
 <!--            android:src="@drawable/unreal_engine" />-->
-            <utils.CustomVerticalVideoView
-                android:id="@+id/modal_media_item_video_vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+<!--            <utils.CustomVerticalVideoView-->
+<!--                android:id="@+id/modal_media_item_video_vertical"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent" />-->
 <!--        <VideoView-->
 <!--            android:id="@+id/video_view"-->
 <!--            android:layout_width="match_parent"-->

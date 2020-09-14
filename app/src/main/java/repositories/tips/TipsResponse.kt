@@ -14,7 +14,7 @@ class TipsResponse(
     var medias: ArrayList<TipsMediasResponse> = arrayListOf(),
     var thumbnailImage: String = "",
     var thumbnailVideo: String = "",
-    var currentMedia: Int = 0
+    var currentMediaPosition: Int = 0
     ) {
     suspend fun initService(result: Map<String, Any?>, application: Application) {
         coroutineScope {
@@ -47,7 +47,7 @@ class TipsResponse(
     }
 
     fun getMedia(): TipsMediasResponse {
-        return medias[currentMedia]
+        return medias[currentMediaPosition]
     }
 
     fun getMediaSize(): Int {
@@ -55,21 +55,21 @@ class TipsResponse(
     }
 
     fun goLeftMedia(onFirst: () -> Unit) {
-        if(currentMedia <= 0) {
+        if(currentMediaPosition <= 0) {
             onFirst()
         }
         else {
-            currentMedia--
+            currentMediaPosition--
         }
     }
 
 
     fun goRightMedia(onLast: () -> Unit) {
-        if(currentMedia >= medias.size - 1) {
+        if(currentMediaPosition >= medias.size - 1) {
             onLast()
         }
         else {
-            currentMedia++
+            currentMediaPosition++
         }
     }
 }

@@ -1,13 +1,17 @@
 package screens.logged.tabs.tips.modal_medias.components
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat.startActivity
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ModalMediasItemFooterViewBinding
-import com.joao.simsschool.databinding.ModalMediasItemProgressViewBinding
-import com.joao.simsschool.databinding.ModalMediasItemTitleViewBinding
+import repositories.tips.TipsMediasResponse
+import utils.OnClickDataBinding
+
 
 class MediaFooterView: ConstraintLayout {
     lateinit var binding: ModalMediasItemFooterViewBinding
@@ -25,12 +29,21 @@ class MediaFooterView: ConstraintLayout {
             LayoutInflater.from(context).inflate(R.layout.modal_medias_item_footer_view, this, true)
         }
         else {
-            binding = ModalMediasItemFooterViewBinding.inflate(LayoutInflater.from(context), this, true)
+            binding = ModalMediasItemFooterViewBinding.inflate(
+                LayoutInflater.from(context),
+                this,
+                true
+            )
         }
     }
 
-    override fun onFinishInflate() {
-        super.onFinishInflate()
+    fun initFooterView(media: TipsMediasResponse) {
+        binding.onButtonPress = object: OnClickDataBinding() {
+            override fun onClick() {
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(media.url))
+                startActivity(context, browserIntent, null)
+            }
+        }
     }
 
 }

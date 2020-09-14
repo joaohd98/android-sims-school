@@ -32,7 +32,9 @@ class MediasItemFragment(
 
         setProgressView()
         setTitleView()
+        setFooterView()
     }
+
 
     fun changeHolding(isHolding: Boolean) {
         binding.isHolding = isHolding
@@ -51,6 +53,14 @@ class MediasItemFragment(
 
         binding.modalMediasItemTitleView.apply {
             initTitleView(tip.name, onDismiss)
+        }
+    }
+
+    private fun setFooterView() {
+        val media = viewModel.getActualTip(position).getMedia()
+
+        binding.modalMediasItemFooterView.apply {
+            initFooterView(media)
         }
     }
 

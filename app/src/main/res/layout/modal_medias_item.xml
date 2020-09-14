@@ -52,6 +52,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1" />
             <screens.logged.tabs.tips.modal_medias.components.MediaFooterView
+                android:id="@+id/modal_medias_item_footer_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="@{isHolding ? View.INVISIBLE : View.VISIBLE}"

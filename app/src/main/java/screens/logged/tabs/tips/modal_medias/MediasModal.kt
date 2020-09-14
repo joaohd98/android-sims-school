@@ -147,7 +147,9 @@ class MediasModal(
             viewChild.shortLongPress( {}, {
                 viewModel.changeHolding(false)
             }, {
-                viewModel.changeHolding(true)
+                if(!(viewModel.isSliding.value!!)) {
+                    viewModel.changeHolding(true)
+                }
             }, { event ->
                 val x = event.x.toInt()
                 val middle = Resources.getSystem().displayMetrics.widthPixels / 2
@@ -162,6 +164,10 @@ class MediasModal(
 
         viewModel.isHolding.observe(viewLifecycleOwner, {
             adapter.changeHolding(it)
+        })
+
+        viewModel.isSliding.observe(viewLifecycleOwner, {
+            adapter.changeSliding(it)
         })
 
         viewModel.hasTappedDirection.observe(viewLifecycleOwner, {

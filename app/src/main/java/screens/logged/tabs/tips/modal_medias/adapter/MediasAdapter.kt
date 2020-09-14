@@ -47,7 +47,11 @@ class MediasAdapter(
         }
     }
 
-
-
-
+    fun changeSliding(isSliding: Boolean) {
+        if(hasFinishedLoading()) {
+            fragments[actualTipPosition].apply {
+                changeSliding(isSliding)
+            }
+        }
+    }
 }

@@ -9,6 +9,9 @@
             name="isHolding"
             type="java.lang.Boolean" />
         <variable
+            name="isSliding"
+            type="java.lang.Boolean" />
+        <variable
             name="media"
             type="repositories.tips.TipsMediasResponse" />
     </data>

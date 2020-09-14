@@ -53,6 +53,12 @@ class MediasItemFragment(
         }
     }
 
+    fun changeSliding(isSliding: Boolean) {
+        if(hasInitialized()) {
+            binding.isSliding = isSliding
+        }
+    }
+
     fun changedMedia() {
         val tip = viewModel.getActualTip(position)
 

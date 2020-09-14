@@ -18,8 +18,10 @@ import screens.logged.tabs.tips.modal_medias.adapter.MediasAdapter
 import utils.CubeTransformer
 import utils.shortLongPress
 
-
-class MediasModal(initialIndex: Int, tips: ArrayList<TipsResponse>) : DialogFragment() {
+class MediasModal(
+    tips: ArrayList<TipsResponse>,
+    private val initialIndex: Int,
+) : DialogFragment() {
     private val viewModel: MediasViewModel by activityViewModels {
         MediasViewModelFactory(tips, initialIndex)
     }
@@ -52,19 +54,16 @@ class MediasModal(initialIndex: Int, tips: ArrayList<TipsResponse>) : DialogFrag
         val actualTipPosition = viewModel.getActualTipPosition()
 
         val fragmentActivity = context as FragmentActivity
-        val adapter =  MediasAdapter(fragmentActivity, actualTipPosition, ArrayList(viewModel.tips)) {
+        val adapter =  MediasAdapter(fragmentActivity, actualTipPosition, viewModel.tips.size) {
             dismiss()
         }
 
         binding.modalMediasViewPager.apply {
             this.adapter = adapter
-
             setPageTransformer(CubeTransformer())
+            setCurrentItem(initialIndex, false)
 
-            Handler().postDelayed({
-                setCurrentItem(actualTipPosition, false)
-                setObserves()
-            }, 50)
+            setObserves()
         }
     }
 
@@ -120,7 +119,7 @@ class MediasModal(initialIndex: Int, tips: ArrayList<TipsResponse>) : DialogFrag
             tips: ArrayList<TipsResponse>,
             index: Int
         ) {
-            val mediaModal = MediasModal(index, tips)
+            val mediaModal = MediasModal(tips, index)
             mediaModal.show(fragmentManager, mediaModal.tag)
         }
     }

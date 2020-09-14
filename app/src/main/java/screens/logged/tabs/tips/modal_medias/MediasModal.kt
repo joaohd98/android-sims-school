@@ -118,7 +118,7 @@ class MediasModal(
         })
 
         viewModel.hasTappedDirection.observe(viewLifecycleOwner, {
-            adapter.setText()
+            adapter.changedMedia()
         })
 
         viewModel.actualTipPosition.observe(viewLifecycleOwner, {

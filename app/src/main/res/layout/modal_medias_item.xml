@@ -35,12 +35,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-            <TextView
-                android:id="@+id/modal_medias_item_test_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="AAAA"
-                android:textColor="@color/white"/>
             <screens.logged.tabs.tips.modal_medias.components.MediaProgressView
                 android:id="@+id/modal_medias_item_progress_view"
                 android:layout_width="match_parent"

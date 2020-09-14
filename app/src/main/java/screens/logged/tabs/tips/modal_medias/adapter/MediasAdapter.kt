@@ -8,7 +8,7 @@ import repositories.tips.TipsResponse
 import screens.logged.tabs.tips.modal_medias.MediasViewModel
 
 class MediasAdapter(
-    private val fa: FragmentActivity,
+    fa: FragmentActivity,
     private var actualTipPosition: Int,
     private val size: Int,
     private val onDismiss: () -> Unit
@@ -39,13 +39,15 @@ class MediasAdapter(
         }
     }
 
-
-    fun setText() {
+    fun changedMedia() {
         if(hasFinishedLoading()) {
             fragments[actualTipPosition].apply {
-                setText()
+                changedMedia()
             }
         }
     }
+
+
+
 
 }

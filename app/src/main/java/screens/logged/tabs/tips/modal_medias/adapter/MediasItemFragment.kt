@@ -44,10 +44,10 @@ class MediasItemFragment(
         }
     }
 
-    fun setText() {
-        if(hasInitialized()) {
-            binding.modalMediasItemTestText.text = viewModel.getActualTip(position).getMedia().url
-        }
+    fun changedMedia() {
+        val tip = viewModel.getActualTip(position)
+
+        binding.modalMediasItemProgressView.newCurrentPosition(tip.currentMediaPosition)
     }
 
     private fun setProgressView() {

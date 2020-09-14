@@ -9,6 +9,8 @@ import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.forEach
+import androidx.core.view.forEachIndexed
 import androidx.core.view.marginBottom
 import androidx.core.view.marginTop
 import com.joao.simsschool.R
@@ -68,5 +70,15 @@ class MediaProgressView: ConstraintLayout {
         }
 
         return view
+    }
+
+    fun newCurrentPosition(position: Int) {
+        binding.modalMediasItemProgressLinearLayout.forEachIndexed { index, view ->
+            if(index < position) {
+                view.findViewById<ProgressBar>(R.id.modal_medias_item_progress_bar).apply {
+                    progress = 100
+                }
+            }
+        }
     }
 }

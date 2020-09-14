@@ -53,7 +53,6 @@ class MediasViewModel(response: ArrayList<TipsResponse>, index: Int): ViewModel(
                     val newPosition = position + sumValue
                     onChange(newPosition)
                     actualTipPosition.value = newPosition
-                    hasTappedDirection.value = !(hasTappedDirection.value!!)
                 }
             }
 

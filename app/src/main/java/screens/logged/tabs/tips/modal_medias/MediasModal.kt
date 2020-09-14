@@ -62,7 +62,6 @@ class MediasModal(
             this.adapter = adapter
             setPageTransformer(CubeTransformer())
             setCurrentItem(initialIndex, false)
-
             setObserves()
         }
     }

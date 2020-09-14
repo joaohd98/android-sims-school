@@ -16,7 +16,7 @@ import com.joao.simsschool.databinding.ModalMediasItemProgressViewBinding
 import utils.getPixels
 
 
-class MediasProgressView: ConstraintLayout {
+class MediaProgressView: ConstraintLayout {
     lateinit var binding: ModalMediasItemProgressViewBinding
 
     constructor(context: Context) : super(context)

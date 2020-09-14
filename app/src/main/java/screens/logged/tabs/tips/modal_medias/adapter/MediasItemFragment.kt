@@ -35,9 +35,12 @@ class MediasItemFragment(
         setFooterView()
     }
 
+    private fun hasInitialized() = this::binding.isInitialized
 
     fun changeHolding(isHolding: Boolean) {
-        binding.isHolding = isHolding
+        if(hasInitialized()) {
+            binding.isHolding = isHolding
+        }
     }
 
     private fun setProgressView() {

@@ -23,6 +23,10 @@
         <item name="android:windowFullscreen">false</item>
     </style>
 
+    <style name="ProgressBarTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
+
 
     <style name="CustomStatusProgressBar" parent="CustomProgressBarHorizontal">
         <item name="android:minHeight">6dp</item>

@@ -10,6 +10,7 @@
             type="utils.OnClickDataBinding" />
     </data>
     <LinearLayout
+        android:id="@+id/view_error_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -19,6 +20,7 @@
         android:gravity="center">
 
         <ImageView
+            android:id="@+id/view_error_image"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginBottom="5dp"
@@ -33,6 +35,7 @@
             tools:text="Something wrong happened" />
 
         <TextView
+            android:id="@+id/view_error_sub_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"

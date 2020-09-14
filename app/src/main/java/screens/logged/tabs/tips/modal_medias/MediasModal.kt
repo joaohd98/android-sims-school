@@ -16,6 +16,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ModalMediasBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import repositories.tips.TipsResponse
 import screens.logged.tabs.tips.modal_medias.adapter.MediasAdapter
 import utils.CubeTransformer
@@ -29,6 +32,7 @@ class MediasModal(
         MediasViewModelFactory(tips, initialIndex)
     }
     lateinit var binding: ModalMediasBinding
+    private var inBackground = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,6 +59,21 @@ class MediasModal(
                 onLeavePage()
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        if(inBackground) {
+            inBackground = false
+            onEnterBackground(false)
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        inBackground = true
+        onEnterBackground(true)
     }
 
     private fun setFunViewModel() {
@@ -184,9 +203,16 @@ class MediasModal(
         })
     }
 
+    private fun onEnterBackground(isEntering: Boolean) {
+        (binding.modalMediasViewPager.adapter as MediasAdapter).apply {
+            onEnterBackground(isEntering)
+        }
+    }
+
+
     private fun onLeavePage() {
         (binding.modalMediasViewPager.adapter as MediasAdapter).apply {
-            leavePage()
+            onLeavePage()
             dismiss()
         }
     }

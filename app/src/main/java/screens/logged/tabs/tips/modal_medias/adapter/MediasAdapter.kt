@@ -1,11 +1,8 @@
 package screens.logged.tabs.tips.modal_medias.adapter
 
-import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import repositories.tips.TipsResponse
-import screens.logged.tabs.tips.modal_medias.MediasViewModel
 
 class MediasAdapter(
     fa: FragmentActivity,
@@ -55,10 +52,18 @@ class MediasAdapter(
         }
     }
 
-    fun leavePage() {
+    fun onLeavePage() {
         if(hasFinishedLoading()) {
             fragments[actualTipPosition].apply {
-                leavePage()
+                onLeavePage()
+            }
+        }
+    }
+
+    fun onEnterBackground(isEntering: Boolean) {
+        if(hasFinishedLoading()) {
+            fragments[actualTipPosition].apply {
+                onEnterBackground(isEntering)
             }
         }
     }

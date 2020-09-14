@@ -69,8 +69,17 @@ class MediasItemFragment(
         startImageTimer()
     }
 
-    fun leavePage() {
+    fun onLeavePage() {
         stopTimer()
+    }
+
+    fun onEnterBackground(isEntering: Boolean) {
+        if(isEntering) {
+            stopTimer()
+        }
+        else {
+            startTimer()
+        }
     }
 
     private val runnableTimer = Runnable {

@@ -33,6 +33,7 @@ class MediasItemFragment(
         setProgressView()
         setTitleView()
         setFooterView()
+
     }
 
     private fun hasInitialized() = this::binding.isInitialized
@@ -40,6 +41,12 @@ class MediasItemFragment(
     fun changeHolding(isHolding: Boolean) {
         if(hasInitialized()) {
             binding.isHolding = isHolding
+        }
+    }
+
+    fun setText() {
+        if(hasInitialized()) {
+            binding.modalMediasItemTestText.text = viewModel.getActualTip(position).getMedia().url
         }
     }
 
@@ -66,5 +73,4 @@ class MediasItemFragment(
             initFooterView(media)
         }
     }
-
 }

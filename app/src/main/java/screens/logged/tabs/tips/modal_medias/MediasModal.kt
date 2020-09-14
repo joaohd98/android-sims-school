@@ -62,6 +62,7 @@ class MediasModal(
             this.adapter = adapter
             setPageTransformer(CubeTransformer())
             setCurrentItem(initialIndex, false)
+
             setObserves()
         }
     }
@@ -84,14 +85,27 @@ class MediasModal(
                 }
             })
 
-            getChildAt(0).shortLongPress( {}, {
+            val viewChild = getChildAt(0)
+            viewChild.shortLongPress( {}, {
                 viewModel.changeHolding(false)
             }, {
                 viewModel.changeHolding(true)
             }, { event ->
                 val x = event.x.toInt()
                 val middle = Resources.getSystem().displayMetrics.widthPixels / 2
-                viewModel.positionChanged(viewModel.getActualTipPosition(),x > middle)
+
+                viewModel.positionChanged(x > middle,  { position ->
+                    isUserInputEnabled = false
+                    viewChild.isEnabled = false
+                    setCurrentItem(position, true)
+
+                    Handler().postDelayed({
+                        isUserInputEnabled = true
+                        viewChild.isEnabled = true
+                    }, 500)
+                }) {
+                    dismiss()
+                }
             })
         }
     }
@@ -103,8 +117,8 @@ class MediasModal(
             adapter.changeHolding(it)
         })
 
-        viewModel.changeList.observe(viewLifecycleOwner, {
-            val changePosition = it.second
+        viewModel.hasTappedDirection.observe(viewLifecycleOwner, {
+            adapter.setText()
         })
 
         viewModel.actualTipPosition.observe(viewLifecycleOwner, {

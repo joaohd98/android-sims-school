@@ -21,13 +21,15 @@ class MediasViewModel(response: ArrayList<TipsResponse>, index: Int): ViewModel(
         MutableLiveData(false)
     }
 
-    val changeList: MutableLiveData<Pair<Boolean, Int>> by lazy {
-        MutableLiveData(Pair(false, -1))
+    val hasTappedDirection: MutableLiveData<Boolean> by lazy {
+        MutableLiveData(false)
     }
 
     fun getActualTipPosition() = actualTipPosition.value!!
 
     fun getActualTip(position: Int) = tips[position]
+
+    fun getCurrentTip() = tips[getActualTipPosition()]
 
     fun changeHolding(isHolding: Boolean) {
         this.isHolding.value = isHolding
@@ -37,16 +39,36 @@ class MediasViewModel(response: ArrayList<TipsResponse>, index: Int): ViewModel(
         this.isSliding.value = isSliding
     }
 
-    fun positionChanged(position: Int, isRight: Boolean) {
-        tips[position].apply {
-            if(isRight) {
-                goRightMedia {}
-            }
-            else {
-                goLeftMedia {}
+    fun positionChanged(isRight: Boolean, onChange: (Int) -> Unit, onDismiss: () -> Unit) {
+        getCurrentTip().apply {
+            val size = tips.size
+
+            val changeCurrent = fun(compareValue: Int, sumValue: Int) {
+                val position = getActualTipPosition()
+
+                if(position == compareValue) {
+                    onDismiss()
+                }
+                else {
+                    val newPosition = position + sumValue
+                    onChange(newPosition)
+                    actualTipPosition.value = newPosition
+                    hasTappedDirection.value = !(hasTappedDirection.value!!)
+                }
             }
 
-            changeList.value = Pair(!(changeList.value!!.first), position)
+            if(isRight) {
+                goRightMedia {
+                   changeCurrent(size - 1, 1)
+                }
+            }
+            else {
+                goLeftMedia {
+                    changeCurrent(0, -1)
+                }
+            }
+
+            hasTappedDirection.value = !(hasTappedDirection.value!!)
         }
     }
 }

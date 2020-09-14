@@ -83,8 +83,6 @@ class MediasItemFragment(
     }
 
     private val runnableTimer = Runnable {
-        Log.d("aaa", "run...")
-
         if(!(viewModel.isHolding.value!! || viewModel.isSliding.value!!)) {
             timerCount -= delay
 

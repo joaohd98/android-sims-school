@@ -25,6 +25,16 @@ class MediasViewModel(response: ArrayList<TipsResponse>, index: Int): ViewModel(
         MutableLiveData(false)
     }
 
+    private lateinit var onChangeCurrentMedia: (Boolean) -> Unit
+    private lateinit var reachLastPositionMedia: (Int) -> Unit
+    private lateinit var closeModal: () -> Unit
+
+    fun setFun(onChangeCurrentMedia: (Boolean) -> Unit, onLastPositionMedia: (Int) -> Unit, closeModal: () -> Unit) {
+        this.onChangeCurrentMedia = onChangeCurrentMedia
+        this.reachLastPositionMedia = onLastPositionMedia
+        this.closeModal = closeModal
+    }
+
     fun getActualTipPosition() = actualTipPosition.value!!
 
     fun getActualTip(position: Int) = tips[position]
@@ -39,35 +49,11 @@ class MediasViewModel(response: ArrayList<TipsResponse>, index: Int): ViewModel(
         this.isSliding.value = isSliding
     }
 
-    fun positionChanged(isRight: Boolean, onChange: (Int) -> Unit, onDismiss: () -> Unit) {
-        getCurrentTip().apply {
-            val size = tips.size
+    fun changeTappedDirection() {
+        hasTappedDirection.value = !(hasTappedDirection.value!!)
+    }
 
-            val changeCurrent = fun(compareValue: Int, sumValue: Int) {
-                val position = getActualTipPosition()
-
-                if(position == compareValue) {
-                    onDismiss()
-                }
-                else {
-                    val newPosition = position + sumValue
-                    onChange(newPosition)
-                    actualTipPosition.value = newPosition
-                }
-            }
-
-            if(isRight) {
-                goRightMedia {
-                   changeCurrent(size - 1, 1)
-                }
-            }
-            else {
-                goLeftMedia {
-                    changeCurrent(0, -1)
-                }
-            }
-
-            hasTappedDirection.value = !(hasTappedDirection.value!!)
-        }
+    fun positionChanged(isRight: Boolean) {
+      onChangeCurrentMedia(isRight)
     }
 }

@@ -1,7 +1,10 @@
 package screens.logged.tabs.tips.modal_medias.adapter
 
 import android.os.Bundle
-import android.view.*
+import android.os.Handler
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -34,6 +37,7 @@ class MediasItemFragment(
         setTitleView()
         setFooterView()
 
+        startImageTimer()
     }
 
     private fun hasInitialized() = this::binding.isInitialized
@@ -49,6 +53,55 @@ class MediasItemFragment(
 
         binding.modalMediasItemProgressView.newCurrentPosition(tip.currentMediaPosition)
         binding.modalMediasItemFooterView.changeFooterLink(tip.getMedia().url)
+    }
+
+    private var limitTimer = 0
+    private var timerCount = 0
+    private var delay = 10
+    private var started = false
+    private val handler = Handler()
+
+    private val runnableTimer = Runnable {
+        if(!(viewModel.isHolding.value!! || viewModel.isSliding.value!!)) {
+            timerCount -= delay
+
+            if(timerCount > 0) {
+                val value = 100 - (timerCount.toDouble() / limitTimer.toDouble() * 100)
+                binding.modalMediasItemProgressView.changeProgress(value)
+            }
+            else {
+                stopTimer()
+
+                binding.modalMediasItemProgressView.changeProgress(100.0)
+                viewModel.positionChanged(true)
+
+                startImageTimer()
+            }
+        }
+
+        if(timerCount == 0) {
+            stopTimer()
+        }
+        else if (started) {
+            startTimer()
+        }
+    }
+
+    private fun stopTimer() {
+        started = false
+        handler.removeCallbacks(runnableTimer)
+    }
+
+    private fun startTimer() {
+        started = true
+        handler.postDelayed(runnableTimer, delay.toLong())
+    }
+
+    private fun startImageTimer() {
+        limitTimer = 6000
+        timerCount = 6000
+
+        startTimer()
     }
 
     private fun setProgressView() {

@@ -46,8 +46,66 @@ class MediasModal(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setFunViewModel()
         initViewPager()
         initTouchListener()
+    }
+
+    private fun setFunViewModel() {
+        val closeModal = fun() {
+            dismiss()
+        }
+
+        val reachLastPositionMedia = fun(position: Int) {
+            binding.modalMediasViewPager.apply {
+                val viewChild = getChildAt(0)
+
+                isUserInputEnabled = false
+                viewChild.isEnabled = false
+                setCurrentItem(position, true)
+
+                Handler().postDelayed({
+                    isUserInputEnabled = true
+                    viewChild.isEnabled = true
+                }, 500)
+            }
+        }
+
+        viewModel.setFun({
+            viewModel.getCurrentTip().apply {
+                val size = viewModel.tips.size
+
+                val changeCurrent = fun(compareValue: Int, sumValue: Int) {
+                    val position = viewModel.getActualTipPosition()
+
+                    if(position == compareValue) {
+                        closeModal()
+                    }
+                    else {
+                        val newPosition = position + sumValue
+                        reachLastPositionMedia(newPosition)
+                        viewModel.actualTipPosition.value = newPosition
+                    }
+                }
+
+                if(it) {
+                    goRightMedia {
+                        changeCurrent(size - 1, 1)
+                    }
+                }
+                else {
+                    goLeftMedia {
+                        changeCurrent(0, -1)
+                    }
+                }
+
+                viewModel.changeTappedDirection()
+            }
+        }, { position ->
+            reachLastPositionMedia(position)
+        }) {
+            closeModal()
+        }
     }
 
     private fun initViewPager(){
@@ -94,18 +152,7 @@ class MediasModal(
                 val x = event.x.toInt()
                 val middle = Resources.getSystem().displayMetrics.widthPixels / 2
 
-                viewModel.positionChanged(x > middle,  { position ->
-                    isUserInputEnabled = false
-                    viewChild.isEnabled = false
-                    setCurrentItem(position, true)
-
-                    Handler().postDelayed({
-                        isUserInputEnabled = true
-                        viewChild.isEnabled = true
-                    }, 500)
-                }) {
-                    dismiss()
-                }
+                viewModel.positionChanged(x > middle)
             })
         }
     }

@@ -9,10 +9,7 @@ import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.forEach
-import androidx.core.view.forEachIndexed
-import androidx.core.view.marginBottom
-import androidx.core.view.marginTop
+import androidx.core.view.*
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ModalMediasItemProgressViewBinding
 import utils.getPixels
@@ -20,6 +17,7 @@ import utils.getPixels
 
 class MediaProgressView: ConstraintLayout {
     lateinit var binding: ModalMediasItemProgressViewBinding
+    var position = 0
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
@@ -45,6 +43,7 @@ class MediaProgressView: ConstraintLayout {
             )
         }
     }
+
     fun initProgressView(size: Int) {
         binding.modalMediasItemProgressLinearLayout.apply {
             weightSum = size.toFloat()
@@ -73,6 +72,8 @@ class MediaProgressView: ConstraintLayout {
     }
 
     fun newCurrentPosition(position: Int) {
+        this.position = position
+
         binding.modalMediasItemProgressLinearLayout.forEachIndexed { index, view ->
             if(index < position) {
                 view.findViewById<ProgressBar>(R.id.modal_medias_item_progress_bar).apply {
@@ -80,5 +81,12 @@ class MediaProgressView: ConstraintLayout {
                 }
             }
         }
+    }
+
+    fun changeProgress(percentage: Double) {
+        binding.modalMediasItemProgressLinearLayout[position]
+            .findViewById<ProgressBar>(R.id.modal_medias_item_progress_bar).apply {
+                progress = percentage.toInt()
+            }
     }
 }

@@ -51,6 +51,7 @@
                 android:visibility="@{isHolding ? View.INVISIBLE : View.VISIBLE}"
                 android:layout_margin="5dp" />
             <screens.logged.tabs.tips.modal_medias.components.MediaStatusView
+                android:id="@+id/modal_medias_item_status_view"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1" />

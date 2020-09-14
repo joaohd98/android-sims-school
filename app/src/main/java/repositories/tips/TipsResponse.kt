@@ -1,6 +1,7 @@
 package repositories.tips
 
 import android.app.Application
+import android.graphics.Bitmap
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.tasks.await

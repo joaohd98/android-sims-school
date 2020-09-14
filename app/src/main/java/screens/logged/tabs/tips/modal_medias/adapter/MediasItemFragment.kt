@@ -41,13 +41,17 @@ class MediasItemFragment(
 
         setProgressView()
         setTitleView()
+        setStatusView()
+        setFooterView()
         setFooterView()
     }
 
     private fun hasInitialized() = this::binding.isInitialized
 
     fun isActiveTip() {
-        startImageTimer()
+        Log.d("aaa", "isActiveTip")
+
+        makeCallMedia()
     }
 
     fun isLastActiveTip() {
@@ -71,7 +75,7 @@ class MediasItemFragment(
         binding.modalMediasItemProgressView.newCurrentPosition(tip.currentMediaPosition)
         binding.modalMediasItemFooterView.changeFooterLink(tip.getMedia().url)
 
-        startImageTimer()
+        makeCallMedia()
     }
 
     fun onLeavePage() {
@@ -85,6 +89,14 @@ class MediasItemFragment(
         }
         else {
             startTimer()
+        }
+    }
+
+    private fun makeCallMedia() {
+        val media = viewModel.getActualTip(position).getMedia()
+
+        binding.modalMediasItemStatusView.setCallRequest(media) {
+
         }
     }
 
@@ -142,6 +154,12 @@ class MediasItemFragment(
 
         binding.modalMediasItemTitleView.apply {
             initTitleView(tip.name, onDismiss)
+        }
+    }
+
+    private fun setStatusView() {
+        binding.modalMediasItemStatusView.apply {
+            initStatusView()
         }
     }
 

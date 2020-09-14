@@ -2,19 +2,26 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <ViewSwitcher
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ProgressBar
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:indeterminateTint="@color/blue"
-            android:layout_gravity="center"/>
-        <components.error_view.ErrorView
+        android:layout_height="match_parent"
+        android:id="@+id/modal_medias_item_status_linear_layout">
+        <ViewSwitcher
+            android:id="@+id/modal_medias_item_status_view_switcher"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:message="@string/view_modal_media_error_message"
-            app:messageColor="@color/white"
-            app:hasNoBorder="true"/>
-    </ViewSwitcher>
+            android:layout_height="match_parent">
+            <ProgressBar
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:indeterminateTint="@color/blue"
+                android:layout_gravity="center"/>
+            <components.error_view.ErrorView
+                android:id="@+id/modal_medias_item_status_error_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:message="@string/view_modal_media_error_message"
+                app:messageColor="@color/white"
+                app:hasNoBorder="true"/>
+        </ViewSwitcher>
+    </LinearLayout>
 </layout>

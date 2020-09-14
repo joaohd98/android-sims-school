@@ -2,13 +2,18 @@ package screens.logged.tabs.tips.modal_medias.components
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ModalMediasItemStatusViewBinding
+import components.error_view.OnTryAgainClickDataBinding
+import repositories.RepositoryStatus
+import repositories.tips.TipsMediasResponse
 
 class MediaStatusView: ConstraintLayout {
-    lateinit var binding: ModalMediasItemStatusViewBinding
+    private lateinit var binding: ModalMediasItemStatusViewBinding
+    private lateinit var callService: () -> Unit
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
@@ -28,6 +33,53 @@ class MediaStatusView: ConstraintLayout {
                 this,
                 true
             )
+        }
+    }
+
+    fun initStatusView() {
+        binding.modalMediasItemStatusErrorView.setTryAgain(object: OnTryAgainClickDataBinding {
+            override fun showLoading() {
+                changeStatus(RepositoryStatus.LOADING)
+            }
+
+            override fun onClick() {
+                callService()
+            }
+        })
+    }
+
+    fun setCallRequest(media: TipsMediasResponse, onSuccess: () -> Unit) {
+        if(media.status == RepositoryStatus.SUCCESS) {
+            return
+        }
+
+        changeStatus(media.status)
+
+        callService = {
+            media.callService(context, {
+                changeStatus(RepositoryStatus.SUCCESS)
+                onSuccess()
+            }, {
+                changeStatus(RepositoryStatus.FAILED)
+            })
+        }
+
+        callService()
+    }
+
+    fun changeStatus(status: RepositoryStatus) {
+
+        when(status) {
+            RepositoryStatus.LOADING -> {
+                binding.modalMediasItemStatusViewSwitcher.displayedChild = 0
+            }
+            RepositoryStatus.FAILED -> {
+                binding.modalMediasItemStatusViewSwitcher.displayedChild = 1
+            }
+            RepositoryStatus.SUCCESS -> {
+                binding.modalMediasItemStatusLinearLayout.removeAllViews()
+            }
+            else -> {}
         }
     }
 }

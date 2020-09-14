@@ -50,6 +50,7 @@ class MediaStatusView: ConstraintLayout {
 
     fun setCallRequest(media: TipsMediasResponse, onSuccess: () -> Unit) {
         if(media.status == RepositoryStatus.SUCCESS) {
+            onSuccess()
             return
         }
 
@@ -68,16 +69,17 @@ class MediaStatusView: ConstraintLayout {
     }
 
     fun changeStatus(status: RepositoryStatus) {
-
         when(status) {
             RepositoryStatus.LOADING -> {
+                binding.modalMediasItemStatusLinearLayout.alpha = 1f
                 binding.modalMediasItemStatusViewSwitcher.displayedChild = 0
             }
             RepositoryStatus.FAILED -> {
+                binding.modalMediasItemStatusLinearLayout.alpha = 1f
                 binding.modalMediasItemStatusViewSwitcher.displayedChild = 1
             }
             RepositoryStatus.SUCCESS -> {
-                binding.modalMediasItemStatusLinearLayout.removeAllViews()
+                binding.modalMediasItemStatusLinearLayout.alpha = 0f
             }
             else -> {}
         }

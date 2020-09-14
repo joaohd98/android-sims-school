@@ -49,8 +49,6 @@ class MediasItemFragment(
     private fun hasInitialized() = this::binding.isInitialized
 
     fun isActiveTip() {
-        Log.d("aaa", "isActiveTip")
-
         makeCallMedia()
     }
 
@@ -96,7 +94,7 @@ class MediasItemFragment(
         val media = viewModel.getActualTip(position).getMedia()
 
         binding.modalMediasItemStatusView.setCallRequest(media) {
-
+            startImageTimer()
         }
     }
 

@@ -48,12 +48,14 @@ class TipsMediasResponse(
 
             if(bitmapImage == null) {
                 GlobalScope.launch(Dispatchers.Main) {
+                    status = RepositoryStatus.FAILED
                     onFailed()
                 }
             }
             else {
                 isVertical = bitmapImage!!.height > bitmapImage!!.width
                 GlobalScope.launch(Dispatchers.Main) {
+                    status = RepositoryStatus.SUCCESS
                     onSuccess()
                 }
             }

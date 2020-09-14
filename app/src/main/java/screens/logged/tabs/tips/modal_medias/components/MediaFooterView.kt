@@ -38,9 +38,17 @@ class MediaFooterView: ConstraintLayout {
     }
 
     fun initFooterView(media: TipsMediasResponse) {
-        binding.onButtonPress = object: OnClickDataBinding() {
+        binding.onButtonPress = setOnPress(media.url)
+    }
+
+    fun changeFooterLink(url: String) {
+        binding.onButtonPress = setOnPress(url)
+    }
+
+    private fun setOnPress(url: String): OnClickDataBinding {
+        return object: OnClickDataBinding() {
             override fun onClick() {
-                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(media.url))
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                 startActivity(context, browserIntent, null)
             }
         }

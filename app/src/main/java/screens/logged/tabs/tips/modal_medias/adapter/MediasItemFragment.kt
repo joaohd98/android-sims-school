@@ -48,6 +48,7 @@ class MediasItemFragment(
         val tip = viewModel.getActualTip(position)
 
         binding.modalMediasItemProgressView.newCurrentPosition(tip.currentMediaPosition)
+        binding.modalMediasItemFooterView.changeFooterLink(tip.getMedia().url)
     }
 
     private fun setProgressView() {

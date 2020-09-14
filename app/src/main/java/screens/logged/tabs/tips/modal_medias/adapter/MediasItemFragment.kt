@@ -2,6 +2,7 @@ package screens.logged.tabs.tips.modal_medias.adapter
 
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -64,10 +65,17 @@ class MediasItemFragment(
 
         binding.modalMediasItemProgressView.newCurrentPosition(tip.currentMediaPosition)
         binding.modalMediasItemFooterView.changeFooterLink(tip.getMedia().url)
+
         startImageTimer()
     }
 
+    fun leavePage() {
+        stopTimer()
+    }
+
     private val runnableTimer = Runnable {
+        Log.d("aaa", "run...")
+
         if(!(viewModel.isHolding.value!! || viewModel.isSliding.value!!)) {
             timerCount -= delay
 
@@ -88,16 +96,6 @@ class MediasItemFragment(
         }
     }
 
-    private fun stopTimer() {
-        started = false
-        handler.removeCallbacks(runnableTimer)
-    }
-
-    private fun startTimer() {
-        started = true
-        handler.postDelayed(runnableTimer, delay.toLong())
-    }
-
     private fun startImageTimer() {
         stopTimer()
 
@@ -106,6 +104,16 @@ class MediasItemFragment(
         timerCount = time
 
         startTimer()
+    }
+
+    private fun stopTimer() {
+        started = false
+        handler.removeCallbacks(runnableTimer)
+    }
+
+    private fun startTimer() {
+        started = true
+        handler.postDelayed(runnableTimer, delay.toLong())
     }
 
     private fun setProgressView() {

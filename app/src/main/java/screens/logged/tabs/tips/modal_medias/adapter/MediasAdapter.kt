@@ -54,4 +54,12 @@ class MediasAdapter(
             }
         }
     }
+
+    fun leavePage() {
+        if(hasFinishedLoading()) {
+            fragments[actualTipPosition].apply {
+                leavePage()
+            }
+        }
+    }
 }

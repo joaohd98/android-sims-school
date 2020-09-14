@@ -1,10 +1,13 @@
 package screens.logged.tabs.tips.modal_medias
 
+import android.app.Dialog
 import android.content.res.Resources
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentActivity
@@ -27,11 +30,6 @@ class MediasModal(
     }
     lateinit var binding: ModalMediasBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setStyle(STYLE_NORMAL, R.style.FullScreenModal);
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,6 +47,14 @@ class MediasModal(
         setFunViewModel()
         initViewPager()
         initTouchListener()
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return object : Dialog(requireActivity(), R.style.FullScreenModal) {
+            override fun onBackPressed() {
+                onLeavePage()
+            }
+        }
     }
 
     private fun setFunViewModel() {
@@ -78,22 +84,20 @@ class MediasModal(
                 val changeCurrent = fun(compareValue: Int, sumValue: Int) {
                     val position = viewModel.getActualTipPosition()
 
-                    if(position == compareValue) {
+                    if (position == compareValue) {
                         closeModal()
-                    }
-                    else {
+                    } else {
                         val newPosition = position + sumValue
                         reachLastPositionMedia(newPosition)
                         viewModel.actualTipPosition.value = newPosition
                     }
                 }
 
-                if(it) {
+                if (it) {
                     goRightMedia {
                         changeCurrent(size - 1, 1)
                     }
-                }
-                else {
+                } else {
                     goLeftMedia {
                         changeCurrent(0, -1)
                     }
@@ -113,7 +117,7 @@ class MediasModal(
 
         val fragmentActivity = context as FragmentActivity
         val adapter =  MediasAdapter(fragmentActivity, actualTipPosition, viewModel.tips.size) {
-            dismiss()
+            onLeavePage()
         }
 
         binding.modalMediasViewPager.apply {
@@ -133,7 +137,8 @@ class MediasModal(
                     when (state) {
                         ViewPager2.SCROLL_STATE_DRAGGING -> viewModel.changeSliding(true)
                         ViewPager2.SCROLL_STATE_SETTLING -> viewModel.changeSliding(false)
-                        else -> { }
+                        else -> {
+                        }
                     }
                 }
 
@@ -144,10 +149,10 @@ class MediasModal(
             })
 
             val viewChild = getChildAt(0)
-            viewChild.shortLongPress( {}, {
+            viewChild.shortLongPress({}, {
                 viewModel.changeHolding(false)
             }, {
-                if(!(viewModel.isSliding.value!!)) {
+                if (!(viewModel.isSliding.value!!)) {
                     viewModel.changeHolding(true)
                 }
             }, { event ->
@@ -177,6 +182,13 @@ class MediasModal(
         viewModel.actualTipPosition.observe(viewLifecycleOwner, {
             adapter.changeActualTipPosition(it)
         })
+    }
+
+    private fun onLeavePage() {
+        (binding.modalMediasViewPager.adapter as MediasAdapter).apply {
+            leavePage()
+            dismiss()
+        }
     }
 
     companion object {

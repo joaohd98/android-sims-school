@@ -6,7 +6,9 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.ImageDecoder
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.os.Handler
@@ -178,9 +180,27 @@ class CameraFragment : BottomSheetDialogFragment() {
             if (requestCode == takeGallery) {
                 dismiss()
 
-                val uri = data!!.data!!
-                val bitmap = MediaStore.Images.Media.getBitmap(activity?.contentResolver, uri)
-                callSuccess(bitmap)
+                val selectedPhotoUri = data?.data
+
+                try {
+                    val contentResolver = activity?.contentResolver!!
+                    selectedPhotoUri?.let {
+                        if(Build.VERSION.SDK_INT < 28) {
+                            val bitmap = MediaStore.Images.Media.getBitmap(
+                                contentResolver,
+                                selectedPhotoUri
+                            )
+
+                            callSuccess(bitmap)
+                        } else {
+                            val source = ImageDecoder.createSource(contentResolver, selectedPhotoUri)
+                            val bitmap = ImageDecoder.decodeBitmap(source)
+
+                            callSuccess(bitmap)
+
+                        }
+                    }
+                } catch (e: Exception) { }
             }
         }
     }

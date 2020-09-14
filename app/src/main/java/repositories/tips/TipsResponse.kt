@@ -72,4 +72,8 @@ class TipsResponse(
             currentMediaPosition++
         }
     }
+
+    fun reset() {
+        currentMediaPosition = 0
+    }
 }

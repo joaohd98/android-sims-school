@@ -1,5 +1,6 @@
 package screens.logged.tabs.tips.modal_medias.adapter
 
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -25,7 +26,19 @@ class MediasAdapter(
     private fun hasFinishedLoading() = fragments.size > actualTipPosition
 
     fun changeActualTipPosition(position: Int) {
+        if(hasFinishedLoading()) {
+            fragments[actualTipPosition].apply {
+                isLastActiveTip()
+            }
+        }
+
         actualTipPosition = position
+
+        if(hasFinishedLoading()) {
+            fragments[actualTipPosition].apply {
+                isActiveTip()
+            }
+        }
     }
 
     fun changeHolding(isHolding: Boolean) {
@@ -54,8 +67,10 @@ class MediasAdapter(
 
     fun onLeavePage() {
         if(hasFinishedLoading()) {
-            fragments[actualTipPosition].apply {
-                onLeavePage()
+            fragments.forEach {
+                it.apply {
+                    onLeavePage()
+                }
             }
         }
     }

@@ -42,16 +42,21 @@ class MediasItemFragment(
         setProgressView()
         setTitleView()
         setFooterView()
-
-        startImageTimer()
     }
 
     private fun hasInitialized() = this::binding.isInitialized
 
+    fun isActiveTip() {
+        startImageTimer()
+    }
+
+    fun isLastActiveTip() {
+        stopTimer()
+        binding.modalMediasItemProgressView.changeProgress(0.0)
+    }
+
     fun changeHolding(isHolding: Boolean) {
-        if(hasInitialized()) {
-            binding.isHolding = isHolding
-        }
+        binding.isHolding = isHolding
     }
 
     fun changeSliding(isSliding: Boolean) {
@@ -70,6 +75,7 @@ class MediasItemFragment(
     }
 
     fun onLeavePage() {
+        viewModel.getActualTip(position).reset()
         stopTimer()
     }
 

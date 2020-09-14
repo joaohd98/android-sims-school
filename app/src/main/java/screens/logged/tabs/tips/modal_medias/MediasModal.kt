@@ -133,14 +133,16 @@ class MediasModal(
 
     private fun initViewPager(){
         val actualTipPosition = viewModel.getActualTipPosition()
+        val size = viewModel.tips.size
 
         val fragmentActivity = context as FragmentActivity
-        val adapter =  MediasAdapter(fragmentActivity, actualTipPosition, viewModel.tips.size) {
+        val adapter =  MediasAdapter(fragmentActivity, actualTipPosition, size) {
             onLeavePage()
         }
 
         binding.modalMediasViewPager.apply {
             this.adapter = adapter
+            offscreenPageLimit = size
             setPageTransformer(CubeTransformer())
             setCurrentItem(initialIndex, false)
 
@@ -208,7 +210,6 @@ class MediasModal(
             onEnterBackground(isEntering)
         }
     }
-
 
     private fun onLeavePage() {
         (binding.modalMediasViewPager.adapter as MediasAdapter).apply {

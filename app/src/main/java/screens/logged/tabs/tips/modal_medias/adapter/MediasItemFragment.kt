@@ -95,11 +95,19 @@ class MediasItemFragment(
         binding.modalMediasItemContentView.apply {
             eraseContent()
 
-            binding.modalMediasItemStatusView.setCallRequest(media, {
-                position == viewModel.getActualTipPosition() &&
-                        viewModel.getActualTip(position).getMedia().id == media.id
+            binding.modalMediasItemStatusView.setCallRequest(media, binding.modalMediasItemContentView , {
+                val isActualMedia = viewModel.getActualTip(position).getMedia().id == media.id
+                val isActualTip = position == viewModel.getActualTipPosition()
+
+                isActualMedia && isActualTip
             }) {
-                setImageTimer()
+                if(media.image != "") {
+                    setImageTimer()
+                }
+                else {
+
+                }
+
                 setContent(media)
             }
         }

@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.joao.simsschool.R
+import com.joao.simsschool.databinding.ModalMediasItemContentBinding
 import com.joao.simsschool.databinding.ModalMediasItemStatusViewBinding
 import components.error_view.OnTryAgainClickDataBinding
 import repositories.RepositoryStatus
@@ -48,7 +49,7 @@ class MediaStatusView: ConstraintLayout {
         })
     }
 
-    fun setCallRequest(media: TipsMediasResponse, stillCurrent: () -> Boolean, onSuccess: () -> Unit) {
+    fun setCallRequest(media: TipsMediasResponse, contentView: MediaContentView, stillCurrent: () -> Boolean, onSuccess: () -> Unit) {
         changeStatus(media.status)
 
         if(media.status == RepositoryStatus.FAILED) {
@@ -60,7 +61,7 @@ class MediaStatusView: ConstraintLayout {
         }
 
         callService = {
-            media.callService({
+            media.callService(context, contentView, {
                 if(stillCurrent()) {
                     changeStatus(RepositoryStatus.SUCCESS)
                     onSuccess()

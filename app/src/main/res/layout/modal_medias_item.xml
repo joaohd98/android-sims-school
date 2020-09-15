@@ -22,7 +22,7 @@
         android:layout_height="match_parent"
         android:background="@color/black">
         <screens.logged.tabs.tips.modal_medias.components.MediaContentView
-            android:id="@+id/modal_medias_item_content"
+            android:id="@+id/modal_medias_item_content_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintStart_toStartOf="parent"

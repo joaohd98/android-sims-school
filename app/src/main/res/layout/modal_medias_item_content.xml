@@ -8,28 +8,41 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:background="@color/black">
-
-<!--        <ImageView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:scaleType="fitXY"-->
-<!--            android:alpha="0.9"-->
-<!--            android:src="@drawable/spider_man"/>-->
-<!--        <ImageView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="300dp"-->
-<!--            android:scaleType="fitCenter"-->
-<!--            android:alpha="0.9"-->
-<!--            android:src="@drawable/unreal_engine" />-->
-<!--            <utils.CustomVerticalVideoView-->
-<!--                android:id="@+id/modal_media_item_video_vertical"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent" />-->
-<!--        <VideoView-->
-<!--            android:id="@+id/video_view"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="300dp" />-->
-
-
+        <ViewSwitcher
+            android:id="@+id/modal_medias_item_content_switcher_image_video"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ViewSwitcher
+                android:id="@+id/modal_medias_item_content_switcher_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/modal_medias_item_content_image_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:alpha="0.9" />
+                <ImageView
+                    android:id="@+id/modal_medias_item_content_image_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitCenter"
+                    android:alpha="0.9"
+                    android:src="@drawable/unreal_engine"/>
+            </ViewSwitcher>
+            <ViewSwitcher
+                android:id="@+id/modal_medias_item_content_switcher_video"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <utils.CustomVerticalVideoView
+                    android:id="@+id/modal_medias_item_content_video_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                <VideoView
+                    android:id="@+id/modal_medias_item_content_video_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp" />
+            </ViewSwitcher>
+        </ViewSwitcher>
     </LinearLayout>
 </layout>

@@ -18,10 +18,12 @@ import java.io.IOException
 import java.io.InputStream
 import java.net.HttpURLConnection
 import java.net.URL
+import java.util.*
 
 
 @Suppress("UNCHECKED_CAST")
 class TipsMediasResponse(
+    var id: UUID = UUID.randomUUID(),
     var url: String = "",
     var video: String = "",
     var image: String = "",
@@ -35,11 +37,11 @@ class TipsMediasResponse(
         image = (result["image"] as? String ?: "")
     }
 
-    fun callService(context: Context, onSuccess: () -> Unit, onFailed: () -> Unit) {
-        this.callImage(context, onSuccess, onFailed)
+    fun callService(onSuccess: () -> Unit, onFailed: () -> Unit) {
+        this.callImage(onSuccess, onFailed)
     }
 
-    private fun callImage(context: Context, onSuccess: () -> Unit, onFailed: () -> Unit) {
+    private fun callImage(onSuccess: () -> Unit, onFailed: () -> Unit) {
         GlobalScope.launch(Dispatchers.IO) {
             val url =
                 "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png"

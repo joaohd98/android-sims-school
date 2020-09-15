@@ -11,7 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ModalMediasItemBinding
+import kotlinx.coroutines.*
 import screens.logged.tabs.tips.modal_medias.MediasViewModel
+import java.lang.Runnable
 
 class MediasItemFragment(
     private val position: Int,
@@ -46,8 +48,6 @@ class MediasItemFragment(
         setFooterView()
     }
 
-    private fun hasInitialized() = this::binding.isInitialized
-
     fun isActiveTip() {
         makeCallMedia()
     }
@@ -62,16 +62,17 @@ class MediasItemFragment(
     }
 
     fun changeSliding(isSliding: Boolean) {
-        if(hasInitialized()) {
-            binding.isSliding = isSliding
-        }
+        binding.isSliding = isSliding
     }
 
     fun changedMedia() {
+        stopTimer()
+
         val tip = viewModel.getActualTip(position)
 
         binding.modalMediasItemProgressView.newCurrentPosition(tip.currentMediaPosition)
         binding.modalMediasItemFooterView.changeFooterLink(tip.getMedia().url)
+
 
         makeCallMedia()
     }
@@ -93,8 +94,15 @@ class MediasItemFragment(
     private fun makeCallMedia() {
         val media = viewModel.getActualTip(position).getMedia()
 
-        binding.modalMediasItemStatusView.setCallRequest(media) {
-            startImageTimer()
+        binding.modalMediasItemContentView.apply {
+            eraseContent()
+
+            binding.modalMediasItemStatusView.setCallRequest(media, {
+                viewModel.getActualTip(position).getMedia().id == media.id
+            }) {
+                setImageTimer()
+                setContent(media)
+            }
         }
     }
 
@@ -119,7 +127,7 @@ class MediasItemFragment(
         }
     }
 
-    private fun startImageTimer() {
+    private fun setImageTimer() {
         stopTimer()
 
         val time = 6000

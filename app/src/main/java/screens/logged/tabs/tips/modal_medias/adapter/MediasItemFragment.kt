@@ -73,12 +73,10 @@ class MediasItemFragment(
         binding.modalMediasItemProgressView.newCurrentPosition(tip.currentMediaPosition)
         binding.modalMediasItemFooterView.changeFooterLink(tip.getMedia().url)
 
-
         makeCallMedia()
     }
 
     fun onLeavePage() {
-        viewModel.getActualTip(position).reset()
         stopTimer()
     }
 
@@ -98,7 +96,8 @@ class MediasItemFragment(
             eraseContent()
 
             binding.modalMediasItemStatusView.setCallRequest(media, {
-                viewModel.getActualTip(position).getMedia().id == media.id
+                position == viewModel.getActualTipPosition() &&
+                        viewModel.getActualTip(position).getMedia().id == media.id
             }) {
                 setImageTimer()
                 setContent(media)

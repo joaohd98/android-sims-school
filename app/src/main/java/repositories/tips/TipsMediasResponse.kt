@@ -27,14 +27,20 @@ class TipsMediasResponse(
     var url: String = "",
     var video: String = "",
     var image: String = "",
-    var isVertical: Boolean = false,
     var bitmapImage: Bitmap? = null,
+    var isVertical: Boolean = false,
     var status: RepositoryStatus = RepositoryStatus.LOADING
 ) {
     fun initService(result: Map<String, Any?>) {
         url = (result["url"] as? String ?: "")
         video = (result["video"] as? String ?: "")
         image = (result["image"] as? String ?: "")
+    }
+
+    fun reset() {
+        if(status != RepositoryStatus.SUCCESS) {
+            status = RepositoryStatus.LOADING
+        }
     }
 
     fun callService(onSuccess: () -> Unit, onFailed: () -> Unit) {
@@ -49,15 +55,17 @@ class TipsMediasResponse(
             bitmapImage = getBitmapFromURL(url)
 
             if(bitmapImage == null) {
+                status = RepositoryStatus.FAILED
+
                 GlobalScope.launch(Dispatchers.Main) {
-                    status = RepositoryStatus.FAILED
                     onFailed()
                 }
             }
             else {
                 isVertical = bitmapImage!!.height > bitmapImage!!.width
+                status = RepositoryStatus.SUCCESS
+
                 GlobalScope.launch(Dispatchers.Main) {
-                    status = RepositoryStatus.SUCCESS
                     onSuccess()
                 }
             }
@@ -67,9 +75,11 @@ class TipsMediasResponse(
     private fun getBitmapFromURL(src: String): Bitmap? {
         return try {
             val url = URL(src)
+
             val connection: HttpURLConnection = url.openConnection() as HttpURLConnection
-            connection.doInput = true
+            connection.connectTimeout = 4000
             connection.connect()
+
             val input: InputStream = connection.inputStream
             BitmapFactory.decodeStream(input)
         } catch (e: IOException) {

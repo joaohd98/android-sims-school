@@ -56,4 +56,10 @@ class MediasViewModel(response: ArrayList<TipsResponse>, index: Int): ViewModel(
     fun positionChanged(isRight: Boolean) {
       onChangeCurrentMedia(isRight)
     }
+
+    fun onLeavePage() {
+        tips.forEach {
+            it.reset()
+        }
+    }
 }

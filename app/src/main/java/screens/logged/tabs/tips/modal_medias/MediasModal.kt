@@ -212,6 +212,8 @@ class MediasModal(
     }
 
     private fun onLeavePage() {
+        viewModel.onLeavePage()
+
         (binding.modalMediasViewPager.adapter as MediasAdapter).apply {
             onLeavePage()
             dismiss()

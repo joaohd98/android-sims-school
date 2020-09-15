@@ -66,7 +66,9 @@ class MediaStatusView: ConstraintLayout {
                     onSuccess()
                 }
             }, {
-                changeStatus(RepositoryStatus.FAILED)
+                if(stillCurrent()) {
+                    changeStatus(RepositoryStatus.FAILED)
+                }
             })
         }
 

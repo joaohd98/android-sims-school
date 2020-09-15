@@ -77,7 +77,7 @@ class ErrorView: LinearLayout {
 
                 Handler().postDelayed({
                     onTryAgain.onClick()
-                }, 2500)
+                }, 1500)
             }
         }
     }

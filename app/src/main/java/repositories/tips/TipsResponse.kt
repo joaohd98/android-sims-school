@@ -78,5 +78,9 @@ class TipsResponse(
 
     fun reset() {
         currentMediaPosition = 0
+
+        medias.forEach {
+            it.reset()
+        }
     }
 }

@@ -59,10 +59,12 @@ class MediasItemFragment(
 
     fun changeHolding(isHolding: Boolean) {
         binding.isHolding = isHolding
+        binding.modalMediasItemContentView.isSlidingOrHolding(isHolding)
     }
 
     fun changeSliding(isSliding: Boolean) {
         binding.isSliding = isSliding
+        binding.modalMediasItemContentView.isSlidingOrHolding(isSliding)
     }
 
     fun changedMedia() {
@@ -152,7 +154,6 @@ class MediasItemFragment(
 
         startTimer()
     }
-
 
     private fun stopTimer() {
         started = false

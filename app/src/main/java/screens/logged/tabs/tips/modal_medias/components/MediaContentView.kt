@@ -15,6 +15,7 @@ import repositories.tips.TipsMediasResponse
 
 class MediaContentView: ConstraintLayout {
     private lateinit var binding: ModalMediasItemContentBinding
+    private var videoView: VideoView? = null
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
@@ -81,6 +82,8 @@ class MediaContentView: ConstraintLayout {
     }
 
     private fun initVideo(videoView: VideoView, media: TipsMediasResponse) {
+        this.videoView = videoView
+
         videoView.apply {
             setVideoURI(media.videoAbsolutePath)
             start()
@@ -88,11 +91,15 @@ class MediaContentView: ConstraintLayout {
     }
 
     fun isSlidingOrHolding(hasPause: Boolean) {
-
-    }
-
-
-    override fun onFinishInflate() {
-        super.onFinishInflate()
+        if(this.videoView != null) {
+            this.videoView?.apply {
+                if(hasPause) {
+                    pause()
+                }
+                else {
+                    start()
+                }
+            }
+        }
     }
 }

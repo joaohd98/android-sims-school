@@ -49,7 +49,7 @@ class MediaStatusView: ConstraintLayout {
         })
     }
 
-    fun setCallRequest(media: TipsMediasResponse, contentView: MediaContentView, stillCurrent: () -> Boolean, onSuccess: () -> Unit) {
+    fun setCallRequest(media: TipsMediasResponse, stillCurrent: () -> Boolean, onSuccess: () -> Unit) {
         changeStatus(media.status)
 
         if(media.status == RepositoryStatus.FAILED) {
@@ -61,7 +61,7 @@ class MediaStatusView: ConstraintLayout {
         }
 
         callService = {
-            media.callService(context, contentView, {
+            media.callService(context, {
                 if(stillCurrent()) {
                     changeStatus(RepositoryStatus.SUCCESS)
                     onSuccess()

@@ -94,7 +94,7 @@ class MediasItemFragment(
         binding.modalMediasItemContentView.apply {
             eraseContent()
 
-            binding.modalMediasItemStatusView.setCallRequest(media, binding.modalMediasItemContentView , {
+            binding.modalMediasItemStatusView.setCallRequest(media, {
                 val isActualMedia = viewModel.getActualTip(position).getMedia().id == media.id
                 val isActualTip = position == viewModel.getActualTipPosition()
 
@@ -104,7 +104,7 @@ class MediasItemFragment(
                     setImageTimer()
                 }
                 else {
-
+                    setVideoTimer()
                 }
 
                 setContent(media)
@@ -142,6 +142,17 @@ class MediasItemFragment(
 
         startTimer()
     }
+
+    private fun setVideoTimer() {
+        stopTimer()
+
+        val duration = viewModel.getActualTip(position).getMedia().videoDuration!!
+        limitTimer = duration
+        timerCount = duration
+
+        startTimer()
+    }
+
 
     private fun stopTimer() {
         started = false

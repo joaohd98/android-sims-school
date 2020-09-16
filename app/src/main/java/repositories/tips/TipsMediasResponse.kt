@@ -4,17 +4,12 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.media.MediaPlayer
-import android.widget.MediaController;
 import android.net.Uri
-import android.util.Log
-import android.widget.VideoView
-import com.joao.simsschool.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import repositories.FirebaseInstances
 import repositories.RepositoryStatus
-import screens.logged.tabs.tips.modal_medias.components.MediaContentView
+import utils.CacheVideoTemp
 import java.io.IOException
 import java.io.InputStream
 import java.net.HttpURLConnection
@@ -30,8 +25,8 @@ class TipsMediasResponse(
     var imageUri: String? = null,
     var imageBitmap: Bitmap? = null,
     var video: String = "",
-    var videoController: MediaController? = null,
-    var durationVideo: Int? = 0,
+    var videoAbsolutePath: Uri? = null,
+    var videoDuration: Int? = null,
     var isVertical: Boolean = false,
     var status: RepositoryStatus = RepositoryStatus.LOADING
 ) {
@@ -47,47 +42,48 @@ class TipsMediasResponse(
         }
     }
 
-    fun callService(context: Context, contentView: MediaContentView, onSuccess: () -> Unit, onFailed: () -> Unit) {
+    fun callService(
+        context: Context,
+        onSuccess: () -> Unit,
+        onFailed: () -> Unit
+    ) {
         if(image != "") {
             this.getImage(onSuccess, onFailed)
         } else {
-            this.getVideo(context, contentView, onSuccess, onFailed)
+            this.getVideo(context, onSuccess, onFailed)
         }
     }
 
-    private fun getVideo(context: Context, contentView: MediaContentView, onSuccess: () -> Unit, onFailed: () -> Unit) {
+    private fun getVideo(
+        context: Context,
+        onSuccess: () -> Unit,
+        onFailed: () -> Unit
+    ) {
         GlobalScope.launch(Dispatchers.IO) {
-            try {
-                val link = "https://videocdn.bodybuilding.com/video/mp4/62000/62792m.mp4"
-                val video = Uri.parse(link)
-                val mediaPlayer = MediaPlayer.create(context, video)
+            val onError = fun () {
+                status = RepositoryStatus.FAILED
 
-                durationVideo = mediaPlayer.duration
-                isVertical = mediaPlayer.videoHeight > mediaPlayer.videoHeight
-
-                val videoView: VideoView = if(isVertical) {
-                    contentView.findViewById(R.id.modal_medias_item_content_video_vertical)
-                } else {
-                    contentView.findViewById(R.id.modal_medias_item_content_video_horizontal)
-                }
-
-                GlobalScope.launch(Dispatchers.Main) {
-                    videoView.setVideoURI(video)
-                    videoView.requestFocus()
-                    videoView.start()
-                    onSuccess()
-                }
-
-                try {
-                    videoView.setOnPreparedListener {}
-                } catch (e: Exception) {
-                    GlobalScope.launch(Dispatchers.Main) {
-                        onFailed()
-                    }
-                }
-            } catch (e: Exception) {
                 GlobalScope.launch(Dispatchers.Main) {
                     onFailed()
+                }
+            }
+
+            val link = "https://videocdn.bodybuilding.com/video/mp4/62000/62792m.mp4"
+            val path = cacheVideoFromUrl(context, link)
+
+            if(path == null) {
+                onError()
+            }
+            else {
+                val mediaPlayer = MediaPlayer.create(context, path)
+
+                videoAbsolutePath = path
+                status = RepositoryStatus.SUCCESS
+                isVertical = mediaPlayer.videoHeight > mediaPlayer.videoHeight
+                videoDuration = mediaPlayer.duration
+
+                GlobalScope.launch(Dispatchers.Main) {
+                    onSuccess()
                 }
             }
         }
@@ -140,6 +136,16 @@ class TipsMediasResponse(
             val input: InputStream = connection.inputStream
             BitmapFactory.decodeStream(input)
         } catch (e: IOException) {
+            null
+        }
+    }
+
+    private fun cacheVideoFromUrl(context: Context, src: String): Uri? {
+        val url = CacheVideoTemp.saveVideo(context, src, video.split("/").last(), "video")
+
+        return if(url != null) {
+            Uri.parse(url)
+        } else {
             null
         }
     }

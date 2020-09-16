@@ -38,8 +38,8 @@ class MediaContentView: ConstraintLayout {
     }
 
     fun setContent(media: TipsMediasResponse) {
-        if(media.bitmapImage != null) {
-            setImage(media.bitmapImage!!, media.isVertical)
+        if(media.imageBitmap != null) {
+            setImage(media.imageBitmap!!, media.isVertical)
         }
         else {
             setVideo(media, media.isVertical)
@@ -82,11 +82,8 @@ class MediaContentView: ConstraintLayout {
 
     private fun initVideo(videoView: VideoView, media: TipsMediasResponse) {
         videoView.apply {
-//            val path = "android.resource://" + context.packageName.toString() + "/" + R.raw.terminator
-//
-//            setMediaController()
-//            setVideoURI(Uri.parse(path))
-//            start()
+            setVideoURI(media.videoAbsolutePath)
+            start()
         }
     }
 

@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.media.MediaPlayer
 import android.net.Uri
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.VideoView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -52,8 +53,10 @@ class MediaContentView: ConstraintLayout {
         binding.modalMediasItemContentImageHorizontal.setImageBitmap(null)
         binding.modalMediasItemContentVideoHorizontal.setVideoURI(null)
         binding.modalMediasItemContentVideoVertical.setVideoURI(null)
+        binding.modalMediasItemContentSwitcherImageVideo.displayedChild = 0
+        binding.modalMediasItemContentSwitcherImage.displayedChild = 0
     }
-
+    
     private fun setImage(bitmap: Bitmap, isVertical: Boolean) {
         binding.modalMediasItemContentSwitcherImageVideo.displayedChild = 0
 

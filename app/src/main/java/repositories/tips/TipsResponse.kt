@@ -13,7 +13,7 @@ class TipsResponse(
     var thumbnailImage: String = "",
     var thumbnailVideo: String = "",
     var currentMediaPosition: Int = 0
-    ) {
+) {
     suspend fun initService(result: Map<String, Any?>, application: Application) {
         coroutineScope {
             name = (result["name"] as? String ?: "")

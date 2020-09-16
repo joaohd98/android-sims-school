@@ -41,7 +41,8 @@
                 <VideoView
                     android:id="@+id/modal_medias_item_content_video_horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp" />
+                    android:layout_height="300dp"
+                    android:layout_gravity="center"/>
             </ViewSwitcher>
         </ViewSwitcher>
     </LinearLayout>

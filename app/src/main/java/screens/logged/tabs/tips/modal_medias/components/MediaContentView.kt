@@ -94,4 +94,8 @@ class MediaContentView: ConstraintLayout {
 
     }
 
+
+    override fun onFinishInflate() {
+        super.onFinishInflate()
+    }
 }

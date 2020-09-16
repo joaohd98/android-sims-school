@@ -15,7 +15,7 @@ import java.net.URL
 object CacheVideoTemp {
     private var folders = hashSetOf<String>()
 
-    fun saveVideo(context: Context, src: String, saveName: String, folder: String): String? {
+    fun saveFile(context: Context, src: String, saveName: String, folder: String): String? {
         folders.add(folder)
 
         val url = URL(src)

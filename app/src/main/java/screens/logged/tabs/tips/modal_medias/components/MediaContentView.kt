@@ -1,11 +1,8 @@
 package screens.logged.tabs.tips.modal_medias.components
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.media.MediaPlayer
 import android.net.Uri
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.VideoView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -40,11 +37,13 @@ class MediaContentView: ConstraintLayout {
     }
 
     fun setContent(media: TipsMediasResponse) {
-        if(media.imageBitmap != null) {
-            setImage(media.imageBitmap!!, media.isVertical)
-        }
-        else {
-            setVideo(media, media.isVertical)
+        if(media.absolutePath != null) {
+            if(media.image != "") {
+                setImage(media.absolutePath!!, media.isVertical)
+            }
+            else {
+                setVideo(media.absolutePath!!, media.isVertical)
+            }
         }
     }
 
@@ -56,39 +55,39 @@ class MediaContentView: ConstraintLayout {
         binding.modalMediasItemContentSwitcherImageVideo.displayedChild = 0
         binding.modalMediasItemContentSwitcherImage.displayedChild = 0
     }
-    
-    private fun setImage(bitmap: Bitmap, isVertical: Boolean) {
+
+    private fun setImage(uri: Uri, isVertical: Boolean) {
         binding.modalMediasItemContentSwitcherImageVideo.displayedChild = 0
 
         if(isVertical) {
             binding.modalMediasItemContentSwitcherImage.displayedChild = 0
-            binding.modalMediasItemContentImageVertical.setImageBitmap(bitmap)
+            binding.modalMediasItemContentImageVertical.setImageURI(uri)
         }
         else {
             binding.modalMediasItemContentSwitcherImage.displayedChild = 1
-            binding.modalMediasItemContentImageHorizontal.setImageBitmap(bitmap)
+            binding.modalMediasItemContentImageHorizontal.setImageURI(uri)
         }
     }
 
-    private fun setVideo(media: TipsMediasResponse, isVertical: Boolean) {
+    private fun setVideo(uri: Uri, isVertical: Boolean) {
         binding.modalMediasItemContentSwitcherImageVideo.displayedChild = 1
 
         if(isVertical) {
             binding.modalMediasItemContentSwitcherVideo.displayedChild = 0
-            initVideo(binding.modalMediasItemContentVideoVertical, media)
+            initVideo(binding.modalMediasItemContentVideoVertical, uri)
         }
         else {
             binding.modalMediasItemContentSwitcherVideo.displayedChild = 1
-            initVideo(binding.modalMediasItemContentVideoHorizontal, media)
+            initVideo(binding.modalMediasItemContentVideoHorizontal, uri)
         }
 
     }
 
-    private fun initVideo(videoView: VideoView, media: TipsMediasResponse) {
+    private fun initVideo(videoView: VideoView, uri: Uri) {
         this.videoView = videoView
 
         videoView.apply {
-            setVideoURI(media.videoAbsolutePath)
+            setVideoURI(uri)
             start()
         }
     }

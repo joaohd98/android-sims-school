@@ -1,13 +1,8 @@
 package repositories.tips
 
 import android.app.Application
-import android.graphics.Bitmap
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
 import repositories.FirebaseInstances
-import java.util.*
 import kotlin.collections.ArrayList
 
 
@@ -35,19 +30,11 @@ class TipsResponse(
 
             val media = medias.random()
 
-//            thumbnailImage = getFirebaseURl(media.image)
-//            thumbnailVideo = getFirebaseURl(media.video)
+//            thumbnailImage = FirebaseInstances.getURLFromMedia(media.image)!!
+//            thumbnailVideo = FirebaseInstances.getURLFromMedia(media.video)!!
         }
     }
 
-    private suspend fun getFirebaseURl(url: String): String {
-        if(url == "")
-            return ""
-
-        return withContext(Dispatchers.IO) {
-            FirebaseInstances.storage.reference.child(url).downloadUrl.await()
-        }.toString()
-    }
 
     fun getMedia(): TipsMediasResponse {
         return medias[currentMediaPosition]

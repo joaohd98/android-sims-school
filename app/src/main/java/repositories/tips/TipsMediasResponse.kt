@@ -6,11 +6,13 @@ import android.graphics.BitmapFactory
 import android.media.MediaPlayer
 import android.widget.MediaController;
 import android.net.Uri
+import android.util.Log
 import android.widget.VideoView
 import com.joao.simsschool.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import repositories.FirebaseInstances
 import repositories.RepositoryStatus
 import screens.logged.tabs.tips.modal_medias.components.MediaContentView
 import java.io.IOException
@@ -24,11 +26,12 @@ import java.util.*
 class TipsMediasResponse(
     var id: UUID = UUID.randomUUID(),
     var url: String = "",
+    var image: String = "",
+    var imageUri: String? = null,
+    var imageBitmap: Bitmap? = null,
     var video: String = "",
     var videoController: MediaController? = null,
     var durationVideo: Int? = 0,
-    var image: String = "",
-    var bitmapImage: Bitmap? = null,
     var isVertical: Boolean = false,
     var status: RepositoryStatus = RepositoryStatus.LOADING
 ) {
@@ -46,13 +49,13 @@ class TipsMediasResponse(
 
     fun callService(context: Context, contentView: MediaContentView, onSuccess: () -> Unit, onFailed: () -> Unit) {
         if(image != "") {
-            this.callImage(onSuccess, onFailed)
+            this.getImage(onSuccess, onFailed)
         } else {
-            this.callVideo(context, contentView, onSuccess, onFailed)
+            this.getVideo(context, contentView, onSuccess, onFailed)
         }
     }
 
-    private fun callVideo(context: Context, contentView: MediaContentView, onSuccess: () -> Unit, onFailed: () -> Unit) {
+    private fun getVideo(context: Context, contentView: MediaContentView, onSuccess: () -> Unit, onFailed: () -> Unit) {
         GlobalScope.launch(Dispatchers.IO) {
             try {
                 val link = "https://videocdn.bodybuilding.com/video/mp4/62000/62792m.mp4"
@@ -90,27 +93,37 @@ class TipsMediasResponse(
         }
     }
 
-    private fun callImage(onSuccess: () -> Unit, onFailed: () -> Unit) {
+    private fun getImage(onSuccess: () -> Unit, onFailed: () -> Unit) {
         GlobalScope.launch(Dispatchers.IO) {
-            val url =
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png"
-
-            bitmapImage = getBitmapFromURL(url)
-
-            if(bitmapImage == null) {
+            val onError = fun () {
                 status = RepositoryStatus.FAILED
 
                 GlobalScope.launch(Dispatchers.Main) {
                     onFailed()
                 }
             }
-            else {
-                isVertical = bitmapImage!!.height > bitmapImage!!.width
-                status = RepositoryStatus.SUCCESS
 
-                GlobalScope.launch(Dispatchers.Main) {
-                    onSuccess()
+            try {
+                if(imageUri == null) {
+                    imageUri = FirebaseInstances.getURLFromMedia(image)!!
                 }
+
+                imageBitmap = getBitmapFromURL(imageUri!!)
+
+                if(imageBitmap == null) {
+                    onError()
+                }
+                else {
+                    isVertical = imageBitmap!!.height > imageBitmap!!.width
+                    status = RepositoryStatus.SUCCESS
+
+                    GlobalScope.launch(Dispatchers.Main) {
+                        onSuccess()
+                    }
+                }
+
+            } catch (e: java.lang.Exception) {
+                onError()
             }
         }
     }

@@ -16,15 +16,21 @@ object CacheVideoTemp {
     private var folders = hashSetOf<String>()
 
     fun saveVideo(context: Context, src: String, saveName: String, folder: String): String? {
-
-
         folders.add(folder)
 
         val url = URL(src)
         val client = OkHttpClient()
 
-        val (dirName, prefix ) = saveName.split(".")
-        val mediaFile = File.createTempFile(dirName, ".${prefix}", context.cacheDir)
+        val (fileName, prefix ) = saveName.split(".")
+        val dirName = File("${context.cacheDir}/$folder").apply {
+            deleteOnExit()
+
+            if (!exists()) {
+                mkdirs()
+            }
+        }
+
+        val mediaFile = File.createTempFile(fileName, ".${prefix}", dirName)
         val call = client.newCall(Request.Builder().url(url).get().build())
 
         return try {
@@ -39,10 +45,6 @@ object CacheVideoTemp {
 
                     mediaFile.apply {
                         deleteOnExit()
-
-                        if (!exists()) {
-                            parentFile?.mkdirs()
-                        }
                     }
 
                     val output = FileOutputStream(mediaFile)

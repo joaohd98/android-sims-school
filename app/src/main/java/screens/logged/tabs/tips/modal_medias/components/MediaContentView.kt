@@ -2,8 +2,10 @@ package screens.logged.tabs.tips.modal_medias.components
 
 import android.content.Context
 import android.net.Uri
+import android.os.Handler
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.widget.ImageView
 import android.widget.VideoView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.joao.simsschool.R
@@ -48,6 +50,8 @@ class MediaContentView: ConstraintLayout {
     }
 
     fun eraseContent() {
+        binding.modalMediasItemContentSwitcherImageVideo.visibility = INVISIBLE
+
         binding.modalMediasItemContentImageVertical.setImageBitmap(null)
         binding.modalMediasItemContentImageHorizontal.setImageBitmap(null)
 
@@ -63,11 +67,11 @@ class MediaContentView: ConstraintLayout {
 
         if(isVertical) {
             binding.modalMediasItemContentSwitcherImage.displayedChild = 0
-            binding.modalMediasItemContentImageVertical.setImageURI(uri)
+            initImage(binding.modalMediasItemContentImageVertical, uri)
         }
         else {
             binding.modalMediasItemContentSwitcherImage.displayedChild = 1
-            binding.modalMediasItemContentImageHorizontal.setImageURI(uri)
+            initImage(binding.modalMediasItemContentImageHorizontal, uri)
         }
     }
 
@@ -92,13 +96,30 @@ class MediaContentView: ConstraintLayout {
         }
     }
 
+    private fun initImage(imageView: ImageView, uri: Uri) {
+        imageView.apply {
+            setImageURI(uri)
+            showView()
+        }
+    }
+
     private fun initVideo(videoView: VideoView, uri: Uri) {
         this.videoView = videoView
 
         videoView.apply {
             setVideoURI(uri)
             start()
+
+            setOnPreparedListener {
+                showView()
+            }
         }
+    }
+
+    private fun showView() {
+        Handler().postDelayed({
+            binding.modalMediasItemContentSwitcherImageVideo.visibility = VISIBLE
+        }, 300)
     }
 
     fun isSlidingOrHolding(hasPause: Boolean) {

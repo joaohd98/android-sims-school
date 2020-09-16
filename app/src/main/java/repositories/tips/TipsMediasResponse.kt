@@ -74,10 +74,10 @@ class TipsMediasResponse(
             try {
                 if(firebaseUri == null) {
                     firebaseUri = if(isImage) {
-                        FirebaseInstances.getURLFromMedia(image)!!
+                        FirebaseInstances.getURLFromMedia(image)
                     }
                     else {
-                        FirebaseInstances.getURLFromMedia(video)!!
+                        FirebaseInstances.getURLFromMedia(video)
                     }
 //                    firebaseUri = if(isImage) {
 //                        "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png"
@@ -105,15 +105,17 @@ class TipsMediasResponse(
                     else {
                         val mediaPlayer = MediaPlayer.create(context, absolutePath)
                         status = RepositoryStatus.SUCCESS
-                        isVertical = mediaPlayer.videoHeight > mediaPlayer.videoHeight
+                        isVertical = mediaPlayer.videoHeight > mediaPlayer.videoWidth
                         videoDuration = mediaPlayer.duration
                     }
+
+                    status = RepositoryStatus.SUCCESS
 
                     GlobalScope.launch(Dispatchers.Main) {
                         onSuccess()
                     }
                 }
-            }catch (e: Exception) {
+            } catch (e: Exception) {
                 onError()
             }
         }

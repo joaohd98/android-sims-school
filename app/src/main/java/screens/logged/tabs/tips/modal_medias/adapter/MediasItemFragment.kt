@@ -50,6 +50,7 @@ class MediasItemFragment(
 
     fun isActiveTip() {
         makeCallMedia()
+
     }
 
     fun isLastActiveTip() {

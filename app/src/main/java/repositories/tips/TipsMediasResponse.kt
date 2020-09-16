@@ -73,19 +73,18 @@ class TipsMediasResponse(
 
             try {
                 if(firebaseUri == null) {
-//                firebaseUri = if(isImage) {
-//                    FirebaseInstances.getURLFromMedia(image)!!
-//                }
-//                else {
-//                    FirebaseInstances.getURLFromMedia(video)!!
-//                }
-
                     firebaseUri = if(isImage) {
-                        "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png"
+                        FirebaseInstances.getURLFromMedia(image)!!
                     }
                     else {
-                        "https://videocdn.bodybuilding.com/video/mp4/62000/62792m.mp4"
+                        FirebaseInstances.getURLFromMedia(video)!!
                     }
+//                    firebaseUri = if(isImage) {
+//                        "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png"
+//                    }
+//                    else {
+//                        "https://videocdn.bodybuilding.com/video/mp4/62000/62792m.mp4"
+//                    }
                 }
 
                 val (saveName, dirName) = if(isImage)

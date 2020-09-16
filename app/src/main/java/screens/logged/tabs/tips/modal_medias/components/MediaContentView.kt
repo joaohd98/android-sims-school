@@ -50,8 +50,10 @@ class MediaContentView: ConstraintLayout {
     fun eraseContent() {
         binding.modalMediasItemContentImageVertical.setImageBitmap(null)
         binding.modalMediasItemContentImageHorizontal.setImageBitmap(null)
-        binding.modalMediasItemContentVideoHorizontal.setVideoURI(null)
-        binding.modalMediasItemContentVideoVertical.setVideoURI(null)
+
+        eraseVideo(binding.modalMediasItemContentVideoVertical)
+        eraseVideo(binding.modalMediasItemContentVideoHorizontal)
+
         binding.modalMediasItemContentSwitcherImageVideo.displayedChild = 0
         binding.modalMediasItemContentSwitcherImage.displayedChild = 0
     }
@@ -81,6 +83,13 @@ class MediaContentView: ConstraintLayout {
             initVideo(binding.modalMediasItemContentVideoHorizontal, uri)
         }
 
+    }
+
+    private fun eraseVideo(videoView: VideoView) {
+        videoView.apply {
+            stopPlayback()
+            setVideoURI(null)
+        }
     }
 
     private fun initVideo(videoView: VideoView, uri: Uri) {

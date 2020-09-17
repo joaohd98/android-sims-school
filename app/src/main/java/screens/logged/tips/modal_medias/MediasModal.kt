@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.res.Resources
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,7 +44,7 @@ class MediasModal(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        
         setFunViewModel()
         initViewPager()
         initTouchListener()

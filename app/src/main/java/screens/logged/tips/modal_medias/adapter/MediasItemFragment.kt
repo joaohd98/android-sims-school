@@ -44,7 +44,10 @@ class MediasItemFragment(
         setTitleView()
         setStatusView()
         setFooterView()
-        setFooterView()
+
+        if(position == viewModel.getActualTipPosition() && position != 0) {
+            makeCallMedia()
+        }
     }
 
     fun isActiveTip() {
@@ -103,6 +106,9 @@ class MediasItemFragment(
             binding.modalMediasItemStatusView.setCallRequest(media, {
                 val isActualMedia = viewModel.getActualTip(position).getMedia().id == media.id
                 val isActualTip = position == viewModel.getActualTipPosition()
+
+                Log.d("aaa isActualMedia", isActualMedia.toString())
+                Log.d("aaa isActualTip", isActualTip.toString())
 
                 isActualMedia && isActualTip
             }) {

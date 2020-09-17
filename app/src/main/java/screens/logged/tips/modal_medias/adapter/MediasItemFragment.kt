@@ -49,11 +49,11 @@ class MediasItemFragment(
 
     fun isActiveTip() {
         makeCallMedia()
-
     }
 
     fun isLastActiveTip() {
         stopTimer()
+        binding.modalMediasItemContentView.lastActiveTip()
         binding.modalMediasItemProgressView.changeProgress(0.0)
     }
 

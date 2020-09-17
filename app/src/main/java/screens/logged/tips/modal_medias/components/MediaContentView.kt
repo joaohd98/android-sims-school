@@ -49,9 +49,8 @@ class MediaContentView: ConstraintLayout {
     }
 
     fun eraseContent() {
-        binding.modalMediasItemContentImageVertical.setImageBitmap(null)
-        binding.modalMediasItemContentImageHorizontal.setImageBitmap(null)
-
+        eraseImage(binding.modalMediasItemContentImageVertical)
+        eraseImage(binding.modalMediasItemContentImageHorizontal)
         eraseVideo(binding.modalMediasItemContentVideoVertical)
         eraseVideo(binding.modalMediasItemContentVideoHorizontal)
 
@@ -86,11 +85,19 @@ class MediaContentView: ConstraintLayout {
     }
 
 
+
+    private fun eraseImage(imageView: ImageView) {
+        imageView.apply {
+            visibility = INVISIBLE
+            setImageBitmap(null)
+        }
+    }
+
     private fun eraseVideo(videoView: VideoView) {
         videoView.apply {
+            visibility = INVISIBLE
             stopPlayback()
             setVideoURI(null)
-            visibility = GONE
         }
     }
 
@@ -125,5 +132,17 @@ class MediaContentView: ConstraintLayout {
                 }
             }
         }
+    }
+
+    fun lastActiveTip() {
+        val stopCall = fun(videoView: VideoView) {
+            videoView.apply {
+                seekTo(0)
+                pause()
+            }
+        }
+
+        stopCall(binding.modalMediasItemContentVideoVertical)
+        stopCall(binding.modalMediasItemContentVideoHorizontal)
     }
 }

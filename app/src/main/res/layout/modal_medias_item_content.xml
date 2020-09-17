@@ -28,12 +28,13 @@
                     android:layout_height="match_parent"
                     android:scaleType="fitCenter"
                     android:alpha="0.9"
-                    android:src="@drawable/unreal_engine"/>
+                    android:src="@drawable/unreal_engine" />
             </ViewSwitcher>
             <ViewSwitcher
                 android:id="@+id/modal_medias_item_content_switcher_video"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@color/black">
                 <utils.CustomVerticalVideoView
                     android:id="@+id/modal_medias_item_content_video_vertical"
                     android:layout_width="match_parent"

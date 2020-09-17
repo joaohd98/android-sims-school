@@ -2,6 +2,7 @@ package screens.logged.tips.modal_medias.components
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.joao.simsschool.R
@@ -61,6 +62,9 @@ class MediaStatusView: ConstraintLayout {
         callService = {
             media.callService(context, {
                 if(stillCurrent()) {
+
+                    Log.d("aaa", "receive ${media.url}")
+
                     changeStatus(RepositoryStatus.SUCCESS)
                     onSuccess()
                 }

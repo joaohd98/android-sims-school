@@ -54,7 +54,10 @@ class MediasItemFragment(
     fun isLastActiveTip() {
         stopTimer()
         binding.modalMediasItemContentView.lastActiveTip()
-        binding.modalMediasItemProgressView.changeProgress(0.0)
+
+        Handler().postDelayed({
+            binding.modalMediasItemProgressView.changeProgress(0.0)
+        }, 500)
     }
 
     fun changeHolding(isHolding: Boolean) {
@@ -71,6 +74,7 @@ class MediasItemFragment(
         stopTimer()
 
         val tip = viewModel.getActualTip(position)
+
         binding.modalMediasItemProgressView.newCurrentPosition(tip.currentMediaPosition)
         binding.modalMediasItemFooterView.changeFooterLink(tip.getMedia().url)
 
@@ -92,7 +96,6 @@ class MediasItemFragment(
 
     private fun makeCallMedia() {
         val media = viewModel.getActualTip(position).getMedia()
-        Log.d("aaa", "call media ${media.url}")
 
         binding.modalMediasItemContentView.apply {
             eraseContent()
@@ -100,8 +103,6 @@ class MediasItemFragment(
             binding.modalMediasItemStatusView.setCallRequest(media, {
                 val isActualMedia = viewModel.getActualTip(position).getMedia().id == media.id
                 val isActualTip = position == viewModel.getActualTipPosition()
-
-                Log.d("aaa", "call media ${viewModel.getActualTip(position).getMedia().url}")
 
                 isActualMedia && isActualTip
             }) {
@@ -127,7 +128,6 @@ class MediasItemFragment(
             }
             else {
                 stopTimer()
-
                 binding.modalMediasItemProgressView.changeProgress(100.0)
                 viewModel.positionChanged(true)
             }

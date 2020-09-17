@@ -44,7 +44,9 @@ class MediasModal(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
+
+        viewModel.actualTipPosition.value = initialIndex
+
         setFunViewModel()
         initViewPager()
         initTouchListener()
@@ -172,6 +174,7 @@ class MediasModal(
             }, {
                 if (!(viewModel.isSliding.value!!)) {
                     viewModel.changeHolding(true)
+                    binding.modalMediasViewPager.isUserInputEnabled = false
                 }
             }, { event ->
                 val x = event.x.toInt()
@@ -187,6 +190,10 @@ class MediasModal(
 
         viewModel.isHolding.observe(viewLifecycleOwner, {
             adapter.changeHolding(it)
+
+            if(!it) {
+                binding.modalMediasViewPager.isUserInputEnabled = true
+            }
         })
 
         viewModel.isSliding.observe(viewLifecycleOwner, {

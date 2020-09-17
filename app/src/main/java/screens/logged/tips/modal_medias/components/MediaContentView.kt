@@ -54,6 +54,9 @@ class MediaContentView: ConstraintLayout {
         eraseVideo(binding.modalMediasItemContentVideoVertical)
         eraseVideo(binding.modalMediasItemContentVideoHorizontal)
 
+        binding.modalMediasItemContentSwitcherVideo.visibility = INVISIBLE
+        binding.modalMediasItemContentSwitcherImage.visibility = INVISIBLE
+
         binding.modalMediasItemContentSwitcherImageVideo.displayedChild = 0
         binding.modalMediasItemContentSwitcherImage.displayedChild = 0
     }
@@ -88,14 +91,12 @@ class MediaContentView: ConstraintLayout {
 
     private fun eraseImage(imageView: ImageView) {
         imageView.apply {
-            visibility = INVISIBLE
             setImageBitmap(null)
         }
     }
 
     private fun eraseVideo(videoView: VideoView) {
         videoView.apply {
-            visibility = INVISIBLE
             stopPlayback()
             setVideoURI(null)
         }
@@ -104,6 +105,7 @@ class MediaContentView: ConstraintLayout {
     private fun initImage(imageView: ImageView, uri: Uri) {
         imageView.apply {
             setImageURI(uri)
+            binding.modalMediasItemContentSwitcherImage.visibility = VISIBLE
         }
     }
 
@@ -114,8 +116,8 @@ class MediaContentView: ConstraintLayout {
             setVideoURI(uri)
             start()
 
-            setOnPreparedListener() {
-                visibility = VISIBLE
+            setOnPreparedListener {
+                binding.modalMediasItemContentSwitcherVideo.visibility = VISIBLE
             }
         }
     }

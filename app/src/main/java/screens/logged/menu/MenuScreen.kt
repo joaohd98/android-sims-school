@@ -55,7 +55,7 @@ class MenuScreen : Fragment() {
     private fun setClickMaps() {
         binding.screenMenuOptionMaps.setOnCLick(object: OnClickDataBinding() {
             override fun onClick() {
-
+                findNavController().navigate(R.id.action_menuScreen_to_mapsFragment)
             }
         })
     }

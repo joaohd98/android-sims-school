@@ -15,9 +15,4 @@ class LoggedActivity : AppCompatActivity() {
         super.onDestroy()
         CacheVideoTemp.deleteAllCache(this)
     }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        finish()
-    }
 }

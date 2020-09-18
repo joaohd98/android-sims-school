@@ -31,5 +31,17 @@
             app:popExitAnim="@anim/fragment_fade_exit"
             app:popUpTo="@+id/menuFragment"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_menuScreen_to_mapsFragment"
+            app:enterAnim="@anim/slide_left"
+            app:exitAnim="@anim/wait_anim"
+            app:popEnterAnim="@anim/wait_anim"
+            app:popExitAnim="@anim/slide_right"
+            app:destination="@id/mapsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="screens.logged.maps.MapsFragment"
+        android:label="screen_maps"
+        tools:layout="@layout/screen_maps" />
 </navigation>

@@ -23,14 +23,15 @@ object CacheVideoTemp {
 
         val (fileName, prefix ) = saveName.split(".")
         val dirName = File("${context.cacheDir}/$folder").apply {
-            deleteOnExit()
-
             if (!exists()) {
                 mkdirs()
             }
         }
 
-        val mediaFile = File.createTempFile(fileName, ".${prefix}", dirName)
+        val mediaFile = File.createTempFile(fileName, ".${prefix}", dirName).apply {
+            deleteOnExit()
+        }
+
         val call = client.newCall(Request.Builder().url(url).get().build())
 
         return try {
@@ -42,10 +43,6 @@ object CacheVideoTemp {
                     val buff = ByteArray(1024 * 4)
                     var downloaded: Long = 0
                     val target = response.body().contentLength()
-
-                    mediaFile.apply {
-                        deleteOnExit()
-                    }
 
                     val output = FileOutputStream(mediaFile)
 

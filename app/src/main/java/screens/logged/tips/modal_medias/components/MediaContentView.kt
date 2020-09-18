@@ -15,6 +15,7 @@ import repositories.tips.TipsMediasResponse
 class MediaContentView: ConstraintLayout {
     private lateinit var binding: ModalMediasItemContentBinding
     private var videoView: VideoView? = null
+    private var hasPause: Boolean = false
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
@@ -115,7 +116,12 @@ class MediaContentView: ConstraintLayout {
 
         videoView.apply {
             setVideoURI(uri)
-            start()
+
+            if(hasPause) {
+                setOnFirstFrameVideo(this)
+            } else {
+                start()
+            }
 
             setOnPreparedListener {
                 binding.modalMediasItemContentSwitcherVideo.visibility = VISIBLE
@@ -126,6 +132,8 @@ class MediaContentView: ConstraintLayout {
 
 
     fun isSlidingOrHolding(hasPause: Boolean) {
+        this.hasPause = hasPause
+
         if(this.videoView != null) {
             this.videoView?.apply {
                 if(hasPause) {
@@ -139,14 +147,15 @@ class MediaContentView: ConstraintLayout {
     }
 
     fun lastActiveTip() {
-        val stopCall = fun(videoView: VideoView) {
-            videoView.apply {
-                seekTo(0)
-                pause()
-            }
-        }
-
-        stopCall(binding.modalMediasItemContentVideoVertical)
-        stopCall(binding.modalMediasItemContentVideoHorizontal)
+        setOnFirstFrameVideo(binding.modalMediasItemContentVideoVertical)
+        setOnFirstFrameVideo(binding.modalMediasItemContentVideoHorizontal)
     }
+
+    private fun setOnFirstFrameVideo(videoView: VideoView) {
+        videoView.apply {
+            seekTo(0)
+            pause()
+        }
+    }
+
 }

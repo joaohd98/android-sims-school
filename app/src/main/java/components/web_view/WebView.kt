@@ -62,7 +62,10 @@ class WebViewFragment(private val url: Uri, private val onChange: (Boolean) -> U
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
                 webView.visibility = View.VISIBLE
-                fragment_web_view_progress_bar.visibility = View.GONE
+
+                fragment_web_view_progress_bar?.apply {
+                    visibility = View.GONE
+                }
             }
         }
 

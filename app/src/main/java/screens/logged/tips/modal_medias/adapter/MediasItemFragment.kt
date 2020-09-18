@@ -74,8 +74,6 @@ class MediasItemFragment(
     }
 
     fun changedMedia() {
-        Log.d("aaa", "changeMedia")
-
         stopTimer()
 
         val tip = viewModel.getCurrentTip()
@@ -196,7 +194,7 @@ class MediasItemFragment(
         val media = viewModel.getActualTip(position).getMedia()
 
         binding.modalMediasItemFooterView.initFooterView(media, parentFragmentManager) { situation ->
-            changeSliding(situation)
+            viewModel.isSliding.value = situation
         }
     }
 }

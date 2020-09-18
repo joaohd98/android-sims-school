@@ -1,11 +1,14 @@
 package screens.logged.tips.modal_medias.adapter
 
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import screens.logged.tips.modal_medias.MediasViewModel
 
 class MediasAdapter(
     fa: FragmentActivity,
+    private val viewModel: MediasViewModel,
     private var actualTipPosition: Int,
     private val size: Int,
     private val onDismiss: () -> Unit
@@ -15,10 +18,11 @@ class MediasAdapter(
     override fun getItemCount() =  size
 
     override fun createFragment(position: Int): Fragment {
-        val fragment = MediasItemFragment(position, onDismiss)
+        val fragment = MediasItemFragment(position,  onDismiss)
 
         fragments.add(fragment)
-
+        fragments.sortBy { it.position }
+        
         return fragment
     }
 
@@ -50,7 +54,11 @@ class MediasAdapter(
 
     fun changedMedia() {
         if(hasFinishedLoading()) {
+            Log.d("aaa", actualTipPosition.toString())
+
             fragments[actualTipPosition].apply {
+                Log.d("aaa", viewModel.getActualTip(position).name)
+
                 changedMedia()
             }
         }

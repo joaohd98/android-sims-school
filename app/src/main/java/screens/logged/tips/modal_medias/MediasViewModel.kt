@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import repositories.tips.TipsResponse
 
-class MediasViewModel(response: ArrayList<TipsResponse>, private val index: Int): ViewModel() {
+class MediasViewModel(response: ArrayList<TipsResponse>, index: Int): ViewModel() {
     val tips = mutableListOf<TipsResponse>().apply {
         addAll(response)
     }

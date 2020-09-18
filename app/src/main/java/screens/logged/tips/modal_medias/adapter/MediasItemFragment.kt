@@ -15,11 +15,11 @@ import screens.logged.tips.modal_medias.MediasViewModel
 import java.lang.Runnable
 
 class MediasItemFragment(
-    private val position: Int,
+    val position: Int,
     private val onDismiss: () -> Unit
 ): Fragment() {
     private lateinit var binding: ModalMediasItemBinding
-    private val viewModel: MediasViewModel by activityViewModels()
+    val viewModel: MediasViewModel by activityViewModels()
     private var limitTimer = 0
     private var timerCount = 0
     private var delay = 10
@@ -46,7 +46,7 @@ class MediasItemFragment(
         setFooterView()
 
         if(position == viewModel.getActualTipPosition() && position != 0) {
-            makeCallMedia()
+            isActiveTip()
         }
     }
 
@@ -104,10 +104,7 @@ class MediasItemFragment(
             eraseContent()
 
             binding.modalMediasItemStatusView.setCallRequest(media, {
-                val isActualMedia = viewModel.getActualTip(position).getMedia().id == media.id
-                val isActualTip = position == viewModel.getActualTipPosition()
-
-                isActualMedia && isActualTip
+                viewModel.getActualTip(position).getMedia().id == media.id
             }) {
                 if(media.image != "") {
                     setImageTimer()

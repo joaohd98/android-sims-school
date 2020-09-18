@@ -62,9 +62,6 @@ class MediaStatusView: ConstraintLayout {
         callService = {
             media.callService(context, {
                 if(stillCurrent()) {
-
-                    Log.d("aaa", "receive ${media.url}")
-
                     changeStatus(RepositoryStatus.SUCCESS)
                     onSuccess()
                 }

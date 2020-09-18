@@ -2,6 +2,7 @@ package screens.logged.tips.modal_medias.components
 
 import android.content.Context
 import android.net.Uri
+import android.os.Handler
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.ImageView
@@ -55,6 +56,7 @@ class MediaContentView: ConstraintLayout {
         eraseVideo(binding.modalMediasItemContentVideoVertical)
         eraseVideo(binding.modalMediasItemContentVideoHorizontal)
 
+        binding.modalMediasItemContentSwitcherImageVideo.visibility = INVISIBLE
         binding.modalMediasItemContentSwitcherVideo.visibility = INVISIBLE
         binding.modalMediasItemContentSwitcherImage.visibility = INVISIBLE
 
@@ -63,8 +65,6 @@ class MediaContentView: ConstraintLayout {
     }
 
     private fun setImage(uri: Uri, isVertical: Boolean) {
-        binding.modalMediasItemContentSwitcherImageVideo.displayedChild = 0
-
         if(isVertical) {
             binding.modalMediasItemContentSwitcherImage.displayedChild = 0
             initImage(binding.modalMediasItemContentImageVertical, uri)
@@ -73,11 +73,11 @@ class MediaContentView: ConstraintLayout {
             binding.modalMediasItemContentSwitcherImage.displayedChild = 1
             initImage(binding.modalMediasItemContentImageHorizontal, uri)
         }
+
+        binding.modalMediasItemContentSwitcherImageVideo.displayedChild = 0
     }
 
     private fun setVideo(uri: Uri, isVertical: Boolean) {
-        binding.modalMediasItemContentSwitcherImageVideo.displayedChild = 1
-
         if(isVertical) {
             binding.modalMediasItemContentSwitcherVideo.displayedChild = 0
             initVideo(binding.modalMediasItemContentVideoVertical, uri)
@@ -86,6 +86,9 @@ class MediaContentView: ConstraintLayout {
             binding.modalMediasItemContentSwitcherVideo.displayedChild = 1
             initVideo(binding.modalMediasItemContentVideoHorizontal, uri)
         }
+
+        binding.modalMediasItemContentSwitcherImageVideo.displayedChild = 1
+
     }
 
 
@@ -124,8 +127,10 @@ class MediaContentView: ConstraintLayout {
             }
 
             setOnPreparedListener {
-                binding.modalMediasItemContentSwitcherVideo.visibility = VISIBLE
-                binding.modalMediasItemContentSwitcherImageVideo.visibility = VISIBLE
+                Handler().postDelayed({
+                    binding.modalMediasItemContentSwitcherVideo.visibility = VISIBLE
+                    binding.modalMediasItemContentSwitcherImageVideo.visibility = VISIBLE
+                }, 100)
             }
         }
     }

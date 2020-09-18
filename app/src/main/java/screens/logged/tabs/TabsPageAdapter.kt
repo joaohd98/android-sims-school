@@ -1,5 +1,6 @@
 package screens.logged.tabs
 
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -11,10 +12,10 @@ import screens.logged.tips.TipsScreen
 class TabsPageAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
 
     private val pages = arrayOf(
-        "Tips",
-        "Classes",
+        "Home",
         "Scores",
-        "Home"
+        "Classes",
+        "Tips",
     )
 
     fun getTitle(position: Int): String {
@@ -22,15 +23,15 @@ class TabsPageAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
     }
 
     override fun getItemCount(): Int {
-        return 4
+        return pages.size
     }
 
     override fun createFragment(position: Int): Fragment {
         return when(position) {
-            0 -> TipsScreen.newInstance()
-            1 -> HomeScreen.newInstance()
-            2 -> ScoresScreen.newInstance()
-            3 -> ClassesScreen.newInstance()
+            0 -> HomeScreen.newInstance()
+            1 -> ScoresScreen.newInstance()
+            2 -> ClassesScreen.newInstance()
+            3 -> TipsScreen.newInstance()
             else -> { HomeScreen.newInstance() }
         }
     }

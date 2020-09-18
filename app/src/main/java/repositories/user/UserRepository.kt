@@ -85,7 +85,7 @@ class UserRepository(application: Application) {
                     .collection("user")
                     .document(userResponse.uid)
 
-                val fields = mapOf("profile_picture" to uri)
+                val fields = mapOf("profile_picture" to refURL)
                 val options= SetOptions.merge()
 
                 docUser.set(fields, options).await()

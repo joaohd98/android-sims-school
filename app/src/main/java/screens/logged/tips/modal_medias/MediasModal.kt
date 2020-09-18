@@ -29,7 +29,6 @@ class MediasModal(
         MediasViewModelFactory(tips, initialIndex)
     }
     lateinit var binding: ModalMediasBinding
-    private var inBackground = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,19 +59,12 @@ class MediasModal(
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-
-        if(inBackground) {
-            inBackground = false
-            onEnterBackground(false)
-        }
-    }
-
     override fun onPause() {
         super.onPause()
-        inBackground = true
-        onEnterBackground(true)
+
+        (binding.modalMediasViewPager.adapter as MediasAdapter).apply {
+            onEnterBackground()
+        }
     }
 
     private fun setFunViewModel() {
@@ -208,9 +200,7 @@ class MediasModal(
     }
 
     private fun onEnterBackground(isEntering: Boolean) {
-        (binding.modalMediasViewPager.adapter as MediasAdapter).apply {
-            onEnterBackground(isEntering)
-        }
+
     }
 
     private fun onLeavePage() {
@@ -227,9 +217,11 @@ class MediasModal(
             fragmentManager: FragmentManager,
             tips: ArrayList<TipsResponse>,
             index: Int
-        ) {
+        ): MediasModal {
             val mediaModal = MediasModal(tips, index)
             mediaModal.show(fragmentManager, mediaModal.tag)
+
+            return mediaModal
         }
     }
 }

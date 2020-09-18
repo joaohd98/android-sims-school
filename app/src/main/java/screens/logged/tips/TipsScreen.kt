@@ -16,6 +16,7 @@ import utils.observeOnce
 
 class TipsScreen : Fragment() {
     private val viewModel: TipsViewModel by viewModels()
+    private var dismissModal: (() -> Unit)? = null
     lateinit var binding: ScreenTipsBinding
 
     override fun onCreateView(
@@ -38,6 +39,12 @@ class TipsScreen : Fragment() {
         setObserves()
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        dismissModal?.let { it() }
+    }
+    
     private fun callRequest() {
         viewModel.user.observeOnce(viewLifecycleOwner) {
             if (it != null) {
@@ -47,7 +54,9 @@ class TipsScreen : Fragment() {
     }
 
     private fun initRecyclerView() {
-        binding.screenTipsList.initRecyclerView(activity?.supportFragmentManager!!)
+        binding.screenTipsList.initRecyclerView(activity?.supportFragmentManager!!) { dismiss ->
+            dismissModal = dismiss
+        }
     }
 
     private fun setObserves() {

@@ -77,10 +77,10 @@ class MediasAdapter(
         }
     }
 
-    fun onEnterBackground(isEntering: Boolean) {
+    fun onEnterBackground() {
         if(hasFinishedLoading()) {
             fragments[actualTipPosition].apply {
-                onEnterBackground(isEntering)
+                onEnterBackground()
             }
         }
     }

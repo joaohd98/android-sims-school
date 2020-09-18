@@ -88,13 +88,8 @@ class MediasItemFragment(
         stopTimer()
     }
 
-    fun onEnterBackground(isEntering: Boolean) {
-        if(isEntering) {
-            stopTimer()
-        }
-        else {
-            startTimer()
-        }
+    fun onEnterBackground() {
+        stopTimer()
     }
 
     private fun makeCallMedia() {

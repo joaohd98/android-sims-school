@@ -17,6 +17,7 @@ import kotlin.collections.ArrayList
 
 class TipsListAdapter(
     private val fragmentManager: FragmentManager,
+    private val setOnDismiss: (() -> Unit) -> Unit
 ): RecyclerView.Adapter<TipsListAdapter.ViewHolder>() {
 
     private lateinit var tips: ArrayList<TipsResponse>
@@ -38,7 +39,11 @@ class TipsListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if (this::tips.isInitialized) {
             holder.bind(tips[position]) {
-                MediasModal.invoke(fragmentManager, tips, position)
+                val media = MediasModal.invoke(fragmentManager, tips, position)
+
+                setOnDismiss {
+                    media.dismiss()
+                }
             }
         }
     }

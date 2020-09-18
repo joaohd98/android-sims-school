@@ -30,9 +30,9 @@ class TipsListView: LinearLayout {
         }
     }
 
-    fun initRecyclerView(fragmentManager: FragmentManager) {
+    fun initRecyclerView(fragmentManager: FragmentManager, setOnDismiss: (() -> Unit) -> Unit) {
         val viewManager = CustomLayoutManager(context, false)
-        val viewAdapter = TipsListAdapter(fragmentManager)
+        val viewAdapter = TipsListAdapter(fragmentManager, setOnDismiss)
 
         binding.viewTipsListRecyclerView.apply {
             layoutManager = viewManager

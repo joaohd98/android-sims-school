@@ -106,6 +106,7 @@ class MediaContentView: ConstraintLayout {
         imageView.apply {
             setImageURI(uri)
             binding.modalMediasItemContentSwitcherImage.visibility = VISIBLE
+            binding.modalMediasItemContentSwitcherImageVideo.visibility = VISIBLE
         }
     }
 
@@ -118,6 +119,7 @@ class MediaContentView: ConstraintLayout {
 
             setOnPreparedListener {
                 binding.modalMediasItemContentSwitcherVideo.visibility = VISIBLE
+                binding.modalMediasItemContentSwitcherImageVideo.visibility = VISIBLE
             }
         }
     }

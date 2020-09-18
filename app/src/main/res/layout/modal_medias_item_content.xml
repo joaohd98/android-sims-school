@@ -11,7 +11,8 @@
         <ViewSwitcher
             android:id="@+id/modal_medias_item_content_switcher_image_video"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:visibility="invisible">
             <ViewSwitcher
                 android:id="@+id/modal_medias_item_content_switcher_image"
                 android:layout_width="match_parent"

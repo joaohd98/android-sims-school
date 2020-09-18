@@ -74,6 +74,8 @@ class MediasItemFragment(
     }
 
     fun changedMedia() {
+        Log.d("aaa", "changeMedia")
+
         stopTimer()
 
         val tip = viewModel.getCurrentTip()

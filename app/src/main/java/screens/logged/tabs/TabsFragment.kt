@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.joao.simsschool.R
@@ -32,7 +33,12 @@ class TabsFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initHeader()
         setupTabs()
+    }
+
+    private fun initHeader() {
+        binding.fragmentTabsHeader.setNavController(findNavController())
     }
 
     private fun setupTabs() {

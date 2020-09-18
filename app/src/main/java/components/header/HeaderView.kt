@@ -7,6 +7,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.google.android.material.tabs.TabLayout
 import com.joao.simsschool.R
@@ -16,7 +17,8 @@ import kotlinx.android.synthetic.main.components_view_error.view.*
 import utils.OnClickDataBinding
 
 class HeaderView: ConstraintLayout {
-    lateinit var binding: ComponentsViewHeaderBinding
+    private lateinit var binding: ComponentsViewHeaderBinding
+    private var navController: NavController? = null
 
     constructor(context: Context) : super(context) {
         init(null, 0)
@@ -74,9 +76,7 @@ class HeaderView: ConstraintLayout {
 
         binding.onMenuClick = object: OnClickDataBinding() {
             override fun onClick() {
-                activity
-                    .findNavController(R.id.nav_host_fragment_logged)
-                    .navigate(R.id.action_tabsFragment_to_menuScreen)
+                navController?.navigate(R.id.action_tabsFragment_to_menuScreen)
             }
         }
 
@@ -89,5 +89,9 @@ class HeaderView: ConstraintLayout {
 
     fun getTabLayout(): TabLayout {
         return binding.componentsViewHeaderTabs
+    }
+
+    fun setNavController(navController: NavController) {
+        this.navController = navController
     }
 }

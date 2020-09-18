@@ -1,5 +1,6 @@
 package components.web_view
 
+import android.content.DialogInterface
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,7 +14,7 @@ import com.joao.simsschool.R
 import kotlinx.android.synthetic.main.components_fragment_web_view.*
 import utils.CustomRoundBottomSheet
 
-class WebViewFragment(private val url: Uri) : CustomRoundBottomSheet() {
+class WebViewFragment(private val url: Uri, private val onChange: (Boolean) -> Unit) : CustomRoundBottomSheet() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -67,11 +68,17 @@ class WebViewFragment(private val url: Uri) : CustomRoundBottomSheet() {
         webView.loadUrl(url.toString())
     }
 
-    companion object {
-        fun invoke(fragmentManager: FragmentManager, uri: Uri) {
-            val bottomSheetFragment = WebViewFragment(uri)
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        onChange(false)
+    }
 
+    companion object {
+        fun invoke(fragmentManager: FragmentManager, uri: Uri, onChange: (Boolean) -> Unit = {}) {
+            val bottomSheetFragment = WebViewFragment(uri, onChange)
             bottomSheetFragment.show(fragmentManager, bottomSheetFragment.tag)
+
+            onChange(true)
         }
     }
 }

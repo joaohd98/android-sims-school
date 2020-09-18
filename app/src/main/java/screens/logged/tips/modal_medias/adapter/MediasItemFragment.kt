@@ -81,7 +81,7 @@ class MediasItemFragment(
         val tip = viewModel.getCurrentTip()
 
         binding.modalMediasItemProgressView.newCurrentPosition(tip.currentMediaPosition)
-        binding.modalMediasItemFooterView.changeFooterLink(tip.getMedia().url)
+        binding.modalMediasItemFooterView.changeFooterLink(tip.getMedia())
 
         makeCallMedia()
     }
@@ -195,8 +195,8 @@ class MediasItemFragment(
     private fun setFooterView() {
         val media = viewModel.getActualTip(position).getMedia()
 
-        binding.modalMediasItemFooterView.apply {
-            initFooterView(media)
+        binding.modalMediasItemFooterView.initFooterView(media, parentFragmentManager) { situation ->
+            changeSliding(situation)
         }
     }
 }

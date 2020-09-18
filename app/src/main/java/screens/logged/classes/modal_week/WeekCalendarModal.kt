@@ -29,6 +29,10 @@ class WeekCalendarModal(
         return binding.root
     }
 
+    override fun getTheme(): Int {
+        return R.style.CustomBottomSheetRoundedTheme
+    }
+
     override fun onStart() {
         super.onStart()
         set90Screen()

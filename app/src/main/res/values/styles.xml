@@ -27,7 +27,6 @@
         <item name="colorAccent">@color/colorPrimary</item>
     </style>
 
-
     <style name="CustomStatusProgressBar" parent="CustomProgressBarHorizontal">
         <item name="android:minHeight">6dp</item>
         <item name="android:maxHeight">6dp</item>
@@ -39,6 +38,14 @@
         <item name="android:radius">100dp</item>
         <item name="android:progressTint">@color/skeleton</item>
         <item name="android:progressBackgroundTint">@color/skeleton</item>
+    </style>
+
+    <style name="CustomBottomSheetRoundedTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheetRoundedStyle</item>
+    </style>
+
+    <style name="CustomBottomSheetRoundedStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/border_rounded_bottom_sheet</item>
     </style>
 </resources>
 

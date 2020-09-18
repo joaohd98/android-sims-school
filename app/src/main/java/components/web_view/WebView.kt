@@ -22,6 +22,10 @@ class WebViewFragment(private val url: Uri, private val onChange: (Boolean) -> U
         return inflater.inflate(R.layout.components_fragment_web_view, container, false)
     }
 
+    override fun getTheme(): Int {
+        return R.style.CustomBottomSheetRoundedTheme
+    }
+
     override fun onStart() {
         super.onStart()
         set90Screen()

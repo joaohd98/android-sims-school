@@ -134,7 +134,7 @@ class MediasModal(
         val size = viewModel.tips.size
 
         val fragmentActivity = context as FragmentActivity
-        val adapter =  MediasAdapter(fragmentActivity, viewModel, initialIndex, size) {
+        val adapter =  MediasAdapter(fragmentActivity, initialIndex, size) {
             onLeavePage()
         }
 

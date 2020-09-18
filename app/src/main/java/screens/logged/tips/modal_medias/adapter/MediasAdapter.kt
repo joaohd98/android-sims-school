@@ -8,7 +8,6 @@ import screens.logged.tips.modal_medias.MediasViewModel
 
 class MediasAdapter(
     fa: FragmentActivity,
-    private val viewModel: MediasViewModel,
     private var actualTipPosition: Int,
     private val size: Int,
     private val onDismiss: () -> Unit
@@ -22,7 +21,7 @@ class MediasAdapter(
 
         fragments.add(fragment)
         fragments.sortBy { it.position }
-        
+
         return fragment
     }
 
@@ -54,11 +53,7 @@ class MediasAdapter(
 
     fun changedMedia() {
         if(hasFinishedLoading()) {
-            Log.d("aaa", actualTipPosition.toString())
-
             fragments[actualTipPosition].apply {
-                Log.d("aaa", viewModel.getActualTip(position).name)
-
                 changedMedia()
             }
         }

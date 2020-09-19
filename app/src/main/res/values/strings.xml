@@ -40,13 +40,6 @@
     <string name="view_error_message">Check your internet connection and try again!</string>
     <string name="view_error_button_text">Try Again</string>
 
-    <string name="bottom_navigation_home">Home</string>
-    <string name="bottom_navigation_scores">Scores</string>
-    <string name="bottom_navigation_classes">Classes</string>
-    <string name="bottom_navigation_tips">Tips</string>
-    <string name="bottom_navigation_menu">Menu</string>
-
     <string name="toolbar_menu">menu</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

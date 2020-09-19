@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.joao.simsschool">
 
     <uses-permission android:name="android.permission.CAMERA"/>
@@ -13,7 +14,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true">
+        android:supportsRtl="true"
+        tools:ignore="AllowBackup">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyB398E1rIAjLOBQ4V7z7YD36K1s1cJD-cc" />
@@ -29,7 +31,7 @@
         <activity
             android:name="activity.MainActivity"
             android:windowSoftInputMode="adjustResize"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

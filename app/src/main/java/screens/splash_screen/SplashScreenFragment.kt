@@ -40,7 +40,7 @@ class SplashScreenFragment : Fragment() {
 
             Handler().postDelayed({
                 findNavController().navigate(action)
-            }, 2000)
+            }, 500)
         })
     }
 }

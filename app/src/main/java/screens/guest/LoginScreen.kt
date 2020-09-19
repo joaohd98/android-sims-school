@@ -37,17 +37,17 @@ class LoginScreen : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.hasTriedSubmitEmailInvalid.observe(viewLifecycleOwner, Observer {
-            viewModel.changedHasTriedSubmit(it, fragment_login_screen_input_email)
+        viewModel.hasTriedSubmitEmailInvalid.observe(viewLifecycleOwner, {
+            viewModel.changedHasTriedSubmit(it, binding.fragmentLoginScreenInputEmail)
         })
 
-        viewModel.hasTriedSubmitPasswordInvalid.observe(viewLifecycleOwner, Observer {
-            viewModel.changedHasTriedSubmit(it, fragment_login_screen_input_password)
+        viewModel.hasTriedSubmitPasswordInvalid.observe(viewLifecycleOwner,  {
+            viewModel.changedHasTriedSubmit(it, binding.fragmentLoginScreenInputPassword)
         })
 
         val buttonSubmit = binding.fragmentLoginScreenButtonSubmit
 
-        viewModel.status.observe(viewLifecycleOwner, Observer {
+        viewModel.status.observe(viewLifecycleOwner,  {
             when (it) {
                 RepositoryStatus.FAILED -> {
                     view.setLoading(true)

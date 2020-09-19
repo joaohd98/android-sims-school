@@ -48,6 +48,11 @@ class HeaderView: ConstraintLayout {
             attrs, R.styleable.HeaderView, defStyle, 0
         )
 
+        val title = typedArray.getString(R.styleable.HeaderView_title)
+        if(title != null) {
+            binding.componentsViewHeaderTitle.text = title
+        }
+
         binding.componentsViewHeaderButton.visibility = booleanToVisibility(typedArray.getBoolean(
             R.styleable.HeaderView_hasButton, true
         ))

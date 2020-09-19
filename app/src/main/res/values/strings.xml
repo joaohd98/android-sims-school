@@ -30,9 +30,12 @@
     <string name="view_modal_medias_item_footer">Open</string>
     <string name="view_modal_media_error_message">It was not possible to get the media</string>
 
+    <string name="view_menu_item_tile">Options</string>
     <string name="view_menu_item_share">Share</string>
     <string name="view_menu_item_maps">Maps</string>
     <string name="view_menu_item_logout">Logout</string>
+
+    <string name="view_maps_title">Location</string>
 
     <string name="view_error_message">Check your internet connection and try again!</string>
     <string name="view_error_button_text">Try Again</string>

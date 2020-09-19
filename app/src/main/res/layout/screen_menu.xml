@@ -12,6 +12,7 @@
         <components.header.HeaderView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:title="@string/view_menu_item_tile"
             app:hasBackButton="true"
             app:hasButton="false"
             app:hasTabs="false"/>

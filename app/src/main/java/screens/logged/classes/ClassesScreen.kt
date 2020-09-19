@@ -1,6 +1,7 @@
 package screens.logged.classes
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,10 +11,11 @@ import com.joao.simsschool.R
 import components.error_view.OnTryAgainClickDataBinding
 import kotlinx.android.synthetic.main.screen_classes.*
 import repositories.RepositoryStatus
+import utils.FragmentFromTab
 import utils.observeOnce
 
-class ClassesScreen : Fragment() {
-    private val viewModel: ClassesViewModel by viewModels()
+class ClassesScreen : FragmentFromTab() {
+    override val viewModel: ClassesViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,9 +23,8 @@ class ClassesScreen : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.screen_classes, container, false)
     }
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
+    override fun initMethod() {
         callRequests()
         initErrorView()
         setObserves()

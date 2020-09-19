@@ -11,11 +11,12 @@ import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ScreenTipsBinding
 import components.error_view.OnTryAgainClickDataBinding
 import repositories.RepositoryStatus
+import utils.FragmentFromTab
 import utils.observeOnce
 
 
-class TipsScreen : Fragment() {
-    private val viewModel: TipsViewModel by viewModels()
+class TipsScreen : FragmentFromTab() {
+    override val viewModel: TipsViewModel by viewModels()
     private var dismissModal: (() -> Unit)? = null
     lateinit var binding: ScreenTipsBinding
 
@@ -30,21 +31,18 @@ class TipsScreen : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initMethod() {
         callRequest()
         initRecyclerView()
         initErrorView()
         setObserves()
     }
-
     override fun onResume() {
         super.onResume()
 
         dismissModal?.let { it() }
     }
-    
+
     private fun callRequest() {
         viewModel.user.observeOnce(viewLifecycleOwner) {
             if (it != null) {

@@ -1,6 +1,7 @@
 package screens.logged.scores
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,11 +12,12 @@ import components.error_view.OnTryAgainClickDataBinding
 import kotlinx.android.synthetic.main.screen_scores.*
 import repositories.RepositoryStatus
 import screens.logged.scores.components.ScoresClassesAdapter
+import utils.FragmentFromTab
 import utils.observeOnce
 
 
-class ScoresScreen : Fragment() {
-    private val viewModel: ScoresViewModel by viewModels()
+class ScoresScreen : FragmentFromTab() {
+    override val viewModel: ScoresViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,9 +26,7 @@ class ScoresScreen : Fragment() {
         return inflater.inflate(R.layout.screen_scores, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initMethod() {
         callRequests()
         initSemesters()
         initClasses()

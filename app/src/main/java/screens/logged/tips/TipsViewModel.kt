@@ -9,8 +9,9 @@ import repositories.tips.TipsRequest
 import repositories.tips.TipsResponse
 import repositories.user.UserRepository
 import repositories.user.UserResponse
+import utils.ViewModelFromTab
 
-class TipsViewModel(application: android.app.Application): AndroidViewModel(application) {
+class TipsViewModel(application: android.app.Application): ViewModelFromTab(application) {
     private val userRepository = UserRepository(application)
     val user: LiveData<UserResponse?>
 

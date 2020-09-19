@@ -1,6 +1,7 @@
 package screens.logged.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,11 +12,12 @@ import kotlinx.android.synthetic.main.screen_home.*
 import kotlinx.android.synthetic.main.view_home_profile.*
 import repositories.RepositoryStatus
 import screens.logged.home.components.HomeProfileView
+import utils.FragmentFromTab
 import utils.alertDialog
 import utils.observeOnce
 
-class HomeScreen : Fragment() {
-    private val viewModel: HomeViewModel by viewModels()
+class HomeScreen : FragmentFromTab() {
+    override val viewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,9 +26,7 @@ class HomeScreen : Fragment() {
         return inflater.inflate(R.layout.screen_home, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initMethod() {
         callRequests()
         setProfile()
         setClasses()
@@ -120,3 +120,4 @@ class HomeScreen : Fragment() {
         fun newInstance() = HomeScreen()
     }
 }
+

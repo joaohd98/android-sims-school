@@ -12,10 +12,11 @@ import repositories.classes.ClassesRequest
 import repositories.classes.ClassesResponse
 import repositories.user.UserRepository
 import repositories.user.UserResponse
+import utils.ViewModelFromTab
 import java.util.*
 
 
-class HomeViewModel(application: android.app.Application): AndroidViewModel(application) {
+class HomeViewModel(application: android.app.Application): ViewModelFromTab(application) {
     private val userRepository = UserRepository(application)
     val user: LiveData<UserResponse?>
     val statusChangeProfile: MutableLiveData<RepositoryStatus> by lazy {

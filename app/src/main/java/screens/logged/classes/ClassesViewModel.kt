@@ -9,9 +9,10 @@ import repositories.calendar.CalendarRequest
 import repositories.calendar.CalendarResponse
 import repositories.user.UserRepository
 import repositories.user.UserResponse
+import utils.ViewModelFromTab
 
 
-class ClassesViewModel(application: android.app.Application): AndroidViewModel(application) {
+class ClassesViewModel(application: android.app.Application): ViewModelFromTab(application) {
     private val userRepository = UserRepository(application)
     val user: LiveData<UserResponse?>
 

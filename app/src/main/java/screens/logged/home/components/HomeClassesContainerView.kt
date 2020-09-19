@@ -43,15 +43,17 @@ class HomeClassesContainerView: ConstraintLayout {
 
     }
 
-    fun setClasses(context: Context) {
-        val viewPager = view_home_classes_container_view_pager
+    fun setClasses(context: Context, onError: () -> Unit) {
+        val viewPager = binding.viewHomeClassesContainerViewPager
 
         viewPager.pageMargin = 100
         viewPager.adapter = HomeClassesViewAdapter(context)
+
+        setTryAgain(onError)
     }
 
     fun setLoading() {
-        val viewPager = view_home_classes_container_view_pager
+        val viewPager = binding.viewHomeClassesContainerViewPager
         val adapter = viewPager.adapter as HomeClassesViewAdapter
 
         viewPager.setScrollingEnabled(false)
@@ -59,13 +61,13 @@ class HomeClassesContainerView: ConstraintLayout {
     }
 
     fun setFailed() {
-        view_home_classes_container_switcher.showNext()
+        binding.viewHomeClassesContainerSwitcher.showNext()
     }
 
     fun setSuccess(classes: MutableList<ClassesResponse>, dayWeek: Int) {
         showDots(classes.size, dayWeek)
 
-        val viewPager = view_home_classes_container_view_pager
+        val viewPager = binding.viewHomeClassesContainerViewPager
         val pages = classes.map {
              HomeClassesView(context).apply { setClass(it) }
         }
@@ -89,7 +91,7 @@ class HomeClassesContainerView: ConstraintLayout {
     }
 
     private fun showDots(size: Int, actualIndex: Int) {
-        val dots = view_home_classes_container_dots
+        val dots = binding.viewHomeClassesContainerDots
 
         for (i in 1..size) {
             val dot = ImageView(context);
@@ -104,7 +106,7 @@ class HomeClassesContainerView: ConstraintLayout {
     }
 
     private fun changeSelectedDot(selectedIndex: Int) {
-        val dots = view_home_classes_container_dots
+        val dots = binding.viewHomeClassesContainerDots
 
         for (i in 0 until dots.size) {
             val drawableId  =
@@ -122,7 +124,7 @@ class HomeClassesContainerView: ConstraintLayout {
     fun setTryAgain(onTryAgain: () -> Unit) {
         binding.tryAgain = object: OnTryAgainClickDataBinding {
             override fun showLoading() {
-                view_home_classes_container_switcher.showNext()
+                binding.viewHomeClassesContainerSwitcher.showNext()
             }
             override fun onClick() {
                 onTryAgain()

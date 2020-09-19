@@ -38,15 +38,17 @@ class HomeAdsView : ConstraintLayout {
 
     override fun onFinishInflate() {
         super.onFinishInflate()
-        view_home_ads_image.clipToOutline = true
+        binding.viewHomeAdsImage.clipToOutline = true
     }
 
-    fun setWebView(supportFragmentManager: FragmentManager) {
+    fun setWebView(supportFragmentManager: FragmentManager, onError: () -> Unit) {
         binding.webView = object: OnClickDataBinding() {
             override fun onClick() {
                 WebViewFragment.invoke(supportFragmentManager, Uri.parse(ad.url))
             }
         }
+
+        setTryAgain(onError)
     }
 
     fun setSuccess(ad: AdsResponse) {
@@ -55,17 +57,17 @@ class HomeAdsView : ConstraintLayout {
     }
 
     fun setLoading() {
-        view_home_ads_image.showLoadingScreen()
+        binding.viewHomeAdsImage.showLoadingScreen()
     }
 
     fun setFailed() {
-        view_home_ads_switcher.showNext()
+        binding.viewHomeAdsSwitcher.showNext()
     }
 
     fun setTryAgain(onTryAgain: () -> Unit) {
         binding.tryAgain = object: OnTryAgainClickDataBinding {
             override fun showLoading() {
-                view_home_ads_switcher.showNext()
+                binding.viewHomeAdsSwitcher.showNext()
             }
             override fun onClick() {
                 onTryAgain()

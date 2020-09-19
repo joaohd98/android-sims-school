@@ -1,29 +1,33 @@
 package screens.logged.home
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.joao.simsschool.R
+import com.joao.simsschool.databinding.ScreenHomeBinding
 import kotlinx.android.synthetic.main.screen_home.*
 import kotlinx.android.synthetic.main.view_home_profile.*
 import repositories.RepositoryStatus
-import screens.logged.home.components.HomeProfileView
 import utils.FragmentFromTab
 import utils.alertDialog
 import utils.observeOnce
 
 class HomeScreen : FragmentFromTab() {
+    lateinit var binding: ScreenHomeBinding
     override val viewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.screen_home, container, false)
+        binding = DataBindingUtil.inflate(
+            inflater, R.layout.screen_home, container, false
+        )
+
+        return binding.root
     }
 
     override fun initMethod() {
@@ -31,8 +35,9 @@ class HomeScreen : FragmentFromTab() {
         setProfile()
         setClasses()
         setAds()
+        setObserves()
     }
-
+    
     private fun callRequests() {
         viewModel.user.observeOnce(viewLifecycleOwner) {
             if (it != null) {
@@ -43,11 +48,27 @@ class HomeScreen : FragmentFromTab() {
     }
 
     private fun setProfile() {
-        val profile = home_screen_profile as HomeProfileView
-        profile.setChangeProfile(viewModel, activity?.supportFragmentManager!!)
+        binding.homeScreenProfile.setChangeProfile(viewModel, activity?.supportFragmentManager!!)
+    }
 
+    private fun setClasses() {
+        binding.homeScreenClassesContainer.setClasses(requireContext()) {
+            viewModel.callClasses(true)
+        }
+
+    }
+
+    private fun setAds() {
+        val adsView = home_screen_ads
+        binding.homeScreenAds.setWebView(activity?.supportFragmentManager!!) {
+            viewModel.callAds(true)
+        }
+    }
+
+
+    private fun setObserves() {
         viewModel.user.observe(viewLifecycleOwner, {
-            profile.setUser(it)
+            binding.homeScreenProfile.setUser(it)
         })
 
         viewModel.statusChangeProfile.observe(viewLifecycleOwner, { status ->
@@ -67,16 +88,10 @@ class HomeScreen : FragmentFromTab() {
                 else -> {}
             }
         })
-    }
-
-    private fun setClasses() {
-        val classesContainer = home_screen_classes_container
-        classesContainer.setClasses(requireContext())
-        classesContainer.setTryAgain {
-            viewModel.callClasses(true)
-        }
 
         viewModel.statusClass.observe(viewLifecycleOwner, { status ->
+            val classesContainer = binding.homeScreenClassesContainer
+
             when(status) {
                 RepositoryStatus.FAILED -> {
                     classesContainer.setFailed()
@@ -91,16 +106,9 @@ class HomeScreen : FragmentFromTab() {
             }
         })
 
-    }
-
-    private fun setAds() {
-        val adsView = home_screen_ads
-        adsView.setWebView(activity?.supportFragmentManager!!)
-        adsView.setTryAgain {
-            viewModel.callAds(true)
-        }
-
         viewModel.statusAds.observe(viewLifecycleOwner, { status ->
+            val adsView = binding.homeScreenAds
+
             when(status) {
                 RepositoryStatus.FAILED -> {
                     adsView.setFailed()

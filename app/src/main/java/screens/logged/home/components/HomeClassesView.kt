@@ -33,13 +33,13 @@ class HomeClassesView : ConstraintLayout {
     }
 
     fun showSkeleton() {
-        view_home_classes_formatted_data.addSkeleton()
-        view_home_classes_linear_layout_text.addSkeletonAllElementsInner()
+        binding.viewHomeClassesFormattedData.addSkeleton()
+        binding.viewHomeClassesLinearLayoutText.addSkeletonAllElementsInner()
     }
 
     fun setClass(actualClass: ClassesResponse) {
         if(!actualClass.hasClass) {
-            view_home_classes_switcher.showNext()
+            binding.viewHomeClassesSwitcher.showNext()
         }
 
         binding.actualClass = actualClass

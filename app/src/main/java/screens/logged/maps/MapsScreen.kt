@@ -43,7 +43,7 @@ class MapsFragment : Fragment() {
 
             getMapAsync {
                 it.apply {
-                    moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 0f))
+                    moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15.0f))
                     addMarker(MarkerOptions().position(latLng).title("Sims School"))
                 }
             }

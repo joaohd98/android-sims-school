@@ -33,17 +33,17 @@ class CameraFragment : BottomSheetDialogFragment() {
     var onSuccess: ((bitMap: Bitmap) -> Unit)? = null
 
     companion object {
-        private val permissionsCamera = arrayOf(
+        private val permissionsNecessaryForCamera = arrayOf(
             Manifest.permission.CAMERA,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
         )
-        private const val permissionCamera  = 100
+        private const val permissionCodeCamera  = 100
         private const val takeCamera  = 1
 
-        private val permissionsGallery = arrayOf(
+        private val permissionsNecessaryForGallery = arrayOf(
             Manifest.permission.READ_EXTERNAL_STORAGE,
         )
-        private const val permissionGallery = 200
+        private const val permissionCodeGallery = 200
         private const val takeGallery = 2
     }
 
@@ -58,13 +58,13 @@ class CameraFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         fragment_camera_camera.setOnClickListener {
-            callPermissions(permissionsCamera, takeCamera) {
+            callPermissions(permissionsNecessaryForCamera, permissionCodeCamera) {
                 takePictureCamera()
             }
         }
 
         fragment_camera_gallery.setOnClickListener {
-            callPermissions(permissionsGallery, takeGallery)  {
+            callPermissions(permissionsNecessaryForGallery, permissionCodeGallery)  {
                 takePictureGallery()
             }
         }
@@ -83,11 +83,7 @@ class CameraFragment : BottomSheetDialogFragment() {
     ) {
         val activity = requireActivity()
 
-        if (permissions.all { ContextCompat.checkSelfPermission(
-                activity,
-                it
-            ) == PackageManager.PERMISSION_GRANTED
-            }) {
+        if (permissions.all { ContextCompat.checkSelfPermission(activity, it) == PackageManager.PERMISSION_GRANTED }) {
             onSuccess()
         }
         else {
@@ -101,17 +97,15 @@ class CameraFragment : BottomSheetDialogFragment() {
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
         when (requestCode) {
-            permissionCamera -> {
+            permissionCodeCamera -> {
                 if (grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
                     takePictureCamera()
                 } else {
                     showNoPermissionAlert()
                 }
             }
-            permissionGallery -> {
+            permissionCodeGallery -> {
                 if (grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
                     takePictureGallery()
                 } else {

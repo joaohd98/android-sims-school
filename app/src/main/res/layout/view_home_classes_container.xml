@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <utils.CustomViewPager
+            <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/view_home_classes_container_view_pager"
                 android:layout_width="match_parent"
                 android:layout_height="130dp"

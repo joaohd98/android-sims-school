@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.viewModels
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ScreenHomeBinding
@@ -52,7 +53,7 @@ class HomeScreen : FragmentFromTab() {
     }
 
     private fun setClasses() {
-        binding.homeScreenClassesContainer.setClasses(requireContext()) {
+        binding.homeScreenClassesContainer.setClasses(context as FragmentActivity) {
             viewModel.callClasses(true)
         }
 
@@ -100,7 +101,7 @@ class HomeScreen : FragmentFromTab() {
                     classesContainer.setLoading()
                 }
                 RepositoryStatus.SUCCESS -> {
-                    classesContainer.setSuccess(viewModel.classes, viewModel.actualClassIndex.value!!)
+                    classesContainer.setSuccess(ArrayList(viewModel.classes), viewModel.actualClassIndex.value!!)
                 }
                 else -> {}
             }

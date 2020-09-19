@@ -1,34 +1,39 @@
 package screens.logged.home.components
 
-import android.content.Context
-import android.view.View
-import android.view.ViewGroup
-import androidx.viewpager.widget.PagerAdapter
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import repositories.classes.ClassesResponse
 
-class HomeClassesViewAdapter(
-    private val context: Context,
-    private val pages: List<HomeClassesView> = listOf(HomeClassesView(context))
-) : PagerAdapter() {
+class HomeClassesViewAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
+    private var isLoading = true
+    private var classes: ArrayList<ClassesResponse> = arrayListOf()
+    private var fragments: ArrayList<HomeClassesView> = arrayListOf()
 
-    fun showSkeleton() {
-        pages[0].showSkeleton()
+    private fun isComplete() = fragments.size == itemCount
+
+    override fun getItemCount(): Int {
+        return if(isLoading) 1 else Integer.MAX_VALUE
     }
 
-    override fun instantiateItem(collection: ViewGroup, position: Int): Any {
-        val index = position % pages.size
-        collection.addView(pages[index])
-        return pages[index]
+    override fun createFragment(position: Int): Fragment {
+        val size = classes.size
+        val index = if(size > 0) position % size else 0
+
+        val fragment = HomeClassesView(isLoading, if(index < classes.size) classes[index] else null)
+
+        fragments.add(fragment)
+
+        return fragment
     }
 
-    override fun destroyItem(collection: ViewGroup, position: Int, view: Any) {
-        collection.removeView(view as View)
+    fun setClasses(classes: ArrayList<ClassesResponse>) {
+        this.classes = classes
+        isLoading = false
     }
 
-    override fun getCount(): Int {
-        return Integer.MAX_VALUE
-    }
-
-    override fun isViewFromObject(view: View, `object`: Any): Boolean {
-        return view === `object`
+    fun setLoading() {
+        this.classes = arrayListOf()
+        isLoading = true
     }
 }

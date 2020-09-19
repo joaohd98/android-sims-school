@@ -9,11 +9,12 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import androidx.core.view.size
-import androidx.viewpager.widget.ViewPager
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager2.widget.MarginPageTransformer
+import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewHomeClassesContainerBinding
 import components.error_view.OnTryAgainClickDataBinding
-import kotlinx.android.synthetic.main.view_home_classes_container.view.*
 import repositories.classes.ClassesResponse
 import utils.getPixels
 
@@ -43,11 +44,9 @@ class HomeClassesContainerView: ConstraintLayout {
 
     }
 
-    fun setClasses(context: Context, onError: () -> Unit) {
+    fun setClasses(fragmentActivity: FragmentActivity, onError: () -> Unit) {
         val viewPager = binding.viewHomeClassesContainerViewPager
-
-        viewPager.pageMargin = 100
-        viewPager.adapter = HomeClassesViewAdapter(context)
+        viewPager.adapter = HomeClassesViewAdapter(fragmentActivity)
 
         setTryAgain(onError)
     }
@@ -56,38 +55,35 @@ class HomeClassesContainerView: ConstraintLayout {
         val viewPager = binding.viewHomeClassesContainerViewPager
         val adapter = viewPager.adapter as HomeClassesViewAdapter
 
-        viewPager.setScrollingEnabled(false)
-        adapter.showSkeleton()
+        viewPager.isUserInputEnabled = false
+        adapter.setLoading()
     }
 
     fun setFailed() {
         binding.viewHomeClassesContainerSwitcher.showNext()
     }
 
-    fun setSuccess(classes: MutableList<ClassesResponse>, dayWeek: Int) {
+    fun setSuccess(classes: ArrayList<ClassesResponse>, dayWeek: Int) {
         showDots(classes.size, dayWeek)
 
         val viewPager = binding.viewHomeClassesContainerViewPager
-        val pages = classes.map {
-             HomeClassesView(context).apply { setClass(it) }
+        val adapter = viewPager.adapter as HomeClassesViewAdapter
+
+        adapter.setClasses(classes)
+
+        viewPager.apply {
+            setCurrentItem((classes.size * 100000) + dayWeek, false)
+            isUserInputEnabled = true
+
+            setPageTransformer(MarginPageTransformer(62))
+
+
+            registerOnPageChangeCallback(object : OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    changeSelectedDot(position % classes.size)
+                }
+            })
         }
-
-        viewPager.adapter = HomeClassesViewAdapter(context, pages).apply {
-            viewPager.setScrollingEnabled(true)
-        }
-        viewPager.setCurrentItem((classes.size * 100000) + dayWeek, false)
-        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int) {}
-
-            override fun onPageSelected(position: Int) {
-                changeSelectedDot(position % classes.size)
-            }
-
-            override fun onPageScrollStateChanged(state: Int) {}
-        })
     }
 
     private fun showDots(size: Int, actualIndex: Int) {

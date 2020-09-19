@@ -21,6 +21,14 @@ fun View.addSkeleton() {
     parent.addView(shimmer, 0)
 }
 
+
+fun View.removeSkeleton() {
+//    val shimmer = getShimmer(this, context)
+//    val parent = parent as ViewGroup
+//
+//    parent.removeView(this)
+}
+
 fun ViewGroup.addSkeletonAllElementsInner() {
     this.forEachIndexed { index, view ->
         if(view is ViewGroup) {

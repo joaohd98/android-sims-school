@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="screens.guest.login.LoginScreenViewModel" />
+            type="screens.guest.LoginScreenViewModel" />
     </data>
 
     <LinearLayout
@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
-        tools:context="screens.guest.login.LoginScreen">
+        tools:context="screens.guest.LoginScreen">
 
         <ImageView
             android:layout_width="wrap_content"

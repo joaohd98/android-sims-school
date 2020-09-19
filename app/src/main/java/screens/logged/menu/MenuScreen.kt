@@ -1,14 +1,11 @@
 package screens.logged.menu
 
-import activities.logged.LoggedActivity
 import android.app.Activity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.view.menu.MenuView
-import androidx.core.app.ShareCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -18,7 +15,6 @@ import com.joao.simsschool.databinding.ScreenTipsBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import screens.guest.login.LoginScreenViewModel
 import utils.OnClickDataBinding
 
 class MenuScreen : Fragment() {
@@ -55,7 +51,7 @@ class MenuScreen : Fragment() {
     private fun setClickMaps() {
         binding.screenMenuOptionMaps.setOnCLick(object: OnClickDataBinding() {
             override fun onClick() {
-                findNavController().navigate(R.id.action_menuScreen_to_mapsFragment)
+                findNavController().navigate(R.id.action_menuScreen_to_mapsScreen)
             }
         })
     }
@@ -69,7 +65,7 @@ class MenuScreen : Fragment() {
                     viewModel.logout()
 
                     GlobalScope.launch(Dispatchers.Main) {
-                        navController.navigate(R.id.action_menuScreen_to_nav_graph_guest)
+                        navController.navigate(R.id.action_menuScreen_to_loginScreen)
                     }
                 }
             }

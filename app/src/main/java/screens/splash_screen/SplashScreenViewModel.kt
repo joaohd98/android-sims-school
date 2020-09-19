@@ -1,4 +1,4 @@
-package activities.splashscreen
+package screens.splash_screen
 
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData

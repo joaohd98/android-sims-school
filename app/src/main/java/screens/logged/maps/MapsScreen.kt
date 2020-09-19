@@ -16,7 +16,7 @@ import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ScreenMapsBinding
 
 
-class MapsFragment : Fragment() {
+class MapsScreen : Fragment() {
     private lateinit var binding: ScreenMapsBinding
     private val latLng = LatLng(-23.6037231, -46.7351884)
 

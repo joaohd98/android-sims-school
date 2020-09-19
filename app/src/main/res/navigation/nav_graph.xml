@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashScreenFragment">
+
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="screens.splash_screen.SplashScreenFragment"
+        android:label="SplashScreenFragment"
+        tools:layout="@layout/splash_screen">
+        <action
+            android:id="@+id/action_splashScreenFragment_to_loginScreen"
+            app:destination="@id/loginScreen"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashScreenFragment_to_tabsFragment"
+            app:destination="@id/tabsFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginScreen"
+        android:name="screens.guest.LoginScreen"
+        android:label="LoginScreen"
+        tools:layout="@layout/screen_login">
+        <action
+            android:id="@+id/action_loginScreen_to_tabsFragment"
+            app:destination="@id/tabsFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/tabsFragment"
+        android:name="screens.logged.tabs.TabsFragment"
+        android:label="TabsFragment"
+        tools:layout="@layout/fragment_tabs">
+        <action
+            android:id="@+id/action_tabsFragment_to_menuScreen"
+            app:destination="@id/menuScreen"
+            app:enterAnim="@anim/slide_left"
+            app:exitAnim="@anim/wait_anim"
+            app:popEnterAnim="@anim/wait_anim"
+            app:popExitAnim="@anim/slide_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/menuScreen"
+        android:name="screens.logged.menu.MenuScreen"
+        android:label="screen_menu"
+        tools:layout="@layout/screen_menu" >
+        <action
+            android:id="@+id/action_menuScreen_to_mapsScreen"
+            app:destination="@id/mapsScreen"
+            app:enterAnim="@anim/slide_left"
+            app:exitAnim="@anim/wait_anim"
+            app:popEnterAnim="@anim/wait_anim"
+            app:popExitAnim="@anim/slide_right"/>
+        <action
+            android:id="@+id/action_menuScreen_to_loginScreen"
+            app:destination="@id/loginScreen"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/mapsScreen"
+        android:name="screens.logged.maps.MapsScreen"
+        android:label="screen_maps"
+        tools:layout="@layout/screen_maps" />
+</navigation>

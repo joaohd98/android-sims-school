@@ -1,4 +1,4 @@
-package screens.guest.login
+package screens.guest
 
 import android.text.InputType
 import android.view.animation.AnimationUtils

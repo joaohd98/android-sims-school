@@ -1,4 +1,4 @@
-package screens.guest.login
+package screens.guest
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -8,16 +8,14 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import br.com.simplepass.loadingbutton.customViews.CircularProgressButton
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ScreenLoginBinding
-import kotlinx.android.synthetic.main.screen_login.*
 import repositories.RepositoryStatus
 import utils.setLoading
 
 class LoginScreen : Fragment() {
+    private lateinit var binding: ScreenLoginBinding
     private val viewModel: LoginScreenViewModel by viewModels()
 
     override fun onCreateView(
@@ -27,9 +25,9 @@ class LoginScreen : Fragment() {
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
-        val binding: ScreenLoginBinding = DataBindingUtil.inflate(
-            inflater, R.layout.screen_login, container, false
-        )
+         binding = DataBindingUtil.inflate(
+             inflater, R.layout.screen_login, container, false
+         )
 
         binding.viewModel = viewModel
 
@@ -47,7 +45,7 @@ class LoginScreen : Fragment() {
             viewModel.changedHasTriedSubmit(it, fragment_login_screen_input_password)
         })
 
-        val buttonSubmit = fragment_login_screen_button_submit as CircularProgressButton
+        val buttonSubmit = binding.fragmentLoginScreenButtonSubmit
 
         viewModel.status.observe(viewLifecycleOwner, Observer {
             when (it) {
@@ -70,7 +68,7 @@ class LoginScreen : Fragment() {
                     buttonSubmit.startAnimation()
                 }
                 RepositoryStatus.SUCCESS -> {
-                    this.findNavController().navigate(R.id.action_loginScreen_to_nav_graph_logged)
+                    this.findNavController().navigate(R.id.action_loginScreen_to_tabsFragment)
                 }
                 else -> {}
             }
@@ -79,10 +77,6 @@ class LoginScreen : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-
-        val buttonSubmit = fragment_login_screen_button_submit as CircularProgressButton
-        buttonSubmit.dispose()
+        binding.fragmentLoginScreenButtonSubmit.dispose()
     }
-
-
 }

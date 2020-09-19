@@ -33,7 +33,7 @@ class LoginScreenViewModel(application: android.app.Application): AndroidViewMod
             this.value = InputModel(
                 _context = application,
                 _hint = "Email",
-                _value = "teste@mail.com",
+                _value = "",
                 _keyboardType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS,
                 _rules = arrayOf(
                     FormRulesModel(FormRulesNames.Email, "Type a valid email address")
@@ -46,7 +46,7 @@ class LoginScreenViewModel(application: android.app.Application): AndroidViewMod
             this.value = InputModel(
                 _context = application,
                 _hint = "Password",
-                _value = "abc123",
+                _value = "",
                 _keyboardType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD,
                 _rules = arrayOf(
                     FormRulesModel(FormRulesNames.MinLength, "Password can't be empty", 0),

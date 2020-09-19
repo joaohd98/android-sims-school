@@ -1,7 +1,6 @@
 package repositories.tips
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.media.MediaPlayer
 import android.net.Uri
@@ -12,11 +11,6 @@ import repositories.FirebaseInstances
 import repositories.RepositoryStatus
 import utils.CacheVideoTemp
 import java.io.File
-import java.io.IOException
-import java.io.InputStream
-import java.lang.Exception
-import java.net.HttpURLConnection
-import java.net.URL
 import java.util.*
 
 

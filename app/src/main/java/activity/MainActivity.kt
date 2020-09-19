@@ -6,7 +6,6 @@ import android.view.ContextThemeWrapper
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.joao.simsschool.R
 import utils.CacheVideoTemp
 

@@ -1,7 +1,5 @@
 package repositories.scores
 
-import kotlin.collections.ArrayList
-
 @Suppress("UNCHECKED_CAST")
 class ScoresResponse(
     var semester: Int = 0,

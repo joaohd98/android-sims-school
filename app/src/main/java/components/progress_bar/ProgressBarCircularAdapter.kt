@@ -1,8 +1,5 @@
 package components.progress_bar
 
-import android.content.res.ColorStateList
-import android.graphics.Color
-import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 

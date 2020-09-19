@@ -1,14 +1,10 @@
 package components.error_view
 
 import android.content.Context
-import android.content.res.ColorStateList
 import android.os.Handler
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
-import androidx.core.widget.ImageViewCompat
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ComponentsViewErrorBinding
 import kotlinx.android.synthetic.main.components_view_error.view.*

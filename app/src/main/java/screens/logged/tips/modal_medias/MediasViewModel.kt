@@ -1,6 +1,5 @@
 package screens.logged.tips.modal_medias
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import repositories.tips.TipsResponse

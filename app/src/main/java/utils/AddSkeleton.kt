@@ -1,7 +1,6 @@
 package utils
 
 import android.content.Context
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -9,7 +8,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.*
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.joao.simsschool.R
-import kotlinx.android.synthetic.main.view_home_classes.view.*
 
 
 fun View.addSkeleton() {

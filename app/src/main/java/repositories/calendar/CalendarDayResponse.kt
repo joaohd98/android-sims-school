@@ -1,9 +1,5 @@
 package repositories.calendar
 
-import android.util.Log
-import java.text.SimpleDateFormat
-import java.util.*
-
 class CalendarDayResponse(
     var course: String = "",
     var day: String = "",

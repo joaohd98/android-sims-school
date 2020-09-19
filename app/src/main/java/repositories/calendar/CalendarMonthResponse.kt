@@ -1,7 +1,5 @@
 package repositories.calendar
 
-import kotlin.collections.ArrayList
-
 @Suppress("UNCHECKED_CAST")
 class CalendarMonthResponse(
     var name: String = "",

@@ -1,18 +1,12 @@
 package repositories.user
 
-import android.net.Uri
-import android.util.Log
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.firebase.firestore.DocumentSnapshot
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
-import repositories.FirebaseInstances
 import repositories.FirebaseInstances.storage
-import java.io.File
 
 @Entity(tableName = "user")
 data class UserResponse(

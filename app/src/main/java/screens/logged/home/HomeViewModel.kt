@@ -1,7 +1,6 @@
 package screens.logged.home
 
 import android.graphics.Bitmap
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import repositories.RepositoryStatus

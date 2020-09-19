@@ -1,30 +1,22 @@
 package components.uri_image
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
-import android.media.MediaMetadataRetriever
 import android.net.Uri
 import android.os.Handler
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.ImageView.ScaleType
 import android.widget.LinearLayout
-import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
-import com.bumptech.glide.signature.ObjectKey
 import com.facebook.shimmer.ShimmerFrameLayout
-import com.google.type.DateTime
 import com.joao.simsschool.R
 import kotlinx.android.synthetic.main.components_view_uri_image.view.*
-import java.time.Instant.now
-import java.time.LocalDate.now
 
 
 class UriImageView : LinearLayout {

@@ -2,7 +2,6 @@ package screens.logged.tips.modal_medias.components
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
@@ -10,7 +9,10 @@ import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.*
+import androidx.core.view.forEachIndexed
+import androidx.core.view.get
+import androidx.core.view.marginBottom
+import androidx.core.view.marginTop
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ModalMediasItemProgressViewBinding
 import utils.getPixels

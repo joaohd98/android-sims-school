@@ -1,16 +1,8 @@
 package screens.logged.menu
 
 import android.app.Activity
-import android.content.Context
 import androidx.core.app.ShareCompat
 import androidx.lifecycle.AndroidViewModel
-import androidx.navigation.NavController
-import androidx.navigation.fragment.findNavController
-import com.joao.simsschool.R
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import repositories.FirebaseInstances
 import repositories.user.UserRepository
 

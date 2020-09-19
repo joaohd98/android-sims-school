@@ -14,7 +14,6 @@ import repositories.calendar.CalendarWeekResponse
 import screens.logged.classes.modal_week.WeekCalendarModal
 import utils.OnClickDataBinding
 import java.util.*
-import kotlin.collections.ArrayList
 
 class ClassesCalendarAdapter(
     private val viewsModel: ArrayList<CalendarResponse.RecyclerViewModel>,

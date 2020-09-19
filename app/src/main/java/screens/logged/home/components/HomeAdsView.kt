@@ -10,7 +10,6 @@ import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ViewHomeAdsBinding
 import components.error_view.OnTryAgainClickDataBinding
 import components.web_view.WebViewFragment
-import kotlinx.android.synthetic.main.view_home_ads.view.*
 import repositories.ads.AdsResponse
 import utils.OnClickDataBinding
 

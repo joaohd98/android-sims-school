@@ -1,7 +1,6 @@
 package components.input
 
 import android.view.KeyEvent
-import android.view.View
 import android.widget.EditText
 import androidx.databinding.BindingAdapter
 import com.joao.simsschool.R

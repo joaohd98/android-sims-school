@@ -2,10 +2,8 @@ package utils
 
 import android.app.Dialog
 import android.os.Bundle
-import android.view.MotionEvent
 import android.view.View
 import android.widget.FrameLayout
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED
 import com.google.android.material.bottomsheet.BottomSheetDialog

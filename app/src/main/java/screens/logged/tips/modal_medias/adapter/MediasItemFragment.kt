@@ -2,7 +2,6 @@ package screens.logged.tips.modal_medias.adapter
 
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import androidx.fragment.app.activityViewModels
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ModalMediasItemBinding
 import screens.logged.tips.modal_medias.MediasViewModel
-import java.lang.Runnable
 
 class MediasItemFragment(
     val position: Int,

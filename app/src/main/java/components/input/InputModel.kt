@@ -1,18 +1,16 @@
 package components.input
 
-import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
+import androidx.databinding.library.baseAdapters.BR
 import com.joao.simsschool.R
 import utils.FormRules
 import utils.FormRulesModel
-import androidx.databinding.library.baseAdapters.BR
 
 class InputModel(
   private val _context: android.app.Application,

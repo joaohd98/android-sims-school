@@ -1,13 +1,10 @@
 package screens.logged.tips.modal_medias.components
 
 import android.content.Context
-import android.content.Intent
 import android.net.Uri
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.webkit.WebView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.FragmentManager
 import com.joao.simsschool.R
 import com.joao.simsschool.databinding.ModalMediasItemFooterViewBinding

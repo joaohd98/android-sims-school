@@ -2,7 +2,6 @@ package repositories.calendar
 
 import screens.logged.classes.components.ClassesCalendarAdapter
 import java.util.*
-import kotlin.collections.ArrayList
 
 @Suppress("UNCHECKED_CAST")
 class CalendarResponse(

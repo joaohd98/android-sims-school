@@ -1,6 +1,5 @@
 package screens.logged.tips
 
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import repositories.RepositoryStatus

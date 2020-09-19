@@ -3,7 +3,6 @@ package repositories.tips
 import android.app.Application
 import kotlinx.coroutines.coroutineScope
 import repositories.FirebaseInstances
-import kotlin.collections.ArrayList
 
 
 @Suppress("UNCHECKED_CAST")

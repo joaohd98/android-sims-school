@@ -1,12 +1,9 @@
 package repositories.ads
 
-import android.util.Log
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.tasks.await
 import repositories.FirebaseInstances
-import java.text.SimpleDateFormat
-import java.util.*
 
 class AdsResponse(
     var image: String = "",

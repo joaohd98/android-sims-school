@@ -1,16 +1,11 @@
 package components.progress_bar
 
 import android.content.Context
-import android.content.res.ColorStateList
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
-import android.widget.ProgressBar
 import com.joao.simsschool.R
-import com.joao.simsschool.databinding.ComponentsProgressBarCircularBinding
 import com.joao.simsschool.databinding.ComponentsProgressBarHorizontalBinding
-import kotlinx.android.synthetic.main.components_progress_bar_circular.view.*
-import kotlinx.android.synthetic.main.components_progress_bar_horizontal.view.*
 
 class ProgressBarHorizontal: LinearLayout {
     lateinit var binding: ComponentsProgressBarHorizontalBinding

@@ -1,7 +1,6 @@
 package utils
 
 import android.content.Context
-import android.util.Log
 import com.squareup.okhttp.OkHttpClient
 import com.squareup.okhttp.Request
 import com.squareup.okhttp.Response
@@ -9,7 +8,6 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.InputStream
-import java.lang.Exception
 import java.net.URL
 
 object CacheVideoTemp {

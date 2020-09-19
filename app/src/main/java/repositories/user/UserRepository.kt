@@ -1,9 +1,7 @@
 package repositories.user
 
-import android.R.attr
 import android.app.Application
 import android.graphics.Bitmap
-import android.util.Log
 import com.google.firebase.firestore.SetOptions
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO

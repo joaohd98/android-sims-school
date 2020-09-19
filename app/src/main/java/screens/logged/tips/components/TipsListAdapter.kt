@@ -1,6 +1,5 @@
 package screens.logged.tips.components
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -13,7 +12,6 @@ import screens.logged.tips.modal_medias.MediasModal
 import utils.OnClickDataBinding
 import utils.addSkeletonAllElementsInner
 import utils.removeSkeletonAllElementsInner
-import kotlin.collections.ArrayList
 
 class TipsListAdapter(
     private val fragmentManager: FragmentManager,

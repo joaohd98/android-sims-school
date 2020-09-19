@@ -2,18 +2,14 @@ package components.header
 
 import android.app.Activity
 import android.content.Context
-import android.opengl.Visibility
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import com.google.android.material.tabs.TabLayout
 import com.joao.simsschool.R
-import com.joao.simsschool.databinding.ComponentsViewErrorBinding
 import com.joao.simsschool.databinding.ComponentsViewHeaderBinding
-import kotlinx.android.synthetic.main.components_view_error.view.*
 import utils.OnClickDataBinding
 
 class HeaderView: ConstraintLayout {

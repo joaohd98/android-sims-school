@@ -30,8 +30,14 @@ class TipsResponse(
 
             val media = medias.random()
 
-//            thumbnailImage = FirebaseInstances.getURLFromMedia(media.image)!!
-//            thumbnailVideo = FirebaseInstances.getURLFromMedia(media.video)!!
+            FirebaseInstances.getURLFromMedia(media.image)?.let {
+                thumbnailImage = it
+            }
+
+            FirebaseInstances.getURLFromMedia(media.video)?.let {
+                thumbnailVideo = it
+            }
+            
         }
     }
 

@@ -17,7 +17,7 @@
         tools:ignore="AllowBackup">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyB398E1rIAjLOBQ4V7z7YD36K1s1cJD-cc" />
+            android:value="@string/geo_api_key" />
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.joao.simsschool"

@@ -19,3 +19,5 @@
 /.idea/misc.xml
 /.idea/vcs.xml
 /app/schemas/repositories.AppDatabase/1.json
+/app/google-services.json
+/app/src/main/res/values/keys.xml

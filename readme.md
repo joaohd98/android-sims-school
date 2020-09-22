@@ -9,6 +9,6 @@ Sims School is a app that I created with so much love to improve myself!
 
 ### Demonstration
 
-[![Watch the video](http://i3.ytimg.com/vi/UjmB2HnkSjI/hqdefault.jpg)](http://i3.ytimg.com/vi/UjmB2HnkSjI/hqdefault.jpg)
+[![Watch the video](http://i3.ytimg.com/vi/UjmB2HnkSjI/hqdefault.jpg)](https://www.youtube.com/watch?v=UjmB2HnkSjI&t=5s)
 
 
